@@ -6,7 +6,7 @@ using Dungeon.Room;
 namespace Dungeon.Properties {
     
     public class DungeonData {
-        private const int QuadrantSize = DungeonConsts.defaultQuadrantSize;
+        private const int ChunkSize = DungeonConsts.defaultChunkSize;
 
         // Map consists of ID's
         public DungeonMap map = new DungeonMap();
@@ -17,9 +17,9 @@ namespace Dungeon.Properties {
         
         public void InsertEntrance() {
             int posX = 0;
-            int posY = (QuadrantSize / 2) - 1;
+            int posY = (ChunkSize / 2) - 1;
             // Entrance will be in the center Vertically and in
-            //  the start of Quadrant Horizontally
+            //  the start of Chunk Horizontally
             foreach (RoomInstance room in roomsAvailable) {
                 if (room.type == RoomType.Entrance) {
                     // Create an array of all room instances
@@ -31,91 +31,91 @@ namespace Dungeon.Properties {
             }
         }
         
-        public Vector2 FindCurrentQuadrantUsingCoordinate(int x, int y) {
-            int quadrantPosX = 0;
-            int quadrantPosY = 0;
+        public Vector2 FindCurrentChunkUsingCoordinate(int x, int y) {
+            int chunkPosX = 0;
+            int chunkPosY = 0;
             
-            if (x <= QuadrantSize - 1 ||
-                y <= QuadrantSize - 1) {
-                return new Vector2(quadrantPosX, quadrantPosY);
+            if (x <= ChunkSize - 1 ||
+                y <= ChunkSize - 1) {
+                return new Vector2(chunkPosX, chunkPosY);
             }
 
-            quadrantPosX = x / (x % QuadrantSize);
-            quadrantPosY = x / (y % QuadrantSize);
+            chunkPosX = x / (x % ChunkSize);
+            chunkPosY = x / (y % ChunkSize);
 
-            return new Vector2(quadrantPosX, quadrantPosY);
+            return new Vector2(chunkPosX, chunkPosY);
         }
 
-        public int[,] GetNewQuadrantExitRequirements(Vector2 quadrantPos) {
-            int quadrantPosX = (int)quadrantPos[0];
-            int quadrantPosY = (int)quadrantPos[1];
+        public int[,] GetNewChunkExitRequirements(Vector2 chunkPos) {
+            int chunkPosX = (int)chunkPos[0];
+            int chunkPosY = (int)chunkPos[1];
 
-            int[,] exitsLocated = new int[QuadrantSize,QuadrantSize];
+            int[,] exitsLocated = new int[ChunkSize,ChunkSize];
             
             // Bottom Left - Bottom Right
-            exitsLocated = BottomLeft_BottomRight(exitsLocated, quadrantPosX, quadrantPosY);
-            exitsLocated = BottomLeft_TopLeft(exitsLocated, quadrantPosX, quadrantPosY);
-            exitsLocated = TopLeft_TopRight(exitsLocated, quadrantPosX, quadrantPosY);
-            exitsLocated = BottomRight_TopRight(exitsLocated, quadrantPosX, quadrantPosY);
+            exitsLocated = BottomLeft_BottomRight(exitsLocated, chunkPosX, chunkPosY);
+            exitsLocated = BottomLeft_TopLeft(exitsLocated, chunkPosX, chunkPosY);
+            exitsLocated = TopLeft_TopRight(exitsLocated, chunkPosX, chunkPosY);
+            exitsLocated = BottomRight_TopRight(exitsLocated, chunkPosX, chunkPosY);
 
             return exitsLocated;
         }
 
-        private int[,] BottomLeft_BottomRight(int[,] exitsLocated, int quadrantPosX, int quadrantPosY) {
-            for (int currentX = quadrantPosX * QuadrantSize;
-                 currentX < (quadrantPosX+1) * QuadrantSize; 
+        private int[,] BottomLeft_BottomRight(int[,] exitsLocated, int chunkPosX, int chunkPosY) {
+            for (int currentX = chunkPosX * ChunkSize;
+                 currentX < (chunkPosX+1) * ChunkSize; 
                  currentX++) 
             {
                 exitsLocated = ReviewThisPositionForExit(
-                    exitsLocated, currentX, quadrantPosY * QuadrantSize - 1, 
-                    quadrantPosX, quadrantPosY);            
+                    exitsLocated, currentX, chunkPosY * ChunkSize - 1, 
+                    chunkPosX, chunkPosY);            
             }
             
             return exitsLocated;
         }
 
-        private int[,] BottomLeft_TopLeft(int[,] exitsLocated, int quadrantPosX, int quadrantPosY) {
-            for (int currentY = quadrantPosY * QuadrantSize - 1;
-                 currentY < (quadrantPosY + 1) * QuadrantSize + 1;
+        private int[,] BottomLeft_TopLeft(int[,] exitsLocated, int chunkPosX, int chunkPosY) {
+            for (int currentY = chunkPosY * ChunkSize - 1;
+                 currentY < (chunkPosY + 1) * ChunkSize + 1;
                  currentY++) 
             {
                 exitsLocated = ReviewThisPositionForExit(
-                    exitsLocated, quadrantPosX * QuadrantSize - 1, currentY, 
-                    quadrantPosX, quadrantPosY);
+                    exitsLocated, chunkPosX * ChunkSize - 1, currentY, 
+                    chunkPosX, chunkPosY);
             }
             
             return exitsLocated;
         }
         
-        private int[,] TopLeft_TopRight(int[,] exitsLocated, int quadrantPosX, int quadrantPosY) {
-            for (int currentX = quadrantPosX * QuadrantSize;
-                 currentX < (quadrantPosX+1) * QuadrantSize; 
+        private int[,] TopLeft_TopRight(int[,] exitsLocated, int chunkPosX, int chunkPosY) {
+            for (int currentX = chunkPosX * ChunkSize;
+                 currentX < (chunkPosX+1) * ChunkSize; 
                  currentX++) 
             {
                 exitsLocated = ReviewThisPositionForExit(
-                    exitsLocated, currentX, (quadrantPosY + 1) * QuadrantSize - 1, 
-                    quadrantPosX, quadrantPosY);
+                    exitsLocated, currentX, (chunkPosY + 1) * ChunkSize - 1, 
+                    chunkPosX, chunkPosY);
                 
             }
             
             return exitsLocated;
         }
         
-        private int[,] BottomRight_TopRight(int[,] exitsLocated, int quadrantPosX, int quadrantPosY) {
-            for (int currentY = quadrantPosY * QuadrantSize - 1;
-                 currentY < (quadrantPosY + 1) * QuadrantSize + 1;
+        private int[,] BottomRight_TopRight(int[,] exitsLocated, int chunkPosX, int chunkPosY) {
+            for (int currentY = chunkPosY * ChunkSize - 1;
+                 currentY < (chunkPosY + 1) * ChunkSize + 1;
                  currentY++) 
             {
                 exitsLocated = ReviewThisPositionForExit(
-                    exitsLocated, (quadrantPosX + 1) * QuadrantSize - 1, currentY, 
-                    quadrantPosX, quadrantPosY);             
+                    exitsLocated, (chunkPosX + 1) * ChunkSize - 1, currentY, 
+                    chunkPosX, chunkPosY);             
             }
             
             return exitsLocated;
         }
 
         private int[,] ReviewThisPositionForExit(int[,] exitsLocated, int currentX, int currentY,
-                                                 int quadrantPosX, int quadrantPosY) {
+                                                 int chunkPosX, int chunkPosY) {
             if (IsCoordinateValid(currentX, currentY) != true) {
                 return exitsLocated;
             }
@@ -123,8 +123,8 @@ namespace Dungeon.Properties {
             RoomInstance roomAtThisPosition = GetRoomAtPosition(currentX, currentY);
             if (roomAtThisPosition.type == RoomType.Entrance) { 
                 exitsLocated = TransferCoordinatesFromMapToExitSchema(
-                    exitsLocated, (quadrantPosX + 1) * QuadrantSize - 1, currentY, 
-                    quadrantPosX, quadrantPosY);
+                    exitsLocated, (chunkPosX + 1) * ChunkSize - 1, currentY, 
+                    chunkPosX, chunkPosY);
             }
 
             return exitsLocated;
@@ -137,9 +137,9 @@ namespace Dungeon.Properties {
         }
 
         private int[,] TransferCoordinatesFromMapToExitSchema(int[,] exitsLocated, int currentX, int currentY,
-                                                int quadrantPosX, int quadrantPosY) {
-            int exitCoordX = currentX - (quadrantPosX * QuadrantSize - 1);
-            int exitCoordY = currentY - (quadrantPosY * QuadrantSize - 1);
+                                                int chunkPosX, int chunkPosY) {
+            int exitCoordX = currentX - (chunkPosX * ChunkSize - 1);
+            int exitCoordY = currentY - (chunkPosY * ChunkSize - 1);
             exitsLocated[exitCoordX, exitCoordY] = 1;
             return exitsLocated;
         }

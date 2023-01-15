@@ -12,14 +12,14 @@ namespace Dungeon.Properties.MapUtilities {
         public List<Column> columns;
 
         
-        // Create 1 Quadrant for the entrance to initialise the map
+        // Create 1 Chunk for the entrance to initialise the map
         public DungeonMap() {
             columns = new List<Column>();
 
-            for (var x = 0; x < DungeonConsts.defaultQuadrantSize; x++) {
+            for (var x = 0; x < DungeonConsts.defaultChunkSize; x++) {
                 Column newColumn = new Column();
                 
-                for (var y = 0; y < DungeonConsts.defaultQuadrantSize; y++) {
+                for (var y = 0; y < DungeonConsts.defaultChunkSize; y++) {
                     newColumn.column.Add("E");
                 }
                 

@@ -12,85 +12,85 @@ namespace Dungeon {
     
     public static class Generator {
         private static List<RoomInstance> _roomsInstances = GetRoomInstances();
-        private static List<QuadrantLayout> _quadrantLayouts = GetQuadrantLayouts();
+        private static List<ChunkLayout> _chunkLayouts = GetChunkLayouts();
         // Once we have the roomsInstances -> we can make the Dungeon Map
         //  using the ID's filling them into the 2D array.
 
 
         public static void GenerateBySeed(string seed) {
-            List<QuadrantLayout> quadrantsInUse = new List<QuadrantLayout>();
+            List<ChunkLayout> chunksInUse = new List<ChunkLayout>();
             List<DungeonMap.ExitData> exitsPending = new List<DungeonMap.ExitData>();
-            // Dungeon consists of Quadrants (5x5 rooms)
-            // Quadrant consists of RoomInstances
+            // Dungeon consists of Chunks (5x5 rooms)
+            // Chunk consists of RoomInstances
 
             // 2D Dungeon Map (inside DungeonData) will expand while Dungeon generates
             DungeonData dungeonData = new DungeonData();
             dungeonData.roomsAvailable = _roomsInstances; 
             // DungeonData must know the list of RoomInstance's to be able to apply them
 
-            // In our Dungeon everything is based on Quadrants.
-            // So we must have a List of Quadrant layouts.
-            // We load the list and pick a random (appropriate) layout until we reach the  maxQuadrantsInDungeon
-            QuadrantLayout entranceLayout = ChooseEntranceLayout();
+            // In our Dungeon everything is based on Chunks.
+            // So we must have a List of Chunk layouts.
+            // We load the list and pick a random (appropriate) layout until we reach the  maxChunksInDungeon
+            ChunkLayout entranceLayout = ChooseEntranceLayout();
 
-            while (quadrantsInUse.Count < DungeonConsts.maxQuadrantsInDungeon
+            while (chunksInUse.Count < DungeonConsts.maxChunksInDungeon
                    && exitsPending.Count > 0) { 
                 // Find new Layouts appropriate to existing one's
                 DungeonMap.ExitData thisExit = exitsPending[0];
 
-                Vector2 currentQuadrantPos = findQuadrantPosition(dungeonData, thisExit);
-                int[,] exitsLocated = dungeonData.GetNewQuadrantExitRequirements(currentQuadrantPos);
-                // Now once we have exit pattern - we can find an appropriate Quadrant.
+                Vector2 currentChunkPos = FindChunkPosition(dungeonData, thisExit);
+                int[,] exitsLocated = dungeonData.GetNewChunkExitRequirements(currentChunkPos);
+                // Now once we have exit pattern - we can find an appropriate Chunk.
 
-                QuadrantLayout newQuadrantLayout = ChooseQuadrantByExitPattern(exitsLocated);
-                dungeonData = ConstructQuadrant(dungeonData, currentQuadrantPos, newQuadrantLayout);
+                ChunkLayout newChunkLayout = ChooseChunkByExitPattern(exitsLocated);
+                dungeonData = ConstructChunk(dungeonData, currentChunkPos, newChunkLayout);
 
                 // We should take those exits because we will then easily
-                //  miss other exits attached to new Quadrant.
-                // Instead we should go around the new Quadrant and locate the exits there.
+                //  miss other exits attached to new Chunk.
+                // Instead we should go around the new Chunk and locate the exits there.
 
             }
         }
 
-        private static Vector2 findQuadrantPosition(DungeonData dungeonData, DungeonMap.ExitData mainExit) {
-            Vector2 currentQuadrantPos = default;
+        private static Vector2 FindChunkPosition(DungeonData dungeonData, DungeonMap.ExitData mainExit) {
+            Vector2 currentChunkPos = default;
             switch (mainExit.exitDirection) {
                 case DungeonMap.ExitDirection.Top:
-                    currentQuadrantPos = dungeonData.FindCurrentQuadrantUsingCoordinate(mainExit.x, mainExit.y+1);
+                    currentChunkPos = dungeonData.FindCurrentChunkUsingCoordinate(mainExit.x, mainExit.y+1);
                     break;
                 case DungeonMap.ExitDirection.Bottom:
-                    currentQuadrantPos = dungeonData.FindCurrentQuadrantUsingCoordinate(mainExit.x, mainExit.y-1);
+                    currentChunkPos = dungeonData.FindCurrentChunkUsingCoordinate(mainExit.x, mainExit.y-1);
                     break;
                 case DungeonMap.ExitDirection.Left:
-                    currentQuadrantPos = dungeonData.FindCurrentQuadrantUsingCoordinate(mainExit.x-1, mainExit.y);
+                    currentChunkPos = dungeonData.FindCurrentChunkUsingCoordinate(mainExit.x-1, mainExit.y);
                     break;
                 case DungeonMap.ExitDirection.Right:
-                    currentQuadrantPos = dungeonData.FindCurrentQuadrantUsingCoordinate(mainExit.x+1, mainExit.y);
+                    currentChunkPos = dungeonData.FindCurrentChunkUsingCoordinate(mainExit.x+1, mainExit.y);
                     break;
                 default:
                     Debug.Log("Current mainExit does not have an appropriate exitDirection specified");
                     break;
             }
-            return currentQuadrantPos;
+            return currentChunkPos;
         }
 
-        private static QuadrantLayout ChooseEntranceLayout() {
+        private static ChunkLayout ChooseEntranceLayout() {
             // Should consider Seed
-            foreach (QuadrantLayout layout in _quadrantLayouts) {
-                if (layout.quadrantType == QuadrantType.Entrance) {
+            foreach (ChunkLayout layout in _chunkLayouts) {
+                if (layout.chunkType == ChunkType.Entrance) {
                     return layout;
                 }
             }
 
-            return _quadrantLayouts[0];
+            return _chunkLayouts[0];
         }
 
-        private static QuadrantLayout ChooseQuadrantByExitPattern(int[,] exitsPattern) {
-            foreach (QuadrantLayout layout in _quadrantLayouts) {
+        private static ChunkLayout ChooseChunkByExitPattern(int[,] exitsPattern) {
+            foreach (ChunkLayout layout in _chunkLayouts) {
 
                 bool allExitsCorrespond = true;
-                for (int y = 0; y < DungeonConsts.defaultQuadrantSize; y++) {
-                    for (int x = 0; x < DungeonConsts.defaultQuadrantSize; x++) {
+                for (int y = 0; y < DungeonConsts.defaultChunkSize; y++) {
+                    for (int x = 0; x < DungeonConsts.defaultChunkSize; x++) {
                         if (layout.rooms.GetCell(x, y) != 2 ||
                             exitsPattern[x, y] != 1) {
                             allExitsCorrespond = false;
@@ -105,18 +105,18 @@ namespace Dungeon {
                 }
             }
 
-            return _quadrantLayouts[0];
+            return _chunkLayouts[0];
         }
 
-        private static DungeonData ConstructQuadrant(DungeonData dungeon, Vector2 currentQuadrantPos, QuadrantLayout newQuadrantLayout) {
+        private static DungeonData ConstructChunk(DungeonData dungeon, Vector2 currentChunkPos, ChunkLayout newChunkLayout) {
             DungeonData extendedDungeon = dungeon;
-            // Go though the Quadrant Grid by one room from bottom left to to right.
+            // Go though the Chunk Grid by one room from bottom left to to right.
             //  1 row at a time.
-            int quadrantStartX = (int)currentQuadrantPos.x * DungeonConsts.defaultQuadrantSize - 1;
-            int quadrantStartY = (int)currentQuadrantPos.y * DungeonConsts.defaultQuadrantSize - 1;
-            for (int y = 0; y < DungeonConsts.defaultQuadrantSize-1; y++) {
-                for (int x = 0; x < DungeonConsts.defaultQuadrantSize-1; x++) {
-                    if (newQuadrantLayout.rooms.GetCell(x, y) != 2) {
+            int chunkStartX = (int)currentChunkPos.x * DungeonConsts.defaultChunkSize - 1;
+            int chunkStartY = (int)currentChunkPos.y * DungeonConsts.defaultChunkSize - 1;
+            for (int y = 0; y < DungeonConsts.defaultChunkSize-1; y++) {
+                for (int x = 0; x < DungeonConsts.defaultChunkSize-1; x++) {
+                    if (newChunkLayout.rooms.GetCell(x, y) != 2) {
                         // Get random exit room here
                         Vector2 roomCoordinates = new Vector2(x,y);
                         extendedDungeon = ChooseExitRoom(extendedDungeon, roomCoordinates);
@@ -124,8 +124,8 @@ namespace Dungeon {
                     else {
                         // Get random room here
                     }
-                    // They should both correspond to the entire newQuadrantConstruction schema
-                    // : check neighbour cells in newQuadrantLayout to determine what
+                    // They should both correspond to the entire newChunkConstruction schema
+                    // : check neighbour cells in newChunkLayout to determine what
                     //    walls are required to be in the room
                 }
             }
@@ -146,13 +146,13 @@ namespace Dungeon {
             return new List<RoomInstance>(instancesRooms);
         }
         
-        private static List<QuadrantLayout> GetQuadrantLayouts() {
-            const string layoutsPath = "Dungeon/Quadrant/Prefabs";
+        private static List<ChunkLayout> GetChunkLayouts() {
+            const string layoutsPath = "Dungeon/Chunk/Prefabs";
             GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
-            QuadrantLayout[] quadrantLayouts = layoutsPrefabs.Select(
-                prefabObj => prefabObj.GetComponent<QuadrantLayout>()
+            ChunkLayout[] chunkLayouts = layoutsPrefabs.Select(
+                prefabObj => prefabObj.GetComponent<ChunkLayout>()
             ).ToArray();
-            return new List<QuadrantLayout>(quadrantLayouts);
+            return new List<ChunkLayout>(chunkLayouts);
         }
     }
 }
