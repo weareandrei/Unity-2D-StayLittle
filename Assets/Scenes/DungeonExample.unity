@@ -152,16 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &192031582
 Transform:
   m_ObjectHideFlags: 0
@@ -206,16 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &266777538
 Transform:
   m_ObjectHideFlags: 0
@@ -260,16 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &304904898
 Transform:
   m_ObjectHideFlags: 0
@@ -314,16 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &366069582
 Transform:
   m_ObjectHideFlags: 0
@@ -368,16 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &510795276
 Transform:
   m_ObjectHideFlags: 0
@@ -422,16 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &662067671
 Transform:
   m_ObjectHideFlags: 0
@@ -476,16 +416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &808338275
 Transform:
   m_ObjectHideFlags: 0
@@ -530,16 +460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &847458618
 Transform:
   m_ObjectHideFlags: 0
@@ -584,16 +504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1123247674
 Transform:
   m_ObjectHideFlags: 0
@@ -638,16 +548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1298951658
 Transform:
   m_ObjectHideFlags: 0
@@ -692,16 +592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1322146342
 Transform:
   m_ObjectHideFlags: 0
@@ -746,16 +636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1344244404
 Transform:
   m_ObjectHideFlags: 0
@@ -800,16 +680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1376206924
 Transform:
   m_ObjectHideFlags: 0
@@ -854,16 +724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1493241802
 Transform:
   m_ObjectHideFlags: 0
@@ -908,16 +768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1495193446
 Transform:
   m_ObjectHideFlags: 0
@@ -962,16 +812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1591306651
 Transform:
   m_ObjectHideFlags: 0
@@ -1017,8 +857,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testGrid:
-    gridSize: 0
-    rows: []
+    rows:
+    - cells:
+      - f
+      - 
+      - 
+      - 
+      - 
+    - cells:
+      - 
+      - 
+      - 
+      - 
+      - 
+    - cells:
+      - 
+      - 
+      - 
+      - 
+      - 
+    - cells:
+      - 
+      - 
+      - 
+      - 
+      - 
+    - cells: []
+    gridSize: {x: 5, y: 5}
 --- !u!4 &1600502651
 Transform:
   m_ObjectHideFlags: 0
@@ -1063,16 +928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1627422664
 Transform:
   m_ObjectHideFlags: 0
@@ -1117,16 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1665388445
 Transform:
   m_ObjectHideFlags: 0
@@ -1171,16 +1016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1728508206
 Transform:
   m_ObjectHideFlags: 0
@@ -1225,16 +1060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1895057732
 Transform:
   m_ObjectHideFlags: 0
@@ -1279,16 +1104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1916744428
 Transform:
   m_ObjectHideFlags: 0
@@ -1333,16 +1148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &1957509241
 Transform:
   m_ObjectHideFlags: 0
@@ -1387,16 +1192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &2051104980
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,16 +1416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &2121085576
 Transform:
   m_ObjectHideFlags: 0
@@ -1675,16 +1460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed1cda17d427a9ec388774fe15af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-    gridSize: {x: 5, y: 5}
-    cellSize: {x: 16, y: 16}
-    cells:
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-    - row: 0000000000000000000000000000000000000000
-  quadrantType: 0
 --- !u!4 &2127563578
 Transform:
   m_ObjectHideFlags: 0

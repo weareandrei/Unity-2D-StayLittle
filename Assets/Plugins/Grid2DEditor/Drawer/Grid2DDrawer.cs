@@ -7,14 +7,15 @@ namespace Grid2DEditor {
     public class Grid2DDrawer : PropertyDrawer{
         private static float LineHeight => EditorGUIUtility.singleLineHeight;
         
-        private const float FirstLineMargin = 5f;
-        private const float LastLineMargin = 2f;
+        private const float FirstLineMargin = 16f;
+        private const float LastLineMargin = 0f;
 
         private static readonly Vector2 CellSpacing = new Vector2(5f, 5f);
         
         private SerializedProperty gridSizeProperty;
         private SerializedProperty rowsProperty;
         private SerializedProperty thisProperty;
+        private Vector2Int cellSizeProperty = new Vector2Int(16,16);
 
         static class Texts
         {
@@ -68,7 +69,7 @@ namespace Grid2DEditor {
         
         private void DisplayGrid(Rect position) {
             var cellRect = new Rect(position.x, position.y, 
-                32, 16);
+                20, 20);
                 
             for (var y = 0; y < gridSizeProperty.vector2IntValue.y-1; y++) {
                 for (var x = 0; x < gridSizeProperty.vector2IntValue.x-1; x++) {
@@ -98,6 +99,25 @@ namespace Grid2DEditor {
         private void TryFindPropertyRelative(SerializedProperty parent, string relativePropertyPath, 
             out SerializedProperty prop) {
             prop = parent.FindPropertyRelative(relativePropertyPath);
+        }
+        
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            var height = base.GetPropertyHeight(property, label);
+
+            GetGridSizeProperty(property);
+            // GetCellSizeProperty(property);
+
+            if (property.isExpanded)
+            {
+                height += FirstLineMargin;
+
+                height += gridSizeProperty.vector2IntValue.y * (cellSizeProperty.y + CellSpacing.y) - CellSpacing.y;
+                
+                height += LastLineMargin;
+            }
+
+            return height;
         }
 
 
