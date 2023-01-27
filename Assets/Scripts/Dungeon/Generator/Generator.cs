@@ -12,7 +12,8 @@ namespace Dungeon.Generator {
         
         public static DungeonData GenerateDungeonBySeed(string seed) {
             DungeonData dungeonData = new DungeonData();
-            
+
+            ChunkGenerator.chunkLayoutsAvailable = ChunkLayoutsAvailable;
             dungeonData.chunkMap = ChunkGenerator.GenerateChunks(seed);
             dungeonData.roomMap = RoomGenerator.GenerateRooms(seed, dungeonData.chunkMap);
             dungeonData.contentsMap = ContentsGenerator.GenerateContents(seed, dungeonData.roomMap);
