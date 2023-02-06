@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Array2DEditor;
+using Grid2DEditor;
 
 namespace Dungeon.Room {
 
@@ -11,7 +8,7 @@ namespace Dungeon.Room {
         public string roomInstanceID;
         public RoomType type;
 
-        [SerializeField] public Array2DInt roomLayout; // 0 - empty, 1 - occupied, 2 - entrance
+        [SerializeField] public Grid2D roomLayout; // 0 - empty, 1 - occupied, 2 - entrance
         // Must be roomSize + 1.
         //  edge is only for entrance position and direction indication.
         

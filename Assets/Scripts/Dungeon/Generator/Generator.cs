@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using Dungeon.Chunk;
 using Dungeon.Generator.Stage;
 using Dungeon.Properties;
 using Dungeon.Room;
+using UnityEngine;
 
 namespace Dungeon.Generator {
     public static class Generator {
@@ -14,7 +16,7 @@ namespace Dungeon.Generator {
             DungeonData dungeonData = new DungeonData();
 
             ChunkGenerator.chunkLayoutsAvailable = ChunkLayoutsAvailable;
-            dungeonData.chunkMap = ChunkGenerator.GenerateChunks(seed);
+            dungeonData.chunkMap = ChunkGenerator.GenerateChunks();
             dungeonData.roomMap = RoomGenerator.GenerateRooms(seed, dungeonData.chunkMap);
             dungeonData.contentsMap = ContentsGenerator.GenerateContents(seed, dungeonData.roomMap);
 
@@ -22,7 +24,12 @@ namespace Dungeon.Generator {
         }
 
         public static void LoadResources() {
-            
+            const string layoutsPath = "Dungeon/Chunk/Prefabs";
+            GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
+            ChunkLayout[] chunkLayouts = layoutsPrefabs.Select(
+                prefabObj => prefabObj.GetComponent<ChunkLayout>()
+            ).ToArray();
+            ChunkLayoutsAvailable = new List<ChunkLayout>(chunkLayouts);
         }
     }
 }

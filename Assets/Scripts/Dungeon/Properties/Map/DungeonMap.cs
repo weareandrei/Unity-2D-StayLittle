@@ -9,5 +9,7 @@ namespace Dungeon.Properties.Map {
         public void PlaceCellOnMap(Vector2Int coordinates, string contents) {
             map.UpdateCell((int)coordinates[0], (int)coordinates[1], contents);
         }
+        
+        
     }
 }

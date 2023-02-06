@@ -11,10 +11,16 @@ namespace Dungeon.Properties.Map.Util {
         //         column.Add("E"); // E = Empty
         //     }
         // }
+
+        public Row(int size) {
+            for (int i = 0; i < size; i++) {
+                cells.Add("");
+            }
+        }
         
         public void InsertCellsRight(int count) {
             for (var x = 0; x < count; x++) {
-                cells.Insert(0,"");
+                cells.Add("");
             }
         }
         

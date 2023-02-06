@@ -8,7 +8,7 @@ namespace Grid2DEditor {
         private static float LineHeight => EditorGUIUtility.singleLineHeight;
         
         private const float FirstLineMargin = 16f;
-        private const float LastLineMargin = 0f;
+        private const float LastLineMargin = 32f;
 
         private static readonly Vector2 CellSpacing = new Vector2(5f, 5f);
         
@@ -71,8 +71,8 @@ namespace Grid2DEditor {
             var cellRect = new Rect(position.x, position.y, 
                 20, 20);
                 
-            for (var y = 0; y < gridSizeProperty.vector2IntValue.y-1; y++) {
-                for (var x = 0; x < gridSizeProperty.vector2IntValue.x-1; x++) {
+            for (var y = 0; y < gridSizeProperty.vector2IntValue.y; y++) {
+                for (var x = 0; x < gridSizeProperty.vector2IntValue.x; x++) {
                     var pos = new Rect(cellRect) {
                         x = cellRect.x + (cellRect.width + CellSpacing.x) * x,
                         y = cellRect.y + (cellRect.height + CellSpacing.y) * y

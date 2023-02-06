@@ -29,7 +29,7 @@ namespace Grid2DEditor
         
         public Grid2D(int size) {
             rows = new Row[size];
-            for (int y=0; y < size-1; y++) {
+            for (int y=0; y < size; y++) {
                 rows[y] = new Row(size);
             }
             Size = size;
