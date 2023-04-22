@@ -13,13 +13,11 @@ namespace Dungeon.Tests.EditMode {
     
         [Test]
         public void CorrectChunksGenerated() {
+            // todo: this test is not final yet
             LoadResources();
             ChunkGenerator.chunkLayoutsAvailable = _chunkLayoutsAvailable;
             ChunkGenerator.seed = "123";
             ChunkMap chunkMap = ChunkGenerator.GenerateChunks();
-        
-            Debug.Log(chunkMap);
-            // Assert.AreEqual();
         }
         
         public static void LoadResources() {

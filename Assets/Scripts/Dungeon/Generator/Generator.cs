@@ -9,27 +9,60 @@ using UnityEngine;
 namespace Dungeon.Generator {
     public static class Generator {
         
-        public static List<ChunkLayout> ChunkLayoutsAvailable;
-        public static List<RoomInstance> RoomsAvailable;
+        public static List<ChunkLayout> chunkLayoutsAvailable;
+        public static GameObject[] roomPrefabsAvailable;
+        public static List<RoomInstance> roomsAvailable;
         
-        public static DungeonData GenerateDungeonBySeed(string seed) {
-            DungeonData dungeonData = new DungeonData();
+        public static DungeonMapData GenerateDungeonBySeed(string seed) {
+            DungeonMapData dungeonMapData = new DungeonMapData();
 
-            ChunkGenerator.chunkLayoutsAvailable = ChunkLayoutsAvailable;
-            dungeonData.chunkMap = ChunkGenerator.GenerateChunks();
-            dungeonData.roomMap = RoomGenerator.GenerateRooms(seed, dungeonData.chunkMap);
-            dungeonData.contentsMap = ContentsGenerator.GenerateContents(seed, dungeonData.roomMap);
+            ChunkGenerator.chunkLayoutsAvailable = chunkLayoutsAvailable;
+            RoomGenerator.roomLayoutsAvailable = roomsAvailable;
+            ChunkGenerator.seed = seed;
+            dungeonMapData.chunkMap = ChunkGenerator.GenerateChunks();
+            dungeonMapData.roomMap = RoomGenerator.GenerateRooms(seed, dungeonMapData.chunkMap);
+            dungeonMapData.contentsMap = ContentsGenerator.GenerateContents(seed, dungeonMapData.roomMap);
 
-            return dungeonData;
+            return dungeonMapData;
         }
 
         public static void LoadResources() {
-            const string layoutsPath = "Dungeon/Chunk/Prefabs";
+            chunkLayoutsAvailable = LoadAvailableChunkLayout();
+            roomPrefabsAvailable = LoadAvailableRooms();
+            roomsAvailable = LoadAvailableRoomsLayout();
+        }
+        
+        private static List<ChunkLayout> LoadAvailableChunkLayout() {
+            const string layoutsPath = "Dungeon/ChunkLayout/Prefabs";
             GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
             ChunkLayout[] chunkLayouts = layoutsPrefabs.Select(
                 prefabObj => prefabObj.GetComponent<ChunkLayout>()
             ).ToArray();
-            ChunkLayoutsAvailable = new List<ChunkLayout>(chunkLayouts);
+            return new List<ChunkLayout>(chunkLayouts);
+        }
+        
+        private static List<RoomInstance> LoadAvailableRoomsLayout() {
+            RoomInstance[] roomInstances = roomPrefabsAvailable.Select(
+                prefabObj => prefabObj.GetComponent<RoomInstance>()
+            ).ToArray();
+            return new List<RoomInstance>(roomInstances);
+        }
+        
+        private static GameObject[] LoadAvailableRooms() {
+            const string layoutsPath = "Dungeon/Room/Prefabs";
+            GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
+            return layoutsPrefabs;
+        }
+
+        public static GameObject GetRoomPrefabFromID(string id) {
+            return roomPrefabsAvailable.FirstOrDefault(roomPrefab => {
+                RoomInstance roomInstance = roomPrefab.GetComponent<RoomInstance>();
+                if (roomInstance.roomID == id) {
+                    return roomPrefab;
+                }
+
+                return false;
+            });
         }
     }
 }

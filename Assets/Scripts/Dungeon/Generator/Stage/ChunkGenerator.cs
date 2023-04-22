@@ -19,7 +19,7 @@ namespace Dungeon.Generator.Stage {
             
             // Place Entrance
             ChunkLayout entranceLayout = GetEntranceLayout();
-            _newChunkMap.PlaceCellOnMap(new Vector2Int(0,0), entranceLayout.ID);
+                _newChunkMap.PlaceCellOnMap(new Vector2Int(0,0), entranceLayout.ID);
             
             chunksInUse.Add(entranceLayout.ID);
             possibleExits.AddRange(
@@ -27,7 +27,7 @@ namespace Dungeon.Generator.Stage {
             // todo: remember that 1 exit here is actually an entrance from the elevator
 
             while (chunksInUse.Count <= Consts.DungeonChunkCount) {
-                _newChunkMap.map.DisplayGrid(); 
+                // _newChunkMap.map.DisplayGrid(); 
                 ChunkMap.PossibleExit exit = possibleExits[0];
                 Vector2Int newChunkCoordinates = GetNextChunkCoordinatesBasedOnExit(exit);
 
@@ -37,8 +37,7 @@ namespace Dungeon.Generator.Stage {
                         _newChunkMap.map.GetCell(newChunkCoordinates.x, newChunkCoordinates.y);
                 }
                 catch (IndexOutOfRangeException e) {
-                    // Console.WriteLine(e);
-                    Debug.Log(e.Message);
+                    // Debug.Log(e.Message);
                 }
                 
                 if (newChunkCoordinatesContents != "") {
@@ -48,9 +47,13 @@ namespace Dungeon.Generator.Stage {
                 
                 // If this cell is empty then we continue here :
                 
-                string newChunkId = SelectChunk(newChunkCoordinates);
+                string newChunkId = SelectChunk(newChunkCoordinates); // infinite loop here
                 if (newChunkId == "not found") {
-                    Debug.Log("Chunk not found!");
+                    // Debug.Log("Chunk not found!");
+                    possibleExits.Remove(exit);
+                    continue;
+                    // todo : here we will face a problem of sometimes having no rooms
+                    // todo : but this is solved by making enough rooms to always have an option
                 }
                 _newChunkMap.PlaceCellOnMap(newChunkCoordinates, newChunkId);
                 chunksInUse.Add(newChunkId);
@@ -58,15 +61,13 @@ namespace Dungeon.Generator.Stage {
                 ChunkLayout newChunkLayout = FindChunkLayoutByID(newChunkId);
                 possibleExits.AddRange(
                     FindPossibleExits(newChunkLayout.rooms, newChunkCoordinates.x, newChunkCoordinates.y));
-
-                Debug.Log("Here");
             }
 
-            _newChunkMap.map.DisplayGrid();
+            // _newChunkMap.map.DisplayGrid();
             return _newChunkMap;
         }
 
-        private static ChunkLayout FindChunkLayoutByID(string id) {
+        public static ChunkLayout FindChunkLayoutByID(string id) {
             if (id == "") {
                 throw new ArgumentException("Chunk ID can't be empty");
             }
@@ -125,6 +126,10 @@ namespace Dungeon.Generator.Stage {
 
             Grid2D layoutRequirements = GetLayoutRequirements(posX, posY);
             List<string> foundLayouts = FindSimilarChunkLayout(layoutRequirements);
+            if (foundLayouts.Count == 0) {
+                return "not found";
+            }
+            // todo : next line has a timeout if we don't find the Layouts appropriate
             return foundLayouts[UseSeed(foundLayouts.Count)];
         }
 
@@ -166,22 +171,22 @@ namespace Dungeon.Generator.Stage {
                 foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x+1, y)).rooms;
                 requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "right"); 
             }
-            catch (IndexOutOfRangeException e) { Debug.Log(e.Message); }
-            catch (ArgumentException e) { Debug.Log(e.Message); }
+            catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
+            catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
             
             try {
                 foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y-1)).rooms;
                 requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "bottom");   
             }
-            catch (IndexOutOfRangeException e) { Debug.Log(e.Message); }
-            catch (ArgumentException e) { Debug.Log(e.Message); }
+            catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
+            catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
             
             try {
                 foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y+1)).rooms;
                 requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "top");  
             }
-            catch (IndexOutOfRangeException e) { Debug.Log(e.Message); }
-            catch (ArgumentException e) { Debug.Log(e.Message); }
+            catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
+            catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
             
             return requirements;
         }
@@ -191,13 +196,13 @@ namespace Dungeon.Generator.Stage {
         private static List<string> FindSimilarChunkLayout(Grid2D layout) {
             List<string> chunkLayouts = new List<string>();
             
-            foreach (ChunkLayout chunkLayout in chunkLayoutsAvailable) {
+            foreach (ChunkLayout assessedChunkLayout in chunkLayoutsAvailable) {
                 // Must check if it includes all the exits
                 bool isSimilar = true;
                 for (int y = 0; y < layout.Size-1; y++) {
                     for (int x = 0; x < layout.Size-1; x++) {
                         if (layout.GetCell(x, y) == "E") {
-                            if (chunkLayout.rooms.GetCell(x,y) != "E") {
+                            if (assessedChunkLayout.rooms.GetCell(x,y) != "E") {
                                 isSimilar = false;
                             }
                         }
@@ -205,7 +210,7 @@ namespace Dungeon.Generator.Stage {
                 }
 
                 if (isSimilar) {
-                    chunkLayouts.Add(chunkLayout.ID);
+                    chunkLayouts.Add(assessedChunkLayout.ID);
                 }
             }
             

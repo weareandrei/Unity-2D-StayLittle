@@ -6,12 +6,6 @@ namespace Dungeon.Properties.Map.Util {
         
         public readonly List<string> cells = new List<string>(); // List containing room id's
 
-        // public void InsertEmptyInFront(int count) {
-        //     for (var i = 0; i < count; i++) {
-        //         column.Add("E"); // E = Empty
-        //     }
-        // }
-
         public Row(int size) {
             for (int i = 0; i < size; i++) {
                 cells.Add("");

@@ -16,5 +16,4 @@ namespace Dungeon.Properties.Map.Type {
         }
     }
     
-    
 }

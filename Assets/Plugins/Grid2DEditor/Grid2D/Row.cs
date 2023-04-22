@@ -8,7 +8,7 @@ namespace Grid2DEditor
         public Row(int size) {
             cells = new string[size];
             
-            for (int x = 0; x < size-1; x++) {
+            for (int x = 0; x < size; x++) {
                 cells[x] = "";
             }
         }

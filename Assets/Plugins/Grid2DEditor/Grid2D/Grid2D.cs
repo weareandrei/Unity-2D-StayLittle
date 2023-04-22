@@ -37,7 +37,7 @@ namespace Grid2DEditor
         
 
         public string GetCell(int x, int y) {
-            return rows[x].cells[y];
+            return rows[y].cells[x];
         }
         
         public void UpdateCell(int x, int y, string contents) {

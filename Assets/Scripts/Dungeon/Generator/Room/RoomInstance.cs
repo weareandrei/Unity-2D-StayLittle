@@ -1,16 +1,28 @@
+using Dungeon.Generator;
 using UnityEngine;
 using Grid2DEditor;
 
 namespace Dungeon.Room {
 
     public class RoomInstance : MonoBehaviour {
-        public int roomID;
+        public string roomID;
         public string roomInstanceID;
         public RoomType type;
 
-        [SerializeField] public Grid2D roomLayout; // 0 - empty, 1 - occupied, 2 - entrance
+        // 0 - empty, 1 - occupied, 2 - exit, 3 - not strict exit (on this side any cell)
+        [SerializeField] public Grid2D roomLayout; 
         // Must be roomSize + 1.
         //  edge is only for entrance position and direction indication.
+        // Because room layout must be much more precise than the chunkLayout
+
+        public RoomInstance() {
+            roomLayout = new Grid2D(Consts.RoomSize+2);
+        }
+
+        public RoomInstance(int size) {
+            roomLayout = new Grid2D(size+2);
+        }
+        
         
         public struct LinkedRoomsAddresses {
             public int top;
@@ -21,6 +33,7 @@ namespace Dungeon.Room {
     }
 
     public enum RoomType {
+        Normal,
         Entrance
     }
 }

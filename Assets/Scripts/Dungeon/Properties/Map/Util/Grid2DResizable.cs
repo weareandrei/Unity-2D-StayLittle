@@ -21,7 +21,16 @@ namespace Dungeon.Properties.Map.Util {
         // ]
         // To view properly - mirror in y direction.
 
-        private int zeroYOffset = 0; 
+        public int zeroYOffset = 0; 
+        
+        public Grid2DResizable(int sizeX, int sizeY) {
+            rows = new List<Row>();
+
+            for (int y = 0; y < sizeY; y++) {
+                Row newRow = new Row(sizeX);
+                rows.Add(newRow);
+            }
+        }
         
         public Grid2DResizable(int size) {
             rows = new List<Row>();
@@ -32,8 +41,7 @@ namespace Dungeon.Properties.Map.Util {
             }
         }
         
-        
-
+        // This is an Abstract GetCel.. We consider offset here.
         public string GetCell(int x, int y) {
             if (x < 0) {
                 throw new IndexOutOfRangeException("X out of range");
@@ -53,6 +61,21 @@ namespace Dungeon.Properties.Map.Util {
             
             return rows[y + zeroYOffset].cells[x];
         }
+        
+        // This is an Actual GetCel.. We do not consider offset here.
+        public string GetCellActual(int x, int y) {
+            if (x < 0 || x > rows[0].cells.Count-1) {
+                throw new IndexOutOfRangeException("X out of range");
+            }
+
+            if (y < 0 || y > rows.Count-1) {
+                throw new IndexOutOfRangeException("X out of range");
+            }
+
+            return rows[y].cells[x];
+        }
+        
+        
         
         public void UpdateCell(int x, int y, string contents) {
             rows[y + zeroYOffset].cells[x] = contents;
@@ -78,6 +101,14 @@ namespace Dungeon.Properties.Map.Util {
                         break;
                 }
             }
+        }
+
+        public int getYSize() {
+            return rows.Count;
+        }
+        
+        public int getXSize() {
+            return rows[0].cells.Count;
         }
 
         public void DisplayGrid () {

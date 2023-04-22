@@ -2,7 +2,8 @@
     "name": "Dungeon",
     "rootNamespace": "",
     "references": [
-        "GUID:e8fc94c52bf854315966c159bc66aa58"
+        "GUID:e8fc94c52bf854315966c159bc66aa58",
+        "GUID:9eb8fa577860f48cb8afce208c7ca5fd"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
