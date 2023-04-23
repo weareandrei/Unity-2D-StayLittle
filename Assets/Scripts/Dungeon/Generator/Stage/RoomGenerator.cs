@@ -55,6 +55,7 @@ namespace Dungeon.Generator.Stage {
                 }
             }
 
+            _newRoomMap.map.DisplayGrid();
             return _newRoomMap;
         }
 

@@ -2,54 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GeneratorTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GeneratorTest.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Rooms/Room 10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Rooms/Room 10.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Rooms/Room 11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Rooms/Room 11.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Rooms/Room 5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Rooms/Room 5.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Row.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Row.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 0.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 0.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 1.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 1.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 2.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 2.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 3.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 3.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 3.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 5.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 5.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 6.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 6.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/Room/Prefabs/Room 6.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonsData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonsData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Room/RoomInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Room/RoomInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Chunk/ChunkLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Chunk/ChunkLayout.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/DungeonData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/DungeonMapData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/DungeonData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/DungeonMapData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/DungeonMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/DungeonMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ChunkMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ChunkMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/RoomMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/RoomMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Row.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Row.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/EditMode.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/EditMode.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +182,7 @@
       <workItem from="1680270785054" duration="2172000" />
       <workItem from="1680332113003" duration="23413000" />
       <workItem from="1681132954180" duration="22051000" />
-      <workItem from="1682173844465" duration="6708000" />
+      <workItem from="1682173844465" duration="13060000" />
     </task>
     <task id="LOCAL-00001" summary="Changed Quadrant to Chunk">
       <created>1673822864663</created>
@@ -406,13 +362,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs</url>
-          <line>57</line>
+          <line>58</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" initialLine="53" containingFunctionPresentation="method 'GenerateRooms'">
             <startOffsets>
-              <option value="2658" />
+              <option value="2701" />
             </startOffsets>
             <endOffsets>
-              <option value="2677" />
+              <option value="2720" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="404" />
@@ -464,7 +420,7 @@
               <option value="1187" />
             </startOffsets>
             <endOffsets>
-              <option value="1256" />
+              <option value="1261" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="413" />
