@@ -69,6 +69,8 @@ namespace Dungeon.Generator.Stage {
                     // --> Don't forget that we have a Offset in ChunkMap
                     string thisChunkID = _chunkMap.map.GetCellActual(
                         coordinatesFull.chunk_ChunkMap.x, coordinatesFull.chunk_ChunkMap.y);
+                        // Because we do GetCellACTUAL -> We will consider negative coordinates as non-negative.
+                        //    So 0,0 can be a negative coordinate
                     if (thisChunkID == "") {
                         _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, "");
                         continue;
@@ -84,6 +86,7 @@ namespace Dungeon.Generator.Stage {
         }
 
         private static RoomCoordinatesFull GetCoordinatesFull(Vector2Int roomCoordinatesOnGrid) {
+            
             RoomCoordinatesFull coordinatesFull = new RoomCoordinatesFull {
                 room_RoomMap = roomCoordinatesOnGrid,
                 
@@ -91,24 +94,27 @@ namespace Dungeon.Generator.Stage {
                 chunk_ChunkMap = TransferRoomToChunkCoordinates(
                     roomCoordinatesOnGrid.x, roomCoordinatesOnGrid.y),
                 
-                room_ThisChunk = new Vector2Int(
+                room_ThisChunk = GetInverseInChunkCoordinates(new Vector2Int(
                     roomCoordinatesOnGrid.x < Consts.ChunkSize ? roomCoordinatesOnGrid.x :
                         roomCoordinatesOnGrid.x - Consts.ChunkSize * (roomCoordinatesOnGrid.x / Consts.ChunkSize),
                     roomCoordinatesOnGrid.y < Consts.ChunkSize ? roomCoordinatesOnGrid.y :
-                        roomCoordinatesOnGrid.y - Consts.ChunkSize * (roomCoordinatesOnGrid.y / Consts.ChunkSize))
+                        roomCoordinatesOnGrid.y - Consts.ChunkSize * (roomCoordinatesOnGrid.y / Consts.ChunkSize)))
             };
             
             // Debug.Log("room_ThisChunk : " + coordinatesFull.room_ThisChunk.x + " : " + coordinatesFull.room_ThisChunk.y);
             
             string thisChunkID = _chunkMap.map.GetCellActual(
                 coordinatesFull.chunk_ChunkMap.x, coordinatesFull.chunk_ChunkMap.y);
-            try {
-                coordinatesFull.chunkLayout = ChunkGenerator.FindChunkLayoutByID(thisChunkID);
-            }
-            catch (ArgumentException e) {
-            }
-             
+            try { coordinatesFull.chunkLayout = ChunkGenerator.FindChunkLayoutByID(thisChunkID); } catch (ArgumentException e) { }
+
             return coordinatesFull;
+        }
+
+        private static Vector2Int GetInverseInChunkCoordinates(Vector2Int actualInChunkCoordinates) {
+            int invertedX = Consts.ChunkSize - 1 - actualInChunkCoordinates.x;
+            int invertedY = Consts.ChunkSize - 1 - actualInChunkCoordinates.y;
+
+            return new Vector2Int(invertedX, invertedY);
         }
         
         private static bool IsRoomEmpty(RoomCoordinatesFull coordinatesFull) {

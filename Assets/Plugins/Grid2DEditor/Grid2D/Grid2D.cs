@@ -41,7 +41,7 @@ namespace Grid2DEditor
         }
         
         public void UpdateCell(int x, int y, string contents) {
-            rows[x].cells[y] = contents;
+            rows[y].cells[x] = contents;
         }
 
         // public void DisplayGrid () {

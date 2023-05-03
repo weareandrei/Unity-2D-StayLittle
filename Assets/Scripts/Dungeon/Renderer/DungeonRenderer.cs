@@ -21,7 +21,7 @@ namespace Dungeon.Renderer {
         private static void RenderRooms(RoomMap roomMap) {
             for (int y = 0; y < roomMap.map.getYSize() - 1; y++) {
                 for (int x = 0; x < roomMap.map.getXSize() - 1; x++) {
-                    Vector2Int cellPosFromOrigin = new Vector2Int(_dungeonOrigin.x + (x*_spaceBetweenDungeons), _dungeonOrigin.y + (y*_spaceBetweenDungeons));
+                    Vector2Int cellPosFromOrigin = new Vector2Int(_dungeonOrigin.x + ((-1)*x*_spaceBetweenDungeons), _dungeonOrigin.y + (y*_spaceBetweenDungeons));
                     string roomId = roomMap.map.GetCell(x, y);
                     if (roomId != "") {
                         RenderRoomAtCoordinates(cellPosFromOrigin, roomMap.map.GetCell(x,y), x,y);

@@ -25,23 +25,9 @@ namespace Dungeon.Generator.Util {
         
         private Grid2D GetRoomRequirements(RoomCoordinatesFull coordinatesFull) {
             bool isExternalExit = IsRoomAnExternalExit(coordinatesFull);
-            // What Room Requirements depend on:
-            // - is it an external exit or not. If yes then should have exits on the border('s)
-            // - Surrounding rooms. As always, we consider the surrounding rooms to detect
-            //      We don't need to consider the room requirements.
-            //      They don't exist any more. I've decided that this will be done later on the ContentsGenerator 
-            //      So we only need to consider the exits.
-            // --------------------------------------------------------------------------------------------------
-            // Actually, we only care about exits on the edges here.
-            //    But because of the exits - we will have requirements about the more inner cells
-            //       from edges because we need space to enter through the entrance
-            // --------------------------------------------------------------------------------------------------
-            // The requirements will include : 0 - must be empty, 1 - can be occupied, 2 - entrance
             Grid2D requirementsGrid = new Grid2D(Consts.RoomSize+2);
             Vector2Int thisRoomCoordinates = new Vector2Int(
                 coordinatesFull.room_RoomMap.x, coordinatesFull.room_RoomMap.y);
-            
-            // Now check all sides for room exits. (All exits must be used, not chosen at random)
             
             requirementsGrid = getRequirements_Top(thisRoomCoordinates, requirementsGrid);
             requirementsGrid = getRequirements_Bottom(thisRoomCoordinates, requirementsGrid);
