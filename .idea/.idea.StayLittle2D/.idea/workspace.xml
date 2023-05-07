@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TestGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TestGeneration.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.common@6.0.5/Editor/ImagePacker/ImagePacker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.path@5.0.2/Editor/EditorTool/PathEditorTool.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.psdimporter@6.0.6/Editor/PSDPlugin/PsdFile/Util.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.spriteshape@7.0.6/Runtime/External/LibTessDotNet/MeshUtils.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Editor/BurstAotCompiler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Editor/BurstDisassembler.Core.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Tests/Editor/EditmodeTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Tests/Runtime/Shared/040-ControlFlows.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Core/CameraState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@12.1.8/Runtime/Lighting/ProbeVolume/ProbeBrickPool.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.31/UnityEditor.TestRunner/GUI/Views/EditModeTestListGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.6.4/Editor/treeview/Drawers/ClipDrawer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/ScrollRectEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/SpecializedCollections/IndexedSet.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/ToggleGroup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/EventSystem/InterceptedEventsPreviewTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Text/FontCreatedByScript.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/EventSystem/RaycastSortingTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/UIBehaviourExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/15/bfc8e21c/Assert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41229cbbc9214cf28863fc47f2e1508c469200/11/6309678e/Int32.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/5f/12757df7/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/fc/047df246/IndexOutOfRangeException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8435ec6729a744ec92f9de17cbc25de929200/48/16f3601c/GUIContent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9c882aba7d15486cb4c6b73e052874ce817400/08/97de4b03/SerializedProperty.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9c882aba7d15486cb4c6b73e052874ce817400/2b/2961761b/PropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9c882aba7d15486cb4c6b73e052874ce817400/43/745fc4a1/EditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9c882aba7d15486cb4c6b73e052874ce817400/68/a78e79d9/Editor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9c882aba7d15486cb4c6b73e052874ce817400/db/0c373b28/EditorGUIUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c656e3a18b1847648dc3a29d4a941c3155800/cf/f5faf21e/Consts.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectId" id="2KNV4shPWHYDtduQQ5XTaoWPsLD" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.5497382&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/weareandrei/Library/Application Support/JetBrains/Rider2022.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/weareandrei/Library/Application Support/JetBrains/Rider2022.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/weareandrei/.local/share/Symbols/src&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2021.3.14f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2021.3.14f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="32594">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="32594" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="" />
+      <created>1673814840984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673814840984</updated>
+      <workItem from="1673814843440" duration="4050000" />
+      <workItem from="1673994809645" duration="3812000" />
+      <workItem from="1674080513938" duration="34804000" />
+      <workItem from="1674428842195" duration="1287000" />
+      <workItem from="1674501895781" duration="3594000" />
+      <workItem from="1674557646564" duration="11688000" />
+      <workItem from="1674598357230" duration="1518000" />
+      <workItem from="1674767591981" duration="2679000" />
+      <workItem from="1674828527042" duration="3902000" />
+      <workItem from="1674934273191" duration="6941000" />
+      <workItem from="1674987519783" duration="200000" />
+      <workItem from="1674987763668" duration="5823000" />
+      <workItem from="1675201058465" duration="828000" />
+      <workItem from="1675289780225" duration="1421000" />
+      <workItem from="1675291228650" duration="167000" />
+      <workItem from="1675374372445" duration="1931000" />
+      <workItem from="1675451673174" duration="17273000" />
+      <workItem from="1675618846095" duration="119000" />
+      <workItem from="1675618999147" duration="2884000" />
+      <workItem from="1675621928110" duration="4587000" />
+      <workItem from="1675635798158" duration="1161000" />
+      <workItem from="1675636977709" duration="175000" />
+      <workItem from="1675637177897" duration="614000" />
+      <workItem from="1675695562198" duration="4617000" />
+      <workItem from="1675966716747" duration="6753000" />
+      <workItem from="1676198978006" duration="5189000" />
+      <workItem from="1676706732403" duration="6363000" />
+      <workItem from="1676879807391" duration="4000" />
+      <workItem from="1676918101514" duration="3490000" />
+      <workItem from="1677091393219" duration="1605000" />
+      <workItem from="1677093040743" duration="1393000" />
+      <workItem from="1677266274762" duration="2357000" />
+      <workItem from="1679838362074" duration="228000" />
+      <workItem from="1679838607869" duration="3480000" />
+      <workItem from="1679917860565" duration="6949000" />
+      <workItem from="1680093421540" duration="299000" />
+      <workItem from="1680093731096" duration="3025000" />
+      <workItem from="1680198718544" duration="3437000" />
+      <workItem from="1680205988784" duration="1275000" />
+      <workItem from="1680207277144" duration="1334000" />
+      <workItem from="1680267948886" duration="443000" />
+      <workItem from="1680268406449" duration="45000" />
+      <workItem from="1680268592129" duration="130000" />
+      <workItem from="1680268935639" duration="781000" />
+      <workItem from="1680270341797" duration="355000" />
+      <workItem from="1680270785054" duration="2172000" />
+      <workItem from="1680332113003" duration="23413000" />
+      <workItem from="1681132954180" duration="22051000" />
+      <workItem from="1682173844465" duration="13658000" />
+      <workItem from="1682358746216" duration="443000" />
+      <workItem from="1682359200407" duration="1114000" />
+      <workItem from="1682364168033" duration="50000" />
+      <workItem from="1682364300357" duration="85000" />
+      <workItem from="1682364443092" duration="2387000" />
+      <workItem from="1682488604130" duration="2196000" />
+      <workItem from="1682526652322" duration="95000" />
+      <workItem from="1682526758768" duration="6597000" />
+      <workItem from="1682703541888" duration="15361000" />
+      <workItem from="1682965098978" duration="3283000" />
+    </task>
+    <task id="LOCAL-00001" summary="Changed Quadrant to Chunk">
+      <created>1673822864663</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673822864664</updated>
+    </task>
+    <task id="LOCAL-00002" summary="...">
+      <created>1674598446014</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1674598446014</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Grid2DDrawer Plugin working">
+      <created>1674768487620</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1674768487620</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ChunkGenerator finished. Not tested">
+      <created>1674831486853</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674831486853</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Chunk generation working. Not entirely finished.">
+      <created>1675695783554</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675695783554</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="4c209325-7c55-4a06-9429-cdc2b412fc70">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Scripts" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="ea5e475e-8300-42d5-95ce-e18b4ad2d114">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/Grid2DEditor" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="4c209325-7c55-4a06-9429-cdc2b412fc70" value="TOOL_WINDOW" />
+        <entry key="ea5e475e-8300-42d5-95ce-e18b4ad2d114" value="TOOL_WINDOW" />
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Changed Quadrant to Chunk" />
+    <MESSAGE value="..." />
+    <MESSAGE value="Grid2DDrawer Plugin working" />
+    <MESSAGE value="ChunkGenerator finished. Not tested" />
+    <MESSAGE value="Chunk generation working. Tested" />
+    <MESSAGE value="Chunk generation working. Not entirely finished." />
+    <option name="LAST_COMMIT_MESSAGE" value="Chunk generation working. Not entirely finished." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Plugins/Array2DEditor/Editor/PropertyDrawers/Array2DDrawer.cs</url>
+          <line>68</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Plugins/Array2DEditor/Editor/PropertyDrawers/Array2DDrawer.cs" initialLine="68" containingFunctionPresentation="method 'OnGUI'">
+            <startOffsets>
+              <option value="2424" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2506" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs</url>
+          <line>15</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" initialLine="18" containingFunctionPresentation="method 'CorrectChunksGenerated'">
+            <startOffsets>
+              <option value="689" />
+            </startOffsets>
+            <endOffsets>
+              <option value="691" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" initialLine="23" containingFunctionPresentation="method 'RenderRooms'">
+            <startOffsets>
+              <option value="1192" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1266" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="413" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs</url>
+          <line>25</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" initialLine="25" containingFunctionPresentation="method 'GenerateDungeonBySeed'">
+            <startOffsets>
+              <option value="1040" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1062" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="447" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" initialLine="26" containingFunctionPresentation="method 'GetRoomRequirements'">
+            <startOffsets>
+              <option value="890" />
+            </startOffsets>
+            <endOffsets>
+              <option value="950" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="456" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
