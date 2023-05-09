@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Exit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Exit.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ContentsGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ContentsGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TestGeneration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ChunkMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ChunkMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +31,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -128,10 +130,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="32594">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="63191">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="32594" />
+      <option name="pid" value="63191" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -206,6 +208,12 @@
       <workItem from="1682526758768" duration="6597000" />
       <workItem from="1682703541888" duration="15361000" />
       <workItem from="1682965098978" duration="3283000" />
+      <workItem from="1683136333727" duration="6210000" />
+      <workItem from="1683268719268" duration="888000" />
+      <workItem from="1683445154821" duration="17849000" />
+      <workItem from="1683544596105" duration="13645000" />
+      <workItem from="1683651037567" duration="43000" />
+      <workItem from="1683651091489" duration="1690000" />
     </task>
     <task id="LOCAL-00001" summary="Changed Quadrant to Chunk">
       <created>1673822864663</created>
@@ -242,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675695783554</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed ChunkLayout. But RoomMap still has rooms with not corresponding exits">
+      <created>1683136727151</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683136727151</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +341,8 @@
     <MESSAGE value="ChunkGenerator finished. Not tested" />
     <MESSAGE value="Chunk generation working. Tested" />
     <MESSAGE value="Chunk generation working. Not entirely finished." />
-    <option name="LAST_COMMIT_MESSAGE" value="Chunk generation working. Not entirely finished." />
+    <MESSAGE value="Fixed ChunkLayout. But RoomMap still has rooms with not corresponding exits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed ChunkLayout. But RoomMap still has rooms with not corresponding exits" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -349,10 +365,10 @@
           <line>15</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" initialLine="18" containingFunctionPresentation="method 'CorrectChunksGenerated'">
             <startOffsets>
-              <option value="689" />
+              <option value="648" />
             </startOffsets>
             <endOffsets>
-              <option value="691" />
+              <option value="650" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="38" />
@@ -372,29 +388,55 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs</url>
-          <line>25</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" initialLine="25" containingFunctionPresentation="method 'GenerateDungeonBySeed'">
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" initialLine="28" containingFunctionPresentation="method 'GenerateDungeonBySeed'">
             <startOffsets>
-              <option value="1040" />
+              <option value="1145" />
             </startOffsets>
             <endOffsets>
-              <option value="1062" />
+              <option value="1233" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="447" />
+          <option name="timeStamp" value="470" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs</url>
-          <line>26</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" initialLine="26" containingFunctionPresentation="method 'GetRoomRequirements'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs</url>
+          <line>33</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" initialLine="30" containingFunctionPresentation="method 'GenerateDungeonBySeed'">
             <startOffsets>
-              <option value="890" />
+              <option value="1247" />
             </startOffsets>
             <endOffsets>
-              <option value="950" />
+              <option value="1269" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="456" />
+          <option name="timeStamp" value="471" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs</url>
+          <line>29</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" initialLine="29" containingFunctionPresentation="method 'BuildExitMap'">
+            <startOffsets>
+              <option value="1156" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1183" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="523" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs</url>
+          <line>49</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" initialLine="49" containingFunctionPresentation="method 'BuildExitMap'">
+            <startOffsets>
+              <option value="2456" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2500" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="528" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -4,6 +4,7 @@ using Dungeon.Chunk;
 using Dungeon.Properties.Map.Type;
 using Dungeon.Room;
 using Dungeon.Generator.Util;
+using Dungeon.Properties.Map.Util;
 using Grid2DEditor;
 using UnityEngine;
 
@@ -11,19 +12,20 @@ namespace Dungeon.Generator.Stage {
     public static class RoomGenerator {
 
         private static ChunkMap _chunkMap;
-        private static int _zeroYOffset;
         private static RoomMap _newRoomMap;
-        public static List<RoomInstance> roomLayoutsAvailable;
-        public static string _seed;
+        private static ExitMap _exitMap;
 
-        public static  RoomMap GenerateRooms(string seed, ChunkMap chunkMap) {
-            _seed = seed;
+        public static List<RoomInstance> roomLayoutsAvailable;
+
+        public static RoomMap GenerateRooms(ChunkMap chunkMap) {
             _chunkMap = chunkMap;
-            _zeroYOffset = chunkMap.map.zeroYOffset;
             _newRoomMap = new RoomMap(
                     chunkMap.map.getXSize() * Consts.ChunkSize,
                     chunkMap.map.getYSize() * Consts.ChunkSize
                 ); PrebuildRoomMap();
+            
+            ExitMap _exitMap = new ExitMap(_newRoomMap.map, 
+                _newRoomMap.map.getXSize(), _newRoomMap.map.getXSize());
             
             // I think we will need to fill _newRoomMap with roomExistense first.
             //  This means that before finding roomRequirements we must know each place on the map
@@ -41,13 +43,13 @@ namespace Dungeon.Generator.Stage {
                     
                     // Grid2D requirements = GetRoomRequirements(coordinatesFull); 
                     RoomRequirements requirements = new RoomRequirements(
-                        coordinatesFull, _newRoomMap, roomLayoutsAvailable);
+                        coordinatesFull.room_RoomMap, _newRoomMap.map);
                     List<string> roomIDs = GetRoomBasedOnRequirements(requirements.ToGrid());
                     if (roomIDs.Count == 0) {
                         // todo : can't find appropriate rooms ? roomIDs.Count == 0
                         continue;
                     }
-                    string chosenRoomID = roomIDs[UseSeed(roomIDs.Count)];
+                    string chosenRoomID = roomIDs[Generator.UseSeed(roomIDs.Count)];
                     // Debug.Log("Chose new room ID: " + chosenRoomID);
                     
                     // Insert new room ID
@@ -260,21 +262,15 @@ namespace Dungeon.Generator.Stage {
             return chunkCoord;
         }
 
-        private static int UseSeed(int choiceCount) {
-            // int seedNumber = (int)_seed[0];
-            char firstChar = _seed[0];
-            int seedNumber = int.Parse(firstChar.ToString());
-
-            _seed = _seed.Substring(1, _seed.Length - 1) + seedNumber;
-
-            while (choiceCount <= seedNumber) {
-                seedNumber = seedNumber - choiceCount;
-                if (seedNumber < 0) {
-                    seedNumber = 0;
-                }
-            }
+        public static RoomInstance FindRoomInstanceByID(string id) {
+            bool isParsableID = int.TryParse(id, out _); // _ means that we don't intend to use the out result
+            // Check if this is a string
+            // Otherwise, it could be an E or an R
             
-            return seedNumber;
+            if (id == "" || !isParsableID) {
+                throw new ArgumentException("Chunk ID can't be empty");
+            }
+            return roomLayoutsAvailable.FindAll( room => room.roomID == id)[0];
         }
     }
 }

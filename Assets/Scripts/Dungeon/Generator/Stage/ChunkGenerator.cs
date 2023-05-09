@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using Dungeon.Chunk;
 using Dungeon.Properties.Map.Type;
 using Grid2DEditor;
+using Dungeon.Properties.Map.Util;
 
 namespace Dungeon.Generator.Stage {
     public static class ChunkGenerator {
         private static ChunkMap _newChunkMap;
         public static List<ChunkLayout> chunkLayoutsAvailable;
-        public static string seed;
 
         public static ChunkMap GenerateChunks() {
             _newChunkMap = new ChunkMap();
 
             List<string> chunksInUse = new List<string>(); // ID's
-            List<ChunkMap.PossibleExit> possibleExits = new List<ChunkMap.PossibleExit>();
+            List<Exit.PossibleExit> possibleExits = new List<Exit.PossibleExit>();
             // Which exits do we use here? Actual or Abstract? So Top is at the top or at the bottom ?
             //  Let's use the Abstract. So Top is at the bottom
 
@@ -30,7 +30,7 @@ namespace Dungeon.Generator.Stage {
 
             while (chunksInUse.Count <= Consts.DungeonChunkCount) {
                 // _newChunkMap.map.DisplayGrid(); 
-                ChunkMap.PossibleExit exit = possibleExits[0];
+                Exit.PossibleExit exit = possibleExits[0];
                 Vector2Int newChunkCoordinates = GetNextChunkCoordinatesBasedOnExit(exit);
 
                 string newChunkCoordinatesContents = "none";
@@ -74,14 +74,14 @@ namespace Dungeon.Generator.Stage {
             return chunkLayoutsAvailable.FindAll( layout => layout.ID == id)[0];
         }
 
-        private static List<ChunkMap.PossibleExit> FindPossibleExits(Grid2D addedLayout, int coordX, int coordY) {
-            List<ChunkMap.PossibleExit> possibleExitsFound = new List<ChunkMap.PossibleExit>();
+        private static List<Exit.PossibleExit> FindPossibleExits(Grid2D addedLayout, int coordX, int coordY) {
+            List<Exit.PossibleExit> possibleExitsFound = new List<Exit.PossibleExit>();
             
             // Bottom
             for (int x = 0; x <= Consts.ChunkSize-1; x++) {
                 if (addedLayout.GetCell(x, Consts.ChunkSize-1) == "E") {
                     possibleExitsFound.Add(
-                        new ChunkMap.PossibleExit(coordX,coordY,ChunkMap.SidePosition.Bottom));
+                        new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Bottom));
                     break;
                 }
             }
@@ -90,7 +90,7 @@ namespace Dungeon.Generator.Stage {
             for (int x = 0; x <= Consts.ChunkSize-1; x++) {
                 if (addedLayout.GetCell(x, 0) == "E") {
                     possibleExitsFound.Add(
-                        new ChunkMap.PossibleExit(coordX,coordY,ChunkMap.SidePosition.Top));
+                        new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Top));
                     break;
                 }
             }
@@ -99,7 +99,7 @@ namespace Dungeon.Generator.Stage {
             for (int y = 0; y <= Consts.ChunkSize - 1; y++) {
                 if (addedLayout.GetCell(0, y) == "E") {
                     possibleExitsFound.Add(
-                        new ChunkMap.PossibleExit(coordX,coordY,ChunkMap.SidePosition.Left));
+                        new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Left));
                     break;
                 }
             }
@@ -108,7 +108,7 @@ namespace Dungeon.Generator.Stage {
             for (int y = 0; y <= Consts.ChunkSize-1; y++) {
                 if (addedLayout.GetCell(Consts.ChunkSize-1, y) == "E") {
                     possibleExitsFound.Add(
-                        new ChunkMap.PossibleExit(coordX,coordY,ChunkMap.SidePosition.Right));
+                        new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Right));
                     break;
                 }
             }
@@ -117,7 +117,7 @@ namespace Dungeon.Generator.Stage {
             return possibleExitsFound;
         }
 
-        private static string SelectChunk(ChunkMap.PossibleExit exitFrom,Vector2Int chunkCoordinatesOnGrid) {
+        private static string SelectChunk(Exit.PossibleExit exitFrom,Vector2Int chunkCoordinatesOnGrid) {
             int posX = chunkCoordinatesOnGrid.x;
             int posY = chunkCoordinatesOnGrid.y;
 
@@ -130,22 +130,22 @@ namespace Dungeon.Generator.Stage {
                 return "not found";
             }
             // todo : next line has a timeout if we don't find the Layouts appropriate
-            return foundLayouts[UseSeed(foundLayouts.Count)];
+            return foundLayouts[Generator.UseSeed(foundLayouts.Count)];
         }
 
-        private static Vector2Int GetNextChunkCoordinatesBasedOnExit(ChunkMap.PossibleExit exit) {
+        private static Vector2Int GetNextChunkCoordinatesBasedOnExit(Exit.PossibleExit exit) {
             Vector2Int newChunkCoordinates = new Vector2Int(exit.x, exit.y);
             switch (exit.position) {
-                case ChunkMap.SidePosition.Top:
+                case Exit.SidePosition.Top:
                     newChunkCoordinates.y++;
                     break;
-                case ChunkMap.SidePosition.Bottom:
+                case Exit.SidePosition.Bottom:
                     newChunkCoordinates.y--;
                     break;
-                case ChunkMap.SidePosition.Left:
+                case Exit.SidePosition.Left:
                     newChunkCoordinates.x++;
                     break;
-                case ChunkMap.SidePosition.Right:
+                case Exit.SidePosition.Right:
                     newChunkCoordinates.x--;
                     break;
             }
@@ -155,12 +155,12 @@ namespace Dungeon.Generator.Stage {
 
         // Notion Documentation
         // https://www.notion.so/Chunk-0f779170060245a0a4deae866a623904?pvs=4#5f4e2e18d60646fe813fa29b857aea90
-        private static Grid2D GetLayoutRequirements(ChunkMap.PossibleExit exitFrom, int x, int y) {
+        private static Grid2D GetLayoutRequirements(Exit.PossibleExit exitFrom, int x, int y) {
             Grid2D requirements = new Grid2D(Consts.ChunkSize);
             Grid2D attachedChunk;
 
             switch (exitFrom.position) {
-                case ChunkMap.SidePosition.Top:
+                case Exit.SidePosition.Top:
                     
                     try {
                         attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y-1)).rooms;
@@ -170,7 +170,7 @@ namespace Dungeon.Generator.Stage {
                     catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
                     break;
                 
-                case ChunkMap.SidePosition.Bottom:
+                case Exit.SidePosition.Bottom:
 
                     try {
                         attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y+1)).rooms;
@@ -180,7 +180,7 @@ namespace Dungeon.Generator.Stage {
                     catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
                     break;
                 
-                case ChunkMap.SidePosition.Left:
+                case Exit.SidePosition.Left:
                     
                     try {
                         attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x-1, y)).rooms;
@@ -190,7 +190,7 @@ namespace Dungeon.Generator.Stage {
                     catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
                     break;
                 
-                case ChunkMap.SidePosition.Right:
+                case Exit.SidePosition.Right:
 
                     try {
                         attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x +1, y)).rooms;
@@ -320,20 +320,6 @@ namespace Dungeon.Generator.Stage {
             }
 
             return returnLayout; // todo: remove later 
-        }
-
-        private static int UseSeed(int choiceCount) {
-            int seedNumber = (int)seed[0];
-            seed = seed.Substring(1, seed.Length - 1) + seedNumber;
-
-            while (choiceCount <= seedNumber) {
-                seedNumber = seedNumber - choiceCount;
-                if (seedNumber < 0) {
-                    seedNumber = 0;
-                }
-            }
-            
-            return seedNumber;
         }
     }
 }
