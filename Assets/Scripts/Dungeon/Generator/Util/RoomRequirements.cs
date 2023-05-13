@@ -34,15 +34,15 @@ namespace Dungeon.Generator.Util {
             // When we take the Mandatory requirements - we care about To and From
             Grid2D requirementsGrid = new Grid2D(Consts.RoomSize + 2);
 
-            requirementsGrid = getMandatoryRequirements_Top(this.coordinates, requirementsGrid);
-            requirementsGrid = getMandatoryRequirements_Bottom(this.coordinates, requirementsGrid);
-            requirementsGrid = getMandatoryRequirements_Left(this.coordinates, requirementsGrid);
-            requirementsGrid = getMandatoryRequirements_Right(this.coordinates, requirementsGrid);
+            getMandatoryRequirements_Top(this.coordinates, ref requirementsGrid);
+            getMandatoryRequirements_Bottom(this.coordinates, ref requirementsGrid);
+            getMandatoryRequirements_Left(this.coordinates, ref requirementsGrid);
+            getMandatoryRequirements_Right(this.coordinates, ref requirementsGrid);
 
             return requirementsGrid;
         }
 
-        private Grid2D getMandatoryRequirements_Top(Vector2Int roomCoord, Grid2D requirementsGrid) {
+        private void getMandatoryRequirements_Top(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
             if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Top ||
                 exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y+1).mainExitDirection == Exit.SidePosition.Bottom) {
                 int y = Consts.RoomSize + 1;
@@ -50,11 +50,9 @@ namespace Dungeon.Generator.Util {
                     requirementsGrid.UpdateCell(x, y, "3");
                 }
             }
-
-            return requirementsGrid;
         }
         
-        private Grid2D getMandatoryRequirements_Bottom(Vector2Int roomCoord, Grid2D requirementsGrid) {
+        private void getMandatoryRequirements_Bottom(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
             if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Bottom ||
                 exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y-1).mainExitDirection == Exit.SidePosition.Top) {
                 int y = 0;
@@ -62,11 +60,9 @@ namespace Dungeon.Generator.Util {
                     requirementsGrid.UpdateCell(x, y, "3");
                 }
             }
-
-            return requirementsGrid;
         }
         
-        private Grid2D getMandatoryRequirements_Left(Vector2Int roomCoord, Grid2D requirementsGrid) {
+        private void getMandatoryRequirements_Left(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
             if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Left ||
                 exitMap._exitMap.GetCellActual(roomCoord.x+1, roomCoord.y).mainExitDirection == Exit.SidePosition.Right) {
                 int x = 0;
@@ -74,11 +70,9 @@ namespace Dungeon.Generator.Util {
                     requirementsGrid.UpdateCell(x, y, "3");
                 }
             }
-
-            return requirementsGrid;
         }
         
-        private Grid2D getMandatoryRequirements_Right(Vector2Int roomCoord, Grid2D requirementsGrid) {
+        private void getMandatoryRequirements_Right(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
             if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Right ||
                 exitMap._exitMap.GetCellActual(roomCoord.x-1, roomCoord.y).mainExitDirection == Exit.SidePosition.Left) {
                 int x = Consts.RoomSize+1;
@@ -86,8 +80,6 @@ namespace Dungeon.Generator.Util {
                     requirementsGrid.UpdateCell(x, y, "3");
                 }
             }
-
-            return requirementsGrid;
         }
 
         public bool Improve() {
