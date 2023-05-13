@@ -139,7 +139,7 @@ namespace Dungeon.Generator.Stage {
             }
 
             bool improveStatus = true;
-            while (roomsAvailable.Count != 0 || improveStatus == true) {
+            while (roomsAvailable.Count != 0 && improveStatus == true) {
                 improveStatus = requirements.Improve();
                 roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
             }
@@ -186,58 +186,64 @@ namespace Dungeon.Generator.Stage {
         }
 
         private static bool CheckNotStrictExits(Grid2D requirements, RoomInstance assessedRoomLayout) {
-            bool anyExit = true;
+            bool allExitsCoorect = true;
             // todo: remember that requirements is Consts.roomSize + 2
             
-            // Top
+            // Top - requirements Grid
             if (requirements.GetCell(1, Consts.RoomSize+1) == "3") {
                 // Then we need exit on ANY cell on this side
-                anyExit = false;
+                allExitsCoorect = false;
                 for (int x = 1; x < Consts.RoomSize+1; x++) {
                     if (assessedRoomLayout.roomLayout.GetCell(x, 0) == "2" || 
                         assessedRoomLayout.roomLayout.GetCell(x, 0) == "3" ) {
-                        anyExit = true;
-                    }
-                }
-            }
-            
-            // Bottom
-            if (requirements.GetCell(1, 0) == "3") {
-                // Then we need exit on ANY cell on this side
-                anyExit = false;
-                for (int x = 1; x < Consts.RoomSize; x++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "3" ) {
-                        anyExit = true;
-                    }
-                }
-            }
-            
-            // Left
-            if (requirements.GetCell(0, 1) == "3") {
-                // Then we need exit on ANY cell on this side
-                anyExit = false;
-                for (int y = 1; y < Consts.RoomSize; y++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "3" ) {
-                        anyExit = true;
-                    }
-                }
-            }
-            
-            // Right
-            if (requirements.GetCell(Consts.RoomSize+1, 1) == "3") {
-                // Then we need exit on ANY cell on this side
-                anyExit = false;
-                for (int y = 1; y < Consts.RoomSize; y++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(0, y) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(0, y) == "3" ) {
-                        anyExit = true;
+                        allExitsCoorect = true;
                     }
                 }
             }
 
-            return anyExit;
+            if (!allExitsCoorect) return false;
+            
+            // Bottom
+            if (requirements.GetCell(1, 0) == "3") {
+                // Then we need exit on ANY cell on this side
+                allExitsCoorect = false;
+                for (int x = 1; x < Consts.RoomSize; x++) {
+                    if (assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "3" ) {
+                        allExitsCoorect = true;
+                    }
+                }
+            }
+            
+            if (!allExitsCoorect) return false;
+            
+            // Left
+            if (requirements.GetCell(0, 1) == "3") {
+                // Then we need exit on ANY cell on this side
+                allExitsCoorect = false;
+                for (int y = 1; y < Consts.RoomSize; y++) {
+                    if (assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "3" ) {
+                        allExitsCoorect = true;
+                    }
+                }
+            }
+            
+            if (!allExitsCoorect) return false;
+            
+            // Right
+            if (requirements.GetCell(Consts.RoomSize+1, 1) == "3") {
+                // Then we need exit on ANY cell on this side
+                allExitsCoorect = false;
+                for (int y = 1; y < Consts.RoomSize; y++) {
+                    if (assessedRoomLayout.roomLayout.GetCell(0, y) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(0, y) == "3" ) {
+                        allExitsCoorect = true;
+                    }
+                }
+            }
+
+            return allExitsCoorect;
         }
 
         // private static bool IsExternalExit(int x, int y) {

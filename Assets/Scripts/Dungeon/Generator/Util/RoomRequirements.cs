@@ -70,7 +70,7 @@ namespace Dungeon.Generator.Util {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Left ||
                     exitMap._exitMap.GetCellActual(roomCoord.x+1, roomCoord.y).mainExitDirection == Exit.SidePosition.Right) {
-                    int x = 0;
+                    int x = Consts.RoomSize+1;
                     for (int y = 1; y < Consts.RoomSize + 1; y++) {
                         requirementsGrid.UpdateCell(x, y, "3");
                     }
@@ -82,7 +82,7 @@ namespace Dungeon.Generator.Util {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Right ||
                     exitMap._exitMap.GetCellActual(roomCoord.x-1, roomCoord.y).mainExitDirection == Exit.SidePosition.Left) {
-                    int x = Consts.RoomSize+1;
+                    int x = 0;
                     for (int y = 0; y < Consts.RoomSize + 1; y++) {
                         requirementsGrid.UpdateCell(x, y, "3");
                     }
@@ -92,31 +92,23 @@ namespace Dungeon.Generator.Util {
 
         public bool Improve() {
             // ONLY 1 improvement at a time !
-            Grid2D requirementsGrid = new Grid2D(Consts.RoomSize + 2);
+            requirementsPrevious = requirements;
             bool foundNewRequirement = false;
             
-            foundNewRequirement = getNextRequirement_Top(coordinates, ref requirementsGrid);
+            foundNewRequirement = getNextRequirement_Top(coordinates);
             if (foundNewRequirement) {
-                requirementsPrevious = requirements;
-                requirements = requirementsGrid;
                 return true;
             }
-            foundNewRequirement = getNextRequirement_Bottom(coordinates, ref requirementsGrid);
+            foundNewRequirement = getNextRequirement_Bottom(coordinates);
             if (foundNewRequirement) {
-                requirementsPrevious = requirements;
-                requirements = requirementsGrid;
                 return true;
             }
-            foundNewRequirement = getNextRequirement_Left(coordinates, ref requirementsGrid);
+            foundNewRequirement = getNextRequirement_Left(coordinates);
             if (foundNewRequirement) {
-                requirementsPrevious = requirements;
-                requirements = requirementsGrid;
                 return true;
             }
-            foundNewRequirement = getNextRequirement_Right(coordinates, ref requirementsGrid);
+            foundNewRequirement = getNextRequirement_Right(coordinates);
             if (foundNewRequirement) {
-                requirementsPrevious = requirements;
-                requirements = requirementsGrid;
                 return true;
             }
 
@@ -127,7 +119,7 @@ namespace Dungeon.Generator.Util {
             requirements = requirementsPrevious;
         }
 
-        private bool getNextRequirement_Top(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private bool getNextRequirement_Top(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x, roomCoord.y+1);
                 RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
@@ -136,16 +128,17 @@ namespace Dungeon.Generator.Util {
                 for (int x = 0; x < Consts.RoomSize+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        requirementsGrid.UpdateCell(x, 0, thisCellContents);
+                        if (requirements.GetCell(x,0) != "") continue;
+                        requirements.UpdateCell(x, 0, thisCellContents);
                         return true;
                     }
                 }
-            } catch (IndexOutOfRangeException e) { /*ignored*/ }
+            } catch (Exception e) { /*ignored*/ }
             
             return false;
         }
         
-        private bool getNextRequirement_Bottom(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private bool getNextRequirement_Bottom(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x, roomCoord.y-1);
                 RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
@@ -154,7 +147,8 @@ namespace Dungeon.Generator.Util {
                 for (int x = 0; x < Consts.RoomSize+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        requirementsGrid.UpdateCell(x, Consts.RoomSize+1, thisCellContents);
+                        if (requirements.GetCell(x,Consts.RoomSize+1) != "") continue;
+                        requirements.UpdateCell(x, Consts.RoomSize+1, thisCellContents);
                         return true;
                     }
                 }
@@ -163,7 +157,7 @@ namespace Dungeon.Generator.Util {
             return false;
         }
         
-        private bool getNextRequirement_Left(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private bool getNextRequirement_Left(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
                 RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
@@ -172,7 +166,8 @@ namespace Dungeon.Generator.Util {
                 for (int y = 0; y < Consts.RoomSize+1; y++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        requirementsGrid.UpdateCell(0, y, thisCellContents);
+                        if (requirements.GetCell(0, y) != "") continue;
+                        requirements.UpdateCell(0, y, thisCellContents);
                         return true;
                     }
                 }
@@ -181,7 +176,7 @@ namespace Dungeon.Generator.Util {
             return false;
         }
 
-        private bool getNextRequirement_Right(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private bool getNextRequirement_Right(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
                 RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
@@ -190,7 +185,8 @@ namespace Dungeon.Generator.Util {
                 for (int y = 1; y < Consts.RoomSize+1; y++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        requirementsGrid.UpdateCell(Consts.RoomSize+1, y, thisCellContents);
+                        if (requirements.GetCell(Consts.RoomSize+1, y) != "") continue;
+                        requirements.UpdateCell(Consts.RoomSize+1, y, thisCellContents);
                         return true;
                     }
                 }
