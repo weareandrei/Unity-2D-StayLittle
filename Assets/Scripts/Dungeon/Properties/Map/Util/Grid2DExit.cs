@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Dungeon.Properties.Map.Type;
 using UnityEngine;
 
 namespace Dungeon.Properties.Map.Util {
@@ -13,6 +14,18 @@ namespace Dungeon.Properties.Map.Util {
                 ExitRow newRow = new ExitRow(sizeX);
                 rows.Add(newRow);
             }
+        }
+        
+        public Exit.ExitMapCell GetCellActual(int x, int y) {
+            if (x < 0 || x > rows[0].cells.Count-1) {
+                throw new IndexOutOfRangeException("X out of range");
+            }
+
+            if (y < 0 || y > rows.Count-1) {
+                throw new IndexOutOfRangeException("X out of range");
+            }
+
+            return rows[y].cells[x];
         }
         
         public void UpdateCell(Vector2Int cellCoordintates, Exit.ExitMapCell value) {

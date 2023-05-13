@@ -11,7 +11,7 @@ namespace Dungeon.Properties.Map.Type {
         
         // We will remove cells from roomMap that were already used
         private Grid2DResizable _roomMap;
-        private Grid2DExit _exitMap;
+        public Grid2DExit _exitMap;
         private List<Exit.PossibleExit> exitsAvailable = new List<Exit.PossibleExit>();
 
         public ExitMap(Grid2DResizable roomMap, int width, int height) {

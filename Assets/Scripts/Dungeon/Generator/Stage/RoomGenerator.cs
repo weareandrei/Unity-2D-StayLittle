@@ -19,41 +19,23 @@ namespace Dungeon.Generator.Stage {
 
         public static RoomMap GenerateRooms(ChunkMap chunkMap) {
             _chunkMap = chunkMap;
-            _newRoomMap = new RoomMap(
+            _newRoomMap = PrebuildRoomMap(new RoomMap (
                     chunkMap.map.getXSize() * Consts.ChunkSize,
                     chunkMap.map.getYSize() * Consts.ChunkSize
-                ); PrebuildRoomMap();
+                ));
             
-            ExitMap _exitMap = new ExitMap(_newRoomMap.map, 
-                _newRoomMap.map.getXSize(), _newRoomMap.map.getXSize());
+            _exitMap = new ExitMap((Grid2DResizable)_newRoomMap.map.Clone(),
+                              _newRoomMap.map.getXSize(), 
+                              _newRoomMap.map.getYSize());
             
-            // I think we will need to fill _newRoomMap with roomExistense first.
-            //  This means that before finding roomRequirements we must know each place on the map
-            //   Where the RoomInstance should be placed. 
-            // Or maybe we just check that cell every time from _chinkMap because we have CoordinatesFull
-
             for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
                 for (int x = 0; x < _newRoomMap.map.getXSize()-1; x++) {
-                    // Debug.Log("Finding room for:  " + x + " : " + y);
-                    
                     RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
-                    if (IsRoomEmpty(coordinatesFull)) {
-                        continue; // Will then go through each empty room to fill it with something else.
-                    }
-                    
-                    // Grid2D requirements = GetRoomRequirements(coordinatesFull); 
-                    RoomRequirements requirements = new RoomRequirements(
-                        coordinatesFull.room_RoomMap, _newRoomMap.map);
-                    List<string> roomIDs = GetRoomBasedOnRequirements(requirements.ToGrid());
-                    if (roomIDs.Count == 0) {
-                        // todo : can't find appropriate rooms ? roomIDs.Count == 0
-                        continue;
-                    }
-                    string chosenRoomID = roomIDs[Generator.UseSeed(roomIDs.Count)];
-                    // Debug.Log("Chose new room ID: " + chosenRoomID);
-                    
+                    if (IsRoomEmpty(coordinatesFull)) continue;
+
+                    string selectedRoomID = SelectRoomForThisCell(coordinatesFull.room_RoomMap);
                     // Insert new room ID
-                    _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, chosenRoomID);
+                    _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, selectedRoomID);
                 }
             }
 
@@ -61,9 +43,9 @@ namespace Dungeon.Generator.Stage {
             return _newRoomMap;
         }
 
-        private static void PrebuildRoomMap() {
-            for (int y = 0; y < _newRoomMap.map.getYSize() - 1; y++) {
-                for (int x = 0; x < _newRoomMap.map.getXSize() - 1; x++) {
+        private static RoomMap PrebuildRoomMap(RoomMap roomMap) {
+            for (int y = 0; y < roomMap.map.getYSize() - 1; y++) {
+                for (int x = 0; x < roomMap.map.getXSize() - 1; x++) {
                     // Vector2Int roomOffsetCoord = new Vector2Int(x-_zeroYOffset, y-_zeroYOffset);
                     RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
                     
@@ -74,7 +56,7 @@ namespace Dungeon.Generator.Stage {
                         // Because we do GetCellACTUAL -> We will consider negative coordinates as non-negative.
                         //    So 0,0 can be a negative coordinate
                     if (thisChunkID == "") {
-                        _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, "");
+                        roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, "");
                         continue;
                     }
                     // Correctly takes the Chunk with rooms inside. But does not find the actual roomID here : ...
@@ -82,9 +64,11 @@ namespace Dungeon.Generator.Stage {
                         coordinatesFull.room_ThisChunk.x,
                         coordinatesFull.room_ThisChunk.y);
                     
-                    _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, thisRoomID);
+                    roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, thisRoomID);
                 }
             }
+
+            return roomMap;
         }
 
         private static RoomCoordinatesFull GetCoordinatesFull(Vector2Int roomCoordinatesOnGrid) {
@@ -145,6 +129,31 @@ namespace Dungeon.Generator.Stage {
             return new Vector2Int(chunkX, chunkY);
         }
 
+        private static string SelectRoomForThisCell(Vector2Int cellCoordinates) {
+            // Here we initialise requirements. And need to ONLY find the Soft Exits (neccessary)
+            RoomRequirements requirements = new RoomRequirements(cellCoordinates, _newRoomMap.map, _exitMap);
+            List<string> roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
+            if (roomsAvailable.Count == 0) {
+                // todo : can't find appropriate rooms ? roomIDs.Count == 0
+                return "-1";
+            }
+
+            bool improveStatus = true;
+            while (roomsAvailable.Count != 0 || improveStatus == true) {
+                improveStatus = requirements.Improve();
+                roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
+            }
+
+            if (improveStatus == false) {
+                // Then we don't need to roll back the requirements
+            }
+
+            requirements.RollBack();
+            roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
+            return roomsAvailable[Generator.UseSeed(roomsAvailable.Count)];
+
+        }
+
         private static List<string> GetRoomBasedOnRequirements(Grid2D requirements) {
             List<string> roomLayouts = new List<string>();
 
@@ -178,25 +187,13 @@ namespace Dungeon.Generator.Stage {
 
         private static bool CheckNotStrictExits(Grid2D requirements, RoomInstance assessedRoomLayout) {
             bool anyExit = true;
-            // todo: remember that requirements is Consts.roomSize + 1 !
+            // todo: remember that requirements is Consts.roomSize + 2
             
             // Top
-            if (requirements.GetCell(0, Consts.RoomSize + 1) == "3") {
+            if (requirements.GetCell(1, Consts.RoomSize+1) == "3") {
                 // Then we need exit on ANY cell on this side
                 anyExit = false;
-                for (int x = 1; x < Consts.RoomSize; x++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize + 1) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize + 1) == "3" ) {
-                        anyExit = true;
-                    }
-                }
-            }
-            
-            // Bottom
-            if (requirements.GetCell(0, 0) == "3") {
-                // Then we need exit on ANY cell on this side
-                anyExit = false;
-                for (int x = 1; x < Consts.RoomSize; x++) {
+                for (int x = 1; x < Consts.RoomSize+1; x++) {
                     if (assessedRoomLayout.roomLayout.GetCell(x, 0) == "2" || 
                         assessedRoomLayout.roomLayout.GetCell(x, 0) == "3" ) {
                         anyExit = true;
@@ -204,25 +201,37 @@ namespace Dungeon.Generator.Stage {
                 }
             }
             
+            // Bottom
+            if (requirements.GetCell(1, 0) == "3") {
+                // Then we need exit on ANY cell on this side
+                anyExit = false;
+                for (int x = 1; x < Consts.RoomSize; x++) {
+                    if (assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "3" ) {
+                        anyExit = true;
+                    }
+                }
+            }
+            
             // Left
-            if (requirements.GetCell(0, 0) == "3") {
+            if (requirements.GetCell(0, 1) == "3") {
                 // Then we need exit on ANY cell on this side
                 anyExit = false;
                 for (int y = 1; y < Consts.RoomSize; y++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(0, y) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(0, y) == "3" ) {
+                    if (assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "3" ) {
                         anyExit = true;
                     }
                 }
             }
             
             // Right
-            if (requirements.GetCell(0, Consts.RoomSize + 1) == "3") {
+            if (requirements.GetCell(Consts.RoomSize+1, 1) == "3") {
                 // Then we need exit on ANY cell on this side
                 anyExit = false;
                 for (int y = 1; y < Consts.RoomSize; y++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "3" ) {
+                    if (assessedRoomLayout.roomLayout.GetCell(0, y) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(0, y) == "3" ) {
                         anyExit = true;
                     }
                 }

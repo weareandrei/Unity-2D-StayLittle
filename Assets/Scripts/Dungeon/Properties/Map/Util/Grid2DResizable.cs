@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Dungeon.Properties.Map.Util {
     
-    public class Grid2DResizable {
+    public class Grid2DResizable : ICloneable {
         
         private List<Row> rows;
         // [  y's
@@ -74,9 +74,7 @@ namespace Dungeon.Properties.Map.Util {
 
             return rows[y].cells[x];
         }
-        
-        
-        
+
         public void UpdateCell(int x, int y, string contents) {
             rows[y + zeroYOffset].cells[x] = contents;
         }
@@ -142,5 +140,19 @@ namespace Dungeon.Properties.Map.Util {
 
             return cellContents;
         }
+        
+        public object Clone()
+        {
+            Grid2DResizable clone = new Grid2DResizable(rows[0].cells.Count, rows.Count);
+            for (int y = 0; y < rows.Count; y++)
+            {
+                for (int x = 0; x < rows[y].cells.Count; x++)
+                {
+                    clone.UpdateCell(x, y, rows[y].cells[x]);
+                }
+            }
+            return clone;
+        }
+
     }
 }
