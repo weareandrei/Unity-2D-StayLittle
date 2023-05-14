@@ -16,7 +16,6 @@ namespace Dungeon.Tests.EditMode {
             // todo: this test is not final yet
             LoadResources();
             ChunkGenerator.chunkLayoutsAvailable = _chunkLayoutsAvailable;
-            ChunkGenerator.seed = "123";
             ChunkMap chunkMap = ChunkGenerator.GenerateChunks();
         }
         

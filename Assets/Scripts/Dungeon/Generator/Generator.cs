@@ -13,15 +13,23 @@ namespace Dungeon.Generator {
         public static GameObject[] roomPrefabsAvailable;
         public static List<RoomInstance> roomsAvailable;
         
-        public static DungeonMapData GenerateDungeonBySeed(string seed) {
+        public static string seedState;
+        private static string _seedOriginalState;
+        
+        public static DungeonMapData GenerateDungeonBySeed(string seedGiven) {
             DungeonMapData dungeonMapData = new DungeonMapData();
+            seedState = seedGiven;
+            _seedOriginalState = seedGiven;
 
             ChunkGenerator.chunkLayoutsAvailable = chunkLayoutsAvailable;
-            RoomGenerator.roomLayoutsAvailable = roomsAvailable;
-            ChunkGenerator.seed = seed;
             dungeonMapData.chunkMap = ChunkGenerator.GenerateChunks();
-            dungeonMapData.roomMap = RoomGenerator.GenerateRooms(seed, dungeonMapData.chunkMap);
-            dungeonMapData.contentsMap = ContentsGenerator.GenerateContents(seed, dungeonMapData.roomMap);
+            ResetSeed();
+            
+            RoomGenerator.roomLayoutsAvailable = roomsAvailable;
+            dungeonMapData.roomMap = RoomGenerator.GenerateRooms(dungeonMapData.chunkMap);
+            ResetSeed();
+            
+            dungeonMapData.contentsMap = ContentsGenerator.GenerateContents(dungeonMapData.roomMap);
 
             return dungeonMapData;
         }
@@ -64,5 +72,24 @@ namespace Dungeon.Generator {
                 return false;
             });
         }
+        
+        public static int UseSeed(int choiceCount) {
+            int seedNumber = (int)seedState[0];
+            seedState = seedState.Substring(1, seedState.Length - 1) + seedNumber;
+
+            while (choiceCount <= seedNumber) {
+                seedNumber = seedNumber - choiceCount;
+                if (seedNumber < 0) {
+                    seedNumber = 0;
+                }
+            }
+            
+            return seedNumber;
+        }
+
+        public static void ResetSeed() {
+            seedState = _seedOriginalState;
+        }
+        
     }
 }

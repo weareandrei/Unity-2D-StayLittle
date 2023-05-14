@@ -1,161 +1,198 @@
 using System;
 using System.Collections.Generic;
+using Dungeon.Generator.Stage;
 using Dungeon.Properties.Map.Type;
+using Dungeon.Properties.Map.Util;
 using Dungeon.Room;
 using Grid2DEditor;
 using UnityEngine;
 
 namespace Dungeon.Generator.Util {
     public class RoomRequirements {
-        
-        private RoomCoordinatesFull coordinatesFull;
-        private Grid2D requirements;
-        private RoomMap roomMap;
-        private List<RoomInstance> roomLayoutsAvailable;
 
-        public RoomRequirements(RoomCoordinatesFull coordinatesFullParams, RoomMap roomMapParams, List<RoomInstance> roomLayoutsAvailable) {
-            coordinatesFull = coordinatesFullParams;
-            roomMap = roomMapParams;
-            requirements = GetRoomRequirements(coordinatesFull);
+        private Grid2DResizable roomMap;
+        private ExitMap exitMap;
+        private Grid2D requirements;
+        private Grid2D requirementsPrevious;
+        private Vector2Int coordinates;
+
+        public RoomRequirements(Vector2Int thisRoomCoordinates, Grid2DResizable roomMap, ExitMap exitMap) {
+            this.roomMap = roomMap;
+            this.exitMap = exitMap;
+            this.coordinates = thisRoomCoordinates;
+            
+            this.requirements = GetRoomRequirementsBasic();
+            
+            requirementsPrevious = requirements;
         }
 
         public Grid2D ToGrid() {
             return requirements;
         }
-        
-        private Grid2D GetRoomRequirements(RoomCoordinatesFull coordinatesFull) {
-            bool isExternalExit = IsRoomAnExternalExit(coordinatesFull);
-            Grid2D requirementsGrid = new Grid2D(Consts.RoomSize+2);
-            Vector2Int thisRoomCoordinates = new Vector2Int(
-                coordinatesFull.room_RoomMap.x, coordinatesFull.room_RoomMap.y);
-            
-            requirementsGrid = getRequirements_Top(thisRoomCoordinates, requirementsGrid);
-            requirementsGrid = getRequirements_Bottom(thisRoomCoordinates, requirementsGrid);
-            requirementsGrid = getRequirements_Left(thisRoomCoordinates, requirementsGrid);
-            requirementsGrid = getRequirements_Right(thisRoomCoordinates, requirementsGrid);
-            
-            // Now we free the appropriate cells according to exits to allow the space
-            requirementsGrid = getRequirements_BasedOnExits(requirementsGrid);
+
+        private Grid2D GetRoomRequirementsBasic() {
+            // When we take the Mandatory requirements - we care about To and From
+            Grid2D requirementsGrid = new Grid2D(Consts.RoomSize + 2);
+
+            getBasicRequirements_Top(this.coordinates, ref requirementsGrid);
+            getBasicRequirements_Bottom(this.coordinates, ref requirementsGrid);
+            getBasicRequirements_Left(this.coordinates, ref requirementsGrid);
+            getBasicRequirements_Right(this.coordinates, ref requirementsGrid);
 
             return requirementsGrid;
         }
-        
-        private Grid2D getRequirements_Top(Vector2Int roomCoord, Grid2D requirementsGrid) {
+
+        private void getBasicRequirements_Top(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
             try {
-                string roomID = roomMap.map.GetCellActual(roomCoord.x, roomCoord.y+1);
-                RoomInstance room = FindRoomInstanceByID(roomID);
+                if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Top ||
+                    exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y+1).mainExitDirection == Exit.SidePosition.Bottom) {
+                    int y = Consts.RoomSize + 1;
+                    for (int x = 1; x < Consts.RoomSize + 1; x++) {
+                        requirementsGrid.UpdateCell(x, y, "3");
+                    }
+                }
+            } catch (Exception e) { /*Exception*/ }
+        }
+        
+        private void getBasicRequirements_Bottom(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+            try {
+                if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Bottom ||
+                    exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y-1).mainExitDirection == Exit.SidePosition.Top) {
+                    int y = 0;
+                    for (int x = 1; x < Consts.RoomSize + 1; x++) {
+                        requirementsGrid.UpdateCell(x, y, "3");
+                    }
+                }
+            } catch (Exception e) { /*Exception*/ }
+        }
+        
+        private void getBasicRequirements_Left(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+            try {
+                if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Left ||
+                    exitMap._exitMap.GetCellActual(roomCoord.x+1, roomCoord.y).mainExitDirection == Exit.SidePosition.Right) {
+                    int x = Consts.RoomSize+1;
+                    for (int y = 1; y < Consts.RoomSize + 1; y++) {
+                        requirementsGrid.UpdateCell(x, y, "3");
+                    }
+                }
+            } catch (Exception e) { /*Exception*/ }
+        }
+        
+        private void getBasicRequirements_Right(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+            try {
+                if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Right ||
+                    exitMap._exitMap.GetCellActual(roomCoord.x-1, roomCoord.y).mainExitDirection == Exit.SidePosition.Left) {
+                    int x = 0;
+                    for (int y = 0; y < Consts.RoomSize + 1; y++) {
+                        requirementsGrid.UpdateCell(x, y, "3");
+                    }
+                }
+            } catch (Exception e) { /*Exception*/ }
+        }
+
+        public bool Improve() {
+            // ONLY 1 improvement at a time !
+            requirementsPrevious = requirements;
+            bool foundNewRequirement = false;
+            
+            foundNewRequirement = getNextRequirement_Top(coordinates);
+            if (foundNewRequirement) {
+                return true;
+            }
+            foundNewRequirement = getNextRequirement_Bottom(coordinates);
+            if (foundNewRequirement) {
+                return true;
+            }
+            foundNewRequirement = getNextRequirement_Left(coordinates);
+            if (foundNewRequirement) {
+                return true;
+            }
+            foundNewRequirement = getNextRequirement_Right(coordinates);
+            if (foundNewRequirement) {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void RollBack() {
+            requirements = requirementsPrevious;
+        }
+
+        private bool getNextRequirement_Top(Vector2Int roomCoord) {
+            try {
+                string roomID = roomMap.GetCellActual(roomCoord.x, roomCoord.y+1);
+                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
                 
                 int y = Consts.RoomSize + 1;
-                for (int x = 1; x < Consts.RoomSize+1; x++) {
+                for (int x = 0; x < Consts.RoomSize+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
-                    requirementsGrid.UpdateCell(x, y, thisCellContents);
+                    if (thisCellContents != "") {
+                        if (requirements.GetCell(x,0) != "") continue;
+                        requirements.UpdateCell(x, 0, thisCellContents);
+                        return true;
+                    }
                 }
-                
-                return UpdateSideSoftExit(requirementsGrid, "horizontal" , 1, Consts.RoomSize+1);
-            } catch (Exception e) {
-                // Will throw exception if :
-                //  - no room above
-                //  - out of range 
-                return requirementsGrid;
-            } 
+            } catch (Exception e) { /*ignored*/ }
+            
+            return false;
         }
         
-        private Grid2D getRequirements_Bottom(Vector2Int roomCoord, Grid2D requirementsGrid) {
+        private bool getNextRequirement_Bottom(Vector2Int roomCoord) {
             try {
-                string roomID =roomMap.map.GetCellActual(roomCoord.x, roomCoord.y-1);
-                RoomInstance room = FindRoomInstanceByID(roomID);
-                
+                string roomID = roomMap.GetCellActual(roomCoord.x, roomCoord.y-1);
+                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
+            
                 int y = 0;
-                for (int x = 1; x < Consts.RoomSize+1; x++) {
+                for (int x = 0; x < Consts.RoomSize+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
-                    requirementsGrid.UpdateCell(x, y, thisCellContents);
+                    if (thisCellContents != "") {
+                        if (requirements.GetCell(x,Consts.RoomSize+1) != "") continue;
+                        requirements.UpdateCell(x, Consts.RoomSize+1, thisCellContents);
+                        return true;
+                    }
                 }
-                
-                return UpdateSideSoftExit(requirementsGrid, "horizontal", 1, 0);
-            } catch (Exception e) {
-                // Will throw exception if :
-                //  - no room above
-                //  - out of range 
-                return requirementsGrid;
-            } 
+            } catch (Exception e) { /*ignored*/ }
+            
+            return false;
         }
         
-        private Grid2D getRequirements_Left(Vector2Int roomCoord, Grid2D requirementsGrid) {
+        private bool getNextRequirement_Left(Vector2Int roomCoord) {
             try {
-                string roomID =roomMap.map.GetCellActual(roomCoord.x-1, roomCoord.y);
-                RoomInstance room = FindRoomInstanceByID(roomID);
-                
+                string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
+                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
+            
+                int x = Consts.RoomSize + 1;
+                for (int y = 0; y < Consts.RoomSize+1; y++) {
+                    string thisCellContents = room.roomLayout.GetCell(x, y);
+                    if (thisCellContents != "") {
+                        if (requirements.GetCell(0, y) != "") continue;
+                        requirements.UpdateCell(0, y, thisCellContents);
+                        return true;
+                    }
+                }
+            } catch (Exception e) { /*ignored*/ }
+            
+            return false;
+        }
+
+        private bool getNextRequirement_Right(Vector2Int roomCoord) {
+            try {
+                string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
+                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
+            
                 int x = 0;
                 for (int y = 1; y < Consts.RoomSize+1; y++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
-                    requirementsGrid.UpdateCell(x, y, thisCellContents);
+                    if (thisCellContents != "") {
+                        if (requirements.GetCell(Consts.RoomSize+1, y) != "") continue;
+                        requirements.UpdateCell(Consts.RoomSize+1, y, thisCellContents);
+                        return true;
+                    }
                 }
-                
-                return UpdateSideSoftExit(requirementsGrid, "vertical", 0, 1);
-            } catch (Exception e) {
-                // Will throw exception if :
-                //  - no room above
-                //  - out of range 
-                return requirementsGrid;
-            } 
-        }
-
-        private Grid2D getRequirements_Right(Vector2Int roomCoord, Grid2D requirementsGrid) {
-            try {
-                string roomID = roomMap.map.GetCellActual(roomCoord.x+1, roomCoord.y);
-                RoomInstance room = FindRoomInstanceByID(roomID);
-                
-                int x = Consts.RoomSize+1;
-                for (int y = 1; y < Consts.RoomSize+1; y++) {
-                    string thisCellContents = room.roomLayout.GetCell(x, y);
-                    requirementsGrid.UpdateCell(x, y, thisCellContents);
-                }
-                
-                return UpdateSideSoftExit(requirementsGrid, "vertical", Consts.RoomSize+1, 1);
-            } catch (Exception e) {
-                // Will throw exception if :
-                //  - no room above
-                //  - out of range 
-                return requirementsGrid;
-            } 
-        }
-
-
-        private Grid2D UpdateSideSoftExit(Grid2D requirementsGrid, string side, int initX, int initY) {
-            if (side == "horizontal") {
-                for (int x = initX; x < initX; x++) {
-                    requirementsGrid.UpdateCell(x, initY, "3");
-                }
-            }
+            } catch (Exception e) { /*ignored*/ }
             
-            if (side == "vertical") {
-                for (int y = initY; y < initY; y++) {
-                    requirementsGrid.UpdateCell(initX, y, "3");
-                }
-            }
-
-            return requirementsGrid;
-        }
-        
-        private Grid2D getRequirements_BasedOnExits(Grid2D requirementsGrid) {
-            // todo: Finish later
-            return requirementsGrid;
-        }
-        
-        private bool IsRoomAnExternalExit(RoomCoordinatesFull coordinatesFull) {
-            string thisRoomType = coordinatesFull.chunkLayout.rooms.GetCell(coordinatesFull.room_ThisChunk.x, coordinatesFull.room_ThisChunk.y);
-            return thisRoomType == "E";
-        }
-        
-        private  RoomInstance FindRoomInstanceByID(string id) {
-            bool isParsableID = int.TryParse(id, out _); // _ means that we don't intend to use the out result
-            // Check if this is a string
-            // Otherwise, it could be an E or an R
-            
-            if (id == "" || !isParsableID) {
-                throw new ArgumentException("Chunk ID can't be empty");
-            }
-            return roomLayoutsAvailable.FindAll( room => room.roomID == id)[0];
+            return false;
         }
     }
 }
