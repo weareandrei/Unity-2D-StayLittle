@@ -17,6 +17,11 @@ namespace DataPersistence {
             {new DungeonData("i",new Vector2Int(1, 900),"12345",_dungeonType.regularDungeon)},
             {new DungeonData("j",new Vector2Int(1, 1000),"12345",_dungeonType.regularDungeon)}
         }; // Assume its sorted already
+        
+        public static void Initialize(string seed) {
+            int maxDungeons = Consts.MaxDungeons;
+            
+        }
 
         public static int CountDungeons() {
             return _dungeons.Count;

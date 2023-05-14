@@ -2,15 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/Consts.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/Consts.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonListGenerator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonListGenerator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/GeneralUtil.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/GeneralUtil.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Random.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Random.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Seed.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Seed.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DungeonManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DungeonManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GeneratorTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GenerateAndRenderDungeonTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GeneratorTest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GenerateAndRenderDungeonTest.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,11 +41,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.common@6.0.5/Editor/ImagePacker/ImagePacker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.path@5.0.2/Editor/EditorTool/PathEditorTool.cs" root0="SKIP_HIGHLIGHTING" />
@@ -42,6 +53,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Tests/Runtime/Shared/040-ControlFlows.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Core/CameraState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@12.1.8/Runtime/Lighting/ProbeVolume/ProbeBrickPool.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.8/Editor/Data/Interfaces/IGroupItem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.31/UnityEditor.TestRunner/GUI/Views/EditModeTestListGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.6.4/Editor/treeview/Drawers/ClipDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/ScrollRectEditor.cs" root0="SKIP_HIGHLIGHTING" />
@@ -125,10 +137,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="87602">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="87602" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -212,6 +224,7 @@
       <workItem from="1683670142945" duration="1049000" />
       <workItem from="1683843727778" duration="5755000" />
       <workItem from="1683924296374" duration="8717000" />
+      <workItem from="1684079569563" duration="219000" />
     </task>
     <task id="LOCAL-00001" summary="Changed Quadrant to Chunk">
       <created>1673822864663</created>
@@ -262,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683652799845</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added DungeonManager Initialization + Moved">
+      <created>1684079062180</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1684079062180</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +368,8 @@
     <MESSAGE value="Chunk generation working. Not entirely finished." />
     <MESSAGE value="Fixed ChunkLayout. But RoomMap still has rooms with not corresponding exits" />
     <MESSAGE value="ExitMap Works. Code does not break" />
-    <option name="LAST_COMMIT_MESSAGE" value="ExitMap Works. Code does not break" />
+    <MESSAGE value="Added DungeonManager Initialization + Moved" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added DungeonManager Initialization + Moved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -369,14 +390,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs</url>
           <line>15</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" initialLine="18" containingFunctionPresentation="method 'CorrectChunksGenerated'">
-            <startOffsets>
-              <option value="648" />
-            </startOffsets>
-            <endOffsets>
-              <option value="650" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" initialLine="18" containingFunctionPresentation="method 'CorrectChunksGenerated'" />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
@@ -464,5 +478,9 @@
         <PinnedItemInfo parentTag="Type#UnityEngine.Object" memberName="hideFlags" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

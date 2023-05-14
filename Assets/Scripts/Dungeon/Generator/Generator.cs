@@ -5,6 +5,7 @@ using Dungeon.Generator.Stage;
 using Dungeon.Properties;
 using Dungeon.Room;
 using UnityEngine;
+using GeneralUtil;
 
 namespace Dungeon.Generator {
     public static class Generator {
@@ -23,11 +24,11 @@ namespace Dungeon.Generator {
 
             ChunkGenerator.chunkLayoutsAvailable = chunkLayoutsAvailable;
             dungeonMapData.chunkMap = ChunkGenerator.GenerateChunks();
-            ResetSeed();
+            Seed.ResetSeed(ref seedState, _seedOriginalState);
             
             RoomGenerator.roomLayoutsAvailable = roomsAvailable;
             dungeonMapData.roomMap = RoomGenerator.GenerateRooms(dungeonMapData.chunkMap);
-            ResetSeed();
+            Seed.ResetSeed(ref seedState, _seedOriginalState);
             
             dungeonMapData.contentsMap = ContentsGenerator.GenerateContents(dungeonMapData.roomMap);
 
@@ -74,22 +75,8 @@ namespace Dungeon.Generator {
         }
         
         public static int UseSeed(int choiceCount) {
-            int seedNumber = (int)seedState[0];
-            seedState = seedState.Substring(1, seedState.Length - 1) + seedNumber;
-
-            while (choiceCount <= seedNumber) {
-                seedNumber = seedNumber - choiceCount;
-                if (seedNumber < 0) {
-                    seedNumber = 0;
-                }
-            }
-            
-            return seedNumber;
+            return Seed.UseSeed(ref seedState, choiceCount);
         }
 
-        public static void ResetSeed() {
-            seedState = _seedOriginalState;
-        }
-        
     }
 }
