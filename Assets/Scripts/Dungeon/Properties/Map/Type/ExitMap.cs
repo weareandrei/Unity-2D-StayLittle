@@ -52,7 +52,7 @@ namespace Dungeon.Properties.Map.Type {
             if (exitsAvailable is {Count: > 0}) {
                 // Maybe pick a random exit from exitsAvailable using seed?
                 // BuildExitMap();
-                Exit.PossibleExit possibleExit = exitsAvailable[Generator.Generator.UseSeed(exitsAvailable.Count)];
+                Exit.PossibleExit possibleExit = exitsAvailable[Generator.Generator.UseSeed(exitsAvailable.Count-1)];
                 exitsAvailable.Remove(possibleExit);
                 _roomMap.UpdateCell(atCoordinates.x, atCoordinates.y, "");
                 BuildExitMap(GetAtCoordinatesParam(possibleExit), new Vector2Int(possibleExit.x, possibleExit.y));

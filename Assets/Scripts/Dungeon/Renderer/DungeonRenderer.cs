@@ -71,7 +71,7 @@ namespace Dungeon.Renderer {
 
         private static Vector2Int CalcDungeonOrigin(Vector2Int coordinates) {
             // Should calculate based on Right or Left side
-            return new Vector2Int(0, 0);
+            return coordinates;
         }
     }
 }
