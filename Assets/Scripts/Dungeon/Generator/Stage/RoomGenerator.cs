@@ -150,7 +150,7 @@ namespace Dungeon.Generator.Stage {
 
             requirements.RollBack();
             roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
-            return roomsAvailable[Generator.UseSeed(roomsAvailable.Count)];
+            return roomsAvailable[Generator.UseSeed(roomsAvailable.Count-1)];
 
         }
 

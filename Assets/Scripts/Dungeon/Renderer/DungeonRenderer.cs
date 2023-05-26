@@ -53,8 +53,7 @@ namespace Dungeon.Renderer {
             gizmoSquare.transform.position = new Vector3(coordinates.x, coordinates.y, -0.1f);
             return gizmoSquare;
         }
-
-
+        
         private static void RenderRoomAtCoordinates(Vector2Int coordinates, string roomId, int x, int y) {
             GameObject roomPrefab = Generator.Generator.GetRoomPrefabFromID(roomId);
             if (roomPrefab == null) {
@@ -72,7 +71,7 @@ namespace Dungeon.Renderer {
 
         private static Vector2Int CalcDungeonOrigin(Vector2Int coordinates) {
             // Should calculate based on Right or Left side
-            return new Vector2Int(0, 0);
+            return coordinates;
         }
     }
 }

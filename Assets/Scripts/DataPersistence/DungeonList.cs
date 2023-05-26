@@ -4,8 +4,7 @@ using UnityEngine;
 namespace DataPersistence {
     public static class DungeonList
     {
-        
-        private static List<DungeonData> _dungeons = new List<DungeonData>() {
+        public static List<DungeonData> _dungeons = new List<DungeonData>() {
             {new DungeonData("a",new Vector2Int(1, 100),"12345",_dungeonType.regularDungeon)},
             {new DungeonData("b",new Vector2Int(1, 200),"12345",_dungeonType.regularDungeon)},
             {new DungeonData("c",new Vector2Int(1, 300),"12345",_dungeonType.regularDungeon)},
@@ -17,6 +16,10 @@ namespace DataPersistence {
             {new DungeonData("i",new Vector2Int(1, 900),"12345",_dungeonType.regularDungeon)},
             {new DungeonData("j",new Vector2Int(1, 1000),"12345",_dungeonType.regularDungeon)}
         }; // Assume its sorted already
+        
+        public static void Initialize(string seed) {
+            int maxDungeons = Consts.MaxDungeons;
+        }
 
         public static int CountDungeons() {
             return _dungeons.Count;

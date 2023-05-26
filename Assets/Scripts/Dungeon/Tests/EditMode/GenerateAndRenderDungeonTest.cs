@@ -4,7 +4,7 @@ using NUnit.Framework;
 using DataPersistence;
 
 namespace Dungeon.Tests.EditMode {
-    public class GeneratorTest
+    public class GenerateAndRenderDungeonTest
     {
         [Test]
         public void CorrectMapGenerated() {

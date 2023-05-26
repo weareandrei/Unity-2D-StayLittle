@@ -21,7 +21,7 @@ namespace Dungeon.Generator.Stage {
 
             // Place Entrance
             ChunkLayout entranceLayout = GetEntranceLayout();
-                _newChunkMap.PlaceCellOnMap(new Vector2Int(0,0), entranceLayout.ID);
+            _newChunkMap.PlaceCellOnMap(new Vector2Int(0,0), entranceLayout.ID);
             
             chunksInUse.Add(entranceLayout.ID);
             possibleExits.AddRange(
@@ -130,7 +130,7 @@ namespace Dungeon.Generator.Stage {
                 return "not found";
             }
             // todo : next line has a timeout if we don't find the Layouts appropriate
-            return foundLayouts[Generator.UseSeed(foundLayouts.Count)];
+            return foundLayouts[Generator.UseSeed(foundLayouts.Count-1)];
         }
 
         private static Vector2Int GetNextChunkCoordinatesBasedOnExit(Exit.PossibleExit exit) {

@@ -146,11 +146,10 @@ namespace Dungeon.Generator.Util {
                 int y = 0;
                 for (int x = 0; x < Consts.RoomSize+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
-                    if (thisCellContents != "") {
-                        if (requirements.GetCell(x,Consts.RoomSize+1) != "") continue;
-                        requirements.UpdateCell(x, Consts.RoomSize+1, thisCellContents);
-                        return true;
-                    }
+                    if (thisCellContents == "") continue;
+                    if (requirements.GetCell(x,Consts.RoomSize+1) != "") continue;
+                    requirements.UpdateCell(x, Consts.RoomSize+1, thisCellContents);
+                    return true;
                 }
             } catch (Exception e) { /*ignored*/ }
             
