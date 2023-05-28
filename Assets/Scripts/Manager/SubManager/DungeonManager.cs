@@ -1,9 +1,9 @@
-using DataPersistence;
+using Dungeon.Data;
 using Dungeon.Generator;
 using Dungeon.Renderer;
-using UnityEngine;
+using Util;
 
-namespace Managers {
+namespace Manager.SubManager {
     public static class DungeonManager {
         
         public static void Initialize(string seed = "") {
@@ -12,17 +12,17 @@ namespace Managers {
         
         private static void GenerateDungeonList(string seed = "") {
             if (string.IsNullOrEmpty(seed)) {
-                seed = Util.Random.GenerateSeed();
+                seed = Random.GenerateSeed();
             }
             // use the seed to generate the dungeon list
-            DungeonList._dungeons = Dungeon.Generator.DungeonListGenerator.Generate(10, seed);
+            DungeonList._dungeons = DungeonListGenerator.Generate(10, seed);
         }
 
         public static void RenderDungeonsAll() {
             foreach (DungeonData dungeonData in DungeonList._dungeons) {
                 DungeonRenderer.RenderDungeon(
                     dungeonData, 
-                    Generator.GenerateDungeonBySeed(dungeonData.seed)
+                    DungeonGenerator.GenerateDungeonBySeed(dungeonData.seed)
                 );
             }
         }

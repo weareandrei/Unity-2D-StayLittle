@@ -1,14 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Dungeon.Chunk;
-using Dungeon.Generator.Stage;
-using Dungeon.Properties;
-using Dungeon.Room;
+using Dungeon.Model;
 using UnityEngine;
-using GeneralUtil;
+using Util;
 
 namespace Dungeon.Generator {
-    public static class Generator {
+    public static class DungeonGenerator {
         
         public static List<ChunkLayout> chunkLayoutsAvailable;
         public static GameObject[] roomPrefabsAvailable;

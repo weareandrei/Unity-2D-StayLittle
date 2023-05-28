@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Grid2DEditor {
 
     [CustomPropertyDrawer(typeof(Grid2D))]
-    public class Grid2DDrawer : PropertyDrawer{
+    public class Grid2DDrawer : PropertyDrawer {
         private static float LineHeight => EditorGUIUtility.singleLineHeight;
         
         private const float FirstLineMargin = 16f;

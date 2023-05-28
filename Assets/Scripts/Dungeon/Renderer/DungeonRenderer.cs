@@ -1,13 +1,11 @@
-using System.Runtime.CompilerServices;
-using DataPersistence;
-using Dungeon.Properties;
-using Dungeon.Properties.Map.Type;
+using Dungeon.Data;
+using Dungeon.Model;
 using UnityEngine;
     
 namespace Dungeon.Renderer {
     public static class DungeonRenderer {
 
-        private static int _spaceBetweenDungeons = 12; 
+        private static int _spaceBetweenDungeons = 12;
         
         // Based on this we can know if this is a Right or Left side Dungeon
         private static Vector2Int _dungeonOrigin; 
@@ -55,7 +53,7 @@ namespace Dungeon.Renderer {
         }
         
         private static void RenderRoomAtCoordinates(Vector2Int coordinates, string roomId, int x, int y) {
-            GameObject roomPrefab = Generator.Generator.GetRoomPrefabFromID(roomId);
+            GameObject roomPrefab = Generator.DungeonGenerator.GetRoomPrefabFromID(roomId);
             if (roomPrefab == null) {
                 return;
             }
