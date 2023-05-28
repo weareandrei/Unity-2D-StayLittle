@@ -1,9 +1,8 @@
 {
-    "name": "Dungeon",
+    "name": "Playground",
     "rootNamespace": "",
     "references": [
-        "GUID:e8fc94c52bf854315966c159bc66aa58",
-        "GUID:d9f7aea71b1d4f1ca3848e033b273cea"
+        "GUID:a8be87fa4cf684f31ba3ad0a081a53e2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

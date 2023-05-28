@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/DungeonListGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GenerateDungeonsListTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Managers.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DataPersistence.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DataPersistence.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonListGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonListGenerator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/RoomMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/RoomMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/EditMode.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/EditMode.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Seed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Seed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/DungeonManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DungeonManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TestGeneration.cs" afterDir="false" />
+    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="Rollback some DungeonMap bad changes. Now code is working.">
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/GenerateAndRenderDungeonTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/GenerateAndRenderDungeonTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,14 +12,15 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="improve-dungeon-cell-location-and-spaces" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.common@6.0.5/Editor/ImagePacker/ImagePacker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.path@5.0.2/Editor/EditorTool/PathEditorTool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.psdimporter@6.0.6/Editor/PSDPlugin/PsdFile/Util.cs" root0="SKIP_HIGHLIGHTING" />
@@ -131,10 +115,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="80439">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="86741">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="80439" />
+      <option name="pid" value="86741" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -294,7 +278,28 @@
       <option name="project" value="LOCAL" />
       <updated>1684079836333</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Folder Structure fully refactored. Code not working correctly yet.">
+      <created>1685275238882</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275238882</updated>
+    </task>
+    <task id="LOCAL-00011" summary="asmdef's added to the last commit">
+      <created>1685275255968</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275255968</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Rollback some DungeonMap bad changes. Now code is working.">
+      <created>1685275893368</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275893368</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,7 +387,10 @@
     <MESSAGE value="ExitMap Works. Code does not break" />
     <MESSAGE value="Added DungeonManager Initialization + Moved" />
     <MESSAGE value="Finishing last commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finishing last commit" />
+    <MESSAGE value="Folder Structure fully refactored. Code not working correctly yet." />
+    <MESSAGE value="asmdef's added to the last commit" />
+    <MESSAGE value="Rollback some DungeonMap bad changes. Now code is working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rollback some DungeonMap bad changes. Now code is working." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -401,62 +409,88 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs</url>
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/ChunkGeneratorTest.cs</url>
           <line>15</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" initialLine="18" containingFunctionPresentation="method 'CorrectChunksGenerated'" />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs</url>
-          <line>152</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" initialLine="142" containingFunctionPresentation="method 'getRequirements_Right'">
-            <startOffsets>
-              <option value="6864" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6902" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="624" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs</url>
-          <line>158</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" initialLine="148" containingFunctionPresentation="method 'getRequirements_Right'">
-            <startOffsets>
-              <option value="7166" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7209" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="625" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/DungeonListGenerator.cs</url>
-          <line>28</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/DungeonListGenerator.cs" initialLine="25" containingFunctionPresentation="method 'Generate'">
-            <startOffsets>
-              <option value="900" />
-            </startOffsets>
-            <endOffsets>
-              <option value="928" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="666" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/TestGeneration.cs</url>
-          <line>7</line>
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs</url>
+          <line>6</line>
           <properties documentPath="$PROJECT_DIR$/Assets/TestGeneration.cs" initialLine="7" containingFunctionPresentation="method 'Start'">
             <startOffsets>
-              <option value="158" />
+              <option value="177" />
             </startOffsets>
             <endOffsets>
-              <option value="202" />
+              <option value="212" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="677" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" initialLine="26" containingFunctionPresentation="method 'Generate'">
+            <startOffsets>
+              <option value="863" />
+            </startOffsets>
+            <endOffsets>
+              <option value="891" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="682" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
+          <line>46</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" initialLine="46" containingFunctionPresentation="method 'GenerateNewDungeonData'">
+            <startOffsets>
+              <option value="1585" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1679" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="683" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
+          <line>47</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" initialLine="47" containingFunctionPresentation="method 'GenerateNewDungeonData'">
+            <startOffsets>
+              <option value="1692" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1753" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="684" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs</url>
+          <line>76</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" initialLine="76" containingFunctionPresentation="method 'UpdateCell'">
+            <startOffsets>
+              <option value="2226" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2268" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="689" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs</url>
+          <line>20</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" initialLine="8" containingFunctionPresentation="method 'PlaceCellOnMap'">
+            <startOffsets>
+              <option value="549" />
+            </startOffsets>
+            <endOffsets>
+              <option value="604" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="691" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
