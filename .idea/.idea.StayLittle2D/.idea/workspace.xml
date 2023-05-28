@@ -1,94 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ContentsGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/RoomGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/DungeonListTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Util/Util.asmdef" afterDir="false" />
+    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="asmdef's added to the last commit">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Drawer/Grid2DDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Drawer/Grid2DDrawer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/Consts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Consts.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DataPersistence.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DataPersistence.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataModel/DungeonList.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataPersistence/DungeonList.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Consts.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/DungeonListGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Room.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Room/RoomInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/RoomInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Room/RoomInstance.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ChunkGenerator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ContentsGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/ContentsGenerator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/RoomRequirements.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Chunk.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Chunk/ChunkLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/ChunkLayout.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Chunk/ChunkLayout.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Chunk/Grid2DTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Chunk/Grid2DTest.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/DungeonMapData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/DungeonMapData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/DungeonMapData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/DungeonMap.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/DungeonMap.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ChunkMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/ChunkMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ChunkMap.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ContentsMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/ContentsMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ContentsMap.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/ExitMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/RoomMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/RoomMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/RoomMap.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Exit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Exit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Exit.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Grid2DExit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Row.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/RowResizable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Row.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Renderer/DungeonRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/EditMode.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/EditMode.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/EditMode.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GenerateAndRenderDungeonTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/GenerateAndRenderDungeonTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GenerateAndRenderDungeonTest.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/GenerateDungeonsListTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon_Old.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon_Old.zip.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/GeneralUtil.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Random.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Util/Random.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralUtil/Seed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Util/Seed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/Elevator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interaction/Elevator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GlobalManager/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GlobalManager/LevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/SubManager/DungeonManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/SubManager/DungeonManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/SubManager/Managers.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneBound.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interaction/SceneBound.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneBound.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestGeneration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestGeneration.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,10 +115,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="86741">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="86741" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -363,7 +278,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684079836333</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Folder Structure fully refactored. Code not working correctly yet.">
+      <created>1685275238882</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275238882</updated>
+    </task>
+    <task id="LOCAL-00011" summary="asmdef's added to the last commit">
+      <created>1685275255968</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275255968</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +380,9 @@
     <MESSAGE value="ExitMap Works. Code does not break" />
     <MESSAGE value="Added DungeonManager Initialization + Moved" />
     <MESSAGE value="Finishing last commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finishing last commit" />
+    <MESSAGE value="Folder Structure fully refactored. Code not working correctly yet." />
+    <MESSAGE value="asmdef's added to the last commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="asmdef's added to the last commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -476,19 +407,6 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
-          <line>28</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/DungeonListGenerator.cs" initialLine="25" containingFunctionPresentation="method 'Generate'">
-            <startOffsets>
-              <option value="863" />
-            </startOffsets>
-            <endOffsets>
-              <option value="891" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="666" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs</url>
           <line>6</line>
           <properties documentPath="$PROJECT_DIR$/Assets/TestGeneration.cs" initialLine="7" containingFunctionPresentation="method 'Start'">
@@ -500,6 +418,110 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="677" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs</url>
+          <line>28</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" initialLine="28" containingFunctionPresentation="method 'GenerateChunks'">
+            <startOffsets>
+              <option value="1138" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1191" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="680" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" initialLine="26" containingFunctionPresentation="method 'Generate'">
+            <startOffsets>
+              <option value="863" />
+            </startOffsets>
+            <endOffsets>
+              <option value="891" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="682" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
+          <line>46</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" initialLine="46" containingFunctionPresentation="method 'GenerateNewDungeonData'">
+            <startOffsets>
+              <option value="1585" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1679" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="683" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
+          <line>47</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" initialLine="47" containingFunctionPresentation="method 'GenerateNewDungeonData'">
+            <startOffsets>
+              <option value="1692" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1753" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="684" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs</url>
+          <line>21</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" initialLine="21" containingFunctionPresentation="method 'GenerateChunks'">
+            <startOffsets>
+              <option value="806" />
+            </startOffsets>
+            <endOffsets>
+              <option value="874" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="686" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs</url>
+          <line>23</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" initialLine="23" containingFunctionPresentation="method 'GenerateChunks'">
+            <startOffsets>
+              <option value="900" />
+            </startOffsets>
+            <endOffsets>
+              <option value="935" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="688" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs</url>
+          <line>76</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" initialLine="76" containingFunctionPresentation="method 'UpdateCell'">
+            <startOffsets>
+              <option value="2226" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2268" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="689" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs</url>
+          <line>20</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" initialLine="8" containingFunctionPresentation="method 'PlaceCellOnMap'">
+            <startOffsets>
+              <option value="549" />
+            </startOffsets>
+            <endOffsets>
+              <option value="604" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="691" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
