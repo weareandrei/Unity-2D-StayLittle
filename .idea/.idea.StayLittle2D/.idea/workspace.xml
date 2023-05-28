@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="asmdef's added to the last commit">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" afterDir="false" />
+    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="Rollback some DungeonMap bad changes. Now code is working.">
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/GenerateAndRenderDungeonTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/GenerateAndRenderDungeonTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +19,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.common@6.0.5/Editor/ImagePacker/ImagePacker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.path@5.0.2/Editor/EditorTool/PathEditorTool.cs" root0="SKIP_HIGHLIGHTING" />
@@ -292,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685275255968</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Rollback some DungeonMap bad changes. Now code is working.">
+      <created>1685275893368</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275893368</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,7 +389,8 @@
     <MESSAGE value="Finishing last commit" />
     <MESSAGE value="Folder Structure fully refactored. Code not working correctly yet." />
     <MESSAGE value="asmdef's added to the last commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="asmdef's added to the last commit" />
+    <MESSAGE value="Rollback some DungeonMap bad changes. Now code is working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rollback some DungeonMap bad changes. Now code is working." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -418,19 +426,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="677" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs</url>
-          <line>28</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" initialLine="28" containingFunctionPresentation="method 'GenerateChunks'">
-            <startOffsets>
-              <option value="1138" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1191" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="680" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
@@ -470,32 +465,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="684" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs</url>
-          <line>21</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" initialLine="21" containingFunctionPresentation="method 'GenerateChunks'">
-            <startOffsets>
-              <option value="806" />
-            </startOffsets>
-            <endOffsets>
-              <option value="874" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="686" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs</url>
-          <line>23</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" initialLine="23" containingFunctionPresentation="method 'GenerateChunks'">
-            <startOffsets>
-              <option value="900" />
-            </startOffsets>
-            <endOffsets>
-              <option value="935" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="688" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs</url>

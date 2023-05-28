@@ -9,6 +9,9 @@ namespace Dungeon.Playground {
     {
         [Test]
         public void TestSimplePasses() {
+            
+            // Old test. Might not work correctly.
+            
             DungeonData dungeonData = DungeonList.GetDungeonDataByIndex(0);
                 
             Generator.DungeonGenerator.LoadResources();
