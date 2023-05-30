@@ -5,11 +5,10 @@ using UnityEngine;
 
 namespace HoneyGrid2D {
     public abstract class FlexGrid2D<T>  : ICloneable {
-        
-        private List<FlexRow<T>> rows;
+        protected List<FlexRow<T>> rows;
         public int zeroYOffset = 0;
 
-        private T initialCellValue;
+        protected T initialCellValue;
         
         public FlexGrid2D(int sizeX, int sizeY) {
             rows = new List<FlexRow<T>>();
@@ -127,18 +126,6 @@ namespace HoneyGrid2D {
         //     }
         //
         //     return cellContents;
-        // }
-        
-        // public object Clone() {
-        //     FlexGrid2D<T> clone = new FlexGrid2D<T>(rows[0].cells.Count, rows.Count);
-        //     for (int y = 0; y < rows.Count; y++)
-        //     {
-        //         for (int x = 0; x < rows[y].cells.Count; x++)
-        //         {
-        //             clone.UpdateCell(x, y, rows[y].cells[x]);
-        //         }
-        //     }
-        //     return clone;
         // }
 
         public abstract object Clone();

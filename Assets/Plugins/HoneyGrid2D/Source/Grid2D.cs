@@ -1,14 +1,14 @@
 using HoneyGrid2D;
 using UnityEngine;
 
-namespace Grid2DEditor {
+namespace HoneyGrid2D {
     [System.Serializable]
     public abstract class Grid2D<T> {
         
         [SerializeField]
         private Row<T>[] rows;
-        
-        private T initialCellValue;
+
+        protected T initialCellValue;
         
         [SerializeField]
         private Vector2Int gridSize;
@@ -26,7 +26,6 @@ namespace Grid2DEditor {
             Size = size;
         }
         
-
         public T GetCell(int x, int y) {
             return rows[y].cells[x];
         }

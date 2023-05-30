@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="Rollback some DungeonMap bad changes. Now code is working.">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/GenerateAndRenderDungeonTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/GenerateAndRenderDungeonTest.cs" afterDir="false" />
+    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DBool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DBool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DFloat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DFloat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DInt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DInt.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DSpecial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DSpecial.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DString.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DString.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DBool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DBool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DFloat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DFloat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DInt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DInt.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DSpecial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DSpecial.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DString.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DString.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/Grid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/Grid2D.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="improve-dungeon-cell-location-and-spaces" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/Grid2DEditor/Grid2D/Grid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/Grid2DEditor/Grid2D/Row.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.common@6.0.5/Editor/ImagePacker/ImagePacker.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.path@5.0.2/Editor/EditorTool/PathEditorTool.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.psdimporter@6.0.6/Editor/PSDPlugin/PsdFile/Util.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.spriteshape@7.0.6/Runtime/External/LibTessDotNet/MeshUtils.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Editor/BurstAotCompiler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Editor/BurstDisassembler.Core.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Tests/Editor/EditmodeTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.7.3/Tests/Runtime/Shared/040-ControlFlows.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Core/CameraState.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@12.1.8/Runtime/Lighting/ProbeVolume/ProbeBrickPool.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.8/Editor/Data/Interfaces/IGroupItem.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.31/UnityEditor.TestRunner/GUI/Views/EditModeTestListGUI.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.6.4/Editor/treeview/Drawers/ClipDrawer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/ScrollRectEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/SpecializedCollections/IndexedSet.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/ToggleGroup.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/EventSystem/InterceptedEventsPreviewTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Text/FontCreatedByScript.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/EventSystem/RaycastSortingTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/UIBehaviourExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/15/bfc8e21c/Assert.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41229cbbc9214cf28863fc47f2e1508c469200/11/6309678e/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/44/5c5cbce8/ICloneable.cs" root0="SKIP_HIGHLIGHTING" />
@@ -115,10 +116,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="86741">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="86741" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -214,6 +215,9 @@
       <workItem from="1684848100922" duration="3042000" />
       <workItem from="1684947050218" duration="3715000" />
       <workItem from="1684951218531" duration="480000" />
+      <workItem from="1685290412641" duration="32000" />
+      <workItem from="1685290595807" duration="676000" />
+      <workItem from="1685463663565" duration="3213000" />
     </task>
     <task id="LOCAL-00001" summary="Changed Quadrant to Chunk">
       <created>1673822864663</created>
@@ -299,7 +303,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685275893368</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Initial HoneyGrid setup">
+      <created>1685290686581</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1685290686581</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types">
+      <created>1685465262435</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1685465262435</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +408,9 @@
     <MESSAGE value="Folder Structure fully refactored. Code not working correctly yet." />
     <MESSAGE value="asmdef's added to the last commit" />
     <MESSAGE value="Rollback some DungeonMap bad changes. Now code is working." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rollback some DungeonMap bad changes. Now code is working." />
+    <MESSAGE value="Initial HoneyGrid setup" />
+    <MESSAGE value="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types" />
+    <option name="LAST_COMMIT_MESSAGE" value="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -417,14 +437,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs</url>
           <line>6</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/TestGeneration.cs" initialLine="7" containingFunctionPresentation="method 'Start'">
-            <startOffsets>
-              <option value="177" />
-            </startOffsets>
-            <endOffsets>
-              <option value="212" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/TestGeneration.cs" initialLine="7" containingFunctionPresentation="method 'Start'" />
           <option name="timeStamp" value="677" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
