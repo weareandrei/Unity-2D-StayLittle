@@ -7,9 +7,9 @@ using Util;
 namespace Dungeon.Generator {
     public static class DungeonGenerator {
         
-        public static List<ChunkLayout> chunkLayoutsAvailable;
+        public static List<Chunk> chunkLayoutsAvailable;
         public static GameObject[] roomPrefabsAvailable;
-        public static List<RoomInstance> roomsAvailable;
+        public static List<Room> roomsAvailable;
         
         public static string seedState;
         private static string _seedOriginalState;
@@ -38,20 +38,20 @@ namespace Dungeon.Generator {
             roomsAvailable = LoadAvailableRoomsLayout();
         }
         
-        private static List<ChunkLayout> LoadAvailableChunkLayout() {
+        private static List<Chunk> LoadAvailableChunkLayout() {
             const string layoutsPath = "Dungeon/ChunkLayout/Prefabs";
             GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
-            ChunkLayout[] chunkLayouts = layoutsPrefabs.Select(
-                prefabObj => prefabObj.GetComponent<ChunkLayout>()
+            Chunk[] chunkLayouts = layoutsPrefabs.Select(
+                prefabObj => prefabObj.GetComponent<Chunk>()
             ).ToArray();
-            return new List<ChunkLayout>(chunkLayouts);
+            return new List<Chunk>(chunkLayouts);
         }
         
-        private static List<RoomInstance> LoadAvailableRoomsLayout() {
-            RoomInstance[] roomInstances = roomPrefabsAvailable.Select(
-                prefabObj => prefabObj.GetComponent<RoomInstance>()
+        private static List<Room> LoadAvailableRoomsLayout() {
+            Room[] roomInstances = roomPrefabsAvailable.Select(
+                prefabObj => prefabObj.GetComponent<Room>()
             ).ToArray();
-            return new List<RoomInstance>(roomInstances);
+            return new List<Room>(roomInstances);
         }
         
         private static GameObject[] LoadAvailableRooms() {
@@ -62,8 +62,8 @@ namespace Dungeon.Generator {
 
         public static GameObject GetRoomPrefabFromID(string id) {
             return roomPrefabsAvailable.FirstOrDefault(roomPrefab => {
-                RoomInstance roomInstance = roomPrefab.GetComponent<RoomInstance>();
-                if (roomInstance.roomID == id) {
+                Room room = roomPrefab.GetComponent<Room>();
+                if (room.roomID == id) {
                     return roomPrefab;
                 }
 

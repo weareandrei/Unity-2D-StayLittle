@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Dungeon.Model;
-using Grid2DEditor;
+using HoneyGrid2D;
 
 namespace Dungeon.Generator {
     public static class ChunkGenerator {
         private static ChunkMap _newChunkMap;
-        public static List<ChunkLayout> chunkLayoutsAvailable;
+        public static List<Chunk> chunkLayoutsAvailable;
 
         public static ChunkMap GenerateChunks() {
             _newChunkMap = new ChunkMap();
@@ -18,12 +18,12 @@ namespace Dungeon.Generator {
             //  Let's use the Abstract. So Top is at the bottom
 
             // Place Entrance
-            ChunkLayout entranceLayout = GetEntranceLayout();
-            _newChunkMap.PlaceCellOnMap(new Vector2Int(0,0), entranceLayout.ID);
+            Chunk entrance = GetEntranceLayout();
+            _newChunkMap.PlaceCellOnMap(new Vector2Int(0,0), entrance.ID);
             
-            chunksInUse.Add(entranceLayout.ID);
+            chunksInUse.Add(entrance.ID);
             possibleExits.AddRange(
-                FindPossibleExits(entranceLayout.rooms, 0, 0));
+                FindPossibleExits(entrance.rooms, 0, 0));
             // todo: remember that 1 exit here is actually an entrance from the elevator
 
             while (chunksInUse.Count <= Consts.DungeonChunkCount) {
@@ -56,23 +56,23 @@ namespace Dungeon.Generator {
                 _newChunkMap.PlaceCellOnMap(newChunkCoordinates, newChunkId);
                 chunksInUse.Add(newChunkId);
 
-                ChunkLayout newChunkLayout = FindChunkLayoutByID(newChunkId);
+                Chunk newChunk = FindChunkLayoutByID(newChunkId);
                 possibleExits.AddRange(
-                    FindPossibleExits(newChunkLayout.rooms, newChunkCoordinates.x, newChunkCoordinates.y));
+                    FindPossibleExits(newChunk.rooms, newChunkCoordinates.x, newChunkCoordinates.y));
             }
 
             // _newChunkMap.map.DisplayGrid();
             return _newChunkMap;
         }
 
-        public static ChunkLayout FindChunkLayoutByID(string id) {
+        public static Chunk FindChunkLayoutByID(string id) {
             if (id == "") {
                 throw new ArgumentException("Chunk ID can't be empty");
             }
             return chunkLayoutsAvailable.FindAll( layout => layout.ID == id)[0];
         }
 
-        private static List<Exit.PossibleExit> FindPossibleExits(Grid2D addedLayout, int coordX, int coordY) {
+        private static List<Exit.PossibleExit> FindPossibleExits(Grid2DString addedLayout, int coordX, int coordY) {
             List<Exit.PossibleExit> possibleExitsFound = new List<Exit.PossibleExit>();
             
             // Bottom
@@ -122,7 +122,7 @@ namespace Dungeon.Generator {
             // Must check the chunks around
             //    must be connected to all exits
 
-            Grid2D layoutRequirements = GetLayoutRequirements(exitFrom, posX, posY);
+            Grid2DString layoutRequirements = GetLayoutRequirements(exitFrom, posX, posY);
             List<string> foundLayouts = FindSimilarChunkLayout(layoutRequirements);
             if (foundLayouts.Count == 0) {
                 return "not found";
@@ -153,9 +153,9 @@ namespace Dungeon.Generator {
 
         // Notion Documentation
         // https://www.notion.so/Chunk-0f779170060245a0a4deae866a623904?pvs=4#5f4e2e18d60646fe813fa29b857aea90
-        private static Grid2D GetLayoutRequirements(Exit.PossibleExit exitFrom, int x, int y) {
-            Grid2D requirements = new Grid2D(Consts.ChunkSize);
-            Grid2D attachedChunk;
+        private static Grid2DString GetLayoutRequirements(Exit.PossibleExit exitFrom, int x, int y) {
+            Grid2DString requirements = new Grid2DString(Consts.ChunkSize);
+            Grid2DString attachedChunk;
 
             switch (exitFrom.position) {
                 case Exit.SidePosition.Top:
@@ -242,10 +242,10 @@ namespace Dungeon.Generator {
 
         // We assume that we need all of those exits.
         //  But maybe requiring not all but a half ot the exits would be better to find the layout more easily
-        private static List<string> FindSimilarChunkLayout(Grid2D layout) {
+        private static List<string> FindSimilarChunkLayout(Grid2DString layout) {
             List<string> chunkLayouts = new List<string>();
             
-            foreach (ChunkLayout assessedChunkLayout in chunkLayoutsAvailable) {
+            foreach (Chunk assessedChunkLayout in chunkLayoutsAvailable) {
                 // Must check if it includes all the exits
                 bool isSimilar = true;
                 for (int y = 0; y <= layout.Size-1; y++) {
@@ -266,7 +266,7 @@ namespace Dungeon.Generator {
             return chunkLayouts;
         }
         
-        private static Grid2D UpdateLayoutRequirements(Grid2D requirements, Grid2D attachedChunk, string side) {
+        private static Grid2DString UpdateLayoutRequirements(Grid2DString requirements, Grid2DString attachedChunk, string side) {
             switch (side) {
                 case "left": {
                     for (int y = 0; y < Consts.ChunkSize-1; y++) {
@@ -309,15 +309,15 @@ namespace Dungeon.Generator {
             return requirements;
         }
 
-        private static ChunkLayout GetEntranceLayout() {
-            ChunkLayout returnLayout = new ChunkLayout(); // todo: remove later 
-            foreach (ChunkLayout layout in chunkLayoutsAvailable) {
+        private static Chunk GetEntranceLayout() {
+            Chunk @return = new Chunk(); // todo: remove later 
+            foreach (Chunk layout in chunkLayoutsAvailable) {
                 if (layout.chunkType == ChunkType.Entrance) {
                     return layout;
                 }
             }
 
-            return returnLayout; // todo: remove later 
+            return @return; // todo: remove later 
         }
     }
 }

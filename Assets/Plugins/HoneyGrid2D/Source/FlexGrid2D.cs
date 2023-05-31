@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Grid2DEditor;
-using UnityEngine;
 
 namespace HoneyGrid2D {
     public abstract class FlexGrid2D<T>  : ICloneable {

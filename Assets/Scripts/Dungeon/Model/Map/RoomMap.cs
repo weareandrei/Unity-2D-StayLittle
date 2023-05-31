@@ -1,19 +1,19 @@
 using Dungeon.Generator;
-using Grid2DEditor;
+using HoneyGrid2D;
 using UnityEngine;
 
 namespace Dungeon.Model {
     public class RoomMap : DungeonMap {
         public RoomMap(int sizeX, int sizeY) {
-            map = new Grid2DResizable(sizeX, sizeY);
+            map = new FlexGrid2DString(sizeX, sizeY);
         }
 
         public RoomMap (int size) {
-            map = new Grid2DResizable(size);
+            map = new FlexGrid2DString(size);
         }
         
         public RoomMap () {
-            map = new Grid2DResizable(Consts.ChunkSize);
+            map = new FlexGrid2DString(Consts.ChunkSize);
         }
 
         public Vector2Int CalculateSize() {

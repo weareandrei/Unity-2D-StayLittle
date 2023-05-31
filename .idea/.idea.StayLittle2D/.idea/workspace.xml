@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types">
+    <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/HoneyGrid2D.asmdef" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DBool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DBool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DFloat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DFloat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DInt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DInt.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DSpecial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DSpecial.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DString.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DString.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DBool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DBool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DFloat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DFloat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DInt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DInt.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DSpecial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DSpecial.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DString.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/DataTypes/Grid2DString.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/Grid2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/Grid2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/FlexRow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Source/FlexRow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dungeon/ChunkLayout/Prefabs/ChunkLayout (1).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dungeon/ChunkLayout/Prefabs/ChunkLayout (1).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DungeonExample.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/RoomGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/ChunkLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Chunk.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Exit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Exit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/RoomInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Room.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/RoomRequirements.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/RoomRequirements.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Grid2DExit.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/ExitMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/ExitMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/RoomMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/RoomMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/EditMode.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/EditMode.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/Playground.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/Playground.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interaction/Interaction.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interaction/Interaction.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/Manager.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/Manager.asmdef" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/Grid2DEditor/Grid2D/Row.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/HoneyGrid2D/Source/DataTypes/FlexGrid2DBool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Plugins/HoneyGrid2D/Source/FlexGrid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
@@ -116,10 +126,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17245">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="17245" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -217,7 +227,7 @@
       <workItem from="1684951218531" duration="480000" />
       <workItem from="1685290412641" duration="32000" />
       <workItem from="1685290595807" duration="676000" />
-      <workItem from="1685463663565" duration="3213000" />
+      <workItem from="1685463663565" duration="8669000" />
     </task>
     <task id="LOCAL-00001" summary="Changed Quadrant to Chunk">
       <created>1673822864663</created>
@@ -317,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685465262435</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="HoneyGrid finished.&#10;Not tested properly">
+      <created>1685466920060</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1685466920060</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +427,8 @@
     <MESSAGE value="Rollback some DungeonMap bad changes. Now code is working." />
     <MESSAGE value="Initial HoneyGrid setup" />
     <MESSAGE value="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types" />
-    <option name="LAST_COMMIT_MESSAGE" value="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types" />
+    <MESSAGE value="HoneyGrid finished.&#10;Not tested properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="HoneyGrid finished.&#10;Not tested properly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -497,13 +515,52 @@
           <line>20</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" initialLine="8" containingFunctionPresentation="method 'PlaceCellOnMap'">
             <startOffsets>
-              <option value="549" />
+              <option value="552" />
             </startOffsets>
             <endOffsets>
-              <option value="604" />
+              <option value="607" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="691" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs</url>
+          <line>314</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" initialLine="314" containingFunctionPresentation="method 'GetEntranceLayout'">
+            <startOffsets>
+              <option value="13754" />
+            </startOffsets>
+            <endOffsets>
+              <option value="13797" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="692" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs</url>
+          <line>43</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" initialLine="43" containingFunctionPresentation="method 'LoadAvailableChunkLayout'">
+            <startOffsets>
+              <option value="1759" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1890" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="694" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs</url>
+          <line>44</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" initialLine="44" containingFunctionPresentation="lambda expression inside method 'LoadAvailableChunkLayout'">
+            <startOffsets>
+              <option value="1834" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1865" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="695" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

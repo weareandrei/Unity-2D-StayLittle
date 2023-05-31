@@ -1,18 +1,18 @@
 using System;
 using Dungeon.Generator;
-using Grid2DEditor;
+using HoneyGrid2D;
 using UnityEngine;
 
 namespace Dungeon.Model {
     public class RoomRequirements {
 
-        private Grid2DResizable roomMap;
+        private FlexGrid2DString roomMap;
         private ExitMap exitMap;
-        private Grid2D requirements;
-        private Grid2D requirementsPrevious;
+        private Grid2DString requirements;
+        private Grid2DString requirementsPrevious;
         private Vector2Int coordinates;
 
-        public RoomRequirements(Vector2Int thisRoomCoordinates, Grid2DResizable roomMap, ExitMap exitMap) {
+        public RoomRequirements(Vector2Int thisRoomCoordinates, FlexGrid2DString roomMap, ExitMap exitMap) {
             this.roomMap = roomMap;
             this.exitMap = exitMap;
             this.coordinates = thisRoomCoordinates;
@@ -22,13 +22,13 @@ namespace Dungeon.Model {
             requirementsPrevious = requirements;
         }
 
-        public Grid2D ToGrid() {
+        public Grid2DString ToGrid() {
             return requirements;
         }
 
-        private Grid2D GetRoomRequirementsBasic() {
+        private Grid2DString GetRoomRequirementsBasic() {
             // When we take the Mandatory requirements - we care about To and From
-            Grid2D requirementsGrid = new Grid2D(Consts.RoomSize + 2);
+            Grid2DString requirementsGrid = new Grid2DString(Consts.RoomSize + 2);
 
             getBasicRequirements_Top(this.coordinates, ref requirementsGrid);
             getBasicRequirements_Bottom(this.coordinates, ref requirementsGrid);
@@ -38,7 +38,7 @@ namespace Dungeon.Model {
             return requirementsGrid;
         }
 
-        private void getBasicRequirements_Top(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private void getBasicRequirements_Top(Vector2Int roomCoord, ref Grid2DString requirementsGrid) {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Top ||
                     exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y+1).mainExitDirection == Exit.SidePosition.Bottom) {
@@ -50,7 +50,7 @@ namespace Dungeon.Model {
             } catch (Exception e) { /*Exception*/ }
         }
         
-        private void getBasicRequirements_Bottom(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private void getBasicRequirements_Bottom(Vector2Int roomCoord, ref Grid2DString requirementsGrid) {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Bottom ||
                     exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y-1).mainExitDirection == Exit.SidePosition.Top) {
@@ -62,7 +62,7 @@ namespace Dungeon.Model {
             } catch (Exception e) { /*Exception*/ }
         }
         
-        private void getBasicRequirements_Left(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private void getBasicRequirements_Left(Vector2Int roomCoord, ref Grid2DString requirementsGrid) {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Left ||
                     exitMap._exitMap.GetCellActual(roomCoord.x+1, roomCoord.y).mainExitDirection == Exit.SidePosition.Right) {
@@ -74,7 +74,7 @@ namespace Dungeon.Model {
             } catch (Exception e) { /*Exception*/ }
         }
         
-        private void getBasicRequirements_Right(Vector2Int roomCoord, ref Grid2D requirementsGrid) {
+        private void getBasicRequirements_Right(Vector2Int roomCoord, ref Grid2DString requirementsGrid) {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Right ||
                     exitMap._exitMap.GetCellActual(roomCoord.x-1, roomCoord.y).mainExitDirection == Exit.SidePosition.Left) {
@@ -118,7 +118,7 @@ namespace Dungeon.Model {
         private bool getNextRequirement_Top(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x, roomCoord.y+1);
-                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
+                Room room = RoomGenerator.FindRoomInstanceByID(roomID);
                 
                 int y = Consts.RoomSize + 1;
                 for (int x = 0; x < Consts.RoomSize+1; x++) {
@@ -137,7 +137,7 @@ namespace Dungeon.Model {
         private bool getNextRequirement_Bottom(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x, roomCoord.y-1);
-                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
+                Room room = RoomGenerator.FindRoomInstanceByID(roomID);
             
                 int y = 0;
                 for (int x = 0; x < Consts.RoomSize+1; x++) {
@@ -155,7 +155,7 @@ namespace Dungeon.Model {
         private bool getNextRequirement_Left(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
-                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
+                Room room = RoomGenerator.FindRoomInstanceByID(roomID);
             
                 int x = Consts.RoomSize + 1;
                 for (int y = 0; y < Consts.RoomSize+1; y++) {
@@ -174,7 +174,7 @@ namespace Dungeon.Model {
         private bool getNextRequirement_Right(Vector2Int roomCoord) {
             try {
                 string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
-                RoomInstance room = RoomGenerator.FindRoomInstanceByID(roomID);
+                Room room = RoomGenerator.FindRoomInstanceByID(roomID);
             
                 int x = 0;
                 for (int y = 1; y < Consts.RoomSize+1; y++) {
