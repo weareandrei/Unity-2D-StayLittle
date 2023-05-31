@@ -1,4 +1,3 @@
-using HoneyGrid2D;
 using UnityEngine;
 
 namespace HoneyGrid2D {
