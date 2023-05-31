@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4583690228379534454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd9ff084ee4105a386de86e25e05a2, type: 3}
+  m_Script: {fileID: 11500000, guid: c4148ba5979a64515b797ac254d83025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 9
@@ -50,22 +50,22 @@ MonoBehaviour:
     - cells:
       - 
       - E
-      - 
+      - E
       - 
     - cells:
       - 
+      - 
       - R
-      - R
-      - R
+      - 
     - cells:
       - E
       - R
       - R
-      - 
+      - R
     - cells:
+      - 
+      - 
       - R
       - R
-      - E
-      - E
     gridSize: {x: 4, y: 4}
   chunkType: 1
