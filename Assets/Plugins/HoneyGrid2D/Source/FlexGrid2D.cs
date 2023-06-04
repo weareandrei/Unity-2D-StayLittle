@@ -8,7 +8,8 @@ namespace HoneyGrid2D {
 
         protected T initialCellValue;
         
-        public FlexGrid2D(int sizeX, int sizeY) {
+        public FlexGrid2D(int sizeX, int sizeY, T initialCellValue) {
+            this.initialCellValue = initialCellValue;
             rows = new List<FlexRow<T>>();
 
             for (int y = 0; y < sizeY; y++) {
@@ -17,7 +18,8 @@ namespace HoneyGrid2D {
             }
         }
         
-        public FlexGrid2D(int size) {
+        public FlexGrid2D(int size, T initialCellValue) {
+            this.initialCellValue = initialCellValue;
             rows = new List<FlexRow<T>>();
 
             for (int y = 0; y < size; y++) {
@@ -25,7 +27,7 @@ namespace HoneyGrid2D {
                 rows.Add(newRow);
             }
         }
-        
+
         // This is an Abstract GetCel.. We consider offset here.
         public T GetCell(int x, int y) {
             if (x < 0) {

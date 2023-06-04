@@ -14,7 +14,8 @@ namespace Dungeon.Model {
 
         public ExitMap(FlexGrid2DString roomMap, int width, int height) {
             _roomMap = roomMap;
-            _exitMap = new FlexGrid2DSpecial<Exit.ExitMapCell>(width, height, new Exit.ExitMapCell());
+            _exitMap = new FlexGrid2DSpecial<Exit.ExitMapCell>(width, height, 
+                new Exit.ExitMapCell(new List<Exit.SidePosition>(), Exit.SidePosition.None));
             
             Vector2Int entranceCoordinatesActual = GetEntranceCoordinates();
             BuildExitMap(entranceCoordinatesActual, entranceCoordinatesActual);

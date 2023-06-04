@@ -1,11 +1,11 @@
 namespace HoneyGrid2D {
     public class FlexGrid2DFloat: FlexGrid2D<float> {
         
-        public FlexGrid2DFloat(int sizeX, int sizeY) : base(sizeX, sizeY) {
+        public FlexGrid2DFloat(int sizeX, int sizeY) : base(sizeX, sizeY, 0f) {
             initialCellValue = 0f;
         }
         
-        public FlexGrid2DFloat(int size) : base(size) {
+        public FlexGrid2DFloat(int size) : base(size, 0f) {
             initialCellValue = 0f;
         }
 

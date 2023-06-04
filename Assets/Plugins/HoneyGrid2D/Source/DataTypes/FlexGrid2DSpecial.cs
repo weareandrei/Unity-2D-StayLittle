@@ -1,11 +1,11 @@
 namespace HoneyGrid2D {
     public class FlexGrid2DSpecial<T> : FlexGrid2D<T> {
         
-        public FlexGrid2DSpecial(int sizeX, int sizeY, T initialCellValue) : base(sizeX, sizeY) {
+        public FlexGrid2DSpecial(int sizeX, int sizeY, T initialCellValue) : base(sizeX, sizeY, initialCellValue) {
             this.initialCellValue = initialCellValue;
         }
         
-        public FlexGrid2DSpecial(int size, T initialCellValue) : base(size) {
+        public FlexGrid2DSpecial(int size, T initialCellValue) : base(size, initialCellValue) {
             this.initialCellValue = initialCellValue;
         }
 

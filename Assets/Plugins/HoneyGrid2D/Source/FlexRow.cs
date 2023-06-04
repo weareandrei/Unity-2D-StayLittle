@@ -44,7 +44,5 @@ namespace HoneyGrid2D
             throw new InvalidOperationException($"The type {typeof(T)} does not implement ICloneable.");
         }
 
-
-
     }
 }

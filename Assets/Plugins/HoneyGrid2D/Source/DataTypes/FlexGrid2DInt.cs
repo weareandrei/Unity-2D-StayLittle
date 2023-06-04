@@ -1,11 +1,11 @@
 namespace HoneyGrid2D {
     public class FlexGrid2DInt : FlexGrid2D<int> {
         
-        public FlexGrid2DInt(int sizeX, int sizeY) : base(sizeX, sizeY) {
+        public FlexGrid2DInt(int sizeX, int sizeY) : base(sizeX, sizeY, 0) {
             initialCellValue = 0;
         }
         
-        public FlexGrid2DInt(int size) : base(size) {
+        public FlexGrid2DInt(int size) : base(size, 0) {
             initialCellValue = 0;
         }
 

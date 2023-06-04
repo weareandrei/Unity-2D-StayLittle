@@ -1,11 +1,11 @@
 namespace HoneyGrid2D {
     public class FlexGrid2DBool: FlexGrid2D<bool> {
         
-        public FlexGrid2DBool(int sizeX, int sizeY) : base(sizeX, sizeY) {
+        public FlexGrid2DBool(int sizeX, int sizeY) : base(sizeX, sizeY, false) {
             initialCellValue = false;
         }
         
-        public FlexGrid2DBool(int size) : base(size) {
+        public FlexGrid2DBool(int size) : base(size, false) {
             initialCellValue = false;
         }
 
