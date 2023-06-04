@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Dungeon.Model;
-using Grid2DEditor;
+using HoneyGrid2D;
 using UnityEngine;
 
 namespace Dungeon.Generator {
@@ -11,7 +11,7 @@ namespace Dungeon.Generator {
         private static RoomMap _newRoomMap;
         private static ExitMap _exitMap;
 
-        public static List<RoomInstance> roomLayoutsAvailable;
+        public static List<Room> roomLayoutsAvailable;
 
         public static RoomMap GenerateRooms(ChunkMap chunkMap) {
             _chunkMap = chunkMap;
@@ -20,7 +20,7 @@ namespace Dungeon.Generator {
                     chunkMap.map.getYSize() * Consts.ChunkSize
                 ));
             
-            _exitMap = new ExitMap((Grid2DResizable)_newRoomMap.map.Clone(),
+            _exitMap = new ExitMap((FlexGrid2DString)_newRoomMap.map.Clone(),
                               _newRoomMap.map.getXSize(), 
                               _newRoomMap.map.getYSize());
             
@@ -35,7 +35,7 @@ namespace Dungeon.Generator {
                 }
             }
 
-            _newRoomMap.map.DisplayGrid();
+            // _newRoomMap.map.DisplayGrid();
             return _newRoomMap;
         }
 
@@ -87,7 +87,7 @@ namespace Dungeon.Generator {
             
             string thisChunkID = _chunkMap.map.GetCellActual(
                 coordinatesFull.chunk_ChunkMap.x, coordinatesFull.chunk_ChunkMap.y);
-            try { coordinatesFull.chunkLayout = ChunkGenerator.FindChunkLayoutByID(thisChunkID); } catch (ArgumentException e) { }
+            try { coordinatesFull.chunk = ChunkGenerator.FindChunkLayoutByID(thisChunkID); } catch (ArgumentException e) { }
 
             return coordinatesFull;
         }
@@ -100,10 +100,10 @@ namespace Dungeon.Generator {
         }
         
         private static bool IsRoomEmpty(RoomCoordinatesFull coordinatesFull) {
-            if (coordinatesFull.chunkLayout == null) {
+            if (coordinatesFull.chunk == null) {
                 return true;
             }
-            string thisRoomType = coordinatesFull.chunkLayout.rooms.GetCell(coordinatesFull.room_ThisChunk.x, coordinatesFull.room_ThisChunk.y);
+            string thisRoomType = coordinatesFull.chunk.rooms.GetCell(coordinatesFull.room_ThisChunk.x, coordinatesFull.room_ThisChunk.y);
             return thisRoomType == "";
         }
 
@@ -150,10 +150,10 @@ namespace Dungeon.Generator {
 
         }
 
-        private static List<string> GetRoomBasedOnRequirements(Grid2D requirements) {
+        private static List<string> GetRoomBasedOnRequirements(Grid2DString requirements) {
             List<string> roomLayouts = new List<string>();
 
-            foreach (RoomInstance assessedRoomLayout in roomLayoutsAvailable) {
+            foreach (Room assessedRoomLayout in roomLayoutsAvailable) {
                 // Must check if it includes all the exits
                 bool isSimilar = true;
                 for (int y = 0; y < requirements.Size-1; y++) {
@@ -181,7 +181,7 @@ namespace Dungeon.Generator {
             return roomLayouts;
         }
 
-        private static bool CheckNotStrictExits(Grid2D requirements, RoomInstance assessedRoomLayout) {
+        private static bool CheckNotStrictExits(Grid2DString requirements, Room assessedRoomLayout) {
             bool allExitsCoorect = true;
             // todo: remember that requirements is Consts.roomSize + 2
             
@@ -273,7 +273,7 @@ namespace Dungeon.Generator {
             return chunkCoord;
         }
 
-        public static RoomInstance FindRoomInstanceByID(string id) {
+        public static Room FindRoomInstanceByID(string id) {
             bool isParsableID = int.TryParse(id, out _); // _ means that we don't intend to use the out result
             // Check if this is a string
             // Otherwise, it could be an E or an R
@@ -290,5 +290,5 @@ public struct RoomCoordinatesFull {
     public Vector2Int room_RoomMap;
     public Vector2Int chunk_ChunkMap;
     public Vector2Int room_ThisChunk;
-    public ChunkLayout chunkLayout;
+    public Chunk chunk;
 }

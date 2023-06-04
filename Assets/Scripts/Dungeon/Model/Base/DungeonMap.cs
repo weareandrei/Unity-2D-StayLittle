@@ -1,20 +1,20 @@
-using Grid2DEditor;
+using HoneyGrid2D;
 using UnityEngine;
 
 namespace Dungeon.Model {
     public abstract class DungeonMap {
-        public Grid2DResizable map;
+        public FlexGrid2DString map;
         
         public DungeonMap(int sizeX, int sizeY) {
-            map = new Grid2DResizable(sizeX, sizeY);
+            map = new FlexGrid2DString(sizeX, sizeY);
         }
 
         public DungeonMap (int size) {
-            map = new Grid2DResizable(size);
+            map = new FlexGrid2DString(size);
         }
 
         public DungeonMap ()  {
-            map = new Grid2DResizable(Consts.ChunkSize);
+            map = new FlexGrid2DString(Consts.ChunkSize);
         }
 
         public void PlaceCellOnMap(Vector2Int coordinates, string contents) {

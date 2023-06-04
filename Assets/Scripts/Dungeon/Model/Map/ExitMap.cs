@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
-using Grid2DEditor;
+using HoneyGrid2D;
+using HoneyGrid2D;
 using UnityEngine;
 
 namespace Dungeon.Model {
     public class ExitMap {
         
         // We will remove cells from roomMap that were already used
-        private Grid2DResizable _roomMap;
-        public Grid2DExit _exitMap;
+        private FlexGrid2DString _roomMap;
+        public FlexGrid2DSpecial<Exit.ExitMapCell> _exitMap;
         private List<Exit.PossibleExit> exitsAvailable = new List<Exit.PossibleExit>();
 
-        public ExitMap(Grid2DResizable roomMap, int width, int height) {
+        public ExitMap(FlexGrid2DString roomMap, int width, int height) {
             _roomMap = roomMap;
-            _exitMap = new Grid2DExit(width, height);
+            _exitMap = new FlexGrid2DSpecial<Exit.ExitMapCell>(width, height, 
+                new Exit.ExitMapCell(new List<Exit.SidePosition>(), Exit.SidePosition.None));
             
             Vector2Int entranceCoordinatesActual = GetEntranceCoordinates();
             BuildExitMap(entranceCoordinatesActual, entranceCoordinatesActual);
@@ -44,7 +46,7 @@ namespace Dungeon.Model {
             
             mapCell.mainExitDirection = CalculateDirectionBasedOnCoordinates(atCoordinates, fromCoordinates);
 
-            _exitMap.UpdateCell(atCoordinates, mapCell);
+            _exitMap.UpdateCell(atCoordinates.x, atCoordinates.y, mapCell);
 
             if (exitsAvailable is {Count: > 0}) {
                 // Maybe pick a random exit from exitsAvailable using seed?
