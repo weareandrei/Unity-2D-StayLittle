@@ -16,8 +16,8 @@ namespace Dungeon.Generator {
         public static RoomMap GenerateRooms(ChunkMap chunkMap) {
             _chunkMap = chunkMap;
             _newRoomMap = PrebuildRoomMap(new RoomMap (
-                    chunkMap.map.getXSize() * Consts.ChunkSize,
-                    chunkMap.map.getYSize() * Consts.ChunkSize
+                    chunkMap.map.getXSize() * Consts.Get<int>("ChunkSize"),
+                    chunkMap.map.getYSize() * Consts.Get<int>("ChunkSize")
                 ));
             
             _exitMap = new ExitMap((FlexGrid2DString)_newRoomMap.map.Clone(),
@@ -77,10 +77,10 @@ namespace Dungeon.Generator {
                     roomCoordinatesOnGrid.x, roomCoordinatesOnGrid.y),
                 
                 room_ThisChunk = GetInverseInChunkCoordinates(new Vector2Int(
-                    roomCoordinatesOnGrid.x < Consts.ChunkSize ? roomCoordinatesOnGrid.x :
-                        roomCoordinatesOnGrid.x - Consts.ChunkSize * (roomCoordinatesOnGrid.x / Consts.ChunkSize),
-                    roomCoordinatesOnGrid.y < Consts.ChunkSize ? roomCoordinatesOnGrid.y :
-                        roomCoordinatesOnGrid.y - Consts.ChunkSize * (roomCoordinatesOnGrid.y / Consts.ChunkSize)))
+                    roomCoordinatesOnGrid.x < Consts.Get<int>("ChunkSize") ? roomCoordinatesOnGrid.x :
+                        roomCoordinatesOnGrid.x - Consts.Get<int>("ChunkSize") * (roomCoordinatesOnGrid.x / Consts.Get<int>("ChunkSize")),
+                    roomCoordinatesOnGrid.y < Consts.Get<int>("ChunkSize") ? roomCoordinatesOnGrid.y :
+                        roomCoordinatesOnGrid.y - Consts.Get<int>("ChunkSize") * (roomCoordinatesOnGrid.y / Consts.Get<int>("ChunkSize"))))
             };
             
             // Debug.Log("room_ThisChunk : " + coordinatesFull.room_ThisChunk.x + " : " + coordinatesFull.room_ThisChunk.y);
@@ -93,8 +93,8 @@ namespace Dungeon.Generator {
         }
 
         private static Vector2Int GetInverseInChunkCoordinates(Vector2Int actualInChunkCoordinates) {
-            int invertedX = Consts.ChunkSize - 1 - actualInChunkCoordinates.x;
-            int invertedY = Consts.ChunkSize - 1 - actualInChunkCoordinates.y;
+            int invertedX = Consts.Get<int>("ChunkSize") - 1 - actualInChunkCoordinates.x;
+            int invertedY = Consts.Get<int>("ChunkSize") - 1 - actualInChunkCoordinates.y;
 
             return new Vector2Int(invertedX, invertedY);
         }
@@ -108,7 +108,7 @@ namespace Dungeon.Generator {
         }
 
         private static Vector2Int TransferRoomToChunkCoordinates(int roomX, int roomY) {
-            int chunkSize = Consts.ChunkSize;
+            int chunkSize = Consts.Get<int>("ChunkSize");
             int chunkX = 0;
             int chunkY = 0;
 
@@ -183,13 +183,13 @@ namespace Dungeon.Generator {
 
         private static bool CheckNotStrictExits(Grid2DString requirements, Room assessedRoomLayout) {
             bool allExitsCoorect = true;
-            // todo: remember that requirements is Consts.roomSize + 2
+            // todo: remember that requirements is Consts.Get<int>("RoomSize") + 2
             
             // Top - requirements Grid
-            if (requirements.GetCell(1, Consts.RoomSize+1) == "3") {
+            if (requirements.GetCell(1, Consts.Get<int>("RoomSize")+1) == "3") {
                 // Then we need exit on ANY cell on this side
                 allExitsCoorect = false;
-                for (int x = 1; x < Consts.RoomSize+1; x++) {
+                for (int x = 1; x < Consts.Get<int>("RoomSize")+1; x++) {
                     if (assessedRoomLayout.roomLayout.GetCell(x, 0) == "2" || 
                         assessedRoomLayout.roomLayout.GetCell(x, 0) == "3" ) {
                         allExitsCoorect = true;
@@ -203,9 +203,9 @@ namespace Dungeon.Generator {
             if (requirements.GetCell(1, 0) == "3") {
                 // Then we need exit on ANY cell on this side
                 allExitsCoorect = false;
-                for (int x = 1; x < Consts.RoomSize; x++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(x, Consts.RoomSize+1) == "3" ) {
+                for (int x = 1; x < Consts.Get<int>("RoomSize"); x++) {
+                    if (assessedRoomLayout.roomLayout.GetCell(x, Consts.Get<int>("RoomSize")+1) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(x, Consts.Get<int>("RoomSize")+1) == "3" ) {
                         allExitsCoorect = true;
                     }
                 }
@@ -217,9 +217,9 @@ namespace Dungeon.Generator {
             if (requirements.GetCell(0, 1) == "3") {
                 // Then we need exit on ANY cell on this side
                 allExitsCoorect = false;
-                for (int y = 1; y < Consts.RoomSize; y++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(Consts.RoomSize + 1, y) == "3" ) {
+                for (int y = 1; y < Consts.Get<int>("RoomSize"); y++) {
+                    if (assessedRoomLayout.roomLayout.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "2" || 
+                        assessedRoomLayout.roomLayout.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "3" ) {
                         allExitsCoorect = true;
                     }
                 }
@@ -228,10 +228,10 @@ namespace Dungeon.Generator {
             if (!allExitsCoorect) return false;
             
             // Right
-            if (requirements.GetCell(Consts.RoomSize+1, 1) == "3") {
+            if (requirements.GetCell(Consts.Get<int>("RoomSize")+1, 1) == "3") {
                 // Then we need exit on ANY cell on this side
                 allExitsCoorect = false;
-                for (int y = 1; y < Consts.RoomSize; y++) {
+                for (int y = 1; y < Consts.Get<int>("RoomSize"); y++) {
                     if (assessedRoomLayout.roomLayout.GetCell(0, y) == "2" || 
                         assessedRoomLayout.roomLayout.GetCell(0, y) == "3" ) {
                         allExitsCoorect = true;
@@ -257,7 +257,7 @@ namespace Dungeon.Generator {
         // }
 
         private static  Vector2Int GetChunkCoordinatesBasedOnRoom(int x, int y) {
-            int chunkSize = Consts.ChunkSize;
+            int chunkSize = Consts.Get<int>("ChunkSize");
             Vector2Int chunkCoord = new Vector2Int();
 
             if (x < chunkSize) {

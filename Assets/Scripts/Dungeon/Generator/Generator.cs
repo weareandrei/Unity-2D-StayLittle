@@ -3,6 +3,7 @@ using System.Linq;
 using Dungeon.Model;
 using UnityEngine;
 using Util;
+using Global;
 
 namespace Dungeon.Generator {
     public static class DungeonGenerator {
@@ -33,13 +34,14 @@ namespace Dungeon.Generator {
         }
 
         public static void LoadResources() {
-            chunkLayoutsAvailable = LoadAvailableChunkLayout();
-            roomPrefabsAvailable = LoadAvailableRooms();
+            string resourcesDirectory = GlobalVariables.ResourcesDirectory;
+            chunkLayoutsAvailable = LoadAvailableChunkLayout(resourcesDirectory);
+            roomPrefabsAvailable = LoadAvailableRooms(resourcesDirectory);
             roomsAvailable = LoadAvailableRoomsLayout();
         }
         
-        private static List<Chunk> LoadAvailableChunkLayout() {
-            const string layoutsPath = "Dungeon/ChunkLayout/Prefabs";
+        private static List<Chunk> LoadAvailableChunkLayout(string dirBase) {
+            string layoutsPath = dirBase + "Dungeon/ChunkLayout/Prefabs";
             GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
             Chunk[] chunkLayouts = layoutsPrefabs.Select(
                 prefabObj => prefabObj.GetComponent<Chunk>()
@@ -54,8 +56,8 @@ namespace Dungeon.Generator {
             return new List<Room>(roomInstances);
         }
         
-        private static GameObject[] LoadAvailableRooms() {
-            const string layoutsPath = "Dungeon/Room/Prefabs";
+        private static GameObject[] LoadAvailableRooms(string dirBase) {
+            string layoutsPath = dirBase + "Dungeon/Room/Prefabs";
             GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
             return layoutsPrefabs;
         }

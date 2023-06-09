@@ -106,9 +106,9 @@ namespace Dungeon.Model {
         // Entrance Room is always at the chunk that is at 0,0 (depending on offset)
         private Vector2Int GetEntranceCoordinates() {
             int x = 0;
-            for (int y = 0; y < Consts.ChunkSize-1; y++) {
-                if (_roomMap.GetCell(x,(_roomMap.zeroYOffset * Consts.ChunkSize) + y) == "E") {
-                    return new Vector2Int(x, (_roomMap.zeroYOffset * Consts.ChunkSize)+y);
+            for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                if (_roomMap.GetCell(x,(_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize")) + y) == "E") {
+                    return new Vector2Int(x, (_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize"))+y);
                 }
             }
 

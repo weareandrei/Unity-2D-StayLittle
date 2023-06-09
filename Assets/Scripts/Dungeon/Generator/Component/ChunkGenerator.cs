@@ -26,7 +26,7 @@ namespace Dungeon.Generator {
                 FindPossibleExits(entrance.rooms, 0, 0));
             // todo: remember that 1 exit here is actually an entrance from the elevator
 
-            while (chunksInUse.Count <= Consts.DungeonChunkCount) {
+            while (chunksInUse.Count < Consts.Get<int>("DungeonChunkCount")) {
                 // _newChunkMap.map.DisplayGrid(); 
                 Exit.PossibleExit exit = possibleExits[0];
                 Vector2Int newChunkCoordinates = GetNextChunkCoordinatesBasedOnExit(exit);
@@ -76,8 +76,8 @@ namespace Dungeon.Generator {
             List<Exit.PossibleExit> possibleExitsFound = new List<Exit.PossibleExit>();
             
             // Bottom
-            for (int x = 0; x <= Consts.ChunkSize-1; x++) {
-                if (addedLayout.GetCell(x, Consts.ChunkSize-1) == "E") {
+            for (int x = 0; x <= Consts.Get<int>("ChunkSize")-1; x++) {
+                if (addedLayout.GetCell(x, Consts.Get<int>("ChunkSize")-1) == "E") {
                     possibleExitsFound.Add(
                         new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Bottom));
                     break;
@@ -85,7 +85,7 @@ namespace Dungeon.Generator {
             }
             
             // Top
-            for (int x = 0; x <= Consts.ChunkSize-1; x++) {
+            for (int x = 0; x <= Consts.Get<int>("ChunkSize")-1; x++) {
                 if (addedLayout.GetCell(x, 0) == "E") {
                     possibleExitsFound.Add(
                         new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Top));
@@ -94,7 +94,7 @@ namespace Dungeon.Generator {
             }
             
             // Left
-            for (int y = 0; y <= Consts.ChunkSize - 1; y++) {
+            for (int y = 0; y <= Consts.Get<int>("ChunkSize") - 1; y++) {
                 if (addedLayout.GetCell(0, y) == "E") {
                     possibleExitsFound.Add(
                         new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Left));
@@ -103,8 +103,8 @@ namespace Dungeon.Generator {
             }
 
             // Right
-            for (int y = 0; y <= Consts.ChunkSize-1; y++) {
-                if (addedLayout.GetCell(Consts.ChunkSize-1, y) == "E") {
+            for (int y = 0; y <= Consts.Get<int>("ChunkSize")-1; y++) {
+                if (addedLayout.GetCell(Consts.Get<int>("ChunkSize")-1, y) == "E") {
                     possibleExitsFound.Add(
                         new Exit.PossibleExit(coordX,coordY,Exit.SidePosition.Right));
                     break;
@@ -154,7 +154,7 @@ namespace Dungeon.Generator {
         // Notion Documentation
         // https://www.notion.so/Chunk-0f779170060245a0a4deae866a623904?pvs=4#5f4e2e18d60646fe813fa29b857aea90
         private static Grid2DString GetLayoutRequirements(Exit.PossibleExit exitFrom, int x, int y) {
-            Grid2DString requirements = new Grid2DString(Consts.ChunkSize);
+            Grid2DString requirements = new Grid2DString(Consts.Get<int>("ChunkSize"));
             Grid2DString attachedChunk;
 
             switch (exitFrom.position) {
@@ -269,8 +269,8 @@ namespace Dungeon.Generator {
         private static Grid2DString UpdateLayoutRequirements(Grid2DString requirements, Grid2DString attachedChunk, string side) {
             switch (side) {
                 case "left": {
-                    for (int y = 0; y < Consts.ChunkSize-1; y++) {
-                        if (attachedChunk.GetCell(Consts.ChunkSize-1, y) == "E") {
+                    for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                        if (attachedChunk.GetCell(Consts.Get<int>("ChunkSize")-1, y) == "E") {
                             requirements.UpdateCell(0, y, "E");
                         }
                     }
@@ -278,26 +278,26 @@ namespace Dungeon.Generator {
                     break;
                 }
                 case "right": {
-                    for (int y = 0; y < Consts.ChunkSize-1; y++) {
+                    for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
                         if (attachedChunk.GetCell(0, y) == "E") {
-                            requirements.UpdateCell(Consts.ChunkSize-1, y, "E");
+                            requirements.UpdateCell(Consts.Get<int>("ChunkSize")-1, y, "E");
                         }
                     }
 
                     break;
                 }
                 case "top": {
-                    for (int x = 0; x < Consts.ChunkSize-1; x++) {
+                    for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
                         if (attachedChunk.GetCell(x, 0) == "E") {
-                            requirements.UpdateCell(x, Consts.ChunkSize-1, "E");
+                            requirements.UpdateCell(x, Consts.Get<int>("ChunkSize")-1, "E");
                         }
                     }
 
                     break;
                 }
                 case "bottom": {
-                    for (int x = 0; x < Consts.ChunkSize-1; x++) {
-                        if (attachedChunk.GetCell(x, Consts.ChunkSize-1) == "E") {
+                    for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
+                        if (attachedChunk.GetCell(x, Consts.Get<int>("ChunkSize")-1) == "E") {
                             requirements.UpdateCell(x, 0, "E");
                         }
                     }
@@ -310,14 +310,13 @@ namespace Dungeon.Generator {
         }
 
         private static Chunk GetEntranceLayout() {
-            Chunk @return = new Chunk(); // todo: remove later 
             foreach (Chunk layout in chunkLayoutsAvailable) {
                 if (layout.chunkType == ChunkType.Entrance) {
                     return layout;
                 }
             }
 
-            return @return; // todo: remove later 
+            return null;
         }
     }
 }

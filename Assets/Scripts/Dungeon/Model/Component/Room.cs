@@ -15,7 +15,7 @@ namespace Dungeon.Model {
         // Because room layout must be much more precise than the chunkLayout
 
         public Room() {
-            roomLayout = new Grid2DString(Consts.RoomSize+2);
+            roomLayout = new Grid2DString(Consts.Get<int>("RoomSize")+2);
         }
 
         public Room(int size) {
