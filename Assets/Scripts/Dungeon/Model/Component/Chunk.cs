@@ -10,7 +10,7 @@ namespace Dungeon.Model {
         [SerializeField] public ChunkType chunkType;
 
         public Chunk() {
-            rooms = new Grid2DString(Consts.ChunkSize);
+            rooms = new Grid2DString(Consts.Get<int>("ChunkSize"));
         }
 
         public Chunk(int size) {

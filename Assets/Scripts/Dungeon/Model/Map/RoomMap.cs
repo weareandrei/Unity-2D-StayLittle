@@ -13,7 +13,7 @@ namespace Dungeon.Model {
         }
         
         public RoomMap () {
-            map = new FlexGrid2DString(Consts.ChunkSize);
+            map = new FlexGrid2DString(Consts.Get<int>("ChunkSize"));
         }
 
         public Vector2Int CalculateSize() {

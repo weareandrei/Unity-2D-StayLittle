@@ -28,7 +28,7 @@ namespace Dungeon.Model {
 
         private Grid2DString GetRoomRequirementsBasic() {
             // When we take the Mandatory requirements - we care about To and From
-            Grid2DString requirementsGrid = new Grid2DString(Consts.RoomSize + 2);
+            Grid2DString requirementsGrid = new Grid2DString(Consts.Get<int>("RoomSize") + 2);
 
             getBasicRequirements_Top(this.coordinates, ref requirementsGrid);
             getBasicRequirements_Bottom(this.coordinates, ref requirementsGrid);
@@ -42,8 +42,8 @@ namespace Dungeon.Model {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Top ||
                     exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y+1).mainExitDirection == Exit.SidePosition.Bottom) {
-                    int y = Consts.RoomSize + 1;
-                    for (int x = 1; x < Consts.RoomSize + 1; x++) {
+                    int y = Consts.Get<int>("RoomSize") + 1;
+                    for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
                         requirementsGrid.UpdateCell(x, y, "3");
                     }
                 }
@@ -55,7 +55,7 @@ namespace Dungeon.Model {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Bottom ||
                     exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y-1).mainExitDirection == Exit.SidePosition.Top) {
                     int y = 0;
-                    for (int x = 1; x < Consts.RoomSize + 1; x++) {
+                    for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
                         requirementsGrid.UpdateCell(x, y, "3");
                     }
                 }
@@ -66,8 +66,8 @@ namespace Dungeon.Model {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Left ||
                     exitMap._exitMap.GetCellActual(roomCoord.x+1, roomCoord.y).mainExitDirection == Exit.SidePosition.Right) {
-                    int x = Consts.RoomSize+1;
-                    for (int y = 1; y < Consts.RoomSize + 1; y++) {
+                    int x = Consts.Get<int>("RoomSize")+1;
+                    for (int y = 1; y < Consts.Get<int>("RoomSize") + 1; y++) {
                         requirementsGrid.UpdateCell(x, y, "3");
                     }
                 }
@@ -79,7 +79,7 @@ namespace Dungeon.Model {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Right ||
                     exitMap._exitMap.GetCellActual(roomCoord.x-1, roomCoord.y).mainExitDirection == Exit.SidePosition.Left) {
                     int x = 0;
-                    for (int y = 0; y < Consts.RoomSize + 1; y++) {
+                    for (int y = 0; y < Consts.Get<int>("RoomSize") + 1; y++) {
                         requirementsGrid.UpdateCell(x, y, "3");
                     }
                 }
@@ -120,8 +120,8 @@ namespace Dungeon.Model {
                 string roomID = roomMap.GetCellActual(roomCoord.x, roomCoord.y+1);
                 Room room = RoomGenerator.FindRoomInstanceByID(roomID);
                 
-                int y = Consts.RoomSize + 1;
-                for (int x = 0; x < Consts.RoomSize+1; x++) {
+                int y = Consts.Get<int>("RoomSize") + 1;
+                for (int x = 0; x < Consts.Get<int>("RoomSize")+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
                         if (requirements.GetCell(x,0) != "") continue;
@@ -140,11 +140,11 @@ namespace Dungeon.Model {
                 Room room = RoomGenerator.FindRoomInstanceByID(roomID);
             
                 int y = 0;
-                for (int x = 0; x < Consts.RoomSize+1; x++) {
+                for (int x = 0; x < Consts.Get<int>("RoomSize")+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents == "") continue;
-                    if (requirements.GetCell(x,Consts.RoomSize+1) != "") continue;
-                    requirements.UpdateCell(x, Consts.RoomSize+1, thisCellContents);
+                    if (requirements.GetCell(x,Consts.Get<int>("RoomSize")+1) != "") continue;
+                    requirements.UpdateCell(x, Consts.Get<int>("RoomSize")+1, thisCellContents);
                     return true;
                 }
             } catch (Exception e) { /*ignored*/ }
@@ -157,8 +157,8 @@ namespace Dungeon.Model {
                 string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
                 Room room = RoomGenerator.FindRoomInstanceByID(roomID);
             
-                int x = Consts.RoomSize + 1;
-                for (int y = 0; y < Consts.RoomSize+1; y++) {
+                int x = Consts.Get<int>("RoomSize") + 1;
+                for (int y = 0; y < Consts.Get<int>("RoomSize")+1; y++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
                         if (requirements.GetCell(0, y) != "") continue;
@@ -177,11 +177,11 @@ namespace Dungeon.Model {
                 Room room = RoomGenerator.FindRoomInstanceByID(roomID);
             
                 int x = 0;
-                for (int y = 1; y < Consts.RoomSize+1; y++) {
+                for (int y = 1; y < Consts.Get<int>("RoomSize")+1; y++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        if (requirements.GetCell(Consts.RoomSize+1, y) != "") continue;
-                        requirements.UpdateCell(Consts.RoomSize+1, y, thisCellContents);
+                        if (requirements.GetCell(Consts.Get<int>("RoomSize")+1, y) != "") continue;
+                        requirements.UpdateCell(Consts.Get<int>("RoomSize")+1, y, thisCellContents);
                         return true;
                     }
                 }

@@ -18,7 +18,7 @@ namespace Dungeon.Data {
         }; // Assume its sorted already
         
         public static void Initialize(string seed) {
-            int maxDungeons = Dungeon.Consts.MaxDungeons;
+            int maxDungeons = Consts.Get<int>("MaxDungeons");
         }
 
         public static int CountDungeons() {
