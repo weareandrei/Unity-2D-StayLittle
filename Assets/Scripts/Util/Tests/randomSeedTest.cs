@@ -9,7 +9,7 @@ using Util;
 
 public class RandomSeedTest
 {
-    public static String lcp(String s, String t){  
+    public static String lcp(String s, String t) {
         int n = Math.Min(s.Length,t.Length);  
         for(int i = 0; i < n; i++){  
             if(s[i] != t[i]){  
@@ -18,7 +18,7 @@ public class RandomSeedTest
         }  
         return s.Substring(0,n);  
     }  
-    // A Test behaves as an ordinary method
+    
     [Test]
     public void RandomSeedTestSimplePasses() {
         string seed = "010079456275";
