@@ -9,12 +9,10 @@ namespace Dungeon.Generator {
         private static ChunkMap _newChunkMap;
         public static List<Chunk> chunkLayoutsAvailable;
 
-        private static Exit.SidePosition _exitDirection;
-        private static Vector2Int _furthestExit = new Vector2Int(0,0);
+        private static Vector2Int _potentialEntrance = new Vector2Int(0,0);
 
         public static ChunkMap GenerateChunks() {
             _newChunkMap = new ChunkMap();
-            _exitDirection = DungeonGenerator.exitDirection;
 
             List<string> chunksInUse = new List<string>(); // ID's
             List<Exit.PossibleExit> possibleExits = new List<Exit.PossibleExit>();
@@ -199,14 +197,14 @@ namespace Dungeon.Generator {
         }
 
         private static Grid2DString ConsiderDungeonExit(Grid2DString requirements, Vector2Int requirementsCoordinates) {
-            if (_exitDirection == Exit.SidePosition.Right && requirementsCoordinates.x > _furthestExit.x) {
-                _furthestExit.x = requirementsCoordinates.x;
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Right && requirementsCoordinates.x > _potentialEntrance.x) {
+                _potentialEntrance.x = requirementsCoordinates.x;
                 for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
                     requirements.UpdateCell(Consts.Get<int>("ChunkSize")-1, y, "P");
                 }
             }
-            if (_exitDirection == Exit.SidePosition.Left && requirementsCoordinates.x < _furthestExit.x) {
-                _furthestExit.x = requirementsCoordinates.x;
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left && requirementsCoordinates.x < _potentialEntrance.x) {
+                _potentialEntrance.x = requirementsCoordinates.x;
                 for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
                     requirements.UpdateCell(0, y, "P");
                 }
