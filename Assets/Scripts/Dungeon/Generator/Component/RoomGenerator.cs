@@ -227,9 +227,13 @@ namespace Dungeon.Generator {
                 if (roomsAvailable.Count == 0) {
                     continue;
                 }
-            
-                string selectedRoomID = roomsAvailable[DungeonGenerator.UseSeed(roomsAvailable.Count-1)];
-                _newRoomMap.PlaceCellOnMap(entrance, selectedRoomID);
+
+                bool selectedToBeEntrance = DungeonGenerator.UseSeed(3) == 1;
+                if (selectedToBeEntrance) {
+                    string selectedRoomID = roomsAvailable[DungeonGenerator.UseSeed(roomsAvailable.Count-1)];
+                    _newRoomMap.PlaceCellOnMap(entrance, selectedRoomID);
+                }
+                
             }
         }
 
