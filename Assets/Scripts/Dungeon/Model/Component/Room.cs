@@ -33,6 +33,7 @@ namespace Dungeon.Model {
 
     public enum RoomType {
         Normal,
-        Entrance
+        EntranceRight,
+        EntranceLeft
     }
 }
