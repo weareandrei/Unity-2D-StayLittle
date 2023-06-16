@@ -19,8 +19,8 @@ namespace Util {
 
             seedState = FormNewSeed(
                 seedState,
-                Format4CharSeed(new4CharSeed), 
-                Format3CharSeed(first3CharSuffix)
+                Format3CharSeed(first3CharSuffix), 
+                Format4CharSeed(new4CharSeed)
             );
             
             return GetNumber(maxReturn, last4CharSuffix);
