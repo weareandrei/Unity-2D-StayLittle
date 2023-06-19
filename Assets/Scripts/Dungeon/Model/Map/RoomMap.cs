@@ -24,7 +24,8 @@ namespace Dungeon.Model {
             // todo: for now we assume that entrance can only be on the left side
             for (int i = 0; i < map.getYSize(); i++) {
                 string thisRoomID = map.GetCellActual(0, i);
-                if (RoomGenerator.FindRoomInstanceByID(thisRoomID).type == RoomType.Entrance) {
+                if (RoomGenerator.FindRoomInstanceByID(thisRoomID).type == RoomType.EntranceLeft ||
+                    RoomGenerator.FindRoomInstanceByID(thisRoomID).type == RoomType.EntranceRight) {
                     // Then this is the coordinate of entrance
                     return new Vector2Int(-1, i);
                 }
