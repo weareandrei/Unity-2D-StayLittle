@@ -13,7 +13,11 @@ namespace Dungeon {
             { "RoomSize", 3 },
             { "SpaceBetweenRoomCenters", 10 }, // assuming they are all square
             { "SizeOfRoom", 10 }, // Check later if it's specific size units or a relative scale
-            { "SpaceBetweenDungeons", 10 } // Check later if it's specific size units or scale
+            { "SpaceBetweenDungeons", 10 }, // Check later if it's specific size units or scale
+            
+            // Dungeon Contents
+            { "MobMultiplier", 10 },
+            { "LootMultiplier", 10 }
         };
 
         public static T Get<T>(string variableName)
