@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Content {
-    public class ContentPoint : MonoBehaviour  {
+    public class ContentPoint  {
         public ContentType type;
         public ContentMetaData metaData;
     }

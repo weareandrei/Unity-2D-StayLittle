@@ -7,7 +7,7 @@ namespace Dungeon.Model {
         public List<ContentPoint> contentPointsAll;
         public List<ContentPoint> contentPointsUsed;
         private Dictionary<ContentPoint, ContentMetaData> contentPointsData = new Dictionary<ContentPoint, ContentMetaData>(); 
-            
+        
         public void CreateContentDictionary() {
             foreach (ContentPoint point in contentPointsUsed) {
                 ContentMetaData metaData = point.metaData;

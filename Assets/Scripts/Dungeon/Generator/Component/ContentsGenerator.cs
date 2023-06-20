@@ -12,7 +12,7 @@ namespace Dungeon.Generator {
         private static ContentsMap _contentsMap;
         
         public static ContentsMap GenerateContents(RoomMap roomMap) {
-            
+            _contentsMap = new ContentsMap();
             // Insert a function to DisableWrongExits() here
             
             _roomMap = roomMap;
@@ -31,7 +31,9 @@ namespace Dungeon.Generator {
             for (int y = 0; y < _roomMap.map.getYSize() - 1; y++) {
                 for (int x = 0; x < _roomMap.map.getXSize() - 1; x++) {
                     string thisRoomID = _roomMap.map.GetCell(x, y);
-                    contentPointsFound.AddRange(FindThisRoomContentPoints(thisRoomID));
+                    if (thisRoomID != "") {
+                        contentPointsFound.AddRange(FindThisRoomContentPoints(thisRoomID));
+                    }
                 }
             }
 

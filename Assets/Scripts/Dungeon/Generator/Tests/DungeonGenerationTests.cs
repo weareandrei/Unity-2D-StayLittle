@@ -11,16 +11,14 @@ public class DungeonGenerationTests
 {
     
     [SetUp]
-    public void SetUp()
-    {
+    public void SetUp() {
         GlobalVariables.environment = "DEV";
         Consts.Set("DungeonChunkCount", 10);
         DungeonGenerator.LoadResources();
     }
 
     [Test]
-    public void DungeonGeneratedCorrectly()
-    {
+    public void DungeonGeneratedCorrectly() {
         DungeonMapData dungeonMapData = DungeonGenerator.GenerateDungeonBySeed("3962420980463");
 
         CheckChunks(dungeonMapData.chunkMap.map);

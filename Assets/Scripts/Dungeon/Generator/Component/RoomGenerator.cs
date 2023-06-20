@@ -386,7 +386,7 @@ namespace Dungeon.Generator {
             // Otherwise, it could be an E or an R
             
             if (id == "" || !isParsableID) {
-                throw new ArgumentException("Chunk ID can't be empty");
+                throw new ArgumentException("Room ID can't be empty");
             }
             return roomLayoutsAvailable.FindAll( room => room.roomID == id)[0];
         }

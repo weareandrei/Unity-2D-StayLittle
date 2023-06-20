@@ -10,7 +10,7 @@ namespace Dungeon.Model {
         public string roomInstanceID;
         public RoomType type;
 
-        public List<ContentPoint> contentPoints;
+        public List<ContentPoint> contentPoints = new List<ContentPoint>();
 
         // 0 - empty, 1 - occupied, 2 - exit, 3 - not strict exit (on this side any cell)
         [SerializeField] public Grid2DString roomLayout; 
