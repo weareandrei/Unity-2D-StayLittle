@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Dungeon.Generator;
 using HoneyGrid2D;
 using HoneyGrid2D;
 using UnityEngine;
@@ -103,10 +104,13 @@ namespace Dungeon.Model {
             throw new Exception("Unknown exception in GetAtCoordinatesParam");
         }
 
-        // Entrance Room is always at the chunk that is at 0,0 (depending on offset)
         private Vector2Int GetEntranceCoordinates() {
             int x = 0;
-            for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left) {
+                x = _roomMap.getXSize() - 1;
+            }
+            
+            for (int y = 0; y < _roomMap.getYSize() - 1; y++) {
                 if (_roomMap.GetCell(x,(_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize")) + y) == "E") {
                     return new Vector2Int(x, (_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize"))+y);
                 }
@@ -114,9 +118,6 @@ namespace Dungeon.Model {
 
             return new Vector2Int(0,0);
         }
-            // But can be at the different place at that chunk. But always at the left
-            
-            
 
         private Exit.SidePosition CalculateDirectionBasedOnCoordinates(Vector2Int atCoordinates, Vector2Int fromCoordinates) {
             if (atCoordinates.x > fromCoordinates.x) {

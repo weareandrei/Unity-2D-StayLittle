@@ -61,11 +61,11 @@ namespace Dungeon.Generator {
                         continue;
                     }
                     // Correctly takes the Chunk with rooms inside. But does not find the actual roomID here : ...
-                    string thisRoomID = ChunkGenerator.FindChunkLayoutByID(thisChunkID).rooms.GetCell(
+                    string chunkCellContents = ChunkGenerator.FindChunkLayoutByID(thisChunkID).rooms.GetCell(
                         coordinatesFull.room_ThisChunk.x,
                         coordinatesFull.room_ThisChunk.y);
                     
-                    roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, thisRoomID);
+                    roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, chunkCellContents);
                 }
             }
 
@@ -164,41 +164,23 @@ namespace Dungeon.Generator {
         }
         
         private static void UpdateEntrances() {
-            // What if we actually have multiple Entrances ???
-            // todo: if multiple Entrances than we make 30% of them available.
-            
             List<Vector2Int> allEdgeRooms = new List<Vector2Int>();
             
             // Find entrance position
-            if (DungeonGenerator.exitDirection == Exit.SidePosition.Right) {
-                // Then take the Rightest
-                for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
-                    if (_newRoomMap.map.GetCellActual(_newRoomMap.map.getXSize() - 1, y) != "") {
-                        // If there is a room at this edge cell
-                        allEdgeRooms.Add(new Vector2Int(_newRoomMap.map.getXSize() - 1, y));
-                    }
-                }
-            }
-            
-            // Put any entrance in there
+            int x = 0;
             if (DungeonGenerator.exitDirection == Exit.SidePosition.Left) {
-                // Then take the Rightest
-                for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
-                    if (_newRoomMap.map.GetCellActual(0, y) != "") {
-                        // If there is a room at this edge cell
-                        allEdgeRooms.Add(new Vector2Int(0, y));
-                    }
+                x = _newRoomMap.map.getXSize() - 1;
+            }
+
+            for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
+                if (_newRoomMap.map.GetCellActual(x, y) != "") {
+                    // If there is a room at this edge cell
+                    allEdgeRooms.Add(new Vector2Int(x, y));
                 }
             }
 
             List<Vector2Int> selectedEntrancesCoord = SelectEntrances(allEdgeRooms);
             PutEntrances(selectedEntrancesCoord);
-            //
-            // Vector2Int selectedEntranceCoord = allEdgeRooms[DungeonGenerator.UseSeed(allEdgeRooms.Count - 1)];
-            //
-            // string selectedRoomID = entrancesAvailable[DungeonGenerator.UseSeed(entrancesAvailable.Count - 1)];
-
-            // _newRoomMap.PlaceCellOnMap(selectedEntranceCoord, selectedRoomID);
         }
 
         private static List<Vector2Int> SelectEntrances(List<Vector2Int> allEdgeRooms) {

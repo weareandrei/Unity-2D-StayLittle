@@ -18,7 +18,7 @@ namespace Dungeon.Generator {
             List<Exit.PossibleExit> possibleExits = new List<Exit.PossibleExit>();
             // Here we use Abstract coordinate system. So Top is at the bottom (in Debug window)
 
-            possibleExits.Add(new Exit.PossibleExit(1, 0, Exit.SidePosition.Left));
+            possibleExits.Add(new Exit.PossibleExit(1, 0, Exit.SidePosition.Right));
 
             while (chunksInUse.Count < Consts.Get<int>("DungeonChunkCount")) {
                 // _newChunkMap.map.DisplayGrid(); 
@@ -153,7 +153,7 @@ namespace Dungeon.Generator {
                     
                     try {
                         attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y-1)).rooms;
-                        requirements = UpdateLayoutRequirements(requirements, attachedChunk, "bottom"); 
+                        requirements = UpdateLayoutRequirements(requirements, attachedChunk, "bottom");
                     }
                     catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
                     catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
@@ -182,7 +182,7 @@ namespace Dungeon.Generator {
                 case Exit.SidePosition.Right:
 
                     try {
-                        attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x +1, y)).rooms;
+                        attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x+1, y)).rooms;
                         requirements = UpdateLayoutRequirements(requirements, attachedChunk, "left");
                     }
                     catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
@@ -279,8 +279,8 @@ namespace Dungeon.Generator {
                 }
                 case "top": {
                     for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
-                        if (attachedChunk.GetCell(x, 0) == "E") {
-                            requirements.UpdateCell(x, Consts.Get<int>("ChunkSize")-1, "E");
+                        if (attachedChunk.GetCell(x, Consts.Get<int>("ChunkSize")-1) == "E") {
+                            requirements.UpdateCell(x, 0, "E");
                         }
                     }
 
@@ -288,8 +288,8 @@ namespace Dungeon.Generator {
                 }
                 case "bottom": {
                     for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
-                        if (attachedChunk.GetCell(x, Consts.Get<int>("ChunkSize")-1) == "E") {
-                            requirements.UpdateCell(x, 0, "E");
+                        if (attachedChunk.GetCell(x, 0) == "E") {
+                            requirements.UpdateCell(x, Consts.Get<int>("ChunkSize")-1, "E");
                         }
                     }
 
