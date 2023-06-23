@@ -1,3 +1,4 @@
+using Dungeon;
 using Dungeon.Data;
 using Dungeon.Generator;
 using Dungeon.Renderer;
@@ -15,7 +16,7 @@ namespace Manager.SubManager {
                 seed = Random.GenerateSeed();
             }
             // use the seed to generate the dungeon list
-            DungeonList._dungeons = DungeonListGenerator.Generate(10, seed);
+            DungeonList._dungeons = DungeonListGenerator.Generate(Consts.Get<int>("MaxDungeons"), seed);
         }
 
         public static void RenderDungeonsAll() {

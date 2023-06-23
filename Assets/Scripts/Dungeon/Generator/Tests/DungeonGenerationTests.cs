@@ -2,8 +2,6 @@ using Dungeon;
 using NUnit.Framework;
 using Dungeon.Generator;
 using Dungeon.Model;
-using Moq;
-using Moq.Protected;
 using Global;
 using HoneyGrid2D;
 
