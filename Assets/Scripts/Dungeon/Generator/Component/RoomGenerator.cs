@@ -10,13 +10,13 @@ namespace Dungeon.Generator {
         private static ChunkMap _chunkMap;
         private static RoomMap _newRoomMap;
         private static ExitMap _exitMap;
+        private static List<Vector2Int> _entrances;
 
         public static List<Room> roomLayoutsAvailable;
 
         public static RoomMap GenerateRooms(ChunkMap chunkMap) {
             PreLoadMaps(chunkMap);
-            UpdateEntrances();
-            
+
             for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
                 for (int x = 0; x < _newRoomMap.map.getXSize()-1; x++) {
                     RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
@@ -39,9 +39,12 @@ namespace Dungeon.Generator {
                 chunkMap.map.getYSize() * Consts.Get<int>("ChunkSize")
             ));
             
+            UpdateEntrances();
+            
             _exitMap = new ExitMap((FlexGrid2DString)_newRoomMap.map.Clone(),
                 _newRoomMap.map.getXSize(), 
-                _newRoomMap.map.getYSize());
+                _newRoomMap.map.getYSize(), 
+                _entrances[0]);
         }
 
         private static RoomMap PrebuildRoomMap(RoomMap roomMap) {
@@ -166,11 +169,8 @@ namespace Dungeon.Generator {
         private static void UpdateEntrances() {
             List<Vector2Int> allEdgeRooms = new List<Vector2Int>();
             
-            // Find entrance position
-            int x = 0;
-            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left) {
-                x = _newRoomMap.map.getXSize() - 1;
-            }
+            int x = DetermineEntranceColumnCoordinateX();
+            if (x == -1) { throw new ArgumentException("No Rooms in this RoomMap"); }
 
             for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
                 if (_newRoomMap.map.GetCellActual(x, y) != "") {
@@ -179,25 +179,45 @@ namespace Dungeon.Generator {
                 }
             }
 
-            List<Vector2Int> selectedEntrancesCoord = SelectEntrances(allEdgeRooms);
-            PutEntrances(selectedEntrancesCoord);
+            _entrances = SelectEntrances(allEdgeRooms);
+            PutEntrances(_entrances);
+        }
+
+        private static int DetermineEntranceColumnCoordinateX() {
+            int x = 0;
+
+            int direction = 1;
+            int startX = 0;
+            int endX = _newRoomMap.map.getXSize() - 1;
+            // Left = Right, Right = Left on RoomMap.
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left) {
+                direction = -1;
+                startX = _newRoomMap.map.getXSize() - 1;
+                endX = _newRoomMap.map.getXSize() - 1;
+            }
+            
+            for (x = startX; x < endX; x = x+direction) {
+                bool foundRoom = false;
+                for (int y = 0; y < _newRoomMap.map.getYSize() - 1; y++) {
+                    if (_newRoomMap.map.GetCellActual(x, y) != "") {
+                        return x;
+                    }
+                }
+            }
+
+            return -1;
         }
 
         private static List<Vector2Int> SelectEntrances(List<Vector2Int> allEdgeRooms) {
             List<Vector2Int> selectedEntrancesCoordinates = new List<Vector2Int>();
-            
             int numberOfEntrancesAllowed = DungeonGenerator.UseSeed(allEdgeRooms.Count / 2);
-            
-            
+
             for (int i = 0; i < numberOfEntrancesAllowed; i++) {
                 int randomIndex = DungeonGenerator.UseSeed(allEdgeRooms.Count - 1);
-                
-                Vector2Int selectedEdgeRoomCoordinates = allEdgeRooms[randomIndex];
                 allEdgeRooms.RemoveAt(randomIndex);
-                
             }
 
-            return selectedEntrancesCoordinates;
+            return allEdgeRooms;
         }
 
         private static void PutEntrances(List<Vector2Int> entrances) {

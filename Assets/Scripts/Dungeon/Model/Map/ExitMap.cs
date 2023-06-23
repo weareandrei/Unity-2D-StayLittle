@@ -13,12 +13,11 @@ namespace Dungeon.Model {
         public FlexGrid2DSpecial<Exit.ExitMapCell> _exitMap;
         private List<Exit.PossibleExit> exitsAvailable = new List<Exit.PossibleExit>();
 
-        public ExitMap(FlexGrid2DString roomMap, int width, int height) {
+        public ExitMap(FlexGrid2DString roomMap, int width, int height, Vector2Int entranceCoordinatesActual) {
             _roomMap = roomMap;
             _exitMap = new FlexGrid2DSpecial<Exit.ExitMapCell>(width, height, 
                 new Exit.ExitMapCell(new List<Exit.SidePosition>(), Exit.SidePosition.None));
             
-            Vector2Int entranceCoordinatesActual = GetEntranceCoordinates();
             BuildExitMap(entranceCoordinatesActual, entranceCoordinatesActual);
         }
 
@@ -102,21 +101,6 @@ namespace Dungeon.Model {
             }
 
             throw new Exception("Unknown exception in GetAtCoordinatesParam");
-        }
-
-        private Vector2Int GetEntranceCoordinates() {
-            int x = 0;
-            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left) {
-                x = _roomMap.getXSize() - 1;
-            }
-            
-            for (int y = 0; y < _roomMap.getYSize() - 1; y++) {
-                if (_roomMap.GetCell(x,(_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize")) + y) == "E") {
-                    return new Vector2Int(x, (_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize"))+y);
-                }
-            }
-
-            return new Vector2Int(0,0);
         }
 
         private Exit.SidePosition CalculateDirectionBasedOnCoordinates(Vector2Int atCoordinates, Vector2Int fromCoordinates) {
