@@ -30,7 +30,7 @@ namespace Dungeon.Generator {
             
             for (int y = 0; y < _roomMap.map.getYSize() - 1; y++) {
                 for (int x = 0; x < _roomMap.map.getXSize() - 1; x++) {
-                    string thisRoomID = _roomMap.map.GetCell(x, y);
+                    string thisRoomID = _roomMap.map.GetCellActual(x, y);
                     if (thisRoomID != "") {
                         contentPointsFound.AddRange(FindThisRoomContentPoints(thisRoomID));
                     }

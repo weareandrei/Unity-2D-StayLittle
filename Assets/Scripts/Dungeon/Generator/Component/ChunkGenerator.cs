@@ -55,6 +55,7 @@ namespace Dungeon.Generator {
                     FindPossibleExits(newChunk.rooms, newChunkCoordinates.x, newChunkCoordinates.y));
             }
 
+            _newChunkMap.map.RemoveEmptyRowsAndColumns();
             // _newChunkMap.map.DisplayGrid();
             return _newChunkMap;
         }
@@ -197,16 +198,16 @@ namespace Dungeon.Generator {
         }
 
         private static Grid2DString ConsiderDungeonExit(Grid2DString requirements, Vector2Int requirementsCoordinates) {
-            if (DungeonGenerator.exitDirection == Exit.SidePosition.Right && requirementsCoordinates.x > _potentialEntrance.x) {
-                _potentialEntrance.x = requirementsCoordinates.x;
-                for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
-                    requirements.UpdateCell(Consts.Get<int>("ChunkSize")-1, y, "P");
-                }
-            }
-            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left && requirementsCoordinates.x < _potentialEntrance.x) {
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Right && requirementsCoordinates.x < _potentialEntrance.x) {
                 _potentialEntrance.x = requirementsCoordinates.x;
                 for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
                     requirements.UpdateCell(0, y, "P");
+                }
+            }
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left && requirementsCoordinates.x > _potentialEntrance.x) {
+                _potentialEntrance.x = requirementsCoordinates.x;
+                for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                    requirements.UpdateCell(Consts.Get<int>("ChunkSize")-1, y, "P");
                 }
             }
 

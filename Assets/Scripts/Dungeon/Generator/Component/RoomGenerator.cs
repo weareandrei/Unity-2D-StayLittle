@@ -27,6 +27,7 @@ namespace Dungeon.Generator {
                 }
             }
 
+            _newRoomMap.map.RemoveEmptyRowsAndColumns();
             // _newRoomMap.map.DisplayGrid();
             return _newRoomMap;
         }
@@ -193,7 +194,16 @@ namespace Dungeon.Generator {
             if (DungeonGenerator.exitDirection == Exit.SidePosition.Left) {
                 direction = -1;
                 startX = _newRoomMap.map.getXSize() - 1;
-                endX = _newRoomMap.map.getXSize() - 1;
+                endX = 0;
+                
+                for (x = startX; x > endX; x = x+direction) {
+                    bool foundRoom = false;
+                    for (int y = 0; y < _newRoomMap.map.getYSize() - 1; y++) {
+                        if (_newRoomMap.map.GetCellActual(x, y) != "") {
+                            return x;
+                        }
+                    }
+                }
             }
             
             for (x = startX; x < endX; x = x+direction) {

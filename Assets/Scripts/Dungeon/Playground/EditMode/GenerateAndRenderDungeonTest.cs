@@ -1,7 +1,10 @@
 using Dungeon.Data;
 using Dungeon.Model;
 using Dungeon.Renderer;
+using Global;
+using Manager.SubManager;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace Dungeon.Playground {
     
@@ -9,15 +12,11 @@ namespace Dungeon.Playground {
     {
         [Test]
         public void TestSimplePasses() {
-            
-            // Old test. Might not work correctly.
-            
-            DungeonData dungeonData = DungeonList.GetDungeonDataByIndex(0);
-                
-            Generator.DungeonGenerator.LoadResources();
-            DungeonMapData dungeonMapData = Generator.DungeonGenerator.GenerateDungeonBySeed(dungeonData.seed);
-                
-            DungeonRenderer.RenderDungeon(dungeonData, dungeonMapData);
+            GlobalVariables.environment = "DEV";
+            Consts.Set("MaxDungeons", 1);
+            Consts.Set("DungeonChunkCount", 5);
+            DungeonManager.Initialize("5556444221");
+            DungeonManager.RenderDungeonsAll();
         }
     }
     
