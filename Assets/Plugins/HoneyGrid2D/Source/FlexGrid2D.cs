@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HoneyGrid2D {
     public abstract class FlexGrid2D<T>  : ICloneable {
@@ -49,7 +50,7 @@ namespace HoneyGrid2D {
             return rows[y + zeroYOffset].cells[x];
         }
         
-        // This is an Actual GetCel.. We do not consider offset here.
+        // This is an Actual GetCell.. We do not consider offset here.
         public T GetCellActual(int x, int y) {
             if (x < 0 || x > rows[0].cells.Count-1) {
                 throw new IndexOutOfRangeException("X out of range");
@@ -67,7 +68,7 @@ namespace HoneyGrid2D {
         }
 
         public void ExpandRight (int count = 1) {
-            rows.ForEach((row) =>  row.InsertCellsRight(count) );
+            rows.ForEach( (row) =>  row.InsertCellsRight(count) );
         }
 
         public void ExpandVertical(int direction, int count = 1) {
@@ -127,6 +128,52 @@ namespace HoneyGrid2D {
         //
         //     return cellContents;
         // }
+        
+        public void RemoveEmptyRowsAndColumns() {
+            RemoveEmptyRows();
+            RemoveEmptyColumns();
+        }
+
+        private void RemoveEmptyRows() {
+            for (int rowIndex = rows.Count - 1; rowIndex >= 0; rowIndex--) {
+                if (IsRowEmpty(rowIndex)) {
+                    rows.RemoveAt(rowIndex);
+                    zeroYOffset--;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        private bool IsRowEmpty(int rowIndex)
+        {
+            FlexRow<T> row = rows[rowIndex];
+            return row.cells.All(cell => cell.Equals(initialCellValue));
+        }
+
+        private void RemoveEmptyColumns() {
+            if (rows.Count > 0) {
+                int maxColumnIndex = rows[0].cells.Count - 1;
+
+                for (int columnIndex = maxColumnIndex; columnIndex >= 0; columnIndex--) {
+                    if (IsColumnEmpty(columnIndex)) {
+                        RemoveColumn(columnIndex);
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        private bool IsColumnEmpty(int columnIndex) {
+            return rows.All(row => row.cells[columnIndex].Equals(initialCellValue));
+        }
+
+        private void RemoveColumn(int columnIndex) {
+            for (int rowIndex = 0; rowIndex < rows.Count; rowIndex++) {
+                rows[rowIndex].cells.RemoveAt(columnIndex);
+            }
+        }
 
         public abstract object Clone();
     }

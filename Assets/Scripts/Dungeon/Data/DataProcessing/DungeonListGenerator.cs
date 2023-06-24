@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Dungeon.Model;
+using HoneyGrid2D;
 using Util;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ namespace Dungeon.Data {
         public static string seedState;
         private static string _seedOriginalState;
 
-        private static int lowestYOccupied_Left = 0; 
-        private static int lowestYOccupied_Right = 0; 
+        private static int lowestYOccupied_Left = 0;
+        private static int lowestYOccupied_Right = 0;
         
         private static int dungeonIdCounter = 1;
 
@@ -37,30 +38,33 @@ namespace Dungeon.Data {
             
             int dungeonDirection = Seed.UseSeed(ref seedState, 100);
             if (dungeonDirection % 2 == 0) {
-                // dungeonCoordinates.x = -1; // left dungeon
-                dungeonCoordinates.x = 1;
+                dungeonCoordinates.x = -1; // left dungeon
             }
             if (dungeonDirection % 2 != 0) {
                 dungeonCoordinates.x = 1; // right dungeon
             }
 
+            Generator.DungeonGenerator.exitDirection =
+                dungeonCoordinates.x == 1 ? Exit.SidePosition.Left : Exit.SidePosition.Right;
             DungeonMapData dungeonMapData = Generator.DungeonGenerator.GenerateDungeonBySeed(dungeonSeed);
-            int dungeonHeight = dungeonMapData.roomMap.CalculateSize().y;
+            int dungeonHeight = dungeonMapData.roomMap.map.getYSize();
+            int dungeonWidth = dungeonMapData.roomMap.map.getXSize();
 
             if (dungeonCoordinates.x == -1) {
                 // This is the left coordinate
-                dungeonCoordinates.y = lowestYOccupied_Left + 10;
-                lowestYOccupied_Left += dungeonHeight + 100;
+                dungeonCoordinates.y =  lowestYOccupied_Left + dungeonHeight * Consts.Get<int>("SizeOfRoom_PX");
+                lowestYOccupied_Left += dungeonCoordinates.y;
             } if (dungeonCoordinates.x == 1) {
                 // This is the left coordinate
-                dungeonCoordinates.y = lowestYOccupied_Right + 10;
-                lowestYOccupied_Right += dungeonHeight + 100;
+                dungeonCoordinates.y = lowestYOccupied_Right + dungeonHeight * Consts.Get<int>("SizeOfRoom_PX");
+                lowestYOccupied_Right += dungeonCoordinates.y;
             }
             
             return new DungeonData(
                 dungeonId,
                 dungeonCoordinates, 
                 dungeonSeed, 
+                dungeonWidth,
                 SelectDungeonType());
         }
 
