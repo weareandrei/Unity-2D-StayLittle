@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Dungeon.Data;
+using Dungeon.Generator;
 using Dungeon.Model;
 using Dungeon.Renderer;
 using Global;
@@ -13,9 +15,14 @@ namespace Dungeon.Playground {
         [Test]
         public void TestSimplePasses() {
             GlobalVariables.environment = "DEV";
-            Consts.Set("MaxDungeons", 3);
+            Consts.Set("MaxDungeons", 1);
             Consts.Set("DungeonChunkCount", 5);
-            DungeonManager.Initialize("5556444221");
+            // DungeonManager.Initialize("5556444221");
+            // DungeonGenerator.GenerateDungeonBySeed('5556444221');
+            DungeonGenerator.LoadResources();
+            DungeonData dungeonData = new DungeonData("3", new Vector2Int(0,256), "6549585371", 7, _dungeonType.questDungeon);
+            DungeonList._dungeons = new List<DungeonData>();
+            DungeonList._dungeons.Add(dungeonData);
             DungeonManager.RenderDungeonsAll();
         }
     }

@@ -17,8 +17,7 @@ namespace Dungeon.Renderer {
         private static Vector2 _dungeonOrigin; 
         
         // Here we Render only 1 specific Dungeon
-        public static void RenderDungeon(DungeonData dungeonData, DungeonMapData dungeonMapData)
-        {
+        public static void RenderDungeon(DungeonData dungeonData, DungeonMapData dungeonMapData) {
             _roomMap = dungeonMapData.roomMap;
             _contentsMap = dungeonMapData.contentsMap;
 
