@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Content;
+using Dungeon.Generator;
 using UnityEngine;
 using HoneyGrid2D;
 
@@ -9,9 +10,7 @@ namespace Dungeon.Model {
         public string roomID;
         public string roomInstanceID;
         public RoomType type;
-
-        public List<ContentPoint> contentPoints = new List<ContentPoint>();
-
+        
         // 0 - empty, 1 - occupied, 2 - exit, 3 - not strict exit (on this side any cell)
         [SerializeField] public Grid2DString roomLayout; 
         // Must be roomSize + 1.
@@ -34,14 +33,17 @@ namespace Dungeon.Model {
             public int right;
         };
         
-        public List<ContentPoint> GetContentPoints() {
+        public CloneableList<ContentPointData> GetContentPoints() {
             // Find the "ContentPoints" GameObject in this Room Instance
             Transform contentPointsParent = transform.Find("ContentPoints");
+            CloneableList<ContentPointData> contentPoints = new CloneableList<ContentPointData>();
     
             // Then find it's children "ContentPoint"
             if (contentPointsParent != null) {
                 foreach (Transform childTransform in contentPointsParent) {
-                    contentPoints.Add(childTransform.GetComponent<ContentPoint>());
+                    ContentPointData contentPointData = childTransform.GetComponent<ContentPoint>().GetContentPointData();
+                    // contentPoints.Add(childTransform.GetComponent<ContentPoint>());
+                    contentPoints.Add(contentPointData);
                 }
             } else {
                 Debug.LogWarning("Unable to find 'ContentPoints' child GameObject.");
@@ -50,7 +52,7 @@ namespace Dungeon.Model {
             return contentPoints;
         }
         
-        public static List<ContentPoint> GetRoomContentPoints(Room room) {
+        public static CloneableList<ContentPointData> GetRoomContentPoints(Room room) {
             return room.GetContentPoints();
         }
 

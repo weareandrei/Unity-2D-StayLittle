@@ -1,23 +1,14 @@
 using System.Collections.Generic;
 using Content;
+using Dungeon.Generator;
+using HoneyGrid2D;
 
 namespace Dungeon.Model {
     
-    public class ContentsMap : DungeonMap {
-        public List<ContentPoint> contentPointsAll;
-        public List<ContentPoint> contentPointsUsed;
-        private Dictionary<ContentPoint, ContentMetaData> contentPointsData = new Dictionary<ContentPoint, ContentMetaData>(); 
-        
-        public void CreateContentDictionary() {
-            foreach (ContentPoint point in contentPointsUsed) {
-                ContentMetaData metaData = point.metaData;
-                // todo: later we will generate this metaData dynamically
-                // foreach (ContentPoint contentPoint in _contentsMap.contentPointsUsed) {
-                //     ContentType type = contentPoint.type;
-                // }            
-                contentPointsData.Add(point, metaData);
-            }
-        }
+    public class ContentsMap {
+        public List<ContentPointData> contentPointsAll;
+        public List<ContentPointData> contentPointsUsed;
+        public FlexGrid2DSpecial<CloneableList<ContentPointData>> contentPointGrid;
     }
     
 }

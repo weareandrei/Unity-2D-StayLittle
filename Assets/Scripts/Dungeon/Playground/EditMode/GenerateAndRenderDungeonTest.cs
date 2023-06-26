@@ -13,7 +13,7 @@ namespace Dungeon.Playground {
         [Test]
         public void TestSimplePasses() {
             GlobalVariables.environment = "DEV";
-            Consts.Set("MaxDungeons", 1);
+            Consts.Set("MaxDungeons", 3);
             Consts.Set("DungeonChunkCount", 5);
             DungeonManager.Initialize("5556444221");
             DungeonManager.RenderDungeonsAll();

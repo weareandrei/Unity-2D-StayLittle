@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Content;
 using Dungeon.Data;
 using Dungeon.Model;
 using HoneyGrid2D;
@@ -9,6 +11,7 @@ namespace Dungeon.Renderer {
         private static int _spaceBetweenDungeons = 12;
         
         private static RoomMap _roomMap;
+        private static ContentsMap _contentsMap;
         
         // Based on this we can know if this is a Right or Left side Dungeon
         private static Vector2 _dungeonOrigin; 
@@ -16,19 +19,36 @@ namespace Dungeon.Renderer {
         // Here we Render only 1 specific Dungeon
         public static void RenderDungeon (DungeonData dungeonData, DungeonMapData dungeonMapData) {
             _roomMap = dungeonMapData.roomMap;
+            _contentsMap = dungeonMapData.contentsMap;
             
             _dungeonOrigin = CalcDungeonOrigin(dungeonData);
-            RenderRoomMap(_roomMap);
+            RenderRooms(_roomMap);
+            // RenderContents(_contentsMap);
         }
 
-        private static void RenderRoomMap(RoomMap roomMap) {
+        private static void RenderRooms(RoomMap roomMap) {
             for (int y = 0; y < roomMap.map.getYSize(); y++) {
                 for (int x = 0; x < roomMap.map.getXSize(); x++) {
                     Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x,y));
-                    string roomId = roomMap.map.GetCell(roomMap.map.getXSize() - 1 - x, y);
+                    string roomId = roomMap.map.GetCellActual(roomMap.map.getXSize() - 1 - x, y);
+                    
                     if (roomId != "") {
                         RenderRoomAtCoordinates(cellPosFromOrigin, roomId);
+                        RenderContentsAtCoordinates(cellPosFromOrigin, x, y);
                     }
+                }
+            }
+        }
+
+        private static void RenderContentsAtCoordinates(Vector2 cellPosFromOrigin, int x, int y) {
+            Vector3 cellPosFromOrigin3D = new Vector3(cellPosFromOrigin.x, cellPosFromOrigin.y, 0f);
+            List<ContentPointData> contentPoints = _contentsMap.contentPointGrid.GetCellActual(x, y);
+            foreach (ContentPointData contentPoint in contentPoints) {
+                if (contentPoint.type == ContentType.Collectible) {
+                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "C");
+                }
+                if (contentPoint.type == ContentType.Mob) {
+                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "M");
                 }
             }
         }
@@ -52,8 +72,8 @@ namespace Dungeon.Renderer {
             return -1;
         }
         
-        private static GameObject InstantiateGizmoSquareAtCoordinates(Vector2 coordinates, string roomId) {
-            GameObject gizmoSquare = new GameObject("GizmoSquare");
+        private static GameObject InstantiateGizmoTextAtCoordinates(Vector3 coordinates, string text) {
+            GameObject gizmoSquare = new GameObject("GizmoText");
             MeshRenderer renderer = gizmoSquare.AddComponent<MeshRenderer>();
 
             // Create a new material using the "TextMeshPro/Mobile/Distance Field" shader
@@ -65,12 +85,15 @@ namespace Dungeon.Renderer {
             material.SetTexture("_MainTex", font.material.mainTexture);
 
             TextMesh textMesh = gizmoSquare.AddComponent<TextMesh>();
-            textMesh.text = "(" + coordinates.x + "," + coordinates.y + ")" + "\n" + roomId;
+            textMesh.text = text;
             textMesh.characterSize = 0.05f;
-            textMesh.fontSize = 500;
+            textMesh.fontSize = 300;
             textMesh.anchor = TextAnchor.MiddleCenter;
             textMesh.color = Color.black;
             textMesh.font = font;
+            
+            renderer.sortingLayerName = "Gizmos"; // Set to the desired sorting layer name
+            renderer.sortingOrder = 2; 
 
             gizmoSquare.transform.position = new Vector3(coordinates.x, coordinates.y, -5f);
             return gizmoSquare;
@@ -83,12 +106,6 @@ namespace Dungeon.Renderer {
             }
             Vector3 position3D = new Vector3(coordinates.x, coordinates.y, 0);
             GameObject.Instantiate(roomPrefab, position3D, Quaternion.identity);
-
-            // Set the position of the rendered prefab
-            // renderedPrefab.transform.position = coordinates;
-            
-            // Instantiate gizmo square with number inside
-            // InstantiateGizmoSquareAtCoordinates(coordinates, roomId);
         }
 
         private static Vector2 CalcDungeonOrigin(DungeonData dungeonData) {
