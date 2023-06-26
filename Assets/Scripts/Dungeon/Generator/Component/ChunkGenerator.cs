@@ -22,6 +22,9 @@ namespace Dungeon.Generator {
 
             while (chunksInUse.Count < Consts.Get<int>("DungeonChunkCount")) {
                 // _newChunkMap.map.DisplayGrid(); 
+                if (possibleExits.Count == 0) {
+                    break;
+                }
                 Exit.PossibleExit exit = possibleExits[0];
                 Vector2Int newChunkCoordinates = GetNextChunkCoordinatesBasedOnExit(exit);
 
@@ -261,7 +264,7 @@ namespace Dungeon.Generator {
         private static Grid2DString UpdateLayoutRequirements(Grid2DString requirements, Grid2DString attachedChunk, string side) {
             switch (side) {
                 case "left": {
-                    for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                    for (int y = 0; y < Consts.Get<int>("ChunkSize"); y++) {
                         if (attachedChunk.GetCell(Consts.Get<int>("ChunkSize")-1, y) == "E") {
                             requirements.UpdateCell(0, y, "E");
                         }
@@ -270,7 +273,7 @@ namespace Dungeon.Generator {
                     break;
                 }
                 case "right": {
-                    for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                    for (int y = 0; y < Consts.Get<int>("ChunkSize"); y++) {
                         if (attachedChunk.GetCell(0, y) == "E") {
                             requirements.UpdateCell(Consts.Get<int>("ChunkSize")-1, y, "E");
                         }
@@ -279,8 +282,9 @@ namespace Dungeon.Generator {
                     break;
                 }
                 case "top": {
-                    for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
-                        if (attachedChunk.GetCell(x, Consts.Get<int>("ChunkSize")-1) == "E") {
+                    for (int x = 0; x < Consts.Get<int>("ChunkSize"); x++) {
+                        int chSize = Consts.Get<int>("ChunkSize");
+                        if (attachedChunk.GetCell(x, chSize-1) == "E") {
                             requirements.UpdateCell(x, 0, "E");
                         }
                     }
@@ -288,7 +292,7 @@ namespace Dungeon.Generator {
                     break;
                 }
                 case "bottom": {
-                    for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
+                    for (int x = 0; x < Consts.Get<int>("ChunkSize"); x++) {
                         if (attachedChunk.GetCell(x, 0) == "E") {
                             requirements.UpdateCell(x, Consts.Get<int>("ChunkSize")-1, "E");
                         }
