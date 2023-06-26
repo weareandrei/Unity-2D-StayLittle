@@ -17,38 +17,45 @@ namespace Dungeon.Renderer {
         private static Vector2 _dungeonOrigin; 
         
         // Here we Render only 1 specific Dungeon
-        public static void RenderDungeon (DungeonData dungeonData, DungeonMapData dungeonMapData) {
+        public static void RenderDungeon(DungeonData dungeonData, DungeonMapData dungeonMapData)
+        {
             _roomMap = dungeonMapData.roomMap;
             _contentsMap = dungeonMapData.contentsMap;
-            
+
             _dungeonOrigin = CalcDungeonOrigin(dungeonData);
-            RenderRooms(_roomMap);
+
+            GameObject dungeonParent = new GameObject("Dungeon");
+            DungeonDataContainer newDataContainer = dungeonParent.AddComponent<DungeonDataContainer>();
+            newDataContainer.data = dungeonData;
+
+            RenderRooms(_roomMap, dungeonParent);
             // RenderContents(_contentsMap);
         }
 
-        private static void RenderRooms(RoomMap roomMap) {
+
+        private static void RenderRooms(RoomMap roomMap, GameObject dungeonParent) {
             for (int y = 0; y < roomMap.map.getYSize(); y++) {
                 for (int x = 0; x < roomMap.map.getXSize(); x++) {
                     Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x,y));
                     string roomId = roomMap.map.GetCellActual(roomMap.map.getXSize() - 1 - x, y);
                     
                     if (roomId != "") {
-                        RenderRoomAtCoordinates(cellPosFromOrigin, roomId);
-                        RenderContentsAtCoordinates(cellPosFromOrigin, x, y);
+                        GameObject roomRendered = RenderRoomAtCoordinates(cellPosFromOrigin, roomId, dungeonParent);
+                        RenderContentsAtCoordinates(cellPosFromOrigin, x, y, roomRendered);
                     }
                 }
             }
         }
 
-        private static void RenderContentsAtCoordinates(Vector2 cellPosFromOrigin, int x, int y) {
+        private static void RenderContentsAtCoordinates(Vector2 cellPosFromOrigin, int x, int y, GameObject parent) {
             Vector3 cellPosFromOrigin3D = new Vector3(cellPosFromOrigin.x, cellPosFromOrigin.y, 0f);
             List<ContentPointData> contentPoints = _contentsMap.contentPointGrid.GetCellActual(x, y);
             foreach (ContentPointData contentPoint in contentPoints) {
                 if (contentPoint.type == ContentType.Collectible) {
-                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "C");
+                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "C", parent);
                 }
                 if (contentPoint.type == ContentType.Mob) {
-                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "M");
+                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "M", parent);
                 }
             }
         }
@@ -72,7 +79,7 @@ namespace Dungeon.Renderer {
             return -1;
         }
         
-        private static GameObject InstantiateGizmoTextAtCoordinates(Vector3 coordinates, string text) {
+        private static GameObject InstantiateGizmoTextAtCoordinates(Vector3 coordinates, string text, GameObject parent) {
             GameObject gizmoSquare = new GameObject("GizmoText");
             MeshRenderer renderer = gizmoSquare.AddComponent<MeshRenderer>();
 
@@ -96,16 +103,21 @@ namespace Dungeon.Renderer {
             renderer.sortingOrder = 2; 
 
             gizmoSquare.transform.position = new Vector3(coordinates.x, coordinates.y, -5f);
+            gizmoSquare.transform.parent = parent.transform;
+
             return gizmoSquare;
         }
         
-        private static void RenderRoomAtCoordinates(Vector2 coordinates, string roomId) {
+        private static GameObject RenderRoomAtCoordinates(Vector2 coordinates, string roomId, GameObject dungeonParent) {
             GameObject roomPrefab = Generator.DungeonGenerator.GetRoomPrefabFromID(roomId);
             if (roomPrefab == null) {
-                return;
+                return null;
             }
             Vector3 position3D = new Vector3(coordinates.x, coordinates.y, 0);
-            GameObject.Instantiate(roomPrefab, position3D, Quaternion.identity);
+            GameObject roomInstance = GameObject.Instantiate(roomPrefab, position3D, Quaternion.identity);
+            roomInstance.transform.parent = dungeonParent.transform;
+
+            return roomInstance;
         }
 
         private static Vector2 CalcDungeonOrigin(DungeonData dungeonData) {
