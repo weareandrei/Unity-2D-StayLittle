@@ -1,14 +1,19 @@
+using System;
+using Interaction;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Manager {
     
+    [Serializable]
     public static class LevelManager {
 
         // this will be stores in some Json and retrieved when game starts
-        private static string _currentSceneOpen = "Home4";
-        // selectLevelBasedOnScene() will decide on the Level based on the [currentSceneOpen] 
-        private static string _currentLevelOpen = ""; 
+        [SerializeField]
+        public static string currentSceneOpen = "Home4";
+        // selectLevelBasedOnScene() will decide on the Level based on the [currentSceneOpen]
+        [SerializeField]
+        public static string currentLevelOpen = ""; 
 
         // static LevelManager() {
         //     selectLevelBasedOnScene(currentSceneOpen);
@@ -16,35 +21,35 @@ namespace Manager {
         // }
 
         public static void LoadScenes() {
-            loadLevelBasedOnScene(_currentSceneOpen);
+            loadLevelBasedOnScene(currentSceneOpen);
         }
 
 
         private static void loadLevelBasedOnScene(string thisScene) {
             switch(thisScene) {
                 case "Home1":
-                    _currentLevelOpen = "Home";
+                    currentLevelOpen = "Home";
                     LoadHomeLevel();
                     break;
                 case "Home2":
-                    _currentLevelOpen = "Home";
+                    currentLevelOpen = "Home";
                     LoadHomeLevel();
                     break;
                 case "Home3":
-                    _currentLevelOpen = "Home";
+                    currentLevelOpen = "Home";
                     LoadHomeLevel();
                     break;
                 case "Home4":
-                    _currentLevelOpen = "Home";
+                    currentLevelOpen = "Home";
                     LoadHomeLevel();
                     break;
                 case "Home5":
-                    _currentLevelOpen = "Home";
+                    currentLevelOpen = "Home";
                     LoadHomeLevel();
                     break;
 
                 case "Elevator":
-                    _currentLevelOpen = "Elevator";
+                    currentLevelOpen = "Elevator";
                     LoadElevatorLevel();
                     break;
             }
@@ -68,22 +73,22 @@ namespace Manager {
             // SceneManager.UnloadSceneAsync(SceneManager.Scene.name);
         }
         
-        // public static void MoveObjectToAnotherScene(GameObject other, string goToScene) {
-        //     // It's already open so we don't need to load it. Just teleport to appropriate location.
-        //     SceneBound[] sceneBounds = GameObject.FindObjectsOfType<SceneBound>();
-        //
-        //     foreach (SceneBound sceneBound in sceneBounds) {
-        //         // Check if this SceneBound GameObject is located on the needed scene,
-        //         //  because it can be on any other loaded scene.
-        //         if (sceneBound.gameObject.scene.name == goToScene) {
-        //             if (sceneBound.connectedSceneName == _currentSceneOpen) {
-        //                 Vector3 teleportToLocation = sceneBound.gameObject.transform.position;
-        //                 other.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
-        //                 _currentSceneOpen = goToScene;
-        //             }
-        //         }   
-        //     }
-        // }
+        public static void MoveObjectToAnotherScene(GameObject other, string goToScene) {
+            // It's already open so we don't need to load it. Just teleport to appropriate location.
+            SceneBound[] sceneBounds = GameObject.FindObjectsOfType<SceneBound>();
+        
+            foreach (SceneBound sceneBound in sceneBounds) {
+                // Check if this SceneBound GameObject is located on the needed scene,
+                //  because it can be on any other loaded scene.
+                if (sceneBound.gameObject.scene.name == goToScene) {
+                    if (sceneBound.connectedSceneName == currentSceneOpen) {
+                        Vector3 teleportToLocation = sceneBound.gameObject.transform.position;
+                        other.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
+                        currentSceneOpen = goToScene;
+                    }
+                }   
+            }
+        }
 
         // This will load all scenes at once to allow async loading for all at the same tine
         private static void LoadHomeLevel() {
@@ -101,7 +106,7 @@ namespace Manager {
         }
 
         public static void setCurrentSceneActive() {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(_currentSceneOpen));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentSceneOpen));
         }
 
     }

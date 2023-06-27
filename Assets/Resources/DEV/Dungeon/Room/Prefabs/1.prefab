@@ -332,8 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607ef9776199041cd9a4202ef26858d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomID: 1
-  roomInstanceID: R_100000000001_1
+  roomID: R_100000000001_1
+  roomInstanceID: 1
   type: 0
   roomLayout:
     rows:

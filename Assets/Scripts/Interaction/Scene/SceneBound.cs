@@ -8,8 +8,8 @@ namespace Interaction {
         [SerializeField] public string connectedSceneName;
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.gameObject.tag == "Player") {
-                // LevelManager.MoveObjectToAnotherScene(other.gameObject, connectedSceneName);
+            if (other.gameObject.CompareTag("Player")) {
+                LevelManager.MoveObjectToAnotherScene(other.gameObject, connectedSceneName);
             }
         }
     }
