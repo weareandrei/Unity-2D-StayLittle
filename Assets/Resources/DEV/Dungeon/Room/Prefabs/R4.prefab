@@ -1419,7 +1419,7 @@ MonoBehaviour:
       SpawnRate: 0
       MaxInstances: 0
       MaxInstancesGlobal: 0
-    coordinates: {fileID: 0}
+    coordinates: {fileID: 2033245259188597520}
 --- !u!1 &8989388058360740701
 GameObject:
   m_ObjectHideFlags: 0
