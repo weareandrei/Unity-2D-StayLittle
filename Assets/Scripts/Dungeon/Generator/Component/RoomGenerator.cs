@@ -393,14 +393,23 @@ namespace Dungeon.Generator {
         }
 
         public static Room FindRoomInstanceByID(string id) {
-            bool isParsableID = int.TryParse(id, out _); // _ means that we don't intend to use the out result
+            bool isId = ValidateID(id);
+            // bool isParsableID = int.TryParse(id, out _); // _ means that we don't intend to use the out result
             // Check if this is a string
             // Otherwise, it could be an E or an R
             
-            if (id == "" || !isParsableID) {
+            if (id == "" || !isId) {
                 throw new ArgumentException("Room ID can't be empty");
             }
             return roomLayoutsAvailable.FindAll( room => room.roomID == id)[0];
+        }
+
+        private static bool ValidateID(string id) {
+            if (id != "R" || id != "E") {
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,11 +39,17 @@ namespace Dungeon.Data {
         }
     }
     
+    [Serializable]
     public struct DungeonData {
+        [SerializeField]
         public string id;
+        [SerializeField]
         public Vector2Int coordinates;
+        [SerializeField]
         public string seed;
+        [SerializeField]
         public int dungeonWidth; // Including only non-empty columns
+        [SerializeField]
         public _dungeonType typeOfDungeon;
 
         public DungeonData(string id, Vector2Int coordinates, string seed, int dungeonWidth, _dungeonType typeOfDungeon) {

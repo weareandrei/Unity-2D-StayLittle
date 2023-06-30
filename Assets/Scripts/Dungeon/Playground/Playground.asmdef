@@ -2,10 +2,9 @@
     "name": "Playground",
     "rootNamespace": "",
     "references": [
-        "GUID:a8be87fa4cf684f31ba3ad0a081a53e2",
-        "GUID:761bda620f93f4cb5b5fe13702553bbe",
         "GUID:c8524bf985d8d4c2eb2ce8f3f18a3467",
-        "GUID:3583e62e37dfa44b58bf7c0c2a49ca8e"
+        "GUID:3583e62e37dfa44b58bf7c0c2a49ca8e",
+        "GUID:89b79f9af80c54adb87aec179b07fc83"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

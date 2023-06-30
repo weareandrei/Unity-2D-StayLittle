@@ -4,9 +4,9 @@ namespace HoneyGrid2D {
         public FlexGrid2DSpecial(int sizeX, int sizeY, T initialCellValue) : base(sizeX, sizeY, initialCellValue) {
             this.initialCellValue = initialCellValue;
         }
-        
-        public FlexGrid2DSpecial(int size, T initialCellValue) : base(size, initialCellValue) {
-            this.initialCellValue = initialCellValue;
+
+        public FlexGrid2DSpecial(int sizeX, int sizeY) : base(sizeX, sizeY, default(T)) {
+            this.initialCellValue = default(T);
         }
 
         public override object Clone() {

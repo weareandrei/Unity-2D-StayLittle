@@ -5,10 +5,6 @@ namespace HoneyGrid2D {
             initialCellValue = false;
         }
         
-        public FlexGrid2DBool(int size) : base(size, false) {
-            initialCellValue = false;
-        }
-
         public override object Clone() {
             FlexGrid2DBool clone = new FlexGrid2DBool(rows[0].cells.Count, rows.Count);
             for (int y = 0; y < rows.Count; y++)
