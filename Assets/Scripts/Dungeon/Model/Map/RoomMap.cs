@@ -9,11 +9,11 @@ namespace Dungeon.Model {
         }
 
         public RoomMap (int size) {
-            map = new FlexGrid2DString(size);
+            map = new FlexGrid2DString(size, size);
         }
         
         public RoomMap () {
-            map = new FlexGrid2DString(Consts.Get<int>("ChunkSize"));
+            map = new FlexGrid2DString(Consts.Get<int>("ChunkSize"), Consts.Get<int>("ChunkSize"));
         }
 
         public Vector2Int CalculateSize() {

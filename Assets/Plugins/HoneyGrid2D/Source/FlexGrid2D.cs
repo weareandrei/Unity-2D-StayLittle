@@ -18,16 +18,6 @@ namespace HoneyGrid2D {
                 rows.Add(newRow);
             }
         }
-        
-        public FlexGrid2D(int size, T initialCellValue) {
-            this.initialCellValue = initialCellValue;
-            rows = new List<FlexRow<T>>();
-
-            for (int y = 0; y < size; y++) {
-                FlexRow<T> newRow = new FlexRow<T>(size, initialCellValue);
-                rows.Add(newRow);
-            }
-        }
 
         // This is an Abstract GetCel.. We consider offset here.
         public T GetCell(int x, int y) {

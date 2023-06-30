@@ -9,12 +9,8 @@ namespace Dungeon.Model {
             map = new FlexGrid2DString(sizeX, sizeY);
         }
 
-        public DungeonMap (int size) {
-            map = new FlexGrid2DString(size);
-        }
-
         public DungeonMap ()  {
-            map = new FlexGrid2DString(Consts.Get<int>("ChunkSize"));
+            map = new FlexGrid2DString(Consts.Get<int>("ChunkSize"), Consts.Get<int>("ChunkSize"));
         }
 
         public void PlaceCellOnMap(Vector2Int coordinates, string contents) {

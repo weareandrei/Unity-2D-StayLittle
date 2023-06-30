@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Content;
 using Dungeon.Data;
+using Dungeon.Generator;
 using Dungeon.Model;
 using HoneyGrid2D;
 using UnityEngine;
@@ -27,36 +28,40 @@ namespace Dungeon.Renderer {
             DungeonDataContainer newDataContainer = dungeonParent.AddComponent<DungeonDataContainer>();
             newDataContainer.data = dungeonData;
 
-            RenderRooms(_roomMap, dungeonParent);
+            RenderRooms(dungeonParent);
             // RenderContents(_contentsMap);
         }
 
 
-        private static void RenderRooms(RoomMap roomMap, GameObject dungeonParent) {
-            for (int y = 0; y < roomMap.map.getYSize(); y++) {
-                for (int x = 0; x < roomMap.map.getXSize(); x++) {
+        private static void RenderRooms(GameObject dungeonParent) {
+            for (int y = 0; y < _roomMap.map.getYSize(); y++) {
+                for (int x = 0; x < _roomMap.map.getXSize(); x++) {
                     Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x,y));
-                    string roomId = roomMap.map.GetCellActual(roomMap.map.getXSize() - 1 - x, y);
+                    string roomId = _roomMap.map.GetCellActual(_roomMap.map.getXSize() - 1 - x, y);
                     
                     if (roomId != "") {
                         GameObject roomRendered = RenderRoomAtCoordinates(cellPosFromOrigin, roomId, dungeonParent);
-                        RenderContentsAtCoordinates(cellPosFromOrigin, x, y, roomRendered);
+                        // Here we must find a correcsponding cell in ContentsMap and render the contents
+                        //   that are selected in ContentsMap
+                        RenderThisRoomContents(_roomMap.map.getXSize() - 1 - x, y, roomRendered);
                     }
                 }
             }
         }
 
-        private static void RenderContentsAtCoordinates(Vector2 cellPosFromOrigin, int x, int y, GameObject parent) {
-            Vector3 cellPosFromOrigin3D = new Vector3(cellPosFromOrigin.x, cellPosFromOrigin.y, 0f);
-            List<ContentPointData> contentPoints = _contentsMap.contentPointGrid.GetCellActual(x, y);
-            foreach (ContentPointData contentPoint in contentPoints) {
-                if (contentPoint.type == ContentType.Collectible) {
-                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "C", parent);
-                }
-                if (contentPoint.type == ContentType.Mob) {
-                    InstantiateGizmoTextAtCoordinates(cellPosFromOrigin3D + contentPoint.coordinates.position, "M", parent);
+        private static void RenderThisRoomContents(int x, int y, GameObject roomRendered) {
+            List<ContentPoint> contentPoints = RoomGenerator.FindRoomInstanceByID(_roomMap.map.GetCellActual(x, y)).GetContentPoints();
+            List<ContentPayload> contentPayloads = _contentsMap.map.GetCellActual(x, y);
+            for (int i = 0; i < contentPoints.Count; i++) {
+                if (i < contentPayloads.Count) {
+                    contentPoints[i].payload = contentPayloads[i];
+                } else {
+                    // Handle the case where there are fewer ContentPayloads than ContentPoints
+                    // For example, you could assign a default or null payload.
+                    //   to something here
                 }
             }
+
         }
 
         private static Vector2 DetermineCellPosition(Vector2Int roomActualIndex) {
@@ -78,34 +83,34 @@ namespace Dungeon.Renderer {
             return -1;
         }
         
-        private static GameObject InstantiateGizmoTextAtCoordinates(Vector3 coordinates, string text, GameObject parent) {
-            GameObject gizmoSquare = new GameObject("GizmoText");
-            MeshRenderer renderer = gizmoSquare.AddComponent<MeshRenderer>();
-
-            // Create a new material using the "TextMeshPro/Mobile/Distance Field" shader
-            Material material = new Material(Shader.Find("TextMeshPro/Mobile/Distance Field"));
-            renderer.material = material;
-
-            // Load the custom font and assign it to the material's texture property
-            Font font = Resources.Load<Font>("Kaph_Font/OpenType (.otf)/Kaph-Regular");
-            material.SetTexture("_MainTex", font.material.mainTexture);
-
-            TextMesh textMesh = gizmoSquare.AddComponent<TextMesh>();
-            textMesh.text = text;
-            textMesh.characterSize = 0.05f;
-            textMesh.fontSize = 300;
-            textMesh.anchor = TextAnchor.MiddleCenter;
-            textMesh.color = Color.black;
-            textMesh.font = font;
-            
-            renderer.sortingLayerName = "Gizmos"; // Set to the desired sorting layer name
-            renderer.sortingOrder = 2; 
-
-            gizmoSquare.transform.position = new Vector3(coordinates.x, coordinates.y, -5f);
-            gizmoSquare.transform.parent = parent.transform;
-
-            return gizmoSquare;
-        }
+        // private static GameObject InstantiateGizmoTextAtCoordinates(Vector3 coordinates, string text, GameObject parent) {
+        //     GameObject gizmoSquare = new GameObject("GizmoText");
+        //     MeshRenderer renderer = gizmoSquare.AddComponent<MeshRenderer>();
+        //
+        //     // Create a new material using the "TextMeshPro/Mobile/Distance Field" shader
+        //     Material material = new Material(Shader.Find("TextMeshPro/Mobile/Distance Field"));
+        //     renderer.material = material;
+        //
+        //     // Load the custom font and assign it to the material's texture property
+        //     Font font = Resources.Load<Font>("Kaph_Font/OpenType (.otf)/Kaph-Regular");
+        //     material.SetTexture("_MainTex", font.material.mainTexture);
+        //
+        //     TextMesh textMesh = gizmoSquare.AddComponent<TextMesh>();
+        //     textMesh.text = text;
+        //     textMesh.characterSize = 0.05f;
+        //     textMesh.fontSize = 300;
+        //     textMesh.anchor = TextAnchor.MiddleCenter;
+        //     textMesh.color = Color.black;
+        //     textMesh.font = font;
+        //     
+        //     renderer.sortingLayerName = "Gizmos"; // Set to the desired sorting layer name
+        //     renderer.sortingOrder = 2; 
+        //
+        //     gizmoSquare.transform.position = new Vector3(coordinates.x, coordinates.y, -5f);
+        //     gizmoSquare.transform.parent = parent.transform;
+        //
+        //     return gizmoSquare;
+        // }
         
         private static GameObject RenderRoomAtCoordinates(Vector2 coordinates, string roomId, GameObject dungeonParent) {
             GameObject roomPrefab = Generator.DungeonGenerator.GetRoomPrefabFromID(roomId);

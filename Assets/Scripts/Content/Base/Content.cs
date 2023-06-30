@@ -1,5 +1,5 @@
 namespace Content {
     public class Content {
-        public ContentMetaData metaData;
+        // Some data about the Content as well as Base methods the Content can use. 
     }
 }

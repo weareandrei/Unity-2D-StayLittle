@@ -41,7 +41,9 @@ namespace HoneyGrid2D
 
             // If the type doesn't implement ICloneable, you can handle the scenario accordingly.
             // For example, you can throw an exception or return the initial value as-is.
-            throw new InvalidOperationException($"The type {typeof(T)} does not implement ICloneable.");
+            return default(T);
+
+            // throw new InvalidOperationException($"The type {typeof(T)} does not implement ICloneable.");
         }
 
     }

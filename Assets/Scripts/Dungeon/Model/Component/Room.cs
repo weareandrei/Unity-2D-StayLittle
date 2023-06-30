@@ -33,15 +33,15 @@ namespace Dungeon.Model {
             public int right;
         };
         
-        public CloneableList<ContentPointData> GetContentPoints() {
+        public List<ContentPoint> GetContentPoints() {
             // Find the "ContentPoints" GameObject in this Room Instance
             Transform contentPointsParent = transform.Find("ContentPoints");
-            CloneableList<ContentPointData> contentPoints = new CloneableList<ContentPointData>();
+            List<ContentPoint> contentPoints = new CloneableList<ContentPoint>();
     
             // Then find it's children "ContentPoint"
             if (contentPointsParent != null) {
                 foreach (Transform childTransform in contentPointsParent) {
-                    ContentPointData contentPointData = childTransform.GetComponent<ContentPoint>().GetContentPointData();
+                    ContentPoint contentPointData = childTransform.GetComponent<ContentPoint>();
                     // contentPoints.Add(childTransform.GetComponent<ContentPoint>());
                     contentPoints.Add(contentPointData);
                 }
@@ -52,7 +52,7 @@ namespace Dungeon.Model {
             return contentPoints;
         }
         
-        public static CloneableList<ContentPointData> GetRoomContentPoints(Room room) {
+        public static List<ContentPoint> GetRoomContentPoints(Room room) {
             return room.GetContentPoints();
         }
 

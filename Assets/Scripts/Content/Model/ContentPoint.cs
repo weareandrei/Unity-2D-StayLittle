@@ -4,11 +4,12 @@ using UnityEngine;
 namespace Content {
     public class ContentPoint : MonoBehaviour {
         [SerializeField]
-        public ContentPointData data;
+        public ContentType type;
+        public ContentPayload payload;
 
-        public ContentPointData GetContentPointData() {
-            return data;
-        }
+        // public ContentPointData GetContentPointData() {
+        //     return data;
+        // }
         
     }
 }

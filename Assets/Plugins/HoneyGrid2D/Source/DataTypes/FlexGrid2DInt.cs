@@ -5,10 +5,6 @@ namespace HoneyGrid2D {
             initialCellValue = 0;
         }
         
-        public FlexGrid2DInt(int size) : base(size, 0) {
-            initialCellValue = 0;
-        }
-
         public override object Clone() {
             FlexGrid2DInt clone = new FlexGrid2DInt(rows[0].cells.Count, rows.Count);
             for (int y = 0; y < rows.Count; y++)

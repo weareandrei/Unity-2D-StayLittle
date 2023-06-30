@@ -20,44 +20,55 @@ namespace Dungeon.Generator {
             // Insert a function to DisableWrongExits() here
 
             _contentsMap = new ContentsMap();
+            PrebuildContentsMap();
             
-            _contentsMap.contentPointGrid = new FlexGrid2DSpecial<CloneableList<ContentPointData>>(
-                _roomMap.map.getXSize(),
-                _roomMap.map.getYSize(),
-                new CloneableList<ContentPointData>()
-            );
-
-            _contentsMap.contentPointsAll = FindAllContentPoints(); // todo: maybe CollectibleContentPoints only ?
-            _contentsMap.contentPointsUsed = ContentPointSelector();
+            // _contentsMap.contentPointsAll = FindAllContentPoints(); // todo: maybe CollectibleContentPoints only ?
+            // _contentsMap.contentPointsUsed = ContentPointSelector();
 
             return _contentsMap;
         }
 
-        private static List<ContentPointData> FindAllContentPoints() {
-            List<ContentPointData> contentPointsFound = new List<ContentPointData>();
-            
-            for (int y = 0; y < _roomMap.map.getYSize() - 1; y++) {
-                for (int x = 0; x < _roomMap.map.getXSize() - 1; x++) {
+        private static void PrebuildContentsMap() {
+            _contentsMap.map = new FlexGrid2DSpecial<List<ContentPayload>>(
+                _roomMap.map.getXSize(),
+                _roomMap.map.getYSize()
+            );
+
+            for (int y = 0; y < _roomMap.map.getYSize(); y++) {
+                for (int x = 0; x < _roomMap.map.getXSize(); x++) {
                     string thisRoomID = _roomMap.map.GetCellActual(x, y);
                     if (thisRoomID != "") {
-                        CloneableList<ContentPointData> contentPoints = FindThisRoomContentPoints(thisRoomID);
-                        contentPointsFound.AddRange(contentPoints);
-                        _contentsMap.contentPointGrid.UpdateCell(x, y, contentPoints);
+                        List<ContentPoint> contentPoints =
+                            RoomGenerator.FindRoomInstanceByID(thisRoomID).GetContentPoints();
+                        List<ContentPayload> payloads = new List<ContentPayload>();
+                        
+                        foreach (ContentPoint contentPoint in contentPoints) {
+                            ContentPayload payload = new ContentPayload(contentPoint.type);
+                            payloads.Add(payload);
+                        }
+                        
+                        _contentsMap.map.UpdateCell(x, y, payloads);
                     }
                 }
             }
-
-            return contentPointsFound;
         }
 
-        private static CloneableList<ContentPointData> FindThisRoomContentPoints(string roomID) {
-            Room thisRoom = RoomGenerator.FindRoomInstanceByID(roomID);
-            return Room.GetRoomContentPoints(thisRoom);
-        }
-
-        private static List<ContentPointData> ContentPointSelector() {
-            return _contentsMap.contentPointsAll;
-        }
+        // private static List<ContentPointData> FindAllContentPoints() {
+        //     List<ContentPointData> contentPointsFound = new List<ContentPointData>();
+        //     
+        //     for (int y = 0; y < _roomMap.map.getYSize() - 1; y++) {
+        //         for (int x = 0; x < _roomMap.map.getXSize() - 1; x++) {
+        //             string thisRoomID = _roomMap.map.GetCellActual(x, y);
+        //             if (thisRoomID != "") {
+        //                 CloneableList<ContentPointData> contentPoints = FindThisRoomContentPoints(thisRoomID);
+        //                 contentPointsFound.AddRange(contentPoints);
+        //                 _contentsMap.contentPointGrid.UpdateCell(x, y, contentPoints);
+        //             }
+        //         }
+        //     }
+        //
+        //     return contentPointsFound;
+        // }
     }
     
     // This is a shortcut. We use the List<T> but just add a Cloneale interface to it and implement it.
