@@ -28,6 +28,7 @@ namespace Dungeon.Generator {
             }
 
             _newRoomMap.map.RemoveEmptyRowsAndColumns();
+            DungeonGenerator.roomMapEntrances = _entrances;
             // _newRoomMap.map.DisplayGrid();
             return _newRoomMap;
         }

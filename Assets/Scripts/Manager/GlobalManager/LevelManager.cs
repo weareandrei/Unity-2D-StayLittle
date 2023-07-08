@@ -1,7 +1,9 @@
 using System;
-using Interaction;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Interaction;
+using Manager.SubManager;
 
 namespace Manager {
     
@@ -13,44 +15,33 @@ namespace Manager {
         public static string currentSceneOpen = "Home4";
         // selectLevelBasedOnScene() will decide on the Level based on the [currentSceneOpen]
         [SerializeField]
-        public static string currentLevelOpen = ""; 
+        public static string currentLevelOpen = "";
+        
+        // ----- Dungeon Level -----
+        [SerializeField]
+        private static ElevatorMovementParameters elevatorMovementParameters;
 
-        // static LevelManager() {
-        //     selectLevelBasedOnScene(currentSceneOpen);
-        //     Debug.Log("Level Manager initialized");
-        // }
-
-        public static void LoadScenes() {
-            loadLevelBasedOnScene(currentSceneOpen);
-        }
-
-
-        private static void loadLevelBasedOnScene(string thisScene) {
-            switch(thisScene) {
+        public static void LoadLevelBasedOnScene(string sceneName) {
+            switch(sceneName) {
                 case "Home1":
-                    currentLevelOpen = "Home";
-                    LoadHomeLevel();
+                    // currentLevelOpen = "Home1";
+                    // LoadHome1Level();
                     break;
                 case "Home2":
-                    currentLevelOpen = "Home";
-                    LoadHomeLevel();
+                    currentLevelOpen = "Home2";
+                    LoadHome2Level();
                     break;
                 case "Home3":
-                    currentLevelOpen = "Home";
-                    LoadHomeLevel();
+                    currentLevelOpen = "Home3";
+                    LoadHome3Level();
                     break;
                 case "Home4":
-                    currentLevelOpen = "Home";
-                    LoadHomeLevel();
+                    currentLevelOpen = "Home4";
+                    LoadHome4Level();
                     break;
-                case "Home5":
-                    currentLevelOpen = "Home";
-                    LoadHomeLevel();
-                    break;
-
-                case "Elevator":
-                    currentLevelOpen = "Elevator";
-                    LoadElevatorLevel();
+                case "Dungeon":
+                    currentLevelOpen = "Dungeon";
+                    LoadDungeonLevel();
                     break;
             }
         }
@@ -64,48 +55,63 @@ namespace Manager {
 
         }
 
-        public static void ChangeSceneTriggered(string sceneName) {
-            // var sceneLoaded = SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-            // sceneLoaded.completed = (x) => {
-            //     SceneBound[] sceneBounds = FindObjectsOfType<SceneBound>();
-                
-            // };
-            // SceneManager.UnloadSceneAsync(SceneManager.Scene.name);
-        }
-        
-        public static void MoveObjectToAnotherScene(GameObject other, string goToScene) {
-            // It's already open so we don't need to load it. Just teleport to appropriate location.
+        public static void MoveObjectToAnotherScene(GameObject other, string currentScene) {
             SceneBound[] sceneBounds = GameObject.FindObjectsOfType<SceneBound>();
         
             foreach (SceneBound sceneBound in sceneBounds) {
-                // Check if this SceneBound GameObject is located on the needed scene,
-                //  because it can be on any other loaded scene.
-                if (sceneBound.gameObject.scene.name == goToScene) {
-                    if (sceneBound.connectedSceneName == currentSceneOpen) {
-                        Vector3 teleportToLocation = sceneBound.gameObject.transform.position;
-                        other.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
-                        currentSceneOpen = goToScene;
-                    }
-                }   
+                if (sceneBound.connectedSceneName == currentScene) {
+                    GameObject spawnPoint = sceneBound.gameObject.transform.Find("SpawnPoint")?.gameObject;
+                    Vector3 teleportToLocation = spawnPoint.transform.position;
+                    other.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
+                    
+                    // Move the gameObject to the connected scene
+                    Scene destinationScene = SceneManager.GetSceneByName(currentScene);
+                    SceneManager.MoveGameObjectToScene(other, destinationScene);
+                }
             }
         }
+        
+        // This will load all scenes at once to allow async working for all at the same tine
+        // private static void LoadHomeLevel() {
+        //     // SceneManager.LoadScene("Home1", LoadSceneMode.Additive);
+        //     SceneManager.LoadScene("Home2", LoadSceneMode.Additive);
+        //     SceneManager.LoadScene("Home3", LoadSceneMode.Additive);
+        //     SceneManager.LoadScene("Home4", LoadSceneMode.Additive);
+        //     // SceneManager.LoadScene("Home5", LoadSceneMode.Additive);
+        // }
 
-        // This will load all scenes at once to allow async loading for all at the same tine
-        private static void LoadHomeLevel() {
-            // SceneManager.LoadScene("Home1", LoadSceneMode.Additive);
-            SceneManager.LoadScene("Home2", LoadSceneMode.Additive);
-            SceneManager.LoadScene("Home3", LoadSceneMode.Additive);
-            SceneManager.LoadScene("Home4", LoadSceneMode.Additive);
-            // SceneManager.LoadScene("Home5", LoadSceneMode.Additive);
+        private static void LoadHome1Level() {
+            AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home1", LoadSceneMode.Single);
+        }
+        
+        private static void LoadHome2Level() {
+            AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home2", LoadSceneMode.Single);
+        }
+        
+        private static void LoadHome3Level() {
+            AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home3", LoadSceneMode.Single);
+        }
+        
+        private static void LoadHome4Level() {
+            AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home4", LoadSceneMode.Single);
         }
 
-        private static void LoadElevatorLevel() {
-            // SceneManager.LoadScene("Home1", LoadSceneMode.Additive);
-            SceneManager.LoadScene("Elevator");
-            // SceneManager.LoadScene("Home5", LoadSceneMode.Additive);
+        private static void LoadDungeonLevel() {
+            elevatorMovementParameters = GameObject.Find("Elevator")
+                .GetComponent<ElevatorController>().moveParams;
+            elevatorMovementParameters.startInstantly = true;
+            AsyncOperation loadingState = SceneManager.LoadSceneAsync("Dungeon", LoadSceneMode.Single);
+            loadingState.completed += OnDungeonLoaded;
+        }
+        
+        private static void OnDungeonLoaded(AsyncOperation operation) {
+            GameObject.Find("Elevator").GetComponent<ElevatorController>()
+                .Move(elevatorMovementParameters);
+            
+            DungeonManager.RenderDungeonsAll();
         }
 
-        public static void setCurrentSceneActive() {
+        public static void SetCurrentSceneActive() {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentSceneOpen));
         }
 

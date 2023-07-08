@@ -74,7 +74,7 @@ public class NewPlayer : PhysicsObject
         // graphicSprites = GetComponentsInChildren<SpriteRenderer>();
 
         SetGroundType();
-        DontDestroyOnLoad(transform.gameObject);
+        // DontDestroyOnLoad(transform.gameObject);
     }
 
     private void Update()

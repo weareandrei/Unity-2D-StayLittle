@@ -1,5 +1,7 @@
+using System.Numerics;
 using Manager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Interaction {
     
@@ -9,7 +11,9 @@ namespace Interaction {
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.CompareTag("Player")) {
-                LevelManager.MoveObjectToAnotherScene(other.gameObject, connectedSceneName);
+                // string currentScene = SceneManager.GetActiveScene().name;
+                LevelManager.LoadLevelBasedOnScene(connectedSceneName);
+                // LevelManager.MoveObjectToAnotherScene(other.gameObject, currentScene);
             }
         }
     }

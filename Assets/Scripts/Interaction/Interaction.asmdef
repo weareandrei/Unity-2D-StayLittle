@@ -1,7 +1,10 @@
 {
     "name": "Interaction",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:3583e62e37dfa44b58bf7c0c2a49ca8e",
+        "GUID:13b87edb20b914994a8f09a3e3bbdf8d"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

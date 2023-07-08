@@ -128,9 +128,9 @@ namespace HoneyGrid2D {
             for (int rowIndex = rows.Count - 1; rowIndex >= 0; rowIndex--) {
                 if (IsRowEmpty(rowIndex)) {
                     rows.RemoveAt(rowIndex);
-                    zeroYOffset--;
-                } else {
-                    break;
+                    if (rowIndex == zeroYOffset - 1) {
+                        zeroYOffset--;
+                    }
                 }
             }
         }

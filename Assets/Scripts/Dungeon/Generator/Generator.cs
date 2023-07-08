@@ -13,6 +13,8 @@ namespace Dungeon.Generator {
         public static GameObject[] roomPrefabsAvailable;
         public static List<Room> roomsAvailable;
         
+        public static List<Vector2Int> roomMapEntrances;
+
         public static Exit.SidePosition exitDirection;
         
         public static string seedState;

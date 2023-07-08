@@ -21,7 +21,8 @@ namespace Manager.SubManager {
 
         public static void RenderDungeonsAll() {
             foreach (DungeonData dungeonData in DungeonList._dungeons) {
-                DungeonRenderer.RenderDungeon(
+                DungeonRenderer renderer = new DungeonRenderer();
+                renderer.RenderDungeon(
                     dungeonData, 
                     DungeonGenerator.GenerateDungeonBySeed(dungeonData.seed)
                 );

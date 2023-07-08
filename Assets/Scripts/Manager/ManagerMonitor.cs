@@ -1,3 +1,5 @@
+using Dungeon.Data;
+using Manager.SubManager;
 using UnityEngine;
 
 namespace Manager {
@@ -6,9 +8,14 @@ namespace Manager {
         public string currentSceneOpen;
         public string currentLevelOpen;
 
+        [Header("DungeonManager")] 
+        public int availableDungeons;
+        
         private void FixedUpdate() {
             currentSceneOpen = LevelManager.currentSceneOpen;
             currentLevelOpen = LevelManager.currentLevelOpen;
+
+            availableDungeons = DungeonList._dungeons.Count;
         }
 
     }
