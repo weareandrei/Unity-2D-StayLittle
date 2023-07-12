@@ -50,8 +50,8 @@ namespace Interaction
             // Selecting a random entrance to go into
             int numberOfEntrances = selectedDungeon.entrances.Count;
             int randomNumber = Random.Range(0, numberOfEntrances-1);
-            int entranceCoordFromDungeonOrigin =
-                selectedDungeon.entrances[randomNumber].y * Consts.Get<int>("SizeOfRoom_PX");
+            float entranceCoordFromDungeonOrigin =
+                selectedDungeon.entrances[randomNumber].y * Consts.Get<float>("SizeOfRoom_PX");
             return selectedDungeon.coordinates.y + entranceCoordFromDungeonOrigin;
         }
 
