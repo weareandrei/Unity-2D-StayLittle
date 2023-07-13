@@ -24,7 +24,7 @@ namespace Manager.SubManager {
                 DungeonRenderer renderer = new DungeonRenderer();
                 renderer.RenderDungeon(
                     dungeonData, 
-                    DungeonGenerator.GenerateDungeonBySeed(dungeonData.seed)
+                    DungeonGenerator.GenerateDungeonBySeed(dungeonData.seed, dungeonData.coordinates)
                 );
             }
         }

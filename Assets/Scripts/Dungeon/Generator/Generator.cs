@@ -20,7 +20,9 @@ namespace Dungeon.Generator {
         public static string seedState;
         private static string _seedOriginalState;
         
-        public static DungeonMapData GenerateDungeonBySeed(string seedGiven) {
+        public static DungeonMapData GenerateDungeonBySeed(string seedGiven, Vector2 dungeonCoordinates) {
+            exitDirection = dungeonCoordinates.x == 1 ? Exit.SidePosition.Left : Exit.SidePosition.Right;
+            
             DungeonMapData dungeonMapData = new DungeonMapData();
             seedState = seedGiven;
             _seedOriginalState = seedGiven;

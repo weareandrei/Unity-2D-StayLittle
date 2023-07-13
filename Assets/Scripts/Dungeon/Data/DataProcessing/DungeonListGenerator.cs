@@ -43,10 +43,8 @@ namespace Dungeon.Data {
             if (dungeonDirection % 2 != 0) {
                 dungeonCoordinates.x = 1; // right dungeon
             }
-
-            Generator.DungeonGenerator.exitDirection =
-                dungeonCoordinates.x == 1 ? Exit.SidePosition.Left : Exit.SidePosition.Right;
-            DungeonMapData dungeonMapData = Generator.DungeonGenerator.GenerateDungeonBySeed(dungeonSeed);
+            
+            DungeonMapData dungeonMapData = Generator.DungeonGenerator.GenerateDungeonBySeed(dungeonSeed, dungeonCoordinates);
             
             // List<Vector2Int> dungeonEntrances = FindDungeonEntrances(dungeonMapData.roomMap.map, dungeonDirection);
             List<Vector2Int> dungeonEntrances = Generator.DungeonGenerator.roomMapEntrances;

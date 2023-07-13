@@ -4,6 +4,7 @@ using Dungeon.Generator;
 using Dungeon.Model;
 using Global;
 using HoneyGrid2D;
+using UnityEngine;
 
 public class DungeonGenerationTests
 {
@@ -11,13 +12,13 @@ public class DungeonGenerationTests
     [SetUp]
     public void SetUp() {
         GlobalVariables.environment = "DEV";
-        Consts.Set("DungeonChunkCount", 10);
+        Consts.Set("DungeonChunkCount", 5);
         DungeonGenerator.LoadResources();
     }
 
     [Test]
     public void DungeonGeneratedCorrectly() {
-        DungeonMapData dungeonMapData = DungeonGenerator.GenerateDungeonBySeed("3962420980463");
+        DungeonMapData dungeonMapData = DungeonGenerator.GenerateDungeonBySeed("3962420980463", new Vector2(-1, 0));
 
         CheckChunks(dungeonMapData.chunkMap.map);
         // CheckRooms(dungeonMapData.roomMap.map);

@@ -40,8 +40,38 @@ namespace Dungeon.Generator {
                     _contentsMap.map.GetCellActual(x, y).walls = EnableThisRoomWalls(new Vector2Int(x, y));
                 }
             }
+            
+            EnableEntranceWalls();
         }
 
+        private static void EnableEntranceWalls() {
+            foreach (Vector2Int entraceCoord in DungeonGenerator.roomMapEntrances) {
+                FlexGrid2DBool wallsMap = _contentsMap.map.GetCellActual(entraceCoord.x, entraceCoord.y).walls;
+                _contentsMap.map.GetCellActual(entraceCoord.x, entraceCoord.y).walls = 
+                    ForceEnableThisRoomWalls(DungeonGenerator.exitDirection, wallsMap);
+            }
+        }
+
+        private static FlexGrid2DBool ForceEnableThisRoomWalls(Exit.SidePosition side, FlexGrid2DBool wallsMap) {
+            switch (side) {
+                case Exit.SidePosition.Left: {
+                    for (int y = 0; y < Consts.Get<int>("RoomSize")+1; y++) {
+                        wallsMap.UpdateCell(0, y, false);
+                    }
+
+                    break;
+                }
+                case Exit.SidePosition.Right: {
+                    for (int y = 0; y < Consts.Get<int>("RoomSize")+1; y++) {
+                        wallsMap.UpdateCell(Consts.Get<int>("RoomSize") + 1, y, false);
+                    }
+
+                    break;
+                }
+            }
+
+            return wallsMap; // todo: top and bottom option maybe needed in future ?
+        }
         private static FlexGrid2DBool EnableThisRoomWalls(Vector2Int roomCoordinates) {
             FlexGrid2DBool wallsMap = new FlexGrid2DBool(Consts.Get<int>("RoomSize") + 2,
                 Consts.Get<int>("RoomSize") + 2, true);
