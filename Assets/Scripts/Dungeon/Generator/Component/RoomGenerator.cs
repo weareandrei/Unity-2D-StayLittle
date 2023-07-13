@@ -10,33 +10,43 @@ namespace Dungeon.Generator {
         private static ChunkMap _chunkMap;
         private static RoomMap _newRoomMap;
         private static ExitMap _exitMap;
+        private static List<Vector2Int> _entrances;
 
         public static List<Room> roomLayoutsAvailable;
 
         public static RoomMap GenerateRooms(ChunkMap chunkMap) {
-            _chunkMap = chunkMap;
-            _newRoomMap = PrebuildRoomMap(new RoomMap (
-                    chunkMap.map.getXSize() * Consts.Get<int>("ChunkSize"),
-                    chunkMap.map.getYSize() * Consts.Get<int>("ChunkSize")
-                ));
-            
-            _exitMap = new ExitMap((FlexGrid2DString)_newRoomMap.map.Clone(),
-                              _newRoomMap.map.getXSize(), 
-                              _newRoomMap.map.getYSize());
-            
+            PreLoadMaps(chunkMap);
+
             for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
                 for (int x = 0; x < _newRoomMap.map.getXSize()-1; x++) {
                     RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
                     if (IsRoomEmpty(coordinatesFull)) continue;
 
                     string selectedRoomID = SelectRoomForThisCell(coordinatesFull.room_RoomMap);
-                    // Insert new room ID
                     _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, selectedRoomID);
                 }
             }
 
+            _newRoomMap.map.RemoveEmptyRowsAndColumns();
+            DungeonGenerator.roomMapEntrances = _entrances;
             // _newRoomMap.map.DisplayGrid();
             return _newRoomMap;
+        }
+
+        private static void PreLoadMaps(ChunkMap chunkMap) {
+            _chunkMap = chunkMap;
+            
+            _newRoomMap = PrebuildRoomMap(new RoomMap (
+                chunkMap.map.getXSize() * Consts.Get<int>("ChunkSize"),
+                chunkMap.map.getYSize() * Consts.Get<int>("ChunkSize")
+            ));
+            
+            UpdateEntrances();
+            
+            _exitMap = new ExitMap((FlexGrid2DString)_newRoomMap.map.Clone(),
+                _newRoomMap.map.getXSize(), 
+                _newRoomMap.map.getYSize(), 
+                _entrances[0]);
         }
 
         private static RoomMap PrebuildRoomMap(RoomMap roomMap) {
@@ -56,15 +66,81 @@ namespace Dungeon.Generator {
                         continue;
                     }
                     // Correctly takes the Chunk with rooms inside. But does not find the actual roomID here : ...
-                    string thisRoomID = ChunkGenerator.FindChunkLayoutByID(thisChunkID).rooms.GetCell(
+                    string chunkCellContents = ChunkGenerator.FindChunkLayoutByID(thisChunkID).rooms.GetCell(
                         coordinatesFull.room_ThisChunk.x,
                         coordinatesFull.room_ThisChunk.y);
                     
-                    roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, thisRoomID);
+                    roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, chunkCellContents);
                 }
             }
 
             return roomMap;
+        }
+        
+        private static string SelectRoomForThisCell(Vector2Int cellCoordinates) {
+            List<string> roomsAvailable = GetAvailableRooms(cellCoordinates, roomLayoutsAvailable);
+            
+            if (roomsAvailable.Count == 0) {
+                return "-1";
+            }
+            
+            return roomsAvailable[DungeonGenerator.UseSeed(roomsAvailable.Count-1)];
+        }
+
+        private static List<string> GetAvailableRooms(Vector2Int cellCoordinates, List<Room> layoutsAvailable) {
+            // Here we initialise requirements. And need to ONLY find the Soft Exits (neccessary)
+            RoomRequirements requirements = new RoomRequirements(cellCoordinates, _newRoomMap.map, _exitMap);
+            List<string> roomsAvailable = GetRoomsBasedOnRequirements(requirements.ToGrid(), layoutsAvailable);
+            if (roomsAvailable.Count == 0) {
+                // todo : can't find appropriate rooms ? roomIDs.Count == 0
+                return roomsAvailable;
+            }
+
+            bool improveStatus = true;
+            while (roomsAvailable.Count != 0 && improveStatus == true) {
+                improveStatus = requirements.Improve();
+                roomsAvailable = GetRoomsBasedOnRequirements(requirements.ToGrid(), layoutsAvailable);
+            }
+
+            if (improveStatus == false) {
+                // Then we don't need to roll back the requirements
+            }
+
+            requirements.RollBack();
+            roomsAvailable = GetRoomsBasedOnRequirements(requirements.ToGrid(), layoutsAvailable);
+
+            return roomsAvailable;
+        }
+
+        private static List<string> GetRoomsBasedOnRequirements(Grid2DString requirements, List<Room> layoutsAvailable) {
+            List<string> roomLayouts = new List<string>();
+
+            foreach (Room assessedRoomLayout in layoutsAvailable) {
+                // Must check if it includes all the exits
+                bool isSimilar = true;
+                for (int y = 0; y < requirements.Size-1; y++) {
+                    for (int x = 0; x < requirements.Size-1; x++) {
+                        if (requirements.GetCell(x, y) == "2") { // Check cells that MUST have exits
+                            if (assessedRoomLayout.roomLayout.GetCell(x,y) != "2") {
+                                isSimilar = false;
+                            }
+                        }
+                        if (requirements.GetCell(x, y) == "0") { // Check cells that MUST be empty
+                            if (assessedRoomLayout.roomLayout.GetCell(x,y) != "0") {
+                                isSimilar = false;
+                            }
+                        }
+                    }
+                }
+
+                isSimilar = CheckNotStrictExits(requirements, assessedRoomLayout);
+
+                if (isSimilar) {
+                    roomLayouts.Add(assessedRoomLayout.roomID);
+                }
+            }
+            
+            return roomLayouts;
         }
 
         private static RoomCoordinatesFull GetCoordinatesFull(Vector2Int roomCoordinatesOnGrid) {
@@ -90,6 +166,106 @@ namespace Dungeon.Generator {
             try { coordinatesFull.chunk = ChunkGenerator.FindChunkLayoutByID(thisChunkID); } catch (ArgumentException e) { }
 
             return coordinatesFull;
+        }
+        
+        private static void UpdateEntrances() {
+            List<Vector2Int> allEdgeRooms = new List<Vector2Int>();
+            
+            int x = DetermineEntranceColumnCoordinateX();
+            if (x == -1) { throw new ArgumentException("No Rooms in this RoomMap"); }
+
+            for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
+                if (_newRoomMap.map.GetCellActual(x, y) != "") {
+                    // If there is a room at this edge cell
+                    allEdgeRooms.Add(new Vector2Int(x, y));
+                }
+            }
+
+            _entrances = SelectEntrances(allEdgeRooms);
+            PutEntrances(_entrances);
+        }
+
+        private static int DetermineEntranceColumnCoordinateX() {
+            int x = 0;
+
+            int direction = 1;
+            int startX = 0;
+            int endX = _newRoomMap.map.getXSize() - 1;
+            // Left = Right, Right = Left on RoomMap.
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left) {
+                direction = -1;
+                startX = _newRoomMap.map.getXSize() - 1;
+                endX = 0;
+                
+                for (x = startX; x > endX; x = x+direction) {
+                    bool foundRoom = false;
+                    for (int y = 0; y < _newRoomMap.map.getYSize() - 1; y++) {
+                        if (_newRoomMap.map.GetCellActual(x, y) != "") {
+                            return x;
+                        }
+                    }
+                }
+            }
+            
+            for (x = startX; x < endX; x = x+direction) {
+                bool foundRoom = false;
+                for (int y = 0; y < _newRoomMap.map.getYSize() - 1; y++) {
+                    if (_newRoomMap.map.GetCellActual(x, y) != "") {
+                        return x;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        private static List<Vector2Int> SelectEntrances(List<Vector2Int> allEdgeRooms) {
+            List<Vector2Int> selectedEntrancesCoordinates = new List<Vector2Int>();
+            int numberOfEntrancesAllowed = DungeonGenerator.UseSeed(allEdgeRooms.Count / 2);
+
+            for (int i = 0; i < numberOfEntrancesAllowed; i++) {
+                int randomIndex = DungeonGenerator.UseSeed(allEdgeRooms.Count - 1);
+                allEdgeRooms.RemoveAt(randomIndex);
+            }
+
+            return allEdgeRooms;
+        }
+
+        private static void PutEntrances(List<Vector2Int> entrances) {
+            List<Room> entranceLayoutsAvailable = FindEntranceRooms();
+            
+            foreach (Vector2Int entrance in entrances) {
+                List<string> roomsAvailable = GetAvailableRooms(entrance, entranceLayoutsAvailable);
+                
+                if (roomsAvailable.Count == 0) {
+                    continue;
+                }
+
+                bool selectedToBeEntrance = DungeonGenerator.UseSeed(3) == 1;
+                if (selectedToBeEntrance) {
+                    string selectedRoomID = roomsAvailable[DungeonGenerator.UseSeed(roomsAvailable.Count-1)];
+                    _newRoomMap.PlaceCellOnMap(entrance, selectedRoomID);
+                }
+                
+            }
+        }
+
+        private static List<Room> FindEntranceRooms() {
+            List<Room> entrancesAvailable = new List<Room>();
+                
+            foreach (Room assessedRoomLayout in roomLayoutsAvailable) {
+                // Must check if it includes all the exits
+                if (DungeonGenerator.exitDirection == Exit.SidePosition.Right &&
+                    assessedRoomLayout.type == RoomType.EntranceRight) {
+                    entrancesAvailable.Add(assessedRoomLayout);
+                }
+                if (DungeonGenerator.exitDirection == Exit.SidePosition.Left &&
+                    assessedRoomLayout.type == RoomType.EntranceLeft) {
+                    entrancesAvailable.Add(assessedRoomLayout);
+                }
+            }
+
+            return entrancesAvailable;
         }
 
         private static Vector2Int GetInverseInChunkCoordinates(Vector2Int actualInChunkCoordinates) {
@@ -123,62 +299,6 @@ namespace Dungeon.Generator {
             }
 
             return new Vector2Int(chunkX, chunkY);
-        }
-
-        private static string SelectRoomForThisCell(Vector2Int cellCoordinates) {
-            // Here we initialise requirements. And need to ONLY find the Soft Exits (neccessary)
-            RoomRequirements requirements = new RoomRequirements(cellCoordinates, _newRoomMap.map, _exitMap);
-            List<string> roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
-            if (roomsAvailable.Count == 0) {
-                // todo : can't find appropriate rooms ? roomIDs.Count == 0
-                return "-1";
-            }
-
-            bool improveStatus = true;
-            while (roomsAvailable.Count != 0 && improveStatus == true) {
-                improveStatus = requirements.Improve();
-                roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
-            }
-
-            if (improveStatus == false) {
-                // Then we don't need to roll back the requirements
-            }
-
-            requirements.RollBack();
-            roomsAvailable = GetRoomBasedOnRequirements(requirements.ToGrid());
-            return roomsAvailable[DungeonGenerator.UseSeed(roomsAvailable.Count-1)];
-
-        }
-
-        private static List<string> GetRoomBasedOnRequirements(Grid2DString requirements) {
-            List<string> roomLayouts = new List<string>();
-
-            foreach (Room assessedRoomLayout in roomLayoutsAvailable) {
-                // Must check if it includes all the exits
-                bool isSimilar = true;
-                for (int y = 0; y < requirements.Size-1; y++) {
-                    for (int x = 0; x < requirements.Size-1; x++) {
-                        if (requirements.GetCell(x, y) == "2") { // Check cells that MUST have exits
-                            if (assessedRoomLayout.roomLayout.GetCell(x,y) != "2") {
-                                isSimilar = false;
-                            }
-                        }
-                        if (requirements.GetCell(x, y) == "0") { // Check cells that MUST be empty
-                            if (assessedRoomLayout.roomLayout.GetCell(x,y) != "0") {
-                                isSimilar = false;
-                            }
-                        }
-                    }
-                }
-
-                isSimilar = CheckNotStrictExits(requirements, assessedRoomLayout);
-
-                if (isSimilar) {
-                    roomLayouts.Add(assessedRoomLayout.roomID);
-                }
-            }
-            
-            return roomLayouts;
         }
 
         private static bool CheckNotStrictExits(Grid2DString requirements, Room assessedRoomLayout) {
@@ -274,14 +394,23 @@ namespace Dungeon.Generator {
         }
 
         public static Room FindRoomInstanceByID(string id) {
-            bool isParsableID = int.TryParse(id, out _); // _ means that we don't intend to use the out result
+            bool isId = ValidateID(id);
+            // bool isParsableID = int.TryParse(id, out _); // _ means that we don't intend to use the out result
             // Check if this is a string
             // Otherwise, it could be an E or an R
             
-            if (id == "" || !isParsableID) {
-                throw new ArgumentException("Chunk ID can't be empty");
+            if (id == "" || !isId) {
+                throw new ArgumentException("Room ID can't be empty");
             }
             return roomLayoutsAvailable.FindAll( room => room.roomID == id)[0];
+        }
+
+        private static bool ValidateID(string id) {
+            if (id != "R" || id != "E") {
+                return true;
+            }
+
+            return false;
         }
     }
 }

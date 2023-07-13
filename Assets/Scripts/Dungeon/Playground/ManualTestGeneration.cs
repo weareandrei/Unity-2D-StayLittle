@@ -1,10 +1,15 @@
+using Dungeon;
+using Global;
 using UnityEngine;
 using Manager.SubManager;
 
 public class ManualTestGeneration : MonoBehaviour
 {
     void Start() {
-        DungeonManager.Initialize("3962420980463");
+        GlobalVariables.environment = "DEV";
+        Consts.Set("MaxDungeons", 2);
+        Consts.Set("DungeonChunkCount", 5);
+        DungeonManager.Initialize("5556444221");
         DungeonManager.RenderDungeonsAll();
     }
 }

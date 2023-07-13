@@ -1,0 +1,51 @@
+
+*****************************
+
+THANKS YOU FOR USING PRO PLATFORMER
+
+*****************************
+
+THIS ASSET MADE BY VEOdev
+
+*****************************
+
+PLEASE RATE AND LEAVE A REVIEW IT HELP ALOT
+
+*****************************
+
+IMPORTANT : 
+
+**********************************************************
+
+PLAYER CONTROLLR : ///
+- Attach the platfomer controller script to your character
+- Make sure to have a rigidbody2D & 2D Box Collider to your character / if you use circle collider 2D then change the it in the script too
+- Make sure to have a "Ladder" tag and a ladder layer and asigne it in the player controller in the inspector and use it in anything you want player to climb in
+- Make sure to have a wall layer for anything you want the player to do walljump on it or wall slide .. in this exemple we used the ground layer as a wall , it works too
+
+CAMERA : ///
+- Create and empty game object 'Camera Holder' and asigne the camera to it as a child (You can skip this stap if you dont use camera shake script)
+- Attach the CameraManager script to the Camera Holder and not to the main camera (You can skip this stap if you dont use camera shake script)
+- Attach the player to the camera script in the inspector
+- Attach the CameraShake script to the main camera and call the function "Shake()" from any script to do a camera shake (You can skip this stap if you dont use camera shake script)
+- Make sure to have Animation component in the main camera and attach the camera shake animation to it and uncheck play auto
+
+PLAYER STATE & ANIMATIONs : ///
+- Animations are easy to add with a boolean for every player state (Running , walking , in air , falling , climbing , Dashing ... )
+- You can delete the player state script or you can use it to update the animations
+
+**********************************************************
+
+** I Recommend you to use the exemple scene as a prototype and start from it to avoid further mistakes **
+
+ENJOY
+
+*****************************
+
+For any question contact me 
+merwanveo1@gmail.com
+instagram.com/marwan.veo
+
+*****************************
+
+VEOdev

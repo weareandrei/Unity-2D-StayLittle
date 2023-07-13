@@ -154,7 +154,7 @@ namespace Dungeon.Model {
         
         private bool getNextRequirement_Left(Vector2Int roomCoord) {
             try {
-                string roomID = roomMap.GetCellActual(roomCoord.x-1, roomCoord.y);
+                string roomID = roomMap.GetCellActual(roomCoord.x+1, roomCoord.y);
                 Room room = RoomGenerator.FindRoomInstanceByID(roomID);
             
                 int x = Consts.Get<int>("RoomSize") + 1;

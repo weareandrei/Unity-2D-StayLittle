@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Dungeon.Model;
 using UnityEngine;
 using Util;
@@ -11,6 +12,10 @@ namespace Dungeon.Generator {
         public static List<Chunk> chunkLayoutsAvailable;
         public static GameObject[] roomPrefabsAvailable;
         public static List<Room> roomsAvailable;
+        
+        public static List<Vector2Int> roomMapEntrances;
+
+        public static Exit.SidePosition exitDirection;
         
         public static string seedState;
         private static string _seedOriginalState;

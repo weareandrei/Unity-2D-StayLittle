@@ -9,25 +9,22 @@ namespace Dungeon.Generator {
         private static ChunkMap _newChunkMap;
         public static List<Chunk> chunkLayoutsAvailable;
 
+        private static Vector2Int _potentialEntrance = new Vector2Int(0,0);
+
         public static ChunkMap GenerateChunks() {
             _newChunkMap = new ChunkMap();
 
             List<string> chunksInUse = new List<string>(); // ID's
             List<Exit.PossibleExit> possibleExits = new List<Exit.PossibleExit>();
-            // Which exits do we use here? Actual or Abstract? So Top is at the top or at the bottom ?
-            //  Let's use the Abstract. So Top is at the bottom
+            // Here we use Abstract coordinate system. So Top is at the bottom (in Debug window)
 
-            // Place Entrance
-            Chunk entrance = GetEntranceLayout();
-            _newChunkMap.PlaceCellOnMap(new Vector2Int(0,0), entrance.ID);
-            
-            chunksInUse.Add(entrance.ID);
-            possibleExits.AddRange(
-                FindPossibleExits(entrance.rooms, 0, 0));
-            // todo: remember that 1 exit here is actually an entrance from the elevator
+            possibleExits.Add(new Exit.PossibleExit(1, 0, Exit.SidePosition.Right));
 
             while (chunksInUse.Count < Consts.Get<int>("DungeonChunkCount")) {
                 // _newChunkMap.map.DisplayGrid(); 
+                if (possibleExits.Count == 0) {
+                    break;
+                }
                 Exit.PossibleExit exit = possibleExits[0];
                 Vector2Int newChunkCoordinates = GetNextChunkCoordinatesBasedOnExit(exit);
 
@@ -46,7 +43,7 @@ namespace Dungeon.Generator {
                 
                 string newChunkId = SelectChunk(exit, newChunkCoordinates);
                 if (newChunkId == "not found") {
-                    possibleExits.Remove(exit); 
+                    possibleExits.Remove(exit);
                     continue;
                     
                     // todo: there is a bug. When E is at the angle of the ChunkLayout we can
@@ -61,6 +58,7 @@ namespace Dungeon.Generator {
                     FindPossibleExits(newChunk.rooms, newChunkCoordinates.x, newChunkCoordinates.y));
             }
 
+            _newChunkMap.map.RemoveEmptyRowsAndColumns();
             // _newChunkMap.map.DisplayGrid();
             return _newChunkMap;
         }
@@ -119,9 +117,6 @@ namespace Dungeon.Generator {
             int posX = chunkCoordinatesOnGrid.x;
             int posY = chunkCoordinatesOnGrid.y;
 
-            // Must check the chunks around
-            //    must be connected to all exits
-
             Grid2DString layoutRequirements = GetLayoutRequirements(exitFrom, posX, posY);
             List<string> foundLayouts = FindSimilarChunkLayout(layoutRequirements);
             if (foundLayouts.Count == 0) {
@@ -162,7 +157,7 @@ namespace Dungeon.Generator {
                     
                     try {
                         attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y-1)).rooms;
-                        requirements = UpdateLayoutRequirements(requirements, attachedChunk, "bottom");   
+                        requirements = UpdateLayoutRequirements(requirements, attachedChunk, "bottom");
                     }
                     catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
                     catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
@@ -191,52 +186,34 @@ namespace Dungeon.Generator {
                 case Exit.SidePosition.Right:
 
                     try {
-                        attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x +1, y)).rooms;
+                        attachedChunk = FindChunkLayoutByID(_newChunkMap.map.GetCell(x+1, y)).rooms;
                         requirements = UpdateLayoutRequirements(requirements, attachedChunk, "left");
                     }
                     catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
                     catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
                     break;
-                
+
             }
+
+            requirements = ConsiderDungeonExit(requirements, new Vector2Int(x, y));
             
-            // try {
-            //     foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x - 1, y)).rooms;
-            //     requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "left");
-            // }
-            // catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
-            // catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
-            //
-            // ///////
-            //
-            // try {
-            //     foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x - 1, y)).rooms;
-            //     requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "left");
-            // }
-            // catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
-            // catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
-            //
-            // try {
-            //     foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x+1, y)).rooms;
-            //     requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "right"); 
-            // }
-            // catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
-            // catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
-            //
-            // try {
-            //     foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y-1)).rooms;
-            //     requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "bottom");   
-            // }
-            // catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
-            // catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
-            //
-            // try {
-            //     foundChunkLayout = FindChunkLayoutByID(_newChunkMap.map.GetCell(x, y+1)).rooms;
-            //     requirements = UpdateLayoutRequirements(requirements, foundChunkLayout, "top");  
-            // }
-            // catch (IndexOutOfRangeException e) { /*Debug.Log(e.Message);*/ }
-            // catch (ArgumentException e) { /*Debug.Log(e.Message);*/ }
-            
+            return requirements;
+        }
+
+        private static Grid2DString ConsiderDungeonExit(Grid2DString requirements, Vector2Int requirementsCoordinates) {
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Right && requirementsCoordinates.x < _potentialEntrance.x) {
+                _potentialEntrance.x = requirementsCoordinates.x;
+                for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                    requirements.UpdateCell(0, y, "P");
+                }
+            }
+            if (DungeonGenerator.exitDirection == Exit.SidePosition.Left && requirementsCoordinates.x > _potentialEntrance.x) {
+                _potentialEntrance.x = requirementsCoordinates.x;
+                for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                    requirements.UpdateCell(Consts.Get<int>("ChunkSize")-1, y, "P");
+                }
+            }
+
             return requirements;
         }
 
@@ -248,6 +225,9 @@ namespace Dungeon.Generator {
             foreach (Chunk assessedChunkLayout in chunkLayoutsAvailable) {
                 // Must check if it includes all the exits
                 bool isSimilar = true;
+                int potentialRooms = 0;
+                int potentialRoomsSatisfied = 0;
+                
                 for (int y = 0; y <= layout.Size-1; y++) {
                     for (int x = 0; x <= layout.Size-1; x++) {
                         if (layout.GetCell(x, y) == "E") {
@@ -255,6 +235,21 @@ namespace Dungeon.Generator {
                                 isSimilar = false;
                             }
                         }
+                        // BUG : only works if we satisfy 1 Possible Room.
+                        if (layout.GetCell(x, y) == "P") {
+                            potentialRooms++;
+                            if (assessedChunkLayout.rooms.GetCell(x,y) != "E" || 
+                                assessedChunkLayout.rooms.GetCell(x,y) != "R") {
+                                potentialRoomsSatisfied++;
+                            }
+                        }
+                    }
+                }
+
+                // If we did not satisfy any of the Potential Rooms
+                if (potentialRooms > 0) {
+                    if (potentialRoomsSatisfied == 0) {
+                        isSimilar = false;
                     }
                 }
 
@@ -265,11 +260,11 @@ namespace Dungeon.Generator {
             
             return chunkLayouts;
         }
-        
+
         private static Grid2DString UpdateLayoutRequirements(Grid2DString requirements, Grid2DString attachedChunk, string side) {
             switch (side) {
                 case "left": {
-                    for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                    for (int y = 0; y < Consts.Get<int>("ChunkSize"); y++) {
                         if (attachedChunk.GetCell(Consts.Get<int>("ChunkSize")-1, y) == "E") {
                             requirements.UpdateCell(0, y, "E");
                         }
@@ -278,7 +273,7 @@ namespace Dungeon.Generator {
                     break;
                 }
                 case "right": {
-                    for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
+                    for (int y = 0; y < Consts.Get<int>("ChunkSize"); y++) {
                         if (attachedChunk.GetCell(0, y) == "E") {
                             requirements.UpdateCell(Consts.Get<int>("ChunkSize")-1, y, "E");
                         }
@@ -287,18 +282,19 @@ namespace Dungeon.Generator {
                     break;
                 }
                 case "top": {
-                    for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
-                        if (attachedChunk.GetCell(x, 0) == "E") {
-                            requirements.UpdateCell(x, Consts.Get<int>("ChunkSize")-1, "E");
+                    for (int x = 0; x < Consts.Get<int>("ChunkSize"); x++) {
+                        int chSize = Consts.Get<int>("ChunkSize");
+                        if (attachedChunk.GetCell(x, chSize-1) == "E") {
+                            requirements.UpdateCell(x, 0, "E");
                         }
                     }
 
                     break;
                 }
                 case "bottom": {
-                    for (int x = 0; x < Consts.Get<int>("ChunkSize")-1; x++) {
-                        if (attachedChunk.GetCell(x, Consts.Get<int>("ChunkSize")-1) == "E") {
-                            requirements.UpdateCell(x, 0, "E");
+                    for (int x = 0; x < Consts.Get<int>("ChunkSize"); x++) {
+                        if (attachedChunk.GetCell(x, 0) == "E") {
+                            requirements.UpdateCell(x, Consts.Get<int>("ChunkSize")-1, "E");
                         }
                     }
 

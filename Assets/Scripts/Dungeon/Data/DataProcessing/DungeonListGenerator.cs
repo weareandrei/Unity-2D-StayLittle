@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Dungeon.Model;
+using HoneyGrid2D;
 using Util;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ namespace Dungeon.Data {
         public static string seedState;
         private static string _seedOriginalState;
 
-        private static int lowestYOccupied_Left = 0; 
-        private static int lowestYOccupied_Right = 0; 
+        private static float lowestYOccupied_Left = 0;
+        private static float lowestYOccupied_Right = 0;
         
         private static int dungeonIdCounter = 1;
 
@@ -33,51 +34,66 @@ namespace Dungeon.Data {
 
             string dungeonSeed = Seed.UseSeedToGenerateSeed(ref seedState);
 
-            Vector2Int dungeonCoordinates = new Vector2Int(0, 0);
+            Vector2 dungeonCoordinates = new Vector2(0, 0);
             
             int dungeonDirection = Seed.UseSeed(ref seedState, 100);
             if (dungeonDirection % 2 == 0) {
-                // dungeonCoordinates.x = -1; // left dungeon
-                dungeonCoordinates.x = 1;
+                dungeonCoordinates.x = -1; // left dungeon
             }
             if (dungeonDirection % 2 != 0) {
                 dungeonCoordinates.x = 1; // right dungeon
             }
 
+            Generator.DungeonGenerator.exitDirection =
+                dungeonCoordinates.x == 1 ? Exit.SidePosition.Left : Exit.SidePosition.Right;
             DungeonMapData dungeonMapData = Generator.DungeonGenerator.GenerateDungeonBySeed(dungeonSeed);
-            int dungeonHeight = dungeonMapData.roomMap.CalculateSize().y;
+            
+            // List<Vector2Int> dungeonEntrances = FindDungeonEntrances(dungeonMapData.roomMap.map, dungeonDirection);
+            List<Vector2Int> dungeonEntrances = Generator.DungeonGenerator.roomMapEntrances;
+            
+            int dungeonHeight = dungeonMapData.roomMap.map.getYSize();
+            int dungeonWidth = dungeonMapData.roomMap.map.getXSize();
 
             if (dungeonCoordinates.x == -1) {
                 // This is the left coordinate
-                dungeonCoordinates.y = lowestYOccupied_Left + 10;
-                lowestYOccupied_Left += dungeonHeight + 100;
+                dungeonCoordinates.y = lowestYOccupied_Left - dungeonHeight * Consts.Get<float>("SizeOfRoom_PX");
+                lowestYOccupied_Left += dungeonCoordinates.y;
             } if (dungeonCoordinates.x == 1) {
                 // This is the left coordinate
-                dungeonCoordinates.y = lowestYOccupied_Right + 10;
-                lowestYOccupied_Right += dungeonHeight + 100;
+                dungeonCoordinates.y = lowestYOccupied_Right - dungeonHeight * Consts.Get<float>("SizeOfRoom_PX");
+                lowestYOccupied_Right += dungeonCoordinates.y;
             }
             
             return new DungeonData(
                 dungeonId,
                 dungeonCoordinates, 
+                dungeonEntrances,
                 dungeonSeed, 
+                dungeonWidth,
                 SelectDungeonType());
         }
 
-        private static _dungeonType SelectDungeonType() {
+        // private static List<Vector2Int> FindDungeonEntrances(FlexGrid2DString map, dungeonDirection) {
+        //     // dungeonDirection = 0 -> left -> entrances ont the right,
+        //     // dungeonDirection = 1 -> right -> entrances ont the left.
+        //     if ()
+        //     return new List<Vector2Int>();
+        // }
+
+        private static DungeonType SelectDungeonType() {
             int generatedNumber = Seed.UseSeed(ref seedState, 30);
 
             if (generatedNumber == 20 || generatedNumber == 30 || generatedNumber == 50) {
-                return _dungeonType.bossDungeon;
+                return DungeonType.bossDungeon;
             }
             if (generatedNumber == 19 || generatedNumber == 29 || generatedNumber == 49) {
-                return _dungeonType.lostRoom;
+                return DungeonType.lostRoom;
             }
             if (generatedNumber % 3 == 0) {
-                return _dungeonType.questDungeon;
+                return DungeonType.questDungeon;
             }
 
-            return _dungeonType.regularDungeon;
+            return DungeonType.regularDungeon;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Dungeon.Generator;
 using HoneyGrid2D;
 using HoneyGrid2D;
 using UnityEngine;
@@ -12,12 +13,11 @@ namespace Dungeon.Model {
         public FlexGrid2DSpecial<Exit.ExitMapCell> _exitMap;
         private List<Exit.PossibleExit> exitsAvailable = new List<Exit.PossibleExit>();
 
-        public ExitMap(FlexGrid2DString roomMap, int width, int height) {
+        public ExitMap(FlexGrid2DString roomMap, int width, int height, Vector2Int entranceCoordinatesActual) {
             _roomMap = roomMap;
             _exitMap = new FlexGrid2DSpecial<Exit.ExitMapCell>(width, height, 
                 new Exit.ExitMapCell(new List<Exit.SidePosition>(), Exit.SidePosition.None));
             
-            Vector2Int entranceCoordinatesActual = GetEntranceCoordinates();
             BuildExitMap(entranceCoordinatesActual, entranceCoordinatesActual);
         }
 
@@ -102,21 +102,6 @@ namespace Dungeon.Model {
 
             throw new Exception("Unknown exception in GetAtCoordinatesParam");
         }
-
-        // Entrance Room is always at the chunk that is at 0,0 (depending on offset)
-        private Vector2Int GetEntranceCoordinates() {
-            int x = 0;
-            for (int y = 0; y < Consts.Get<int>("ChunkSize")-1; y++) {
-                if (_roomMap.GetCell(x,(_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize")) + y) == "E") {
-                    return new Vector2Int(x, (_roomMap.zeroYOffset * Consts.Get<int>("ChunkSize"))+y);
-                }
-            }
-
-            return new Vector2Int(0,0);
-        }
-            // But can be at the different place at that chunk. But always at the left
-            
-            
 
         private Exit.SidePosition CalculateDirectionBasedOnCoordinates(Vector2Int atCoordinates, Vector2Int fromCoordinates) {
             if (atCoordinates.x > fromCoordinates.x) {
