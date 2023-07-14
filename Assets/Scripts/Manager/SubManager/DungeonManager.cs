@@ -2,10 +2,13 @@ using Dungeon;
 using Dungeon.Data;
 using Dungeon.Generator;
 using Dungeon.Renderer;
+using Dungeon.Gameplay;
 using Util;
 
 namespace Manager.SubManager {
     public static class DungeonManager {
+        
+        private static ScoreCounter scoreCounter;
         
         public static void Initialize(string seed = "") {
             GenerateDungeonList(seed);

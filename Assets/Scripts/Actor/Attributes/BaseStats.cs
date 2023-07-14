@@ -1,5 +1,5 @@
 namespace Actor.Base {
-    public struct BaseParameters {
+    public class BaseStats {
         public float maxHP;
         public float isImmortal;
     }

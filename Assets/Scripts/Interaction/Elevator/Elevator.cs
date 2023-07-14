@@ -10,13 +10,29 @@ namespace Interaction
     public class Elevator : MonoBehaviour {
         private ElevatorController elevatorController;
         
+        public static event Action DungeonManagerEvent;
+
         private void Awake() {
             elevatorController = GetComponent<ElevatorController>();
         }
 
         public void Activate() {
-            elevatorController.Move(
-                PrepareMovementParams());
+            ElevatorMovementParameters moveParams = PrepareMovementParams();
+            if (moveParams.direction == -1 ) {
+                if (PlayerCompletedDungeon()) {
+                    DungeonManager.ShowScore().then(elevatorController.Move(moveParams));
+                }
+                else {
+                    NotAllowedToGoUp();
+                }
+            }
+            else {
+                elevatorController.Move(moveParams);
+            }
+        }
+
+        private bool PlayerCompletedDungeon() {
+            return DungeonManager.PlayerLeavesDungeon();
         }
 
         private ElevatorMovementParameters PrepareMovementParams() {
