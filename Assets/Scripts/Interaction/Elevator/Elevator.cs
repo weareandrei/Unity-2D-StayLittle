@@ -1,6 +1,7 @@
 using System;
 using Dungeon;
 using Dungeon.Data;
+using Manager.SubManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
