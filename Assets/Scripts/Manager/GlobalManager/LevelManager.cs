@@ -89,6 +89,7 @@ namespace Manager {
         }
         
         private static void LoadHome3Level() {
+            
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home3", LoadSceneMode.Single);
         }
         
@@ -99,14 +100,13 @@ namespace Manager {
         private static void LoadDungeonLevel() {
             elevatorMovementParameters = GameObject.Find("Elevator")
                 .GetComponent<ElevatorController>().moveParams;
-            elevatorMovementParameters.startInstantly = true;
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Dungeon", LoadSceneMode.Single);
             loadingState.completed += OnDungeonLoaded;
         }
         
         private static void OnDungeonLoaded(AsyncOperation operation) {
             GameObject.Find("Elevator").GetComponent<ElevatorController>()
-                .Move(elevatorMovementParameters);
+                .ContinueMoving(elevatorMovementParameters);
             
             DungeonManager.RenderDungeonsAll();
         }

@@ -35,7 +35,7 @@ namespace Dungeon.Renderer {
             helper.StartRenderCoroutine(dungeonParent);
         }
 
-        private void RenderRooms(GameObject dungeonParent) {
+        public void RenderRooms(GameObject dungeonParent) {
             for (int y = 0; y < _roomMap.map.getYSize(); y++) {
                 for (int x = 0; x < _roomMap.map.getXSize(); x++) {
                     Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x, y));
@@ -49,7 +49,7 @@ namespace Dungeon.Renderer {
             }
         }
 
-        private void RenderContents(GameObject dungeonParent) {
+        public void RenderContents(GameObject dungeonParent) {
             int counter = 0;
             for (int y = 0; y < _roomMap.map.getYSize(); y++) {
                 for (int x = 0; x < _roomMap.map.getXSize(); x++) {
@@ -64,28 +64,6 @@ namespace Dungeon.Renderer {
                 }
             }
         }
-
-        private class DungeonRendererHelper : MonoBehaviour {
-            
-            public List<GameObject> renderedRooms = new List<GameObject>();
-            private DungeonRenderer dungeonRenderer; // Reference to DungeonRenderer instance
-    
-            public void SetDungeonRenderer(DungeonRenderer renderer) {
-                dungeonRenderer = renderer;
-            }
-
-            public void StartRenderCoroutine(GameObject dungeonParent) {
-                StartCoroutine(RenderCoroutine(dungeonParent));
-            }
-
-            private IEnumerator RenderCoroutine(GameObject dungeonParent) {
-                dungeonRenderer.RenderRooms(dungeonParent);
-                yield return new WaitForEndOfFrame();
-                dungeonRenderer.RenderContents(dungeonParent);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-
 
         private void RenderThisRoomContents(int x, int y, GameObject roomRendered) {
             List<ContentPoint> contentPoints = RoomGenerator.FindRoomInstanceByID(_roomMap.map.GetCellActual(x, y)).GetContentPoints();
@@ -190,5 +168,29 @@ namespace Dungeon.Renderer {
             }
             return dungeonOrigin;
         }
+        
+        
+        
+        private class DungeonRendererHelper : MonoBehaviour {
+            
+            public List<GameObject> renderedRooms = new List<GameObject>();
+            private DungeonRenderer dungeonRenderer; // Reference to DungeonRenderer instance
+    
+            public void SetDungeonRenderer(DungeonRenderer renderer) {
+                dungeonRenderer = renderer;
+            }
+
+            public void StartRenderCoroutine(GameObject dungeonParent) {
+                StartCoroutine(RenderCoroutine(dungeonParent));
+            }
+
+            private IEnumerator RenderCoroutine(GameObject dungeonParent) {
+                dungeonRenderer.RenderRooms(dungeonParent);
+                yield return new WaitForEndOfFrame();
+                dungeonRenderer.RenderContents(dungeonParent);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
     }
 }

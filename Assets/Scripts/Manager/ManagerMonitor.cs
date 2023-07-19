@@ -15,7 +15,7 @@ namespace Manager {
             currentSceneOpen = LevelManager.currentSceneOpen;
             currentLevelOpen = LevelManager.currentLevelOpen;
 
-            availableDungeons = DungeonList._dungeons.Count;
+            availableDungeons = DungeonList.dungeons.Count;
         }
 
     }
