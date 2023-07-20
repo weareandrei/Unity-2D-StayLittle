@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
+using Content.Util;
 using System.Collections.Generic;
 using Content;
 using Dungeon.Data;
-using Dungeon.Generator;
 using Dungeon.Model;
 using HoneyGrid2D;
 using UnityEngine;
@@ -66,11 +65,12 @@ namespace Dungeon.Renderer {
         }
 
         private void RenderThisRoomContents(int x, int y, GameObject roomRendered) {
-            List<ContentPoint> contentPoints = RoomGenerator.FindRoomInstanceByID(_roomMap.map.GetCellActual(x, y)).GetContentPoints();
+            List<GameObject> contentPoints = roomRendered.GetComponent<Room>().GetContentPoints();
             List<ContentPayload> contentPayloads = _contentsMap.map.GetCellActual(x, y).payloads;
             for (int i = 0; i < contentPoints.Count; i++) {
                 if (i < contentPayloads.Count) {
-                    contentPoints[i].payload = contentPayloads[i];
+                    contentPoints[i].GetComponent<ContentPoint>().payload = contentPayloads[i];
+                    RenderContentPoint(contentPoints[i], roomRendered);
                 } else {
                     // Handle the case where there are fewer ContentPayloads than ContentPoints
                     // For example, you could assign a default or null payload.
@@ -79,6 +79,37 @@ namespace Dungeon.Renderer {
             }
 
             EnableWalls(x, y, roomRendered);
+        }
+
+        private void RenderContentPoint(GameObject contentPoint, GameObject roomRendered) {
+            ContentPayload payload = contentPoint.GetComponent<ContentPoint>().payload;
+            Transform coordinates = contentPoint.transform;
+                
+            switch (payload.type) {
+                case ContentType.Mob:
+                    GameObject mob = RenderMob(coordinates, payload.ContentID);
+                    mob.transform.parent = roomRendered.transform;
+                    break;
+                case ContentType.Collectible:
+                    GameObject collectible = RenderCollectible(coordinates, payload.ContentID);
+                    collectible.transform.parent = roomRendered.transform;;
+                    break;
+            }
+
+        }
+
+        private GameObject RenderCollectible(Transform coordinates, string id) {
+            GameObject collectiblePrefab = GetContent.GetPrefabByID(id);
+            GameObject collectible = GameObject.Instantiate(collectiblePrefab, coordinates.position, Quaternion.identity);
+
+            return collectible;
+        }
+
+        private GameObject RenderMob(Transform coordinates, string id) {
+            GameObject collectiblePrefab = GetContent.GetPrefabByID(id);
+            GameObject collectible = GameObject.Instantiate(collectiblePrefab, coordinates.position, Quaternion.identity);
+
+            return collectible;
         }
 
         private void EnableWalls(int room_x, int room_y, GameObject roomRendered) {

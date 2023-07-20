@@ -5,14 +5,14 @@ namespace Content {
     [Serializable]
     public struct ContentPayload : ICloneable {
         public ContentType type;
-        public int ContentID;
+        public string ContentID;
         public int SpawnRate;
         public int MaxInstances;
         public int MaxInstancesGlobal;
 
         public ContentPayload(ContentType type) {
             this.type = type;
-            ContentID = 0;
+            ContentID = "";
             SpawnRate = 0;
             MaxInstances = 0;
             MaxInstancesGlobal = 0;

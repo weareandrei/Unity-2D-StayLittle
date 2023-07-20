@@ -1,8 +1,7 @@
 using UnityEngine;
 
 namespace Dungeon.Gameplay {
-    public class ScoreCounter : MonoBehaviour {
-        
+    public class ScoreCounter {
         public int pointsEarned = 0;
     }
 }

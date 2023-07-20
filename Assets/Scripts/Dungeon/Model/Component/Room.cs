@@ -33,17 +33,17 @@ namespace Dungeon.Model {
             public int right;
         };
         
-        public List<ContentPoint> GetContentPoints() {
+        public List<GameObject> GetContentPoints() {
             // Find the "ContentPoints" GameObject in this Room Instance
             Transform contentPointsParent = transform.Find("ContentPoints");
-            List<ContentPoint> contentPoints = new CloneableList<ContentPoint>();
+            List<GameObject> contentPoints = new List<GameObject>();
     
             // Then find it's children "ContentPoint"
             if (contentPointsParent != null) {
                 foreach (Transform childTransform in contentPointsParent) {
-                    ContentPoint contentPointData = childTransform.GetComponent<ContentPoint>();
+                    // ContentPoint contentPointData = childTransform.GetComponent<ContentPoint>();
                     // contentPoints.Add(childTransform.GetComponent<ContentPoint>());
-                    contentPoints.Add(contentPointData);
+                    contentPoints.Add(childTransform.gameObject);
                 }
             } else {
                 Debug.LogWarning("Unable to find 'ContentPoints' child GameObject.");
@@ -52,9 +52,9 @@ namespace Dungeon.Model {
             return contentPoints;
         }
         
-        public static List<ContentPoint> GetRoomContentPoints(Room room) {
-            return room.GetContentPoints();
-        }
+        // public static List<ContentPoint> GetRoomContentPoints(Room room) {
+        //     return room.GetContentPoints();
+        // }
 
 
     }

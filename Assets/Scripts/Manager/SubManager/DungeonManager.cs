@@ -13,6 +13,7 @@ namespace Manager.SubManager {
     public static class DungeonManager {
         
         private static ScoreCounter scoreCounter;
+        private static string dungeonInProgress;
 
         public static string currentDungeon; // Dungeon ID's ike "a", "b", etc ...
         
@@ -63,28 +64,38 @@ namespace Manager.SubManager {
         public static ScoreCounter FindScoreCounterFoDungeon(string id) {
             return new ScoreCounter();
         }
-        
-        
-        private class DungeonManagerHelper : MonoBehaviour {
+
+        public static void DungeonSelected(string id) {
+
+            if (dungeonInProgress != null) {
+                
+            }
             
-            public List<GameObject> renderedRooms = new List<GameObject>();
-            private DungeonRenderer dungeonRenderer; // Reference to DungeonRenderer instance
-    
-            public void SetDungeonRenderer(DungeonRenderer renderer) {
-                dungeonRenderer = renderer;
-            }
-
-            public void StartRenderCoroutine(GameObject dungeonParent) {
-                StartCoroutine(RenderCoroutine(dungeonParent));
-            }
-
-            private IEnumerator RenderCoroutine(GameObject dungeonParent) {
-                dungeonRenderer.RenderRooms(dungeonParent);
-                yield return new WaitForEndOfFrame();
-                dungeonRenderer.RenderContents(dungeonParent);
-                yield return new WaitForEndOfFrame();
-            }
+            dungeonInProgress = id;
+            scoreCounter = new ScoreCounter();
         }
+        
+        
+        // private class DungeonManagerHelper : MonoBehaviour {
+        //     
+        //     public List<GameObject> renderedRooms = new List<GameObject>();
+        //     private DungeonRenderer dungeonRenderer; // Reference to DungeonRenderer instance
+        //
+        //     public void SetDungeonRenderer(DungeonRenderer renderer) {
+        //         dungeonRenderer = renderer;
+        //     }
+        //
+        //     public void StartRenderCoroutine(GameObject dungeonParent) {
+        //         StartCoroutine(RenderCoroutine(dungeonParent));
+        //     }
+        //
+        //     private IEnumerator RenderCoroutine(GameObject dungeonParent) {
+        //         dungeonRenderer.RenderRooms(dungeonParent);
+        //         yield return new WaitForEndOfFrame();
+        //         dungeonRenderer.RenderContents(dungeonParent);
+        //         yield return new WaitForEndOfFrame();
+        //     }
+        // }
         
     }
     

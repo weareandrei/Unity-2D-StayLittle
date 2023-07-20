@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Interaction.Component;
+using Manager.SubManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -87,6 +88,9 @@ namespace Interaction {
         }
         
         private void HandleElevatorStartMoving() {
+            
+            DungeonManager.DungeonSelected(moveParams.goToDungeon);
+            
             movementCoroutine = MoveElevator();
             StartCoroutine(movementCoroutine);
             
