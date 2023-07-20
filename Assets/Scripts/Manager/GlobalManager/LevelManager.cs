@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Interaction;
 using Manager.SubManager;
+using UI;
 
 namespace Manager {
     
@@ -81,20 +82,27 @@ namespace Manager {
         // }
 
         private static void LoadHome1Level() {
+            LoadingManager.StartLoading();
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home1", LoadSceneMode.Single);
+            loadingState.completed += OnHomeLoaded;
         }
         
         private static void LoadHome2Level() {
+            LoadingManager.StartLoading();
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home2", LoadSceneMode.Single);
+            loadingState.completed += OnHomeLoaded;
         }
         
         private static void LoadHome3Level() {
-            
+            LoadingManager.StartLoading();
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home3", LoadSceneMode.Single);
+            loadingState.completed += OnHomeLoaded;
         }
         
         private static void LoadHome4Level() {
+            LoadingManager.StartLoading();
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home4", LoadSceneMode.Single);
+            loadingState.completed += OnHomeLoaded;
         }
 
         private static void LoadDungeonLevel() {
@@ -102,6 +110,10 @@ namespace Manager {
                 .GetComponent<ElevatorController>().moveParams;
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Dungeon", LoadSceneMode.Single);
             loadingState.completed += OnDungeonLoaded;
+        }
+
+        private static void OnHomeLoaded(AsyncOperation operation) {
+            LoadingManager.StopLoading();
         }
         
         private static void OnDungeonLoaded(AsyncOperation operation) {
