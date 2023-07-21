@@ -38,6 +38,8 @@ namespace Manager.SubManager {
                     DungeonGenerator.GenerateDungeonBySeed(dungeonData.seed, dungeonData.coordinates)
                 );
             }
+
+            ShaftRenderer.Generate();
         }
         
         public static string ChooseRandomDungeon() {
