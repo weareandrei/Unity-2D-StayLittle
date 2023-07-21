@@ -1,4 +1,5 @@
 using Dungeon.Data;
+using Dungeon.Gameplay;
 using Manager.SubManager;
 using UnityEngine;
 
@@ -10,12 +11,14 @@ namespace Manager {
 
         [Header("DungeonManager")] 
         public int availableDungeons;
+        public ScoreCounter scoreCounter;
         
         private void FixedUpdate() {
             currentSceneOpen = LevelManager.currentSceneOpen;
             currentLevelOpen = LevelManager.currentLevelOpen;
 
             availableDungeons = DungeonList.dungeons.Count;
+            scoreCounter = DungeonManager.ScoreCounter;
         }
 
     }

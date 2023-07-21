@@ -5,6 +5,7 @@ using Content;
 using Dungeon.Data;
 using Dungeon.Model;
 using HoneyGrid2D;
+using Interaction;
 using UnityEngine;
     
 namespace Dungeon.Renderer {
@@ -92,6 +93,7 @@ namespace Dungeon.Renderer {
                     break;
                 case ContentType.Collectible:
                     GameObject collectible = RenderCollectible(coordinates, payload.ContentID);
+                    collectible.AddComponent<Collectible>().payload = payload;
                     collectible.transform.parent = roomRendered.transform;;
                     break;
             }

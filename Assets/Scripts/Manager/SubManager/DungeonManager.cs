@@ -6,13 +6,18 @@ using Dungeon.Data;
 using Dungeon.Generator;
 using Dungeon.Renderer;
 using Dungeon.Gameplay;
+using UI.Dungeon;
 using UnityEngine;
 using Random = Util.Random;
 
 namespace Manager.SubManager {
     public static class DungeonManager {
         
-        private static ScoreCounter scoreCounter;
+        [SerializeField] private static ScoreCounter scoreCounter;
+        public static ScoreCounter ScoreCounter {
+            get { return scoreCounter; }
+            private set { scoreCounter = value; }
+        }
         private static string dungeonInProgress;
 
         public static string currentDungeon; // Dungeon ID's ike "a", "b", etc ...
@@ -70,11 +75,22 @@ namespace Manager.SubManager {
         public static void DungeonSelected(string id) {
 
             if (dungeonInProgress != null) {
-                
+                ScoreDisplay.InstantiateScoreScreen(scoreCounter);
             }
             
             dungeonInProgress = id;
             scoreCounter = new ScoreCounter();
+        }
+
+        public static void PlayerEarnedPoints(int numberOfPoints, string type) {
+            switch (type) {
+                case "Collectible":
+                    scoreCounter.pointsEarned += numberOfPoints;
+                    break;
+                case "Mob":
+                    scoreCounter.mobsKilled += numberOfPoints;
+                    break;
+            }
         }
         
         

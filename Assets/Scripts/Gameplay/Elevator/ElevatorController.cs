@@ -88,8 +88,9 @@ namespace Interaction {
         }
         
         private void HandleElevatorStartMoving() {
-            
-            DungeonManager.DungeonSelected(moveParams.goToDungeon);
+            if (!moveParams.startInstantly) {
+                DungeonManager.DungeonSelected(moveParams.goToDungeon);
+            }
             
             movementCoroutine = MoveElevator();
             StartCoroutine(movementCoroutine);

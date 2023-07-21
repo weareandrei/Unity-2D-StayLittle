@@ -48,31 +48,6 @@ namespace Interaction.Component {
 
             return fastTravelOptions;
         }
-        
-        // private void CreateContainer() {
-        //     GameObject containerObj = new GameObject("FastTravelRect");
-        //     containerObj.transform.SetParent(transform);
-        //
-        //     // Get the Canvas RectTransform and use it as the parent
-        //     RectTransform canvasRect = GetComponentInParent<Canvas>()?.GetComponent<RectTransform>();
-        //     if (canvasRect != null) {
-        //         containerRect = containerObj.AddComponent<RectTransform>();
-        //         containerRect.SetParent(canvasRect); // Set the parent to the Canvas RectTransform.
-        //         containerRect.anchorMin = new Vector2(0.5f, 0.5f);
-        //         containerRect.anchorMax = new Vector2(0.5f, 0.5f);
-        //         containerRect.pivot = new Vector2(0.5f, 0.5f);
-        //
-        //         // Height
-        //         int containerHeight = Mathf.Max(minimumContainerHeight, (buttonHeight + buttonSpacing) * OptionsAvailable.Length + buttonSpacing);
-        //         containerRect.sizeDelta = new Vector2(buttonWidth, containerHeight);
-        //
-        //         // BG Colour
-        //         Image containerImage = containerObj.AddComponent<Image>();
-        //         containerImage.color = Color.grey;
-        //
-        //         containerRect.anchoredPosition = new Vector2(0, 0); // Set the position to (0, 0) relative to the parent.
-        //     }
-        // }
 
         private void CreateButton(FastTravelOption fastTravelOption, int yOffset) {
             GameObject buttonObj = new GameObject("Button");

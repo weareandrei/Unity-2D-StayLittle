@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Dungeon.Gameplay {
+    [Serializable]
     public class ScoreCounter {
-        public int pointsEarned = 0;
+        [SerializeField] public int pointsEarned = 0;
+        [SerializeField] public int mobsKilled = 0;
     }
 }
