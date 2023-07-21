@@ -15,7 +15,7 @@ namespace Manager {
         
         private void FixedUpdate() {
             currentSceneOpen = LevelManager.currentSceneOpen;
-            currentLevelOpen = LevelManager.currentLevelOpen;
+            currentLevelOpen = LevelManager.currentSceneOpen;
 
             availableDungeons = DungeonList.dungeons.Count;
             scoreCounter = DungeonManager.ScoreCounter;

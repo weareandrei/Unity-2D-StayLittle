@@ -11,75 +11,37 @@ namespace Manager {
     [Serializable]
     public static class LevelManager {
 
-        // this will be stores in some Json and retrieved when game starts
         [SerializeField]
-        public static string currentSceneOpen = "Home4";
-        // selectLevelBasedOnScene() will decide on the Level based on the [currentSceneOpen]
-        [SerializeField]
-        public static string currentLevelOpen = "";
+        public static string currentSceneOpen = "";
+        public static string lastSceneOpen = "Home2";
         
-        // ----- Dungeon Level -----
         [SerializeField]
         private static ElevatorMovementParameters elevatorMovementParameters;
 
         public static void LoadLevelBasedOnScene(string sceneName) {
             switch(sceneName) {
                 case "Home1":
-                    // currentLevelOpen = "Home1";
+                    // currentSceneOpen = "Home1";
                     // LoadHome1Level();
                     break;
                 case "Home2":
-                    currentLevelOpen = "Home2";
+                    currentSceneOpen = "Home2";
                     LoadHome2Level();
                     break;
                 case "Home3":
-                    currentLevelOpen = "Home3";
+                    currentSceneOpen = "Home3";
                     LoadHome3Level();
                     break;
                 case "Home4":
-                    currentLevelOpen = "Home4";
+                    currentSceneOpen = "Home4";
                     LoadHome4Level();
                     break;
                 case "Dungeon":
-                    currentLevelOpen = "Dungeon";
+                    currentSceneOpen = "Dungeon";
                     LoadDungeonLevel();
                     break;
             }
         }
-
-        private static void ShowLoadedScenes () {
-            Scene[] loadedScenes = SceneManager.GetAllScenes();
-            for (int i = 0; i < loadedScenes.Length; i++)
-            {
-                Debug.Log(loadedScenes[i].name);
-            }
-
-        }
-
-        public static void MoveObjectToAnotherScene(GameObject other, string currentScene) {
-            SceneBound[] sceneBounds = GameObject.FindObjectsOfType<SceneBound>();
-        
-            foreach (SceneBound sceneBound in sceneBounds) {
-                if (sceneBound.connectedSceneName == currentScene) {
-                    GameObject spawnPoint = sceneBound.gameObject.transform.Find("SpawnPoint")?.gameObject;
-                    Vector3 teleportToLocation = spawnPoint.transform.position;
-                    other.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
-                    
-                    // Move the gameObject to the connected scene
-                    Scene destinationScene = SceneManager.GetSceneByName(currentScene);
-                    SceneManager.MoveGameObjectToScene(other, destinationScene);
-                }
-            }
-        }
-        
-        // This will load all scenes at once to allow async working for all at the same tine
-        // private static void LoadHomeLevel() {
-        //     // SceneManager.LoadScene("Home1", LoadSceneMode.Additive);
-        //     SceneManager.LoadScene("Home2", LoadSceneMode.Additive);
-        //     SceneManager.LoadScene("Home3", LoadSceneMode.Additive);
-        //     SceneManager.LoadScene("Home4", LoadSceneMode.Additive);
-        //     // SceneManager.LoadScene("Home5", LoadSceneMode.Additive);
-        // }
 
         private static void LoadHome1Level() {
             LoadingManager.StartLoading();
@@ -113,6 +75,8 @@ namespace Manager {
         }
 
         private static void OnHomeLoaded(AsyncOperation operation) {
+            PositionPlayerInNewScene();
+            lastSceneOpen = currentSceneOpen;
             LoadingManager.StopLoading();
         }
         
@@ -126,6 +90,47 @@ namespace Manager {
         public static void SetCurrentSceneActive() {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentSceneOpen));
         }
+
+        private static void PositionPlayerInNewScene() {
+            SceneBound[] sceneBounds = GameObject.FindObjectsOfType<SceneBound>();
+            GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
+
+            foreach (SceneBound sceneBound in sceneBounds) {
+                if (sceneBound.connectedSceneName == lastSceneOpen) {
+                    GameObject spawnPoint = sceneBound.gameObject.transform.Find("SpawnPoint")?.gameObject;
+                    Vector3 teleportToLocation = spawnPoint.transform.position;
+                    player.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
+                    return;
+                }
+            }
+        }
+        
+
+
+        // public static void MoveObjectToAnotherScene(GameObject other, string currentScene) {
+        //     SceneBound[] sceneBounds = GameObject.FindObjectsOfType<SceneBound>();
+        //
+        //     foreach (SceneBound sceneBound in sceneBounds) {
+        //         if (sceneBound.connectedSceneName == currentScene) {
+        //             GameObject spawnPoint = sceneBound.gameObject.transform.Find("SpawnPoint")?.gameObject;
+        //             Vector3 teleportToLocation = spawnPoint.transform.position;
+        //             other.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
+        //             
+        //             // Move the gameObject to the connected scene
+        //             Scene destinationScene = SceneManager.GetSceneByName(currentScene);
+        //             SceneManager.MoveGameObjectToScene(other, destinationScene);
+        //         }
+        //     }
+        // }
+        
+        // This will load all scenes at once to allow async working for all at the same tine
+        // private static void LoadHomeLevel() {
+        //     // SceneManager.LoadScene("Home1", LoadSceneMode.Additive);
+        //     SceneManager.LoadScene("Home2", LoadSceneMode.Additive);
+        //     SceneManager.LoadScene("Home3", LoadSceneMode.Additive);
+        //     SceneManager.LoadScene("Home4", LoadSceneMode.Additive);
+        //     // SceneManager.LoadScene("Home5", LoadSceneMode.Additive);
+        // }
 
     }
     
