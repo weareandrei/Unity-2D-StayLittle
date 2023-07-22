@@ -9,10 +9,12 @@ namespace Interaction {
     public class ElevatorController : MonoBehaviour {
         
         private SimpleMovementController simpleMovementController;
-        private GameObject movingPlatform;
+        public GameObject movingPlatform;
         private GameObject fastTravelSelector;
         
         private IEnumerator movementCoroutine;
+
+        private float initialY;
         
         [SerializeField] public ElevatorMovementParameters moveParams;
         
@@ -33,6 +35,7 @@ namespace Interaction {
         private void Awake() {
             simpleMovementController = GetComponent<SimpleMovementController>();
             fastTravelSelector = transform.Find("FastTravelSelector").gameObject;
+            initialY = transform.position.y;
             // fastTravelSelector = transform.Find("FastTravelSelector").gameObject.GetComponent<FastTravelSelector>();
         }
 
@@ -59,6 +62,9 @@ namespace Interaction {
                 case ElevatorState.ContinueMoving:
                     this.moveParams.startInstantly = true;
                     HandleElevatorStartMoving();
+                    break;
+                case ElevatorState.Stopping:
+                    BeginStopping();
                     break;
                 case ElevatorState.FinishMoving:
                     // HandleFinishMoving();
@@ -91,7 +97,7 @@ namespace Interaction {
             if (!moveParams.startInstantly) {
                 DungeonManager.DungeonSelected(moveParams.goToDungeon);
             }
-            
+
             movementCoroutine = MoveElevator();
             StartCoroutine(movementCoroutine);
             
@@ -110,7 +116,7 @@ namespace Interaction {
         private IEnumerator MoveElevator() {
             StartSimpleMovement();
             
-            while (SceneManager.GetActiveScene().name != "Dungeon" || GetDistanceToTarget() > minimumDistanceToStop) {
+            while (MustKeepMoving()) {
                 if (moveParams.startInstantly) {
                     currentSpeed = maxSpeed;
                 }
@@ -121,15 +127,37 @@ namespace Interaction {
                 
                 float moveDistance = currentSpeed * Time.fixedDeltaTime;
                 Vector3 moveDir = moveParams.direction == -1 ? Vector3.down : Vector3.up;
-                transform.Translate(moveDir * moveDistance);
+                movingPlatform.transform.Translate(moveDir * moveDistance);
 
                 // yield return new WaitForSeconds(0.1f);
                 yield return new WaitForFixedUpdate();
             }
             
-            BeginStopping();
+            ChangeState(ElevatorState.Stopping);
 
             yield return null;
+        }
+
+        private bool MustKeepMoving() {
+            if (SceneManager.GetActiveScene().name == "Dungeon") {
+                if (moveParams.direction == -1 && GetDistanceToTarget() > minimumDistanceToStop) {
+                    return true;
+                }
+                if (moveParams.direction == 1) {
+                    return true;
+                }
+            }
+            
+            if (SceneManager.GetActiveScene().name != "Dungeon") {
+                if (moveParams.direction == 1 && GetDistanceToTarget() > minimumDistanceToStop) {
+                    return true;
+                }
+                if (moveParams.direction == -1) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void StartSimpleMovement() {
@@ -142,12 +170,16 @@ namespace Interaction {
         }
 
         private IEnumerator StopElevator() {
+            ChangeState(ElevatorState.Idle);
             // transform.Translate(moveParams.direction == 1 ? Vector3.down : Vector3.up * moveDistance);
             yield return null;
         }
 
         private float GetDistanceToTarget() {
-            return Mathf.Abs(moveParams.targetCoordinateY - gameObject.transform.position.y);
+            if (moveParams.direction == 1) {
+                
+            }
+            return Mathf.Abs(moveParams.targetCoordinateY - movingPlatform.transform.position.y);
         }
         
 
@@ -162,8 +194,9 @@ public enum ElevatorState {
     StartMoving = 3,
     Moving = 4,
     ContinueMoving = 5,
-    ShowingResults = 6,
-    FinishMoving = 7
+    Stopping = 6,
+    ShowingResults = 7,
+    FinishMoving = 8
 }
 
 [Serializable]

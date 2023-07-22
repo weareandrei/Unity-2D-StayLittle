@@ -62,6 +62,11 @@ namespace Manager {
         }
         
         private static void LoadHome4Level() {
+            if (lastSceneOpen == "Dungeon") {
+                elevatorMovementParameters = GameObject.Find("Elevator")
+                    .GetComponent<ElevatorController>().moveParams;
+            }
+            
             LoadingManager.StartLoading();
             AsyncOperation loadingState = SceneManager.LoadSceneAsync("Home4", LoadSceneMode.Single);
             loadingState.completed += OnHomeLoaded;
@@ -75,16 +80,30 @@ namespace Manager {
         }
 
         private static void OnHomeLoaded(AsyncOperation operation) {
+            if (lastSceneOpen == "Dungeon") {
+                elevatorMovementParameters.targetCoordinateY = 8.5f;
+                
+                GameObject.Find("Elevator").GetComponent<ElevatorController>()
+                    .ContinueMoving(elevatorMovementParameters);
+            }
+            
             PositionPlayerInNewScene();
             lastSceneOpen = currentSceneOpen;
             LoadingManager.StopLoading();
         }
         
         private static void OnDungeonLoaded(AsyncOperation operation) {
+            if (lastSceneOpen == "Dungeon") {
+                elevatorMovementParameters.targetCoordinateY = 8.5f;
+            }
+            
             GameObject.Find("Elevator").GetComponent<ElevatorController>()
                 .ContinueMoving(elevatorMovementParameters);
             
             DungeonManager.RenderDungeonsAll();
+            
+            lastSceneOpen = currentSceneOpen;
+
         }
 
         public static void SetCurrentSceneActive() {

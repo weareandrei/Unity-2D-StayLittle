@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dungeon;
 using Dungeon.Data;
+using Manager;
 using TMPro;
 using Manager.SubManager;
 using UnityEngine;
@@ -37,8 +38,10 @@ namespace Interaction.Component {
     
         private List<FastTravelOption> GetFastTravelOptions() {
             List<FastTravelOption> fastTravelOptions = new List<FastTravelOption>();
-            
-            fastTravelOptions.Add(new FastTravelOption("Home", "Home"));
+
+            if (LevelManager.currentSceneOpen == "Dungeon") {
+                fastTravelOptions.Add(new FastTravelOption("Home", "Home"));
+            }
             fastTravelOptions.Add(new FastTravelOption("RandomDungeon", "RandomDungeon"));
 
             fastTravelOptions.AddRange(
@@ -105,6 +108,7 @@ namespace Interaction.Component {
                 case "Home":
                     moveParams.direction = 1;
                     moveParams.goToDungeon = null;
+                    moveParams.startInstantly = false;
                     break;
                 case "RandomDungeon":
                     string dungeonId = DungeonManager.ChooseRandomDungeon();
