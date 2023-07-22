@@ -93,18 +93,18 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 27
+  - name: Palettes
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 3663
-      width: 10619
-      height: 2586
-    spriteID: 44b1bcb5b4ecf4fc8a1459def9273e45
+      x: 12052
+      y: 1637
+      width: 4076
+      height: 839
+    spriteID: bc7436f5a5df944debfefbda46f89224
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,9 +113,229 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 3663}
+    uvTransform: {x: 12052, y: 1637}
+    spritePosition: {x: 95, y: 2590}
+  - name: Walkable
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 9649
+      width: 8000
+      height: 1961
+    spriteID: de158fd0f5b7b4ceaa34c61b01a58275
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 9649}
+    spritePosition: {x: 0, y: -211}
+  - name: Front Buildings
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 14403
+      width: 6970
+      height: 1788
+    spriteID: 15ff12991edba47fd8b6108b493968b1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 14403}
+    spritePosition: {x: 950, y: 873}
+  - name: Tools Back
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14778
+      y: 4
+      width: 900
+      height: 578
+    spriteID: 52b4a370b087a4ab5b4f24ae24ad9087
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 14778, y: 4}
+    spritePosition: {x: 6227, y: 932}
+  - name: House Small
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14778
+      y: 590
+      width: 637
+      height: 343
+    spriteID: e6b153de8db6746ca9602d6c8ef237a0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 14778, y: 590}
+    spritePosition: {x: 6326, y: 923}
+  - name: Second Walkable
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 3512
+      width: 8000
+      height: 2633
+    spriteID: 0d17cb4eeaeb04d5699fb780dca4adf4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 3512}
+    spritePosition: {x: 0, y: -356}
+  - name: Walkable BG
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 11618
+      width: 5562
+      height: 2777
+    spriteID: ad7675549869249fb82235c194bae5f3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 11618}
+    spritePosition: {x: 0, y: -356}
+  - name: Mountain Front
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 8012
+      y: 4132
+      width: 2892
+      height: 2790
+    spriteID: f0eb267ce28f64c7191c95374bf69433
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 8012, y: 4132}
     spritePosition: {x: 0, y: 0}
-  - name: Layer 26
+  - name: Mountain Main
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 6153
+      width: 5479
+      height: 3488
+    spriteID: cd6e44f1acaa34617a7b3d982dacba06
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 6153}
+    spritePosition: {x: -36, y: 0}
+  - name: Mauntain Small
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 8012
+      y: 1637
+      width: 4032
+      height: 2487
+    spriteID: f6eda755e87474dac850b65105ee3acf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 8012, y: 1637}
+    spritePosition: {x: 3968, y: 0}
+  - name: Clouds
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 8012
+      y: 4
+      width: 6758
+      height: 1625
+    spriteID: 1f93466a48b064e02935692a2b623740
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 8012, y: 4}
+    spritePosition: {x: 0, y: 1717}
+  - name: Sky
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -124,9 +344,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 10619
-      height: 3651
-    spriteID: 78edd0ef7fbcb4f368bed3c32f0ab7d1
+      width: 8000
+      height: 3500
+    spriteID: d3495eef1b1e74837b60159e3308a751
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -137,6 +357,28 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 0, y: 0}
+  - name: OLD
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 15423
+      y: 590
+      width: 0
+      height: 0
+    spriteID: 391aded7a099644f8a89155474abbd61
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 15423, y: 590}
+    spritePosition: {x: 0, y: 3500}
   characterData:
     bones: []
     parts: []
@@ -211,136 +453,136 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Layer 27
-    spriteName: Layer 27
+  - name: Palettes
+    spriteName: Palettes
     isGroup: 0
     parentIndex: -1
-    spriteID: 44b1bcb5b4ecf4fc8a1459def9273e45
-    layerID: 136
-    mosaicPosition: {x: 4, y: 3663}
+    spriteID: bc7436f5a5df944debfefbda46f89224
+    layerID: 191
+    mosaicPosition: {x: 12052, y: 1637}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 26
-    spriteName: Layer 26
+  - name: Walkable
+    spriteName: Walkable
     isGroup: 0
     parentIndex: -1
-    spriteID: 78edd0ef7fbcb4f368bed3c32f0ab7d1
-    layerID: 135
+    spriteID: de158fd0f5b7b4ceaa34c61b01a58275
+    layerID: 193
+    mosaicPosition: {x: 4, y: 9649}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Front Buildings
+    spriteName: Front Buildings
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 15ff12991edba47fd8b6108b493968b1
+    layerID: 227
+    mosaicPosition: {x: 4, y: 14403}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Tools Back
+    spriteName: Tools Back
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 52b4a370b087a4ab5b4f24ae24ad9087
+    layerID: 224
+    mosaicPosition: {x: 14778, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: House Small
+    spriteName: House Small
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e6b153de8db6746ca9602d6c8ef237a0
+    layerID: 217
+    mosaicPosition: {x: 14778, y: 590}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Second Walkable
+    spriteName: Second Walkable
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0d17cb4eeaeb04d5699fb780dca4adf4
+    layerID: 194
+    mosaicPosition: {x: 4, y: 3512}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Walkable BG
+    spriteName: Walkable BG
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ad7675549869249fb82235c194bae5f3
+    layerID: 195
+    mosaicPosition: {x: 4, y: 11618}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Mountain Front
+    spriteName: Mountain Front
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f0eb267ce28f64c7191c95374bf69433
+    layerID: 198
+    mosaicPosition: {x: 8012, y: 4132}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Mountain Main
+    spriteName: Mountain Main
+    isGroup: 0
+    parentIndex: -1
+    spriteID: cd6e44f1acaa34617a7b3d982dacba06
+    layerID: 197
+    mosaicPosition: {x: 4, y: 6153}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Mauntain Small
+    spriteName: Mauntain Small
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f6eda755e87474dac850b65105ee3acf
+    layerID: 196
+    mosaicPosition: {x: 8012, y: 1637}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Clouds
+    spriteName: Clouds
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1f93466a48b064e02935692a2b623740
+    layerID: 199
+    mosaicPosition: {x: 8012, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Sky
+    spriteName: Sky
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d3495eef1b1e74837b60159e3308a751
+    layerID: 200
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: OLD
-    spriteName: 
-    isGroup: 1
+    spriteName: OLD
+    isGroup: 0
     parentIndex: -1
-    spriteID: fa1af5c318e374a32b0f2470e84f83f9
-    layerID: 133
-    mosaicPosition: {x: 0, y: 0}
+    spriteID: 391aded7a099644f8a89155474abbd61
+    layerID: 201
+    mosaicPosition: {x: 15423, y: 590}
     flatten: 0
-    isImported: 0
+    isImported: 1
     isVisible: 1
-  - name: Layer 23
-    spriteName: 
-    isGroup: 0
-    parentIndex: 2
-    spriteID: f5eef3ea06d684b768f109275bd24779
-    layerID: 126
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: FG
-    spriteName: Layer 6
-    isGroup: 0
-    parentIndex: 2
-    spriteID: cbfaa0c6fe5ec419fbc6ab77b6d9967e
-    layerID: 103
-    mosaicPosition: {x: 4, y: 12495}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Layer 24
-    spriteName: 
-    isGroup: 0
-    parentIndex: 2
-    spriteID: 2bb13e9631ac54852a42469694a411d4
-    layerID: 128
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Layer 25
-    spriteName: 
-    isGroup: 0
-    parentIndex: 2
-    spriteID: 780e5dd6058a0429d8a3b97242cc111a
-    layerID: 131
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Lower Mountain
-    spriteName: Layer 5
-    isGroup: 0
-    parentIndex: 2
-    spriteID: c9048802f0b234e4abcd9a217346692e
-    layerID: 115
-    mosaicPosition: {x: 4, y: 4956}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Fog Upper
-    spriteName: Fog Upper
-    isGroup: 0
-    parentIndex: 2
-    spriteID: c0b51118f4cd44189a823449570fda57
-    layerID: 113
-    mosaicPosition: {x: 11985, y: 15596}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Fog Lower
-    spriteName: Fog Lower
-    isGroup: 0
-    parentIndex: 2
-    spriteID: 5015888024f9b436abe52c5f32f5c3e7
-    layerID: 107
-    mosaicPosition: {x: 8512, y: 15596}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Large Mountain
-    spriteName: Layer 11
-    isGroup: 0
-    parentIndex: 2
-    spriteID: 6ca09cc01641442f4b642bce50f12699
-    layerID: 108
-    mosaicPosition: {x: 8512, y: 4956}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Clouds
-    spriteName: Layer 21
-    isGroup: 0
-    parentIndex: 2
-    spriteID: b970ba7fd22624fb3be5ac43f10760c4
-    layerID: 109
-    mosaicPosition: {x: 4, y: 15596}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Layer 22
-    spriteName: Layer 22
-    isGroup: 0
-    parentIndex: 2
-    spriteID: 916c38ce036c8401eb424783af1bfab2
-    layerID: 117
-    mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   generateGOHierarchy: 1

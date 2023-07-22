@@ -20,12 +20,12 @@ namespace Manager {
                     HandleLoading();
                     break;
                 case GameState.Playing:
-                    Time.timeScale = 1f;
+                    // Time.timeScale = 1f;
                     // HandlePlaying();
                     break;
                 case GameState.PauseOnUI:
                     // todo: Also need to implement pause for many / all of the GameObjects that have processes not only base on time
-                    Time.timeScale = 0f;
+                    // Time.timeScale = 0f;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
