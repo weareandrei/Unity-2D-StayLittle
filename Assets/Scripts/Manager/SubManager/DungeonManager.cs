@@ -6,7 +6,6 @@ using Dungeon.Data;
 using Dungeon.Generator;
 using Dungeon.Renderer;
 using Dungeon.Gameplay;
-using UI.Dungeon;
 using UnityEngine;
 using Random = Util.Random;
 
@@ -75,7 +74,8 @@ namespace Manager.SubManager {
         public static void DungeonSelected(string id) {
 
             if (dungeonInProgress != null) {
-                ScoreDisplay.InstantiateScoreScreen(scoreCounter);
+                // ScoreDisplay.InstantiateScoreScreen(scoreCounter);
+                UIManager.Instance.OpenScoreDisplay(scoreCounter);
             }
             
             dungeonInProgress = id;

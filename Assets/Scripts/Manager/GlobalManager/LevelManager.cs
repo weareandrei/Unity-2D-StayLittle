@@ -19,6 +19,8 @@ namespace Manager {
         private static ElevatorMovementParameters elevatorMovementParameters;
 
         public static void LoadLevelBasedOnScene(string sceneName) {
+            UIManager.Instance.HideNonPersistentUI();
+            
             switch(sceneName) {
                 case "Home1":
                     // currentSceneOpen = "Home1";

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Interaction.Component;
 using Manager.SubManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +9,6 @@ namespace Interaction {
         
         private SimpleMovementController simpleMovementController;
         public GameObject movingPlatform;
-        private GameObject fastTravelSelector;
         
         private IEnumerator movementCoroutine;
 
@@ -34,13 +32,10 @@ namespace Interaction {
             
         private void Awake() {
             simpleMovementController = GetComponent<SimpleMovementController>();
-            fastTravelSelector = transform.Find("FastTravelSelector").gameObject;
             initialY = transform.position.y;
-            // fastTravelSelector = transform.Find("FastTravelSelector").gameObject.GetComponent<FastTravelSelector>();
+            ChangeState(ElevatorState.Idle);
         }
-
-        private void Start() => ChangeState(ElevatorState.Idle);
-
+        
         public void ChangeState(ElevatorState newState) {
             OnBeforeStateChanged?.Invoke(newState);
 
@@ -88,9 +83,7 @@ namespace Interaction {
             ChangeState(ElevatorState.SelectingFastTravelOptions);
         }
         private void HandleOptionSelection() {
-            fastTravelSelector.SetActive(true);
-            fastTravelSelector.GetComponent<FastTravelSelector>().Open();
-            // ChangeState(ElevatorState.StartMovingUp);
+            UIManager.Instance.OpenFastTravel();
         }
         
         private void HandleElevatorStartMoving() {
@@ -171,6 +164,7 @@ namespace Interaction {
 
         private IEnumerator StopElevator() {
             ChangeState(ElevatorState.Idle);
+            currentSpeed = 0f;
             // transform.Translate(moveParams.direction == 1 ? Vector3.down : Vector3.up * moveDistance);
             yield return null;
         }
