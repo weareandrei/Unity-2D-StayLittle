@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Grid2DEditor 
-{
+namespace Grid2DEditor {
     [System.Serializable]
     public class Grid2D {
         

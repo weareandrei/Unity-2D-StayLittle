@@ -1,0 +1,593 @@
+fileFormatVersion: 2
+guid: b222bcb6d94b64472adcb3745aa5d675
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMasterTextureLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Palettes
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 12052
+      y: 1637
+      width: 4076
+      height: 839
+    spriteID: bc7436f5a5df944debfefbda46f89224
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 12052, y: 1637}
+    spritePosition: {x: 95, y: 2590}
+  - name: Walkable
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 9649
+      width: 8000
+      height: 1961
+    spriteID: de158fd0f5b7b4ceaa34c61b01a58275
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 9649}
+    spritePosition: {x: 0, y: -211}
+  - name: Front Buildings
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 14403
+      width: 6970
+      height: 1788
+    spriteID: 15ff12991edba47fd8b6108b493968b1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 14403}
+    spritePosition: {x: 950, y: 873}
+  - name: Tools Back
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14778
+      y: 4
+      width: 900
+      height: 578
+    spriteID: 52b4a370b087a4ab5b4f24ae24ad9087
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 14778, y: 4}
+    spritePosition: {x: 6227, y: 932}
+  - name: House Small
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14778
+      y: 590
+      width: 637
+      height: 343
+    spriteID: e6b153de8db6746ca9602d6c8ef237a0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 14778, y: 590}
+    spritePosition: {x: 6326, y: 923}
+  - name: Second Walkable
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 3512
+      width: 8000
+      height: 2633
+    spriteID: 0d17cb4eeaeb04d5699fb780dca4adf4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 3512}
+    spritePosition: {x: 0, y: -356}
+  - name: Walkable BG
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 11618
+      width: 5562
+      height: 2777
+    spriteID: ad7675549869249fb82235c194bae5f3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 11618}
+    spritePosition: {x: 0, y: -356}
+  - name: Mountain Front
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 8012
+      y: 4132
+      width: 2892
+      height: 2790
+    spriteID: f0eb267ce28f64c7191c95374bf69433
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 8012, y: 4132}
+    spritePosition: {x: 0, y: 0}
+  - name: Mountain Main
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 6153
+      width: 5479
+      height: 3488
+    spriteID: cd6e44f1acaa34617a7b3d982dacba06
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 6153}
+    spritePosition: {x: -36, y: 0}
+  - name: Mauntain Small
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 8012
+      y: 1637
+      width: 4032
+      height: 2487
+    spriteID: f6eda755e87474dac850b65105ee3acf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 8012, y: 1637}
+    spritePosition: {x: 3968, y: 0}
+  - name: Clouds
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 8012
+      y: 4
+      width: 6758
+      height: 1625
+    spriteID: 1f93466a48b064e02935692a2b623740
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 8012, y: 4}
+    spritePosition: {x: 0, y: 1717}
+  - name: Sky
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 8000
+      height: 3500
+    spriteID: d3495eef1b1e74837b60159e3308a751
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 0, y: 0}
+  - name: OLD
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 15423
+      y: 590
+      width: 0
+      height: 0
+    spriteID: 391aded7a099644f8a89155474abbd61
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 15423, y: 590}
+    spritePosition: {x: 0, y: 3500}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Palettes
+    spriteName: Palettes
+    isGroup: 0
+    parentIndex: -1
+    spriteID: bc7436f5a5df944debfefbda46f89224
+    layerID: 191
+    mosaicPosition: {x: 12052, y: 1637}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Walkable
+    spriteName: Walkable
+    isGroup: 0
+    parentIndex: -1
+    spriteID: de158fd0f5b7b4ceaa34c61b01a58275
+    layerID: 193
+    mosaicPosition: {x: 4, y: 9649}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Front Buildings
+    spriteName: Front Buildings
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 15ff12991edba47fd8b6108b493968b1
+    layerID: 227
+    mosaicPosition: {x: 4, y: 14403}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Tools Back
+    spriteName: Tools Back
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 52b4a370b087a4ab5b4f24ae24ad9087
+    layerID: 224
+    mosaicPosition: {x: 14778, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: House Small
+    spriteName: House Small
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e6b153de8db6746ca9602d6c8ef237a0
+    layerID: 217
+    mosaicPosition: {x: 14778, y: 590}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Second Walkable
+    spriteName: Second Walkable
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0d17cb4eeaeb04d5699fb780dca4adf4
+    layerID: 194
+    mosaicPosition: {x: 4, y: 3512}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Walkable BG
+    spriteName: Walkable BG
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ad7675549869249fb82235c194bae5f3
+    layerID: 195
+    mosaicPosition: {x: 4, y: 11618}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Mountain Front
+    spriteName: Mountain Front
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f0eb267ce28f64c7191c95374bf69433
+    layerID: 198
+    mosaicPosition: {x: 8012, y: 4132}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Mountain Main
+    spriteName: Mountain Main
+    isGroup: 0
+    parentIndex: -1
+    spriteID: cd6e44f1acaa34617a7b3d982dacba06
+    layerID: 197
+    mosaicPosition: {x: 4, y: 6153}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Mauntain Small
+    spriteName: Mauntain Small
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f6eda755e87474dac850b65105ee3acf
+    layerID: 196
+    mosaicPosition: {x: 8012, y: 1637}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Clouds
+    spriteName: Clouds
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1f93466a48b064e02935692a2b623740
+    layerID: 199
+    mosaicPosition: {x: 8012, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Sky
+    spriteName: Sky
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d3495eef1b1e74837b60159e3308a751
+    layerID: 200
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: OLD
+    spriteName: OLD
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 391aded7a099644f8a89155474abbd61
+    layerID: 201
+    mosaicPosition: {x: 15423, y: 590}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  sharedRigPSDLayers: []
+  pSDLayerImportSetting: []
+  generateGOHierarchy: 1
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []

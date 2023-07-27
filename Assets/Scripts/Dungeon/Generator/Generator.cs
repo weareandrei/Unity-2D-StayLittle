@@ -1,33 +1,39 @@
 using System.Collections.Generic;
 using System.Linq;
-using Dungeon.Chunk;
-using Dungeon.Generator.Stage;
-using Dungeon.Properties;
-using Dungeon.Room;
+using System.Runtime.CompilerServices;
+using Dungeon.Model;
 using UnityEngine;
+using Util;
+using Global;
 
 namespace Dungeon.Generator {
-    public static class Generator {
+    public static class DungeonGenerator {
         
-        public static List<ChunkLayout> chunkLayoutsAvailable;
+        public static List<Chunk> chunkLayoutsAvailable;
         public static GameObject[] roomPrefabsAvailable;
-        public static List<RoomInstance> roomsAvailable;
+        public static List<Room> roomsAvailable;
+        
+        public static List<Vector2Int> roomMapEntrances;
+
+        public static Exit.SidePosition exitDirection;
         
         public static string seedState;
         private static string _seedOriginalState;
         
-        public static DungeonMapData GenerateDungeonBySeed(string seedGiven) {
+        public static DungeonMapData GenerateDungeonBySeed(string seedGiven, Vector2 dungeonCoordinates) {
+            exitDirection = dungeonCoordinates.x == 1 ? Exit.SidePosition.Left : Exit.SidePosition.Right;
+            
             DungeonMapData dungeonMapData = new DungeonMapData();
             seedState = seedGiven;
             _seedOriginalState = seedGiven;
 
             ChunkGenerator.chunkLayoutsAvailable = chunkLayoutsAvailable;
             dungeonMapData.chunkMap = ChunkGenerator.GenerateChunks();
-            ResetSeed();
+            Seed.ResetSeed(ref seedState, _seedOriginalState);
             
             RoomGenerator.roomLayoutsAvailable = roomsAvailable;
             dungeonMapData.roomMap = RoomGenerator.GenerateRooms(dungeonMapData.chunkMap);
-            ResetSeed();
+            Seed.ResetSeed(ref seedState, _seedOriginalState);
             
             dungeonMapData.contentsMap = ContentsGenerator.GenerateContents(dungeonMapData.roomMap);
 
@@ -35,37 +41,38 @@ namespace Dungeon.Generator {
         }
 
         public static void LoadResources() {
-            chunkLayoutsAvailable = LoadAvailableChunkLayout();
-            roomPrefabsAvailable = LoadAvailableRooms();
+            string resourcesDirectory = GlobalVariables.ResourcesDirectory;
+            chunkLayoutsAvailable = LoadAvailableChunkLayout(resourcesDirectory);
+            roomPrefabsAvailable = LoadAvailableRooms(resourcesDirectory);
             roomsAvailable = LoadAvailableRoomsLayout();
         }
         
-        private static List<ChunkLayout> LoadAvailableChunkLayout() {
-            const string layoutsPath = "Dungeon/ChunkLayout/Prefabs";
+        private static List<Chunk> LoadAvailableChunkLayout(string dirBase) {
+            string layoutsPath = dirBase + "Dungeon/ChunkLayout/Prefabs";
             GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
-            ChunkLayout[] chunkLayouts = layoutsPrefabs.Select(
-                prefabObj => prefabObj.GetComponent<ChunkLayout>()
+            Chunk[] chunkLayouts = layoutsPrefabs.Select(
+                prefabObj => prefabObj.GetComponent<Chunk>()
             ).ToArray();
-            return new List<ChunkLayout>(chunkLayouts);
+            return new List<Chunk>(chunkLayouts);
         }
         
-        private static List<RoomInstance> LoadAvailableRoomsLayout() {
-            RoomInstance[] roomInstances = roomPrefabsAvailable.Select(
-                prefabObj => prefabObj.GetComponent<RoomInstance>()
+        private static List<Room> LoadAvailableRoomsLayout() {
+            Room[] roomInstances = roomPrefabsAvailable.Select(
+                prefabObj => prefabObj.GetComponent<Room>()
             ).ToArray();
-            return new List<RoomInstance>(roomInstances);
+            return new List<Room>(roomInstances);
         }
         
-        private static GameObject[] LoadAvailableRooms() {
-            const string layoutsPath = "Dungeon/Room/Prefabs";
+        private static GameObject[] LoadAvailableRooms(string dirBase) {
+            string layoutsPath = dirBase + "Dungeon/Room/Prefabs";
             GameObject[] layoutsPrefabs = Resources.LoadAll<GameObject>(layoutsPath);
             return layoutsPrefabs;
         }
 
         public static GameObject GetRoomPrefabFromID(string id) {
             return roomPrefabsAvailable.FirstOrDefault(roomPrefab => {
-                RoomInstance roomInstance = roomPrefab.GetComponent<RoomInstance>();
-                if (roomInstance.roomID == id) {
+                Room room = roomPrefab.GetComponent<Room>();
+                if (room.roomID == id) {
                     return roomPrefab;
                 }
 
@@ -74,22 +81,8 @@ namespace Dungeon.Generator {
         }
         
         public static int UseSeed(int choiceCount) {
-            int seedNumber = (int)seedState[0];
-            seedState = seedState.Substring(1, seedState.Length - 1) + seedNumber;
-
-            while (choiceCount <= seedNumber) {
-                seedNumber = seedNumber - choiceCount;
-                if (seedNumber < 0) {
-                    seedNumber = 0;
-                }
-            }
-            
-            return seedNumber;
+            return Seed.UseSeed(ref seedState, choiceCount);
         }
 
-        public static void ResetSeed() {
-            seedState = _seedOriginalState;
-        }
-        
     }
 }

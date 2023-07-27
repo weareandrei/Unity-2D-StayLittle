@@ -1,0 +1,20 @@
+/* Style for the #Options container */
+#Options {
+    flex-direction: row; /* Arrange buttons horizontally */
+    flex-wrap: nowrap; /* Prevent buttons from wrapping to the next row */
+    overflow: hidden; /* Hide any overflowing content */
+}
+
+/* Style for the buttons inside #Options container */
+#Options > Button {
+    width: 100px; /* Set the initial width of the buttons */
+    height: 40px; /* Set the initial height of the buttons */
+    margin: 5px; /* Add some margin between buttons */
+    transition-duration: 0.3s; /* Set the duration for the hover transition */
+}
+
+/* Enlarge the buttons on hover */
+#Options > Button:hover {
+    width: 120px; /* Increase the width on hover */
+    height: 50px; /* Increase the height on hover */
+}

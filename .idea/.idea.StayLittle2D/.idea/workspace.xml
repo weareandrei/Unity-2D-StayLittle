@@ -2,25 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bcdad76-83e3-4b99-8e85-8bfea8d6b48f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Tests/DungeonGenerationTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Tests/GeneratorTests.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Global/Global.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Global/GlobalVariables.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StayLittle2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Type/ExitMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DExit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Consts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Consts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataModel/DungeonList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataModel/DungeonList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Dungeon.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/ChunkGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/RoomGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Component/RoomGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Generator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Base/DungeonMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Chunk.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/Room.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/RoomRequirements.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Component/RoomRequirements.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/ExitMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/ExitMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/RoomMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Model/Map/RoomMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="honeygrid-dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,9 +45,18 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Properties/Map/Util/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/HoneyGrid2D/Drawer/Grid2DDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/Assets/Scripts/Dungeon/Data/DataModel/DungeonList.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/ManualTestGeneration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.common@6.0.5/Editor/ImagePacker/ImagePacker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.path@5.0.2/Editor/EditorTool/PathEditorTool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.psdimporter@6.0.6/Editor/PSDPlugin/PsdFile/Util.cs" root0="SKIP_HIGHLIGHTING" />
@@ -51,6 +76,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Text/FontCreatedByScript.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/EventSystem/RaycastSortingTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/UIBehaviourExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/weareandrei/Documents/UnityProjects/StayLittle2D/ProjectSettings/PackageManagerSettings.asset" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/15/bfc8e21c/Assert.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41229cbbc9214cf28863fc47f2e1508c469200/11/6309678e/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/44/5c5cbce8/ICloneable.cs" root0="SKIP_HIGHLIGHTING" />
@@ -68,6 +94,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2KNV4shPWHYDtduQQ5XTaoWPsLD" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -125,10 +154,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="87602">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="89880">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="87602" />
+      <option name="pid" value="89880" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -212,6 +241,33 @@
       <workItem from="1683670142945" duration="1049000" />
       <workItem from="1683843727778" duration="5755000" />
       <workItem from="1683924296374" duration="8717000" />
+      <workItem from="1684079569563" duration="219000" />
+      <workItem from="1684079798887" duration="2869000" />
+      <workItem from="1684172769813" duration="3690000" />
+      <workItem from="1684251926703" duration="2154000" />
+      <workItem from="1684347363159" duration="1140000" />
+      <workItem from="1684349687234" duration="1191000" />
+      <workItem from="1684409107618" duration="10944000" />
+      <workItem from="1684689908983" duration="165000" />
+      <workItem from="1684843440187" duration="237000" />
+      <workItem from="1684848100922" duration="3042000" />
+      <workItem from="1684947050218" duration="3715000" />
+      <workItem from="1684951218531" duration="480000" />
+      <workItem from="1685290412641" duration="32000" />
+      <workItem from="1685290595807" duration="676000" />
+      <workItem from="1685463663565" duration="8669000" />
+      <workItem from="1685520710712" duration="130000" />
+      <workItem from="1685546360962" duration="7198000" />
+      <workItem from="1685727132255" duration="4568000" />
+      <workItem from="1685890271377" duration="1820000" />
+      <workItem from="1685975513649" duration="4087000" />
+      <workItem from="1686042810496" duration="2571000" />
+      <workItem from="1686047285860" duration="1232000" />
+      <workItem from="1686053951126" duration="731000" />
+      <workItem from="1686070482026" duration="3210000" />
+      <workItem from="1686177886833" duration="853000" />
+      <workItem from="1686231333425" duration="7088000" />
+      <workItem from="1686321065769" duration="5611000" />
     </task>
     <task id="LOCAL-00001" summary="Changed Quadrant to Chunk">
       <created>1673822864663</created>
@@ -262,7 +318,98 @@
       <option name="project" value="LOCAL" />
       <updated>1683652799845</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added DungeonManager Initialization + Moved">
+      <created>1684079062180</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1684079062180</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Finishing last commit">
+      <created>1684079836333</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684079836333</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Folder Structure fully refactored. Code not working correctly yet.">
+      <created>1685275238882</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275238882</updated>
+    </task>
+    <task id="LOCAL-00011" summary="asmdef's added to the last commit">
+      <created>1685275255968</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275255968</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Rollback some DungeonMap bad changes. Now code is working.">
+      <created>1685275893368</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685275893368</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Initial HoneyGrid setup">
+      <created>1685290686581</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1685290686581</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types">
+      <created>1685465262435</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1685465262435</updated>
+    </task>
+    <task id="LOCAL-00015" summary="HoneyGrid finished.&#10;Not tested properly">
+      <created>1685466920060</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1685466920060</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Adapted changes from HoneyGrid to the rest of the code.&#10;Drawer not made yet for HoneyGrid.&#10;Prefabs for Room and Chunk need reassigning.">
+      <created>1685520832637</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1685520832637</updated>
+    </task>
+    <task id="LOCAL-00017" summary="HoneyGrid Finished and working good.&#10;&#10;Not all drawers are implemented yet.&#10;&#10;Prefabs are still not setup correctly.">
+      <created>1685557593333</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1685557593333</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ChunkLayoutPrefabs back">
+      <created>1685574367094</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1685574367094</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Room Prefabs assigned">
+      <created>1685727155616</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1685727155616</updated>
+    </task>
+    <task id="LOCAL-00020" summary="ExitMap works with HoneyGrid. Code totally works with new HoneyGrid Changes.">
+      <created>1685893134823</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1685893134823</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,12 +495,25 @@
     <MESSAGE value="Chunk generation working. Not entirely finished." />
     <MESSAGE value="Fixed ChunkLayout. But RoomMap still has rooms with not corresponding exits" />
     <MESSAGE value="ExitMap Works. Code does not break" />
-    <option name="LAST_COMMIT_MESSAGE" value="ExitMap Works. Code does not break" />
+    <MESSAGE value="Added DungeonManager Initialization + Moved" />
+    <MESSAGE value="Finishing last commit" />
+    <MESSAGE value="Folder Structure fully refactored. Code not working correctly yet." />
+    <MESSAGE value="asmdef's added to the last commit" />
+    <MESSAGE value="Rollback some DungeonMap bad changes. Now code is working." />
+    <MESSAGE value="Initial HoneyGrid setup" />
+    <MESSAGE value="Defined Abstract classes that are used as a base in a FlexGrid2D and Grid2D with specific Types" />
+    <MESSAGE value="HoneyGrid finished.&#10;Not tested properly" />
+    <MESSAGE value="Adapted changes from HoneyGrid to the rest of the code.&#10;Drawer not made yet for HoneyGrid.&#10;Prefabs for Room and Chunk need reassigning." />
+    <MESSAGE value="HoneyGrid Finished and working good.&#10;&#10;Not all drawers are implemented yet.&#10;&#10;Prefabs are still not setup correctly." />
+    <MESSAGE value="ChunkLayoutPrefabs back" />
+    <MESSAGE value="Room Prefabs assigned" />
+    <MESSAGE value="ExitMap works with HoneyGrid. Code totally works with new HoneyGrid Changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="ExitMap works with HoneyGrid. Code totally works with new HoneyGrid Changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Plugins/Array2DEditor/Editor/PropertyDrawers/Array2DDrawer.cs</url>
           <line>68</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Plugins/Array2DEditor/Editor/PropertyDrawers/Array2DDrawer.cs" initialLine="68" containingFunctionPresentation="method 'OnGUI'">
@@ -366,96 +526,50 @@
           </properties>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs</url>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Playground/EditMode/ChunkGeneratorTest.cs</url>
           <line>15</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" initialLine="18" containingFunctionPresentation="method 'CorrectChunksGenerated'">
-            <startOffsets>
-              <option value="648" />
-            </startOffsets>
-            <endOffsets>
-              <option value="650" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Tests/EditMode/ChunkGeneratorTest.cs" initialLine="18" containingFunctionPresentation="method 'CorrectChunksGenerated'" />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs</url>
-          <line>152</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" initialLine="142" containingFunctionPresentation="method 'getRequirements_Right'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Data/DataProcessing/DungeonListGenerator.cs" initialLine="26" containingFunctionPresentation="method 'Generate'">
             <startOffsets>
-              <option value="6890" />
+              <option value="863" />
             </startOffsets>
             <endOffsets>
-              <option value="6928" />
+              <option value="891" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="624" />
+          <option name="timeStamp" value="682" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirementsOld.cs</url>
-          <line>158</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Util/RoomRequirements.cs" initialLine="148" containingFunctionPresentation="method 'getRequirements_Right'">
+          <url>file://$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs</url>
+          <line>76</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Plugins/Grid2DEditor/Grid2D/Grid2DResizable.cs" initialLine="76" containingFunctionPresentation="method 'UpdateCell'">
             <startOffsets>
-              <option value="7192" />
+              <option value="2226" />
             </startOffsets>
             <endOffsets>
-              <option value="7235" />
+              <option value="2268" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="625" />
+          <option name="timeStamp" value="689" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs</url>
-          <line>141</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" initialLine="154" containingFunctionPresentation="method 'SelectRoomForThisCell'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Tests/DungeonGenerationTests.cs</url>
+          <line>46</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Tests/DungeonGenerationTests.cs" initialLine="45" containingFunctionPresentation="method 'CheckRooms'">
             <startOffsets>
-              <option value="6534" />
+              <option value="1479" />
             </startOffsets>
             <endOffsets>
-              <option value="6592" />
+              <option value="1529" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="626" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs</url>
-          <line>135</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" initialLine="148" containingFunctionPresentation="method 'SelectRoomForThisCell'">
-            <startOffsets>
-              <option value="6330" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6360" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="627" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs</url>
-          <line>35</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" initialLine="35" containingFunctionPresentation="method 'GenerateRooms'">
-            <startOffsets>
-              <option value="1349" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1425" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="630" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs</url>
-          <line>133</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Dungeon/Generator/Stage/RoomGenerator.cs" initialLine="133" containingFunctionPresentation="method 'SelectRoomForThisCell'">
-            <startOffsets>
-              <option value="6127" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6224" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="631" />
+          <option name="timeStamp" value="781" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -464,5 +578,9 @@
         <PinnedItemInfo parentTag="Type#UnityEngine.Object" memberName="hideFlags" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
