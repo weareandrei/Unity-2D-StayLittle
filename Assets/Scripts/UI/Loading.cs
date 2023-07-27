@@ -8,19 +8,20 @@ namespace UI {
         public delegate void BeforeLoadingDelegate();
         
         public static BeforeLoadingDelegate BeforeLoading;
-
-        private static GameObject loadingPrefab = null;
-        private static GameObject loadingScreenInstance;
+        private static GameObject _loadingScreenInstance = null;
         
         public static void StartLoading() {
-            string prefabPath = "DEV/UI/LoadingScreen";
-            GameObject loadingPrefab = Resources.Load<GameObject>(prefabPath);
-            loadingScreenInstance = GameObject.Instantiate(loadingPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-            loadingPrefab.SetActive(true);
+            if (_loadingScreenInstance == null) {
+                string prefabPath = "DEV/UI/LoadingScreen";
+                GameObject loadingPrefab = Resources.Load<GameObject>(prefabPath);
+                _loadingScreenInstance = GameObject.Instantiate(loadingPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            }
+            
+            _loadingScreenInstance.SetActive(true);
         }
 
         public static void StopLoading() {
-            loadingScreenInstance.SetActive(false);
+            _loadingScreenInstance.SetActive(false);
         }
 
         // public static void BeginLoading() {

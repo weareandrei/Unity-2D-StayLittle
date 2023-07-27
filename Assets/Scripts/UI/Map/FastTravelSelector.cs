@@ -17,7 +17,7 @@ namespace UI.Map {
         
         public void Display() {
             visualElement.style.display = DisplayStyle.Flex;
-            VisualElement optionsContainer = visualElement.Q<VisualElement>("Options");
+            ScrollView optionsContainer = visualElement.Q<ScrollView>("Options");
             optionsContainer.Clear();
 
             List<FastTravelOption> optionsAvailable = GetFastTravelOptions();
@@ -44,13 +44,22 @@ namespace UI.Map {
         }
 
         private void CreateButton(FastTravelOption fastTravelOption) {
-            
             Button button = new Button();
             button.text = fastTravelOption.destinationId;
             button.clicked += () => SelectFastTravel(fastTravelOption);
 
-            VisualElement optionsContainer = visualElement.Q<VisualElement>("Options");
-            optionsContainer.Add(button);
+            ScrollView optionsListView = visualElement.Q<ScrollView>("Options");
+
+            // Check if itemsSource is null, and if so, create a new list
+            // List<FastTravelOption> elements = optionsListView.itemsSource as List<FastTravelOption>;
+            // if (elements == null) {
+            //     elements = new List<FastTravelOption>();
+            // }
+
+            // elements.Add(fastTravelOption);
+            // optionsListView.itemsSource = elements; // Set the itemsSource again to the updated list
+            optionsListView.Add(button);
+            // optionsListView.Refresh();
         }
 
         public void SelectFastTravel(FastTravelOption fastTravelOption) {

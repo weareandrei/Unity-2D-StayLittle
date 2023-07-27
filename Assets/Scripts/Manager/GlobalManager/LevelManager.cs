@@ -120,7 +120,7 @@ namespace Manager {
                 if (sceneBound.connectedSceneName == lastSceneOpen) {
                     GameObject spawnPoint = sceneBound.gameObject.transform.Find("SpawnPoint")?.gameObject;
                     Vector3 teleportToLocation = spawnPoint.transform.position;
-                    player.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y+10, teleportToLocation.z);
+                    player.transform.position = new Vector3(teleportToLocation.x, teleportToLocation.y, teleportToLocation.z);
                     return;
                 }
             }
