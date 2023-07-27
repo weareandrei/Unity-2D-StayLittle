@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Content;
 using Dungeon.Model;
 using HoneyGrid2D;
+using Manager.SubManager;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Dungeon.Generator {
     public class ContentsGenerator {
@@ -40,8 +42,38 @@ namespace Dungeon.Generator {
                     _contentsMap.map.GetCellActual(x, y).walls = EnableThisRoomWalls(new Vector2Int(x, y));
                 }
             }
+            
+            EnableEntranceWalls();
         }
 
+        private static void EnableEntranceWalls() {
+            foreach (Vector2Int entraceCoord in DungeonGenerator.roomMapEntrances) {
+                FlexGrid2DBool wallsMap = _contentsMap.map.GetCellActual(entraceCoord.x, entraceCoord.y).walls;
+                _contentsMap.map.GetCellActual(entraceCoord.x, entraceCoord.y).walls = 
+                    ForceEnableThisRoomWalls(DungeonGenerator.exitDirection, wallsMap);
+            }
+        }
+
+        private static FlexGrid2DBool ForceEnableThisRoomWalls(Exit.SidePosition side, FlexGrid2DBool wallsMap) {
+            switch (side) {
+                case Exit.SidePosition.Left: {
+                    for (int y = 0; y < Consts.Get<int>("RoomSize")+1; y++) {
+                        wallsMap.UpdateCell(0, y, false);
+                    }
+
+                    break;
+                }
+                case Exit.SidePosition.Right: {
+                    for (int y = 0; y < Consts.Get<int>("RoomSize")+1; y++) {
+                        wallsMap.UpdateCell(Consts.Get<int>("RoomSize") + 1, y, false);
+                    }
+
+                    break;
+                }
+            }
+
+            return wallsMap; // todo: top and bottom option maybe needed in future ?
+        }
         private static FlexGrid2DBool EnableThisRoomWalls(Vector2Int roomCoordinates) {
             FlexGrid2DBool wallsMap = new FlexGrid2DBool(Consts.Get<int>("RoomSize") + 2,
                 Consts.Get<int>("RoomSize") + 2, true);
@@ -130,12 +162,15 @@ namespace Dungeon.Generator {
                 for (int x = 0; x < _roomMap.map.getXSize(); x++) {
                     string thisRoomID = _roomMap.map.GetCellActual(x, y);
                     if (thisRoomID != "") {
-                        List<ContentPoint> contentPoints =
+                        List<GameObject> contentPoints =
                             RoomGenerator.FindRoomInstanceByID(thisRoomID).GetContentPoints();
                         List<ContentPayload> payloads = new List<ContentPayload>();
                         
-                        foreach (ContentPoint contentPoint in contentPoints) {
-                            ContentPayload payload = new ContentPayload(contentPoint.type);
+                        foreach (GameObject contentPoint in contentPoints) {
+                            ContentPayload payload = new ContentPayload(contentPoint.GetComponent<ContentPoint>().type);
+                            List<string> availableContentIDs = ContentManager.GetAvailableContentIDs(payload.type);
+                            int randomNumber = DungeonGenerator.UseSeed(availableContentIDs.Count-1);
+                            payload.ContentID = availableContentIDs[randomNumber];
                             payloads.Add(payload);
                         }
 

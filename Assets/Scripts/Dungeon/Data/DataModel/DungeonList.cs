@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Dungeon.Data {
     public static class DungeonList
     {
-        public static List<DungeonData> _dungeons = new List<DungeonData>() {
+        public static List<DungeonData> dungeons = new List<DungeonData>() {
             {new DungeonData("a",new Vector2Int(1, 100), new List<Vector2Int>(), "12345",10, DungeonType.regularDungeon)},
             {new DungeonData("b",new Vector2Int(1, 200), new List<Vector2Int>(), "12345",10,DungeonType.regularDungeon)},
             {new DungeonData("c",new Vector2Int(1, 300), new List<Vector2Int>(), "12345",10,DungeonType.regularDungeon)},
@@ -16,18 +16,20 @@ namespace Dungeon.Data {
             {new DungeonData("h",new Vector2Int(1, 800), new List<Vector2Int>(), "12345",10,DungeonType.regularDungeon)},
             {new DungeonData("i",new Vector2Int(1, 900), new List<Vector2Int>(), "12345",10,DungeonType.regularDungeon)},
             {new DungeonData("j",new Vector2Int(1, 1000), new List<Vector2Int>(), "12345",10,DungeonType.regularDungeon)}
-        }; // Assume its sorted already
+        }; // todo: Assume its sorted already
+
+        public static List<DungeonData> availableDungeons = new List<DungeonData>();
         
         public static void Initialize(string seed) {
             int maxDungeons = Consts.Get<int>("MaxDungeons");
         }
 
         public static int CountDungeons() {
-            return _dungeons.Count;
+            return dungeons.Count;
         }
 
         public static DungeonData GetDungeonDataByIndex(int index) {
-            return _dungeons[index];
+            return dungeons[index];
         }
 
         public static void SaveDungeons() {
@@ -39,7 +41,7 @@ namespace Dungeon.Data {
         }
 
         public static DungeonData GetDungeonDataByID(string id) {
-            foreach (DungeonData dungeonData in _dungeons) {
+            foreach (DungeonData dungeonData in dungeons) {
                 if (dungeonData.id == id) {
                     return dungeonData;
                 }
@@ -74,10 +76,11 @@ namespace Dungeon.Data {
         }
     }
     
-    public enum DungeonType {
-        lostRoom,
-        bossDungeon,
-        questDungeon,
-        regularDungeon
-    }
+}
+
+public enum DungeonType {
+    lostRoom,
+    bossDungeon,
+    questDungeon,
+    regularDungeon
 }
