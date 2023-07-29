@@ -10,10 +10,10 @@ namespace Dungeon {
             { "MaxDungeons", 10 },
             { "ChunkSize", 4 },
             { "DungeonChunkCount", 3 },
-            { "RoomSize", 3 },
-            { "SpaceBetweenRoomCenters", 10 }, // assuming they are all square
-            { "SizeOfRoom_PX", 10.06f }, // Check later if it's specific size units or a relative scale
-            { "SpaceBetweenDungeons", 10 }, // Check later if it's specific size units or scale
+            { "RoomSize", 4 },
+            { "SpaceBetweenRoomCenters", 16 }, // assuming they are all square
+            { "SizeOfRoom_PX", 20f }, // Check later if it's specific size units or a relative scale
+            { "SpaceBetweenDungeons", 60 }, // Check later if it's specific size units or scale
             
             // Dungeon Contents
             { "MobMultiplier", 10 },
