@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace HoneyGrid2D {
     [System.Serializable]
@@ -32,6 +33,21 @@ namespace HoneyGrid2D {
         public void UpdateCell(int x, int y, T contents) {
             rows[y].cells[x] = contents;
         }
+        
+        public void LoopThroughCells(Action<int, int> action)
+        {
+            for (int y = 0; y < Size; y++) {
+                for (int x = 0; x < Size; x++) {
+                    LoopState loopState =  action(x, y);
+                    if (loopState == LoopState.Break)
+                    {
+                        return
+                    }
+                        
+                        action(x, y);
+                }
+            }
+        }
 
         // public void DisplayGrid () {
         //     int rowCount = rows[0].column.Count;
@@ -43,5 +59,9 @@ namespace HoneyGrid2D {
         //         }
         //     }
         // }
+    }
+    public enum LoopState {
+        Continue,
+        Break
     }
 }
