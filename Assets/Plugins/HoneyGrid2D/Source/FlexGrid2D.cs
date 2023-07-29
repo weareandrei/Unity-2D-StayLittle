@@ -56,6 +56,14 @@ namespace HoneyGrid2D {
         public void UpdateCell(int x, int y, T contents) {
             rows[y + zeroYOffset].cells[x] = contents;
         }
+        public void LoopThroughCells(Action<int, int> action)
+        {
+            for (int y = 0; y < getYSize(); y++) {
+                for (int x = 0; x < getXSize(); x++) {
+                    action(x, y);
+                }
+            }
+        }
 
         public void ExpandRight (int count = 1) {
             rows.ForEach( (row) =>  row.InsertCellsRight(count) );
