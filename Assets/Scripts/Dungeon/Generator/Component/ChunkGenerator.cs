@@ -228,23 +228,41 @@ namespace Dungeon.Generator {
                 int potentialRooms = 0;
                 int potentialRoomsSatisfied = 0;
                 
-                for (int y = 0; y <= layout.Size-1; y++) {
-                    for (int x = 0; x <= layout.Size-1; x++) {
-                        if (layout.GetCell(x, y) == "E") {
-                            if (assessedChunkLayout.rooms.GetCell(x,y) != "E") {
-                                isSimilar = false;
-                            }
-                        }
-                        // BUG : only works if we satisfy 1 Possible Room.
-                        if (layout.GetCell(x, y) == "P") {
-                            potentialRooms++;
-                            if (assessedChunkLayout.rooms.GetCell(x,y) != "E" || 
-                                assessedChunkLayout.rooms.GetCell(x,y) != "R") {
-                                potentialRoomsSatisfied++;
-                            }
+                layout.LoopThroughCells((x, y) =>
+                {
+                    if (layout.GetCell(x, y) == "E") {
+                        if (assessedChunkLayout.rooms.GetCell(x,y) != "E") {
+                            isSimilar = false;
                         }
                     }
-                }
+                    // BUG : only works if we satisfy 1 Possible Room.
+                    if (layout.GetCell(x, y) == "P") {
+                        potentialRooms++;
+                        if (assessedChunkLayout.rooms.GetCell(x,y) != "E" || 
+                            assessedChunkLayout.rooms.GetCell(x,y) != "R") {
+                            potentialRoomsSatisfied++;
+                        }
+                    }
+
+                    return LoopState.Continue;
+                });
+                // for (int y = 0; y <= layout.Size-1; y++) {
+                //     for (int x = 0; x <= layout.Size-1; x++) {
+                //         if (layout.GetCell(x, y) == "E") {
+                //             if (assessedChunkLayout.rooms.GetCell(x,y) != "E") {
+                //                 isSimilar = false;
+                //             }
+                //         }
+                //         // BUG : only works if we satisfy 1 Possible Room.
+                //         if (layout.GetCell(x, y) == "P") {
+                //             potentialRooms++;
+                //             if (assessedChunkLayout.rooms.GetCell(x,y) != "E" || 
+                //                 assessedChunkLayout.rooms.GetCell(x,y) != "R") {
+                //                 potentialRoomsSatisfied++;
+                //             }
+                //         }
+                //     }
+                // }
 
                 // If we did not satisfy any of the Potential Rooms
                 if (potentialRooms > 0) {

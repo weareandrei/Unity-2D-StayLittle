@@ -35,11 +35,17 @@ namespace Dungeon.Generator {
         }
 
         private static void EnableWalls() {
-            for (int y = 0; y < _roomMap.map.getYSize(); y++) {
-                for (int x = 0; x < _roomMap.map.getXSize(); x++) {
-                    _contentsMap.map.GetCellActual(x, y).walls = EnableThisRoomWalls(new Vector2Int(x, y));
-                }
-            }
+            _roomMap.map.LoopThroughCells((x, y) =>
+            {
+                _contentsMap.map.GetCellActual(x, y).walls = EnableThisRoomWalls(new Vector2Int(x, y));
+                return LoopState.Continue;
+            });
+            
+            // for (int y = 0; y < _roomMap.map.getYSize(); y++) {
+            //     for (int x = 0; x < _roomMap.map.getXSize(); x++) {
+            //         _contentsMap.map.GetCellActual(x, y).walls = EnableThisRoomWalls(new Vector2Int(x, y));
+            //     }
+            // }
             
             EnableEntranceWalls();
         }
@@ -156,26 +162,47 @@ namespace Dungeon.Generator {
         }
 
         private static void PrebuildContentsMap() {
-            for (int y = 0; y < _roomMap.map.getYSize(); y++) {
-                for (int x = 0; x < _roomMap.map.getXSize(); x++) {
-                    string thisRoomID = _roomMap.map.GetCellActual(x, y);
-                    if (thisRoomID != "") {
-                        List<ContentPoint> contentPoints =
-                            RoomGenerator.FindRoomInstanceByID(thisRoomID).GetContentPoints();
-                        List<ContentPayload> payloads = new List<ContentPayload>();
+            _roomMap.map.LoopThroughCells((x, y) =>
+            {
+                string thisRoomID = _roomMap.map.GetCellActual(x, y);
+                if (thisRoomID != "") {
+                    List<ContentPoint> contentPoints =
+                        RoomGenerator.FindRoomInstanceByID(thisRoomID).GetContentPoints();
+                    List<ContentPayload> payloads = new List<ContentPayload>();
                         
-                        foreach (ContentPoint contentPoint in contentPoints) {
-                            ContentPayload payload = new ContentPayload(contentPoint.type);
-                            payloads.Add(payload);
-                        }
-
-                        RoomContents roomContents = _contentsMap.map.GetCellActual(x, y);
-                        roomContents.payloads = payloads;
-                        
-                        _contentsMap.map.UpdateCell(x, y, roomContents);
+                    foreach (ContentPoint contentPoint in contentPoints) {
+                        ContentPayload payload = new ContentPayload(contentPoint.type);
+                        payloads.Add(payload);
                     }
+
+                    RoomContents roomContents = _contentsMap.map.GetCellActual(x, y);
+                    roomContents.payloads = payloads;
+                        
+                    _contentsMap.map.UpdateCell(x, y, roomContents);
                 }
-            }
+                return LoopState.Continue;
+            });
+            
+            // for (int y = 0; y < _roomMap.map.getYSize(); y++) {
+            //     for (int x = 0; x < _roomMap.map.getXSize(); x++) {
+            //         string thisRoomID = _roomMap.map.GetCellActual(x, y);
+            //         if (thisRoomID != "") {
+            //             List<ContentPoint> contentPoints =
+            //                 RoomGenerator.FindRoomInstanceByID(thisRoomID).GetContentPoints();
+            //             List<ContentPayload> payloads = new List<ContentPayload>();
+            //             
+            //             foreach (ContentPoint contentPoint in contentPoints) {
+            //                 ContentPayload payload = new ContentPayload(contentPoint.type);
+            //                 payloads.Add(payload);
+            //             }
+            //
+            //             RoomContents roomContents = _contentsMap.map.GetCellActual(x, y);
+            //             roomContents.payloads = payloads;
+            //             
+            //             _contentsMap.map.UpdateCell(x, y, roomContents);
+            //         }
+            //     }
+            // }
         }
 
         // private static List<ContentPointData> FindAllContentPoints() {
