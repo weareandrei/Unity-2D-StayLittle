@@ -34,17 +34,15 @@ namespace HoneyGrid2D {
             rows[y].cells[x] = contents;
         }
         
-        public void LoopThroughCells(Action<int, int> action)
+        public void LoopThroughCells(Func<int, int, LoopState> func)
         {
             for (int y = 0; y < Size; y++) {
                 for (int x = 0; x < Size; x++) {
-                    LoopState loopState =  action(x, y);
+                    LoopState loopState =  func(x, y);
                     if (loopState == LoopState.Break)
                     {
-                        return
+                        return;
                     }
-                        
-                        action(x, y);
                 }
             }
         }

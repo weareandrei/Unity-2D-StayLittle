@@ -35,34 +35,58 @@ namespace Dungeon.Renderer {
             helper.StartRenderCoroutine(dungeonParent);
         }
 
-        public void RenderRooms(GameObject dungeonParent) {
-            for (int y = 0; y < _roomMap.map.getYSize(); y++) {
-                for (int x = 0; x < _roomMap.map.getXSize(); x++) {
-                    Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x, y));
-                    string roomId = _roomMap.map.GetCellActual(_roomMap.map.getXSize() - 1 - x, y);
+        private void RenderRooms(GameObject dungeonParent) {
+            _roomMap.map.LoopThroughCells((x, y) =>
+            {
+                Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x, y));
+                string roomId = _roomMap.map.GetCellActual(_roomMap.map.getXSize() - 1 - x, y);
 
-                    if (roomId != "") {
-                        GameObject roomRendered = RenderRoomAtCoordinates(cellPosFromOrigin, roomId, dungeonParent);
-                        dungeonParent.GetComponent<DungeonRendererHelper>().renderedRooms.Add(roomRendered);
-                    }
+                if (roomId != "") {
+                    GameObject roomRendered = RenderRoomAtCoordinates(cellPosFromOrigin, roomId, dungeonParent);
+                    dungeonParent.GetComponent<DungeonRendererHelper>().renderedRooms.Add(roomRendered);
                 }
-            }
+                return LoopState.Continue;
+            });
+            
+            // for (int y = 0; y < _roomMap.map.getYSize(); y++) {
+            //     for (int x = 0; x < _roomMap.map.getXSize(); x++) {
+            //         Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x, y));
+            //         string roomId = _roomMap.map.GetCellActual(_roomMap.map.getXSize() - 1 - x, y);
+            //
+            //         if (roomId != "") {
+            //             GameObject roomRendered = RenderRoomAtCoordinates(cellPosFromOrigin, roomId, dungeonParent);
+            //             dungeonParent.GetComponent<DungeonRendererHelper>().renderedRooms.Add(roomRendered);
+            //         }
+            //     }
+            // }
         }
 
         public void RenderContents(GameObject dungeonParent) {
             int counter = 0;
-            for (int y = 0; y < _roomMap.map.getYSize(); y++) {
-                for (int x = 0; x < _roomMap.map.getXSize(); x++) {
-                    Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x, y));
-                    string roomId = _roomMap.map.GetCellActual(_roomMap.map.getXSize() - 1 - x, y);
+            _roomMap.map.LoopThroughCells((x, y) =>
+            {
+                Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x, y));
+                string roomId = _roomMap.map.GetCellActual(_roomMap.map.getXSize() - 1 - x, y);
 
-                    if (roomId != "") {
-                        GameObject roomRendered = dungeonParent.GetComponent<DungeonRendererHelper>().renderedRooms[counter];
-                        counter++;
-                        RenderThisRoomContents(_roomMap.map.getXSize() - 1 - x, y, roomRendered);
-                    }
+                if (roomId != "") {
+                    GameObject roomRendered = dungeonParent.GetComponent<DungeonRendererHelper>().renderedRooms[counter];
+                    counter++;
+                    RenderThisRoomContents(_roomMap.map.getXSize() - 1 - x, y, roomRendered);
                 }
-            }
+                return LoopState.Continue;
+            });
+            // for (int y = 0; y < _roomMap.map.getYSize(); y++) {
+            //     for (int x = 0; x < _roomMap.map.getXSize(); x++) {
+            //         Vector2 cellPosFromOrigin = DetermineCellPosition(new Vector2Int(x, y));
+            //         string roomId = _roomMap.map.GetCellActual(_roomMap.map.getXSize() - 1 - x, y);
+            //
+            //         if (roomId != "") {
+            //             GameObject roomRendered = dungeonParent.GetComponent<DungeonRendererHelper>().renderedRooms[counter];
+            //             counter++;
+            //             RenderThisRoomContents(_roomMap.map.getXSize() - 1 - x, y, roomRendered);
+            //         }
+            //     }
+            // }
         }
 
         private void RenderThisRoomContents(int x, int y, GameObject roomRendered) {
@@ -117,15 +141,25 @@ namespace Dungeon.Renderer {
         private void EnableWalls(int room_x, int room_y, GameObject roomRendered) {
             FlexGrid2DBool wallsMap = _contentsMap.map.GetCellActual(room_x, room_y).walls;
             
-            for (int wall_y = 0; wall_y < wallsMap.getYSize(); wall_y++) {
-                for (int wall_x = 0; wall_x < wallsMap.getXSize(); wall_x++) {
-                    if (wallsMap.GetCellActual(wall_x, wall_y) == true) {
-                        roomRendered.transform.Find("Walls").GetComponent<WallManager>().EnableWall(wall_x, wall_y);
-                    } else {
-                        roomRendered.transform.Find("Walls").GetComponent<WallManager>().DisableWall(wall_x, wall_y);
-                    }
+            wallsMap.LoopThroughCells((wall_x, wall_y) =>
+            {
+                if (wallsMap.GetCellActual(wall_x, wall_y) == true) {
+                    roomRendered.transform.Find("Walls").GetComponent<WallManager>().EnableWall(wall_x, wall_y);
+                } else {
+                    roomRendered.transform.Find("Walls").GetComponent<WallManager>().DisableWall(wall_x, wall_y);
                 }
-            }
+                return LoopState.Continue;
+            });
+            
+            // for (int wall_y = 0; wall_y < wallsMap.getYSize(); wall_y++) {
+            //     for (int wall_x = 0; wall_x < wallsMap.getXSize(); wall_x++) {
+            //         if (wallsMap.GetCellActual(wall_x, wall_y) == true) {
+            //             roomRendered.transform.Find("Walls").GetComponent<WallManager>().EnableWall(wall_x, wall_y);
+            //         } else {
+            //             roomRendered.transform.Find("Walls").GetComponent<WallManager>().DisableWall(wall_x, wall_y);
+            //         }
+            //     }
+            // }
         }
 
         private Vector2 DetermineCellPosition(Vector2Int roomActualIndex) {
@@ -134,17 +168,29 @@ namespace Dungeon.Renderer {
                 _dungeonOrigin.y + (roomActualIndex.y * spaceBetweenRooms));
         }
         
-        private int FindStartX(FlexGrid2DString map) {
-            for (int x = map.getXSize()-1; x > 0; x--) {
-                bool isColumnEmpty = true;
-                for (int y = 0; y < map.getYSize()-1; y++) {
-                    if (map.GetCellActual(x, y) != "") {
-                        return x;
-                    }
+        private int FindStartX(FlexGrid2DString map)
+        {
+            int returnX = -1;
+            map.LoopThroughCells((x, y) =>
+            {
+                if (map.GetCellActual(x, y) != "")
+                {
+                    returnX = x;
+                    return LoopState.Break;
                 }
-            }
 
-            return -1;
+                return LoopState.Continue;
+            });
+            // for (int x = map.getXSize()-1; x > 0; x--) {
+            //     // bool isColumnEmpty = true;
+            //     for (int y = 0; y < map.getYSize()-1; y++) {
+            //         if (map.GetCellActual(x, y) != "") {
+            //             return x;                        
+            //         }
+            //     }
+            // }
+
+            return returnX;
         }
         
         // private GameObject InstantiateGizmoTextAtCoordinates(Vector3 coordinates, string text, GameObject parent) {
