@@ -40,13 +40,15 @@ namespace Dungeon.Generator {
                 chunkMap.map.getXSize() * Consts.Get<int>("ChunkSize"),
                 chunkMap.map.getYSize() * Consts.Get<int>("ChunkSize")
             ));
-            
-            UpdateEntrances();
+
+            LocateEntrances();
             
             _exitMap = new ExitMap((FlexGrid2DString)_newRoomMap.map.Clone(),
                 _newRoomMap.map.getXSize(), 
                 _newRoomMap.map.getYSize(), 
                 _entrances[0]);
+
+            PutEntrances(_entrances);
         }
 
         private static RoomMap PrebuildRoomMap(RoomMap roomMap) {
@@ -88,7 +90,7 @@ namespace Dungeon.Generator {
         }
 
         private static List<string> GetAvailableRooms(Vector2Int cellCoordinates, List<Room> layoutsAvailable) {
-            // Here we initialise requirements. And need to ONLY find the Soft Exits (neccessary)
+            // Here we initialise requirements. And need to ONLY find the Soft Exits (necessary)
             RoomRequirements requirements = new RoomRequirements(cellCoordinates, _newRoomMap.map, _exitMap);
             List<string> roomsAvailable = GetRoomsBasedOnRequirements(requirements.ToGrid(), layoutsAvailable);
             if (roomsAvailable.Count == 0) {
@@ -97,13 +99,16 @@ namespace Dungeon.Generator {
             }
 
             bool improveStatus = true;
-            while (roomsAvailable.Count != 0 && improveStatus == true) {
+            while (roomsAvailable.Count != 0 && improveStatus) {
                 improveStatus = requirements.Improve();
                 roomsAvailable = GetRoomsBasedOnRequirements(requirements.ToGrid(), layoutsAvailable);
             }
 
             if (improveStatus == false) {
                 // Then we don't need to roll back the requirements
+                roomsAvailable = GetRoomsBasedOnRequirements(requirements.ToGrid(), layoutsAvailable);
+
+                return roomsAvailable;
             }
 
             requirements.RollBack();
@@ -111,7 +116,8 @@ namespace Dungeon.Generator {
 
             return roomsAvailable;
         }
-
+        
+        // Must precisely correspond to requirements
         private static List<string> GetRoomsBasedOnRequirements(Grid2DString requirements, List<Room> layoutsAvailable) {
             List<string> roomLayouts = new List<string>();
 
@@ -133,11 +139,16 @@ namespace Dungeon.Generator {
                     }
                 }
 
-                isSimilar = CheckNotStrictExits(requirements, assessedRoomLayout);
+                isSimilar = CheckNotStrictExits(requirements, assessedRoomLayout.roomLayout);
 
                 if (isSimilar) {
                     roomLayouts.Add(assessedRoomLayout.roomID);
                 }
+            }
+
+                
+            if (roomLayouts.Contains("R_1111111111111111_1") && roomLayouts.Count > 1) {
+                roomLayouts.Remove("R_1111111111111111_1");
             }
             
             return roomLayouts;
@@ -168,7 +179,7 @@ namespace Dungeon.Generator {
             return coordinatesFull;
         }
         
-        private static void UpdateEntrances() {
+        private static void LocateEntrances() {
             List<Vector2Int> allEdgeRooms = new List<Vector2Int>();
             
             int x = DetermineEntranceColumnCoordinateX();
@@ -182,7 +193,6 @@ namespace Dungeon.Generator {
             }
 
             _entrances = SelectEntrances(allEdgeRooms);
-            PutEntrances(_entrances);
         }
 
         private static int DetermineEntranceColumnCoordinateX() {
@@ -301,66 +311,106 @@ namespace Dungeon.Generator {
             return new Vector2Int(chunkX, chunkY);
         }
 
-        private static bool CheckNotStrictExits(Grid2DString requirements, Room assessedRoomLayout) {
-            bool allExitsCoorect = true;
-            // todo: remember that requirements is Consts.Get<int>("RoomSize") + 2
+        private static bool CheckNotStrictExits(Grid2DString requirements, Grid2DString assessedRoomLayout) {
+            // >>> remember that requirements size is Consts.Get<int>("RoomSize") + 2
+            bool foundExit = true;
             
             // Top - requirements Grid
-            if (requirements.GetCell(1, Consts.Get<int>("RoomSize")+1) == "3") {
+            if (RowContainsSoftExit(ref requirements, "top")) {
                 // Then we need exit on ANY cell on this side
-                allExitsCoorect = false;
-                for (int x = 1; x < Consts.Get<int>("RoomSize")+1; x++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(x, 0) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(x, 0) == "3" ) {
-                        allExitsCoorect = true;
+                foundExit = false;
+                for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
+                    if (requirements.GetCell(x, 0) == "3" && (
+                            assessedRoomLayout.GetCell(x, 0) == "2" || 
+                            assessedRoomLayout.GetCell(x, 0) == "3")) {
+                        foundExit = true;
                     }
                 }
             }
 
-            if (!allExitsCoorect) return false;
+            if (!foundExit) return false;
             
             // Bottom
-            if (requirements.GetCell(1, 0) == "3") {
+            if (RowContainsSoftExit(ref requirements, "bottom")) {
                 // Then we need exit on ANY cell on this side
-                allExitsCoorect = false;
-                for (int x = 1; x < Consts.Get<int>("RoomSize"); x++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(x, Consts.Get<int>("RoomSize")+1) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(x, Consts.Get<int>("RoomSize")+1) == "3" ) {
-                        allExitsCoorect = true;
+                foundExit = false;
+                for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
+                    if (requirements.GetCell(x, Consts.Get<int>("RoomSize") + 1) == "3" && (
+                            assessedRoomLayout.GetCell(x, Consts.Get<int>("RoomSize") + 1) == "2" || 
+                            assessedRoomLayout.GetCell(x, Consts.Get<int>("RoomSize") + 1) == "3")) {
+                        foundExit = true;
                     }
                 }
             }
             
-            if (!allExitsCoorect) return false;
+            if (!foundExit) return false;
             
             // Left
-            if (requirements.GetCell(0, 1) == "3") {
+            if (RowContainsSoftExit(ref requirements, "left")) {
                 // Then we need exit on ANY cell on this side
-                allExitsCoorect = false;
-                for (int y = 1; y < Consts.Get<int>("RoomSize"); y++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "3" ) {
-                        allExitsCoorect = true;
+                foundExit = false;
+                for (int y = 1; y < Consts.Get<int>("RoomSize") + 1; y++) {
+                    if (requirements.GetCell(0, y) == "3" && (
+                            assessedRoomLayout.GetCell(0, y) == "2" || 
+                            assessedRoomLayout.GetCell(0, y) == "3")) {
+                        foundExit = true;
                     }
                 }
             }
             
-            if (!allExitsCoorect) return false;
+            if (!foundExit) return false;
             
             // Right
-            if (requirements.GetCell(Consts.Get<int>("RoomSize")+1, 1) == "3") {
+            if (RowContainsSoftExit(ref requirements, "right")) {
                 // Then we need exit on ANY cell on this side
-                allExitsCoorect = false;
-                for (int y = 1; y < Consts.Get<int>("RoomSize"); y++) {
-                    if (assessedRoomLayout.roomLayout.GetCell(0, y) == "2" || 
-                        assessedRoomLayout.roomLayout.GetCell(0, y) == "3" ) {
-                        allExitsCoorect = true;
+                foundExit = false;
+                for (int y = 1; y < Consts.Get<int>("RoomSize") + 1; y++) {
+                    if (requirements.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "3" && ( 
+                            assessedRoomLayout.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "2" || 
+                            assessedRoomLayout.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "3")) {
+                        foundExit = true;
                     }
                 }
             }
 
-            return allExitsCoorect;
+            return foundExit;
         }
+
+        private static bool RowContainsSoftExit(ref Grid2DString requirements, string side) {
+            switch (side) {
+                case "top":
+                    for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
+                        if (requirements.GetCell(x, 0) == "3") {
+                            return true;
+                        }
+                    }
+                    break;
+                case "bottom":
+                    for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
+                        if (requirements.GetCell(x, Consts.Get<int>("RoomSize") + 1) == "3") {
+                            return true;
+                        }
+                    }
+                    break;
+                case "left":
+                    for (int y = 1; y < Consts.Get<int>("RoomSize") + 1; y++) {
+                        if (requirements.GetCell(0, y) == "3") {
+                            return true;
+                        }
+                    }
+                    break;
+                case "right":
+                    for (int y = 1; y < Consts.Get<int>("RoomSize") + 1; y++) {
+                        if (requirements.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "3") {
+                            return true;
+                        }
+                    }
+                    break;
+            }
+
+            return false;
+
+        } 
 
         // private static bool IsExternalExit(int x, int y) {
         //     // First detect chunk

@@ -42,9 +42,26 @@ namespace Dungeon.Model {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Top ||
                     exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y+1).mainExitDirection == Exit.SidePosition.Bottom) {
-                    int y = Consts.Get<int>("RoomSize") + 1;
+                    
+                    Room neighbourRoom = new Room();
+                    bool certainRoom = true;
+                    try {
+                        neighbourRoom = RoomGenerator.FindRoomInstanceByID(
+                            roomMap.GetCellActual(roomCoord.x, roomCoord.y + 1));
+                    } catch (ArgumentOutOfRangeException e) {
+                        certainRoom = false;
+                    }
+                    
+                    // Check neighbour Room if it has any "2" ( Hard exits )
                     for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
-                        requirementsGrid.UpdateCell(x, y, "3");
+                        if (certainRoom) {
+                            if (neighbourRoom.roomLayout.GetCell(x, Consts.Get<int>("RoomSize") + 1) == "2") {
+                                requirementsGrid.UpdateCell(x, 0, "3");
+                            }
+                        }
+                        else {
+                            requirementsGrid.UpdateCell(x, 0, "3");
+                        }
                     }
                 }
             } catch (Exception e) { /*Exception*/ }
@@ -54,9 +71,26 @@ namespace Dungeon.Model {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Bottom ||
                     exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y-1).mainExitDirection == Exit.SidePosition.Top) {
-                    int y = 0;
+                    
+                    Room neighbourRoom = new Room();
+                    bool certainRoom = true;
+                    try {
+                        neighbourRoom = RoomGenerator.FindRoomInstanceByID(
+                            roomMap.GetCellActual(roomCoord.x, roomCoord.y - 1));
+                    } catch (ArgumentOutOfRangeException e) {
+                        certainRoom = false;
+                    }
+                    
+                    // Check neighbour Room if it has any "2" ( Hard exits )
                     for (int x = 1; x < Consts.Get<int>("RoomSize") + 1; x++) {
-                        requirementsGrid.UpdateCell(x, y, "3");
+                        if (certainRoom) {
+                            if (neighbourRoom.roomLayout.GetCell(x, 0) == "2") {
+                                requirementsGrid.UpdateCell(x, Consts.Get<int>("RoomSize") + 1, "3");
+                            }
+                        }
+                        else {
+                            requirementsGrid.UpdateCell(x, Consts.Get<int>("RoomSize") + 1, "3");
+                        }
                     }
                 }
             } catch (Exception e) { /*Exception*/ }
@@ -66,9 +100,26 @@ namespace Dungeon.Model {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Left ||
                     exitMap._exitMap.GetCellActual(roomCoord.x+1, roomCoord.y).mainExitDirection == Exit.SidePosition.Right) {
-                    int x = Consts.Get<int>("RoomSize")+1;
+
+                    Room neighbourRoom = new Room();
+                    bool certainRoom = true;
+                    try {
+                        neighbourRoom = RoomGenerator.FindRoomInstanceByID(
+                            roomMap.GetCellActual(roomCoord.x+1, roomCoord.y));
+                    } catch (ArgumentOutOfRangeException e) {
+                        certainRoom = false;
+                    }
+                    
+                    // Check neighbour Room if it has any "2" ( Hard exits )
                     for (int y = 1; y < Consts.Get<int>("RoomSize") + 1; y++) {
-                        requirementsGrid.UpdateCell(x, y, "3");
+                        if (certainRoom) {
+                            if (neighbourRoom.roomLayout.GetCell(Consts.Get<int>("RoomSize") + 1, y) == "2") {
+                                requirementsGrid.UpdateCell(0, y, "3");
+                            }
+                        }
+                        else {
+                            requirementsGrid.UpdateCell(0, y, "3");
+                        }
                     }
                 }
             } catch (Exception e) { /*Exception*/ }
@@ -78,9 +129,26 @@ namespace Dungeon.Model {
             try {
                 if (exitMap._exitMap.GetCellActual(roomCoord.x, roomCoord.y).mainExitDirection == Exit.SidePosition.Right ||
                     exitMap._exitMap.GetCellActual(roomCoord.x-1, roomCoord.y).mainExitDirection == Exit.SidePosition.Left) {
-                    int x = 0;
-                    for (int y = 0; y < Consts.Get<int>("RoomSize") + 1; y++) {
-                        requirementsGrid.UpdateCell(x, y, "3");
+
+                    Room neighbourRoom = new Room();
+                    bool certainRoom = true;
+                    try {
+                        neighbourRoom = RoomGenerator.FindRoomInstanceByID(
+                            roomMap.GetCellActual(roomCoord.x-1, roomCoord.y));
+                    } catch (ArgumentOutOfRangeException e) {
+                        certainRoom = false;
+                    }
+                    
+                    // Check neighbour Room if it has any "2" ( Hard exits )
+                    for (int y = 1; y < Consts.Get<int>("RoomSize") + 1; y++) {
+                        if (certainRoom) {
+                            if (neighbourRoom.roomLayout.GetCell(0, y) == "2") {
+                                requirementsGrid.UpdateCell(Consts.Get<int>("RoomSize") + 1, y, "3");
+                            }
+                        }
+                        else {
+                            requirementsGrid.UpdateCell(Consts.Get<int>("RoomSize") + 1, y, "3");
+                        }
                     }
                 }
             } catch (Exception e) { /*Exception*/ }
@@ -124,7 +192,8 @@ namespace Dungeon.Model {
                 for (int x = 0; x < Consts.Get<int>("RoomSize")+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        if (requirements.GetCell(x,0) != "") continue;
+                        if (requirements.GetCell(x,0) != "" ||
+                            requirements.GetCell(x,0) != null) continue;
                         requirements.UpdateCell(x, 0, thisCellContents);
                         return true;
                     }
@@ -142,10 +211,12 @@ namespace Dungeon.Model {
                 int y = 0;
                 for (int x = 0; x < Consts.Get<int>("RoomSize")+1; x++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
-                    if (thisCellContents == "") continue;
-                    if (requirements.GetCell(x,Consts.Get<int>("RoomSize")+1) != "") continue;
-                    requirements.UpdateCell(x, Consts.Get<int>("RoomSize")+1, thisCellContents);
-                    return true;
+                    if (thisCellContents != "") {
+                        if (requirements.GetCell(x,Consts.Get<int>("RoomSize")+1) != "" ||
+                            requirements.GetCell(x,Consts.Get<int>("RoomSize")+1) != null) continue;
+                        requirements.UpdateCell(x, Consts.Get<int>("RoomSize")+1, thisCellContents);
+                        return true;
+                    }
                 }
             } catch (Exception e) { /*ignored*/ }
             
@@ -161,7 +232,8 @@ namespace Dungeon.Model {
                 for (int y = 0; y < Consts.Get<int>("RoomSize")+1; y++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        if (requirements.GetCell(0, y) != "") continue;
+                        if (requirements.GetCell(0, y) != "" ||
+                            requirements.GetCell(0, y) != null) continue;
                         requirements.UpdateCell(0, y, thisCellContents);
                         return true;
                     }
@@ -180,7 +252,8 @@ namespace Dungeon.Model {
                 for (int y = 1; y < Consts.Get<int>("RoomSize")+1; y++) {
                     string thisCellContents = room.roomLayout.GetCell(x, y);
                     if (thisCellContents != "") {
-                        if (requirements.GetCell(Consts.Get<int>("RoomSize")+1, y) != "") continue;
+                        if (requirements.GetCell(Consts.Get<int>("RoomSize")+1, y) != "" ||
+                            requirements.GetCell(Consts.Get<int>("RoomSize")+1, y) != null) continue;
                         requirements.UpdateCell(Consts.Get<int>("RoomSize")+1, y, thisCellContents);
                         return true;
                     }

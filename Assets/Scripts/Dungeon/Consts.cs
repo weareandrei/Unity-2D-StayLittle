@@ -11,8 +11,8 @@ namespace Dungeon {
             { "ChunkSize", 4 },
             { "DungeonChunkCount", 3 },
             { "RoomSize", 4 },
-            { "SpaceBetweenRoomCenters", 16 }, // assuming they are all square
-            { "SizeOfRoom_PX", 20f }, // Check later if it's specific size units or a relative scale
+            { "SpaceBetweenRoomCenters", 20 }, // assuming they are all square
+            { "SizeOfRoom_PX", 23.7f }, // Check later if it's specific size units or a relative scale
             { "SpaceBetweenDungeons", 60 }, // Check later if it's specific size units or scale
             
             // Dungeon Contents
