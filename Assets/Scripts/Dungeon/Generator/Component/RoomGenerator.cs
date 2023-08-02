@@ -16,9 +16,8 @@ namespace Dungeon.Generator {
 
         public static RoomMap GenerateRooms(ChunkMap chunkMap) {
             PreLoadMaps(chunkMap);
-
-            _newRoomMap.map.LoopThroughCells((x, y) =>
-            {
+            
+            _newRoomMap.map.LoopThroughCells((x, y) => {
                 RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
                 if (IsRoomEmpty(coordinatesFull)) return LoopState.Continue;
 
@@ -26,16 +25,6 @@ namespace Dungeon.Generator {
                 _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, selectedRoomID);
                 return LoopState.Continue;
             });
-            
-            // for (int y = 0; y < _newRoomMap.map.getYSize()-1; y++) {
-            //     for (int x = 0; x < _newRoomMap.map.getXSize()-1; x++) {
-            //         RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
-            //         if (IsRoomEmpty(coordinatesFull)) continue;
-            //
-            //         string selectedRoomID = SelectRoomForThisCell(coordinatesFull.room_RoomMap);
-            //         _newRoomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, selectedRoomID);
-            //     }
-            // }
 
             _newRoomMap.map.RemoveEmptyRowsAndColumns();
             DungeonGenerator.roomMapEntrances = _entrances;
@@ -60,8 +49,7 @@ namespace Dungeon.Generator {
         }
 
         private static RoomMap PrebuildRoomMap(RoomMap roomMap) {
-            roomMap.map.LoopThroughCells((x, y) =>
-            {
+            roomMap.map.LoopThroughCells((x, y) => {
                 // Vector2Int roomOffsetCoord = new Vector2Int(x-_zeroYOffset, y-_zeroYOffset);
                 RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
                     
@@ -83,30 +71,6 @@ namespace Dungeon.Generator {
                 roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, chunkCellContents);
                 return LoopState.Continue;
             });
-            
-            // for (int y = 0; y < roomMap.map.getYSize() - 1; y++) {
-            //     for (int x = 0; x < roomMap.map.getXSize() - 1; x++) {
-            //         // Vector2Int roomOffsetCoord = new Vector2Int(x-_zeroYOffset, y-_zeroYOffset);
-            //         RoomCoordinatesFull coordinatesFull = GetCoordinatesFull(new Vector2Int(x, y));
-            //         
-            //         // Find corresponding in chunk.
-            //         // --> Don't forget that we have a Offset in ChunkMap
-            //         string thisChunkID = _chunkMap.map.GetCellActual(
-            //             coordinatesFull.chunk_ChunkMap.x, coordinatesFull.chunk_ChunkMap.y);
-            //             // Because we do GetCellACTUAL -> We will consider negative coordinates as non-negative.
-            //             //    So 0,0 can be a negative coordinate
-            //         if (thisChunkID == "") {
-            //             roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, "");
-            //             continue;
-            //         }
-            //         // Correctly takes the Chunk with rooms inside. But does not find the actual roomID here : ...
-            //         string chunkCellContents = ChunkGenerator.FindChunkLayoutByID(thisChunkID).rooms.GetCell(
-            //             coordinatesFull.room_ThisChunk.x,
-            //             coordinatesFull.room_ThisChunk.y);
-            //         
-            //         roomMap.PlaceCellOnMap(coordinatesFull.room_RoomMap, chunkCellContents);
-            //     }
-            // }
 
             return roomMap;
         }
@@ -152,8 +116,7 @@ namespace Dungeon.Generator {
             foreach (Room assessedRoomLayout in layoutsAvailable) {
                 // Must check if it includes all the exits
                 bool isSimilar = true;
-                requirements.LoopThroughCells((x, y) =>
-                {
+                requirements.LoopThroughCells((x, y) => {
                     if (requirements.GetCell(x, y) == "2") { // Check cells that MUST have exits
                         if (assessedRoomLayout.roomLayout.GetCell(x,y) != "2") {
                             isSimilar = false;
@@ -166,20 +129,6 @@ namespace Dungeon.Generator {
                     }
                     return LoopState.Continue;
                 });
-                // for (int y = 0; y < requirements.Size-1; y++) {
-                //     for (int x = 0; x < requirements.Size-1; x++) {
-                //         if (requirements.GetCell(x, y) == "2") { // Check cells that MUST have exits
-                //             if (assessedRoomLayout.roomLayout.GetCell(x,y) != "2") {
-                //                 isSimilar = false;
-                //             }
-                //         }
-                //         if (requirements.GetCell(x, y) == "0") { // Check cells that MUST be empty
-                //             if (assessedRoomLayout.roomLayout.GetCell(x,y) != "0") {
-                //                 isSimilar = false;
-                //             }
-                //         }
-                //     }
-                // }
 
                 isSimilar = CheckNotStrictExits(requirements, assessedRoomLayout);
 
@@ -248,7 +197,7 @@ namespace Dungeon.Generator {
                 for (x = startX; x > endX; x = x+direction) {
                     // bool foundRoom = false;
                     for (int y = 0; y < _newRoomMap.map.getYSize() - 1; y++) {
-                        if (_newRoomMap.map.GetCellActual(x, y) != "") { // ???
+                        if (_newRoomMap.map.GetCellActual(x, y) != "") {
                             return x;
                         }
                     }
@@ -259,7 +208,7 @@ namespace Dungeon.Generator {
                 // bool foundRoom = false;
                 for (int y = 0; y < _newRoomMap.map.getYSize() - 1; y++) {
                     if (_newRoomMap.map.GetCellActual(x, y) != "") {
-                        return x;                                      // ???
+                        return x;
                     }
                 }
             }

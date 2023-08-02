@@ -1,4 +1,4 @@
-using Content;
+using Dungeon;
 using Dungeon.Generator;
 using Dungeon.Model;
 using NUnit.Framework;

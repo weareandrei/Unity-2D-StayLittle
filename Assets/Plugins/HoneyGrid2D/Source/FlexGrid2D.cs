@@ -56,13 +56,11 @@ namespace HoneyGrid2D {
         public void UpdateCell(int x, int y, T contents) {
             rows[y + zeroYOffset].cells[x] = contents;
         }
-        public void LoopThroughCells(Func<int, int, LoopState> func)
-        {
+        public void LoopThroughCells(Func<int, int, LoopState> func) {
             for (int y = 0; y < getYSize(); y++) {
                 for (int x = 0; x < getXSize(); x++) {
-                    LoopState loopState =  func(x, y);
-                    if (loopState == LoopState.Break)
-                    {
+                    LoopState loopState = func(x, y);
+                    if (loopState == LoopState.Break) {
                         return;
                     }
                 }
@@ -176,6 +174,7 @@ namespace HoneyGrid2D {
                 rows[rowIndex].cells.RemoveAt(columnIndex);
             }
         }
+        
         public abstract object Clone();
     }
 }
