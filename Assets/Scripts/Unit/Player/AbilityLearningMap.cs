@@ -1,4 +1,4 @@
-namespace Actor.Player {
+namespace Unit.Player {
     public class AbilityLearningMap {
         
     }
