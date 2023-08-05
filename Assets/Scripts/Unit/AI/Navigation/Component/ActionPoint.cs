@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Actor.AI.Pathfinding {
+namespace Unit.AI {
     public class ActionPoint : NavPoint {
         private void OnTriggerEnter2D(Collider2D other) {
             try {

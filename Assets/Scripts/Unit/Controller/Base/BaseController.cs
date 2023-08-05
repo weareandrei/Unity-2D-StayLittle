@@ -1,4 +1,5 @@
 using System;
+using Unit.AI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -30,7 +31,7 @@ namespace Unit.Controller {
         protected Rigidbody2D unitRigidbody;
         protected BoxCollider2D unitCollider; // Recommending Box Collider 2D
 
-        // private brain;
+        private Brain brain; // can se any class that inherits from Brain
         #endregion
         
         #region Unity Functions

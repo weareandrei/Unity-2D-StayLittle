@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Actor.AI.Pathfinding {
+namespace Unit.AI {
     public class NavPoint : MonoBehaviour{
         private Vector3 location;
 
