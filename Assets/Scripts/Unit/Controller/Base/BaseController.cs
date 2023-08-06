@@ -1,13 +1,12 @@
 using System;
 using Unit.AI;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace Unit.Controller {
     public abstract class BaseController : MonoBehaviour {
         
         #region Variables
+        
         // Movement
         [SerializeField] [Range(0, 1f)] protected float airControl = 0.75f;
         [SerializeField] protected float currentSpeed = 0f;
@@ -29,9 +28,10 @@ namespace Unit.Controller {
         
         // Physics components
         protected Rigidbody2D unitRigidbody;
-        protected BoxCollider2D unitCollider; // Recommending Box Collider 2D
+        protected BoxCollider2D unitCollider;
 
-        private Brain brain; // can se any class that inherits from Brain
+        protected Brain brain;
+        
         #endregion
         
         #region Unity Functions
@@ -116,6 +116,7 @@ namespace Unit.Controller {
         void GetComponenets() {
             unitRigidbody = GetComponent<Rigidbody2D>();
             unitCollider = GetComponent<BoxCollider2D>();
+            brain = GetComponent<Brain>();
         }
     }
 

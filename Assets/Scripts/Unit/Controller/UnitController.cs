@@ -1,8 +1,19 @@
+using Unit.AI;
+using UnityEngine;
+
 namespace Unit.Controller {
     public class UnitController : BaseController {
+        
         protected override void GetMovementInput() {
-            // UnitController will take commands here
-            throw new System.NotImplementedException();
+            Vector2Int pathfinderDirections = this.brain.GetDirectionInputs();
+            moveDirection = pathfinderDirections.x;
+            
+            if (moveDirection != 0) {
+                moveState = UnitMoveState.Moving;
+            }
+            else {
+                moveState = UnitMoveState.Idle;
+            }
         }
 
         protected override void GetMovementSpeed() {
