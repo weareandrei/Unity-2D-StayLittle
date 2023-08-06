@@ -45,7 +45,7 @@ namespace Unit.AI {
         
         private void Start() {
             if (canMove) {
-                pathfinder = new Pathfinder();
+                pathfinder = gameObject.AddComponent<Pathfinder>();
             }
 
             if (canFight) {
