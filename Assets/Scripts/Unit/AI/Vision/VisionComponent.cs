@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Unit.AI {
     public class VisionComponent : MonoBehaviour {
         [SerializeField]
-        private Collider visionCollider;
+        private Collider2D visionCollider;
 
         private List<GameObject> UnregisteredObjects = new List<GameObject>();
         private List<GameObject> RegisteredObjects = new List<GameObject>();

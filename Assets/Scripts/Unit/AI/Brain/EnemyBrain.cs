@@ -19,7 +19,7 @@ namespace Unit.AI {
         }
 
         public override void Attack() {
-            throw new System.NotImplementedException();
+            return;
         }
 
         public override void ReactToObjectsAround() {

@@ -18,7 +18,7 @@ namespace Unit.Controller {
 
         protected override void GetMovementSpeed() {
             // Depending on other commands, or some factors Unit will speed up or slow down...
-            throw new System.NotImplementedException();
+            return;
         }
 
         protected override void CheckInputs() {

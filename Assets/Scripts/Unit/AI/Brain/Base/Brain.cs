@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Unit.AI {
     public abstract class Brain : MonoBehaviour {
         
-        
         protected Pathfinder pathfinder;
         protected CombatComponent combatBrain;
         protected ChatComponent chatBrain;
@@ -58,6 +57,7 @@ namespace Unit.AI {
             }
 
             controller = GetComponent<BaseController>();
+            vision = GetComponent<VisionComponent>();
         }
 
         void Update() {
