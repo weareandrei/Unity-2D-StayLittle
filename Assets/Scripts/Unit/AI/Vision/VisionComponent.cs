@@ -15,13 +15,13 @@ namespace Unit.AI {
         private List<Action<GameObject>> OnObjectEnter = new List<Action<GameObject>>();
         private List<Action<GameObject>> OnObjectExit = new List<Action<GameObject>>();
 
-        private void OnTriggerEnter(Collider other) {
+        private void OnTriggerEnter2D(Collider2D other) {
             if (!RegisteredObjects.Contains(other.gameObject)) {
                 UnregisteredObjects.Add(other.gameObject);
             }
         }
 
-        private void OnTriggerExit(Collider other) {
+        private void OnTriggerExit2D(Collider2D other) {
             if (RegisteredObjects.Contains(other.gameObject)) {
                 ObjectsToRemove.Add(other.gameObject);
             }
