@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unit.AI {
     public class NavPoint : MonoBehaviour{
-        public Vector3 location;
+        public Vector2 location;
 
         private void Awake() {
             location = gameObject.transform.position;
