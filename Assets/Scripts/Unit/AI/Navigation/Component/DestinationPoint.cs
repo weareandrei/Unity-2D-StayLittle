@@ -59,30 +59,15 @@ namespace Unit.AI {
             List<PointNeighbour> rightNeighbours = new List<PointNeighbour>();
             List<PointNeighbour> topNeighbours = new List<PointNeighbour>();
             List<PointNeighbour> bottomNeighbours = new List<PointNeighbour>();
-            
+
             foreach (PointNeighbour neighbourPoint in closestPoints) {
-                Side pointSide = GetSideForPoint(neighbourPoint);
-                switch (pointSide) {
-                    case Side.Left:
-                        leftNeighbours.Add(neighbourPoint);
-                        break;
-                    case Side.Right:
-                        rightNeighbours.Add(neighbourPoint);
-                        break;
-                    case Side.Top:
-                        topNeighbours.Add(neighbourPoint);
-                        break;
-                    case Side.Bottom:
-                        bottomNeighbours.Add(neighbourPoint);
-                        break;
-                }
-
-                ValidateNeighboursOnThisSide(ref leftNeighbours);
-                ValidateNeighboursOnThisSide(ref rightNeighbours);
-                ValidateNeighboursOnThisSide(ref topNeighbours);
-                ValidateNeighboursOnThisSide(ref bottomNeighbours);
-
+                AssignPointSides(ref leftNeighbours, ref rightNeighbours, ref topNeighbours, ref bottomNeighbours, neighbourPoint);
             }
+            
+            ValidateNeighboursOnThisSide(ref leftNeighbours);
+            ValidateNeighboursOnThisSide(ref rightNeighbours);
+            ValidateNeighboursOnThisSide(ref topNeighbours);
+            ValidateNeighboursOnThisSide(ref bottomNeighbours);
 
             List<PointNeighbour> combinedNeighbours = new List<PointNeighbour>();
             combinedNeighbours.AddRange(leftNeighbours);
@@ -91,6 +76,24 @@ namespace Unit.AI {
             combinedNeighbours.AddRange(bottomNeighbours);
 
             closestPoints = combinedNeighbours;
+        }
+
+        private void AssignPointSides(ref List<PointNeighbour> leftNeighbours, ref List<PointNeighbour> rightNeighbours, ref List<PointNeighbour> topNeighbours, ref List<PointNeighbour> bottomNeighbours, PointNeighbour neighbourPoint) {
+            Side pointSide = GetSideForPoint(neighbourPoint);
+            switch (pointSide) {
+                case Side.Left:
+                    leftNeighbours.Add(neighbourPoint);
+                    break;
+                case Side.Right:
+                    rightNeighbours.Add(neighbourPoint);
+                    break;
+                case Side.Top:
+                    topNeighbours.Add(neighbourPoint);
+                    break;
+                case Side.Bottom:
+                    bottomNeighbours.Add(neighbourPoint);
+                    break;
+            }
         }
 
         private void ValidateNeighboursOnThisSide(ref List<PointNeighbour> neighbours) {
@@ -119,26 +122,35 @@ namespace Unit.AI {
             float angle = GetAngleToPoint(pointNeighbour.point.location);
             
             // Define angle ranges for each side (in degrees)
-            float leftAngle = -135f;
-            float rightAngle = 135f;
-            float bottomAngle = -225f;
-            float topAngle = -45f;
+            float leftAngle = 135f;
+            float rightAngle = 315;
+            float topAngle = 225;
+            float bottomAngle = 45f;
 
-            if (angle > leftAngle && angle <= rightAngle) {
+            if (angle > leftAngle && angle <= leftAngle + 90f) {
                 return Side.Left;
-            } else if ((angle > rightAngle && angle <= 180f) || (angle > -180f && angle <= leftAngle)) {
+            } else if ((angle > rightAngle && angle <= rightAngle + 45f) || (angle >= 0 && angle <= 45)) {
                 return Side.Right;
-            } else if (angle > bottomAngle && angle <= topAngle) {
-                return Side.Bottom;
-            } else {
+            } else if (angle > topAngle && angle <= topAngle + 90f) {
                 return Side.Top;
+            } else if (angle > bottomAngle && angle <= bottomAngle + 90f) {
+                return Side.Bottom;
             }
+
+            throw new Exception();
         }
 
         private float GetAngleToPoint(Vector2 position) {
             Vector2 directionToTestedPoint = (position - location).normalized;
-            return Mathf.Atan2(directionToTestedPoint.y, directionToTestedPoint.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(directionToTestedPoint.y, directionToTestedPoint.x) * Mathf.Rad2Deg;
+    
+            if (angle < 0) {
+                angle += 360f;
+            }
+    
+            return angle;
         }
+
 
         private PointNeighbour ConvertToPointNeighbour(DestinationPoint point) {
             return new PointNeighbour {
