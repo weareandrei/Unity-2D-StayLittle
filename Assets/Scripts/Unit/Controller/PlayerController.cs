@@ -40,7 +40,11 @@ namespace Unit.Controller {
             // // Climbing Input
             // if (Input.GetKey(climb)) Climb();
         }
-        
+
+        protected override bool CanPerformJump() {
+            throw new System.NotImplementedException();
+        }
+
         private void Jump() {
             if (physicalState == UnitPhysicalState.Grounded) {
                 AirJump();
@@ -49,8 +53,8 @@ namespace Unit.Controller {
                 AirJump();
             }
         }
-        
-        private void AirJump() {
+
+        protected override void AirJump() {
             // if (currentJumps >= MaxAirJumps)
             //     return;
 

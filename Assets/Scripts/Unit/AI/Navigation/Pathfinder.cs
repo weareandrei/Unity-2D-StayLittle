@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unit.Controller;
 using UnityEngine;
 
 namespace Unit.AI {
@@ -11,34 +12,47 @@ namespace Unit.AI {
 
         private GameObject target;
         public Vector2Int currentDirection;
-
+        public List<UnitMovementActions> actionsAwaiting;
+        
         [SerializeField] private float minDistanceToFreeMove = 3f;
         [SerializeField] private List<DestinationPoint> allDestinationPoints;
 
         [SerializeField] private List<DestinationPoint> pathToDestination;
         
+        
         private void Start() {
             currentDirection = new Vector2Int(0, 0);
             allDestinationPoints = GetAllDestinationPoints();
+            actionsAwaiting = new List<UnitMovementActions>();
         }
-        
+
         private void FixedUpdate() {
             if (!target) {
                 currentDirection = new Vector2Int(0, 0);
                 return;
             }
+
             if (IsPlayerCloseEnough() || NoDestinationPointsNear()) {
                 FreeMove();
                 return;
             }
-            
-            pathToDestination = FindShortestPath(gameObject.transform.position, target.transform.position);
+
+            currentDestinationPoint = FindClosestDestinationPoint(gameObject.transform.position);
+            finalDestinationPoint = FindClosestDestinationPoint(target.transform.position);
+
+            pathToDestination = FindShortestPath();
             GetDirection();
+        }
+        
+        public void ActionPointDetected() {
+            if (currentDirection.y == 1) {
+                actionsAwaiting.Add(UnitMovementActions.Jump);
+            }
         }
 
         private bool IsPlayerCloseEnough() {
             return Vector2.Distance(target.transform.position, gameObject.transform.position)
-                   < minDistanceToFreeMove;
+                   < minDistanceToFreeMove || ((finalDestinationPoint != null && currentDestinationPoint != null) && finalDestinationPoint.location == currentDestinationPoint.location);
         }
         private bool NoDestinationPointsNear() {
             DestinationPoint point = FindClosestDestinationPoint(gameObject.transform.position);
@@ -50,9 +64,9 @@ namespace Unit.AI {
             this.target = target;
         }
 
-        private List<DestinationPoint> FindShortestPath(Vector2 fromPosition, Vector2 toPosition) {
-            DestinationPoint fromPoint = FindClosestDestinationPoint(fromPosition);
-            DestinationPoint targetPoint = FindClosestDestinationPoint(toPosition);
+        private List<DestinationPoint> FindShortestPath() {
+            DestinationPoint fromPoint = currentDestinationPoint;
+            DestinationPoint targetPoint = finalDestinationPoint;
             
             List<List<DestinationPoint>> possiblePaths = new List<List<DestinationPoint>>();
             float shortestPathLength = float.MaxValue;
@@ -64,7 +78,6 @@ namespace Unit.AI {
                     fromPoint
                 });
 
-            
             bool actionPerfomed = true;
             while (actionPerfomed) {
                 actionPerfomed = false;
@@ -77,25 +90,24 @@ namespace Unit.AI {
                     }
                 
                     DestinationPoint pathHead = GetPathHead(thisPath);
-                    List<PointNeighbour> availablePoints = pathHead.closestPoints;
-
-                    if (CanAccessTargetPoint(pathHead, targetPoint)) {
-                        thisPath.Add(targetPoint);
+                    if (pathHead.location == targetPoint.location) {
                         if (CalculatePathLength(thisPath) < shortestPathLength) {
                             shortestPathLength = CalculatePathLength(thisPath);
+                            continue;
                         }
+                    };
+                    
+                    List<PointNeighbour> availablePoints = pathHead.closestPoints;
 
-                        actionPerfomed = true;
-                    }
-                
                     foreach (PointNeighbour availablePoint in availablePoints) {
-                        List<DestinationPoint> newPath = thisPath;
+                        List<DestinationPoint> newPath = ClonePath(thisPath);
+                        
+                        if (PathContainsDestinationPoint(newPath, availablePoint.point)) continue;
                         newPath.Add(availablePoint.point);
                     
-                        if (!PathAlreadyCreated(possiblePaths, newPath)) {
-                            possiblePaths.Add(newPath);
-                        }
+                        if (PathAlreadyCreated(possiblePaths, newPath)) continue;
                         
+                        possiblePaths.Add(newPath);
                         actionPerfomed = true;
                     }
                 }
@@ -104,16 +116,49 @@ namespace Unit.AI {
             return GetBestPath(possiblePaths, shortestPathLength);
         }
 
+        private bool PathContainsDestinationPoint(List<DestinationPoint> path, DestinationPoint point) {
+            foreach (DestinationPoint destinationPoint in path) {
+                if (destinationPoint.location == point.location) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void GetDirection() {
-            if (pathToDestination == null || currentDestinationPoint == null) {
+            DestinationPoint nextDestinationPoint = GetNextDestinationPointInPath();
+            
+            if (nextDestinationPoint == null) {
                 currentDirection = new Vector2Int(0, 0);
             }
-            if (currentDestinationPoint.location.x > target.transform.position.x) {
+            
+            if (currentDestinationPoint.location.x > nextDestinationPoint.location.x) {
                 currentDirection.x = -1;
             }
             else {
                 currentDirection.x = 1;
             }
+            
+            if (currentDestinationPoint.location.y > nextDestinationPoint.location.y) {
+                currentDirection.y = -1;
+            }
+            else {
+                currentDirection.y = 1;
+            }
+        }
+
+        private DestinationPoint GetNextDestinationPointInPath() {
+            for (int i = 0; i < pathToDestination.Count; i++) {
+                DestinationPoint point = pathToDestination[i];
+                if (point.location == currentDestinationPoint.location) {
+                    if (i+1 < pathToDestination.Count) {
+                        return pathToDestination[i + 1];
+                    }
+                }
+            }
+            
+            return null;
         }
         
         private DestinationPoint FindClosestDestinationPoint(Vector2 targetPosition) {
@@ -221,12 +266,22 @@ namespace Unit.AI {
             return bestPath;
         }
 
-    }
+        private List<DestinationPoint> ClonePath(List<DestinationPoint> path) {
+            List<DestinationPoint> clonedList = new List<DestinationPoint>();
+            foreach (DestinationPoint destinationPoint in path) {
+                clonedList.Add(destinationPoint);
+            }
 
-    public enum ActorMovementActions {
-        MoveLeft = 1,
-        MoveRight = 2,
-        Jump
+            return clonedList;
+        }
+
+        public List<UnitMovementActions> GetAwaitingActions() {
+            List<UnitMovementActions> actions = new List<UnitMovementActions>(actionsAwaiting);
+            
+            actionsAwaiting.Clear();
+            return actions;
+        }
+
     }
 
 }

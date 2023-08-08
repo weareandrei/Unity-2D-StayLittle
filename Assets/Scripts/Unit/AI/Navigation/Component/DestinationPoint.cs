@@ -15,6 +15,12 @@ namespace Unit.AI {
             FindAccessiblePoints();
         }
 
+        public DestinationPoint(List<PointNeighbour> closestPoints, float maxRange, Vector2 location) {
+            this.closestPoints = closestPoints;
+            this.maxRange = maxRange;
+            this.location = location;
+        }
+
         private void FindAccessiblePoints() {
             DestinationPoint[] allDestinationPoints = FindObjectsOfType<DestinationPoint>();
 
@@ -158,7 +164,12 @@ namespace Unit.AI {
                 distance = Vector2.Distance(transform.position, point.location)
             };
         }
-
+        
+        // public DestinationPoint Clone() {
+        //     DestinationPoint clone = new DestinationPoint(closestPoints, maxRange, location);
+        //     return clone;
+        // }
+        
     }
 
     public enum Side {

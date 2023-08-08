@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unit.AI;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Unit.Controller {
         [SerializeField] protected float moveDirection; // 1: y==1, 2: y==-1
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected float runSpeed;
+        [SerializeField] public List<UnitMovementActions> actionsAwaiting;
         
         // State
         private bool paused = false; // If you want to stop the game
@@ -37,6 +39,8 @@ namespace Unit.Controller {
         #region Unity Functions
         void Start() {
             GetComponenets();
+
+            actionsAwaiting = new List<UnitMovementActions>();
         }  
         
         void Update() {
@@ -51,6 +55,7 @@ namespace Unit.Controller {
         void FixedUpdate() {
             Move();
             CheckGrounded();
+            PerformAction();
         }
         #endregion
         
@@ -62,6 +67,7 @@ namespace Unit.Controller {
         
         #region Checks
         protected abstract void CheckInputs();
+        protected abstract bool CanPerformJump();
         void CheckGrounded() {
             RaycastHit2D ray;
             
@@ -74,9 +80,12 @@ namespace Unit.Controller {
                 physicalState = UnitPhysicalState.InAir;
             }
         }
+        
         #endregion
         
         #region Movement & Rotation
+        protected abstract void AirJump();
+        
         void Move() {
             if (paused)
                 return;
@@ -93,8 +102,8 @@ namespace Unit.Controller {
                 unitRigidbody.velocity = new Vector2(moveDirection * currentSpeed * Time.fixedDeltaTime, unitRigidbody.velocity.y);
             
             RotateToMoveDirection();
-        } 
-        
+        }
+
         void RotateToMoveDirection() {
  
             if (moveDirection > 0) {
@@ -109,6 +118,22 @@ namespace Unit.Controller {
 
                 isLookingRight = false;
                 transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+        }
+
+        void PerformAction() {
+            foreach (UnitMovementActions action in actionsAwaiting) {
+                switch (action) {
+                    case UnitMovementActions.Jump:
+                        if (CanPerformJump()) {
+                            actionsAwaiting.Remove(action);
+                            AirJump();
+                            return;
+                        }
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
         #endregion
@@ -131,5 +156,9 @@ namespace Unit.Controller {
         Idle,
         Moving,
         Running
+    }
+    
+    public enum UnitMovementActions {
+        Jump
     }
 }

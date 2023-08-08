@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unit.Controller;
 using UnityEngine;
 
@@ -78,6 +79,14 @@ namespace Unit.AI {
         #region Getters & Setters
 
         public Vector2Int GetDirectionInputs() {
+            return pathfinder.currentDirection;
+        }
+        
+        public List<UnitMovementActions> GetActionInputs() {
+            return pathfinder.GetAwaitingActions();
+        }
+        
+        public Vector2Int Get() {
             return pathfinder.currentDirection;
         }
         
