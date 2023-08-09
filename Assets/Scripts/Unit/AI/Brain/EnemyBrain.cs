@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Unit.AI {
     public class EnemyBrain : Brain {
@@ -13,15 +15,24 @@ namespace Unit.AI {
         }
 
         public override void Follow() {
-            if (followTarget) {
+            if (followTarget && !GoodAttackDistance(followTarget.transform.position)) {
                 pathfinder.SelectTarget(followTarget);
             }
         }
 
         public override void Attack() {
-            return;
+            if (GoodAttackDistance(attackTarget.transform.position) && !isPerformingAttack) {
+                controller.Attack(attackTarget);
+            }
         }
 
+        private bool GoodAttackDistance(Vector2 targetPosition) {
+            float distance = Vector2.Distance(
+                transform.position,
+                targetPosition);
+
+            return distance < minimumFollowDistance;
+        }
         public override void ReactToObjectsAround() {
             List<GameObject> objectsAround = vision.GetObjectsAround();
 

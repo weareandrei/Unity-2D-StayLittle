@@ -3,7 +3,7 @@ using Actor.Base;
 using Actor.Base.Component;
 
 namespace Unit.Player {
-    public class PlayerStats : BaseStats {
+    public class PlayerStats : UnitStats {
         private List<Ability> abilitiesLearned;
         
         public void AddXP() {

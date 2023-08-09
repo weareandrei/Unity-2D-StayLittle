@@ -7,7 +7,7 @@ namespace Unit.AI {
     public abstract class Brain : MonoBehaviour {
         
         protected Pathfinder pathfinder;
-        protected CombatComponent combatBrain;
+        public CombatComponent combatComponent;
         protected ChatComponent chatBrain;
         protected VisionComponent vision;
         protected BaseController controller;
@@ -16,10 +16,11 @@ namespace Unit.AI {
         [SerializeField] private bool canMove;
         [SerializeField] private bool canSpeak;
         [SerializeField] private bool canFight;
-
+        [SerializeField] protected float minimumFollowDistance = 1f;
 
         [Header(">>>>>> States")] [Space] 
         [SerializeField] private bool paused;
+        [SerializeField] public bool isPerformingAttack;
         
         [Header(">>>>>> Targets")] [Space] 
         [SerializeField] protected GameObject attackTarget;
@@ -48,17 +49,14 @@ namespace Unit.AI {
             if (canMove) {
                 pathfinder = gameObject.AddComponent<Pathfinder>();
             }
-
-            if (canFight) {
-                combatBrain = new CombatComponent();
-            }
-
+            
             if (canSpeak) {
                 chatBrain = new ChatComponent();
             }
 
             controller = GetComponent<BaseController>();
             vision = GetComponent<VisionComponent>();
+            combatComponent = GetComponent<CombatComponent>();
         }
 
         void Update() {

@@ -7,6 +7,12 @@ namespace Unit.Controller {
         
         protected override void GetMovementInput() {
             Vector2Int pathfinderDirections = brain.GetDirectionInputs();
+            if (brain.isPerformingAttack) {
+                moveDirection = 0;
+                moveState = UnitMoveState.Idle;
+                return;
+            }
+            
             moveDirection = pathfinderDirections.x;
             
             if (moveDirection != 0) {
@@ -46,6 +52,10 @@ namespace Unit.Controller {
             unitRigidbody.velocity = new Vector2(0,0);
             unitRigidbody.velocity = Vector2.up * maxJumpForce;
             currentJumps++;
+        }
+
+        public override void Attack(GameObject attackTarget) {
+            brain.combatComponent.PerformAttack(attackTarget);
         }
     }
 }

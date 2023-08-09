@@ -85,7 +85,9 @@ namespace Unit.Controller {
         
         #region Movement & Rotation
         protected abstract void AirJump();
-        
+
+        public abstract void Attack(GameObject attackTarget);
+
         void Move() {
             if (paused)
                 return;
@@ -143,6 +145,7 @@ namespace Unit.Controller {
             unitCollider = GetComponent<BoxCollider2D>();
             brain = GetComponent<Brain>();
         }
+
     }
 
     [Serializable]
