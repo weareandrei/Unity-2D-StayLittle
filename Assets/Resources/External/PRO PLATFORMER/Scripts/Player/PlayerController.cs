@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         RotateWithMouseClick,
         DoNotRotate,
     }
-    public float RunSpeed = 500;             
+    public float RunSpeed = 500;
     public float WalkSpeed = 350;
     [SerializeField] [Range(0, 1f)] float airControl = 1; // 1 is full control in the air , 0 you cant control in the air
     [SerializeField] bool AlwaysRun = true;  // Always use run speed
@@ -155,8 +155,8 @@ public class PlayerController : MonoBehaviour
     #region Calls
     // Calls
     CameraShake camShake;
-    Rigidbody2D rb;
-    BoxCollider2D col; // Recommending Box Collider 2D
+    Rigidbody2D unitRigidbody;
+    BoxCollider2D unitCollider; // Recommending Box Collider 2D
     #endregion
 
   #endregion
@@ -196,14 +196,15 @@ public class PlayerController : MonoBehaviour
     void GetComponenets()
     {
         // Calls
-        rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<BoxCollider2D>();
+        unitRigidbody = GetComponent<Rigidbody2D>();
+        unitCollider = GetComponent<BoxCollider2D>();
         camShake = Camera.main.GetComponent<CameraShake>();
     }
+    
     void SetMovementAndRotationType()
     {
         // Set Gravity
-        rb.gravityScale = Gravity;
+        unitRigidbody.gravityScale = Gravity;
 
         // Set Rotation Type
         if (rotationType == RotationType.DoNotRotate)
@@ -293,13 +294,13 @@ public class PlayerController : MonoBehaviour
 
         if (transform.rotation.y == 0)
         {
-            Vector2 position = new Vector2(col.bounds.center.x - col.bounds.extents.x, col.bounds.min.y);
-            ray = Physics2D.Raycast(position, Vector2.down, col.bounds.extents.y + 0.02f, groundLayer);
+            Vector2 position = new Vector2(unitCollider.bounds.center.x - unitCollider.bounds.extents.x, unitCollider.bounds.min.y);
+            ray = Physics2D.Raycast(position, Vector2.down, unitCollider.bounds.extents.y + 0.02f, groundLayer);
         }
         else
         {
-            Vector2 position = new Vector2(col.bounds.center.x + col.bounds.extents.x, col.bounds.min.y);
-            ray = Physics2D.Raycast(position, Vector2.down, col.bounds.extents.y + 0.02f, groundLayer);
+            Vector2 position = new Vector2(unitCollider.bounds.center.x + unitCollider.bounds.extents.x, unitCollider.bounds.min.y);
+            ray = Physics2D.Raycast(position, Vector2.down, unitCollider.bounds.extents.y + 0.02f, groundLayer);
         }
 
         if (ray.collider != null)
@@ -325,7 +326,7 @@ public class PlayerController : MonoBehaviour
         {
             isInAir = true;
 
-            if (rb.velocity.y < 0)
+            if (unitRigidbody.velocity.y < 0)
             {
                 isFalling = true;
 
@@ -333,8 +334,8 @@ public class PlayerController : MonoBehaviour
 
                 if (limitFallingSpeed) // Limit the fall speed
                 {
-                    if (rb.velocity.y <= -maxFallingSpeed)
-                        rb.velocity = new Vector3(rb.velocity.x, -maxFallingSpeed, rb.velocity.y);
+                    if (unitRigidbody.velocity.y <= -maxFallingSpeed)
+                        unitRigidbody.velocity = new Vector3(unitRigidbody.velocity.x, -maxFallingSpeed, unitRigidbody.velocity.y);
                 }
 
             }
@@ -352,9 +353,9 @@ public class PlayerController : MonoBehaviour
             return;
 
         if(!isInAir)
-            rb.velocity = new Vector2(MoveDirection * currentSpeed * Time.fixedDeltaTime, rb.velocity.y);
+            unitRigidbody.velocity = new Vector2(MoveDirection * currentSpeed * Time.fixedDeltaTime, unitRigidbody.velocity.y);
         else
-            rb.velocity = new Vector2(MoveDirection * (airControl * currentSpeed) * Time.fixedDeltaTime, rb.velocity.y);
+            unitRigidbody.velocity = new Vector2(MoveDirection * (airControl * currentSpeed) * Time.fixedDeltaTime, unitRigidbody.velocity.y);
     } 
     void Walk()
     {
@@ -390,7 +391,7 @@ public class PlayerController : MonoBehaviour
     {
         // Here You add ground Jumping ANIMATION Or the trigger                    (ANIMATION)
 
-        rb.velocity = Vector2.up * MaxJumpForce;
+        unitRigidbody.velocity = Vector2.up * MaxJumpForce;
         isInAir = true;
         canMove = true;
     }
@@ -401,9 +402,9 @@ public class PlayerController : MonoBehaviour
 
         // Here You add Air Jumping ANIMATION                               (ANIMATION)
 
-        rb.gravityScale = Gravity;
-        rb.velocity = new Vector2(0,0);
-        rb.velocity = Vector2.up * MaxJumpForce;
+        unitRigidbody.gravityScale = Gravity;
+        unitRigidbody.velocity = new Vector2(0,0);
+        unitRigidbody.velocity = Vector2.up * MaxJumpForce;
         currentJumps++;
     }
     async void WallJump()
@@ -411,9 +412,9 @@ public class PlayerController : MonoBehaviour
         if (!EnableWallJump)
             return;
 
-        rb.velocity = Vector2.zero;
+        unitRigidbody.velocity = Vector2.zero;
 
-        rb.AddForce(new Vector2(wallJumpPower / 2 * -MoveDirection, wallJumpPower), ForceMode2D.Impulse);
+        unitRigidbody.AddForce(new Vector2(wallJumpPower / 2 * -MoveDirection, wallJumpPower), ForceMode2D.Impulse);
         DisableInput = true;
 
         if (canRotate)
@@ -447,11 +448,11 @@ public class PlayerController : MonoBehaviour
         if (isInAir && !isFalling && !Input.GetKey(jump)) // Stop Jumping when release jump button
         {
             if (ControlJumpHeight)
-                rb.velocity += Vector2.up * -140 * Time.deltaTime;
+                unitRigidbody.velocity += Vector2.up * -140 * Time.deltaTime;
         }
 
         if (FasterFalling && isFalling)
-            rb.velocity += Vector2.up * -70 * Time.deltaTime;
+            unitRigidbody.velocity += Vector2.up * -70 * Time.deltaTime;
     }
     #endregion // Jump
 
@@ -475,7 +476,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         if (isSliding)
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+            unitRigidbody.velocity = new Vector2(unitRigidbody.velocity.x, Mathf.Clamp(unitRigidbody.velocity.y, -wallSlideSpeed, float.MaxValue));
 
     }
     void Climb()
@@ -487,7 +488,7 @@ public class PlayerController : MonoBehaviour
 
         if (touching)
         {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, ClimbingSpeed, float.MaxValue));
+            unitRigidbody.velocity = new Vector2(unitRigidbody.velocity.x, Mathf.Clamp(unitRigidbody.velocity.y, ClimbingSpeed, float.MaxValue));
             isClimbing = true;
             isInAir = false;
             isFalling = false;
@@ -496,7 +497,7 @@ public class PlayerController : MonoBehaviour
         {
             canClimb = false;
             isClimbing = false;
-            rb.velocity = Vector2.up * 20;
+            unitRigidbody.velocity = Vector2.up * 20;
         }
     }
     #endregion // Slide & Climb
@@ -522,14 +523,14 @@ public class PlayerController : MonoBehaviour
 
         currentSpeed *= DashPower;
 
-        rb.gravityScale = 0f; // You can delete this line if you don't want the player to not fall down while dashing
-        rb.velocity = new Vector2(rb.velocity.x, 0);
+        unitRigidbody.gravityScale = 0f; // You can delete this line if you don't want the player to not fall down while dashing
+        unitRigidbody.velocity = new Vector2(unitRigidbody.velocity.x, 0);
     }
     void EndDash()
     {
         if (cameraShake) camShake.Shake();
 
-        rb.gravityScale = Gravity;
+        unitRigidbody.gravityScale = Gravity;
         currentSpeed /= DashPower;
         isDashing = false;
     }
@@ -613,7 +614,7 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag(wallTag) || collision.collider.CompareTag(groundTag))
         {
             RaycastHit2D ray;
-            ray = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.02f, groundLayer);
+            ray = Physics2D.Raycast(unitCollider.bounds.center, Vector2.down, unitCollider.bounds.extents.y + 0.02f, groundLayer);
 
             if (ray.collider != null)
             {

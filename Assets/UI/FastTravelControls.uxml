@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/FastTravelContainer.uss?fileID=7433441132597879392&amp;guid=83ba81ea5cf584b579962181779ce9d4&amp;type=3#FastTravelContainer" />
     <ui:VisualElement name="BG" style="width: 100%; height: 100%; justify-content: flex-end; align-items: center;">
-        <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="Options" style="height: 60px; width: 351px; margin-bottom: 50px;" />
+        <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="Options" style="height: 15%; width: 70%; margin-bottom: 50px;" />
     </ui:VisualElement>
 </ui:UXML>
