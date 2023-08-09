@@ -1,5 +1,35 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace Unit.AI {
-    public class CombatComponent {
+    public class CombatComponent : MonoBehaviour {
         
+        private Brain brain;
+        [SerializeField] private DamageGivingCollider damageGivingCollider;
+        
+        private void Start() {
+            brain = gameObject.GetComponent<Brain>();
+        }
+
+        public void PerformAttack(GameObject attackTarget = null) {
+            brain.isPerformingAttack = true;
+            StartCoroutine(Attack(attackTarget));
+        }
+        
+        private IEnumerator Attack(GameObject attackTarget = null) {
+            yield return new WaitForSeconds(1);
+            damageGivingCollider.gameObject.SetActive(true);
+            
+            List<GameObject> targets = damageGivingCollider.GetTargetsAvailable();
+            foreach (GameObject targetObject in targets) {
+                bool recievedDamage = targetObject.GetComponent<Base.Unit>().TakeDamage(20);
+                // if (!recievedDamage) { // damage recieved by this? }
+            }
+            yield return new WaitForSeconds(0.5f);
+            brain.isPerformingAttack = false;
+            yield return null;
+        }
     }
 }

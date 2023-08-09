@@ -8,6 +8,7 @@ namespace Unit.Controller {
 
         [SerializeField] KeyCode run = KeyCode.LeftControl;
         [SerializeField] KeyCode jump = KeyCode.Space;
+        [SerializeField] KeyCode attack = KeyCode.E;
         // [SerializeField] KeyCode dash = KeyCode.LeftShift;
         // [SerializeField] KeyCode climb = KeyCode.Space;
         
@@ -33,6 +34,7 @@ namespace Unit.Controller {
 
         protected override void CheckInputs() {
             if (Input.GetKeyDown(jump)) Jump();
+            if (Input.GetKeyDown(attack)) Attack(null);
 
             // // Dashing Input
             // if (Input.GetKeyDown(dash)) Dash();
@@ -52,6 +54,10 @@ namespace Unit.Controller {
             if (physicalState == UnitPhysicalState.InAir) {
                 AirJump();
             }
+        }
+
+        public override void Attack(GameObject attackTarget) {
+            brain.combatComponent.PerformAttack(attackTarget);
         }
 
         protected override void AirJump() {
