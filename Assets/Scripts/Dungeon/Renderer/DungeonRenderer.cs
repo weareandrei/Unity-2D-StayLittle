@@ -56,8 +56,8 @@ namespace Dungeon.Renderer {
 
                 if (roomId != "") {
                     GameObject roomRendered = dungeonParent.GetComponent<DungeonRendererHelper>().renderedRooms[counter];
-                    counter++;
                     RenderThisRoomContents(_roomMap.map.getXSize() - 1 - x, y, roomRendered);
+                    counter++;
                 }
                 return LoopState.Continue;
             });
@@ -68,7 +68,7 @@ namespace Dungeon.Renderer {
             List<ContentPayload> contentPayloads = _contentsMap.map.GetCellActual(x, y).payloads;
             for (int i = 0; i < contentPoints.Count; i++) {
                 if (i < contentPayloads.Count) {
-                    contentPoints[i].GetComponent<ContentPoint>().payload = contentPayloads[i];
+                    // contentPoints[i].GetComponent<ContentPoint>().payload = contentPayloads[i];
                     RenderContentPoint(contentPoints[i], roomRendered);
                 } else {
                     // Handle the case where there are fewer ContentPayloads than ContentPoints
