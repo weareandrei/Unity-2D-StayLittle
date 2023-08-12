@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Unit.AI {
 
     public class DestinationPoint : NavPoint {
-
+        
         [SerializeField] public List<PointNeighbour> closestPoints;
         [SerializeField] private float maxRange = 7f;
 
@@ -170,6 +172,21 @@ namespace Unit.AI {
         //     return clone;
         // }
         
+         
+        // OnDrawGizmosSelected
+        
+        private void OnDrawGizmos () {
+            if (gizmoColor == default) {
+                gizmoColor = Random.ColorHSV(0.5f, 0.5f, 0.2f, 0.2f, 1f, 1f, 0.5f, 0.5f); // 20% transparent
+            }
+            Handles.color = gizmoColor;
+            Handles.DrawWireDisc(
+                transform.position, Vector3.forward, maxRange);
+            Handles.DrawWireDisc(
+                transform.position, Vector3.forward, maxRange / 10);
+
+        }
+
     }
 
     public enum Side {
