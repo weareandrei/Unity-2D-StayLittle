@@ -101,7 +101,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 2981
+      y: 573
       width: 562
       height: 564
     spriteID: f86d0668eeeca458db856a316a9d1c1a
@@ -113,7 +113,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 3, y: 2979}
+    uvTransform: {x: 3, y: 571}
     spritePosition: {x: 1802, y: 34}
   - name: Rectangle 3
     originalName: 
@@ -123,7 +123,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 2412
+      y: 4
       width: 599
       height: 561
     spriteID: b0301926b5ef2449f901912d62bfabed
@@ -135,7 +135,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 2412}
+    uvTransform: {x: 4, y: 4}
     spritePosition: {x: 1201, y: 38}
   - name: Rectangle 2
     originalName: 
@@ -144,8 +144,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1828
-      y: 2412
+      x: 613
+      y: 1145
       width: 282
       height: 61
     spriteID: 7337bc712b484448b832aa5b62c09c30
@@ -157,7 +157,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1828, y: 2412}
+    uvTransform: {x: 613, y: 1145}
     spritePosition: {x: 36, y: 869}
   - name: Rectangle 2
     originalName: 
@@ -166,8 +166,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 611
-      y: 2412
+      x: 4
+      y: 1145
       width: 601
       height: 61
     spriteID: f687c2e8169494e2f84b5ea450a7b7e2
@@ -179,7 +179,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 611, y: 2412}
+    uvTransform: {x: 4, y: 1145}
     spritePosition: {x: 601, y: 601}
   - name: Rectangle 1
     originalName: 
@@ -188,8 +188,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1220
-      y: 2412
+      x: 4
+      y: 1214
       width: 600
       height: 36
     spriteID: 26e352a6ce3564860a3d0ef8fbab72ea
@@ -201,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1220, y: 2412}
+    uvTransform: {x: 4, y: 1214}
     spritePosition: {x: 1800, y: 0}
   - name: Rectangle 1
     originalName: 
@@ -210,8 +210,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 611
-      y: 2481
+      x: 4
+      y: 1258
       width: 600
       height: 36
     spriteID: ac0ac449d07654fefb073890acdf7a40
@@ -223,7 +223,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 611, y: 2481}
+    uvTransform: {x: 4, y: 1258}
     spritePosition: {x: 1201, y: 0}
   - name: Rectangle 1
     originalName: 
@@ -232,8 +232,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1219
-      y: 2481
+      x: 4
+      y: 1302
       width: 600
       height: 36
     spriteID: 340f97aed13114eb695385a95eac132e
@@ -245,7 +245,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1219, y: 2481}
+    uvTransform: {x: 4, y: 1302}
     spritePosition: {x: 601, y: 0}
   - name: Rectangle 1
     originalName: 
@@ -254,8 +254,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 611
-      y: 2525
+      x: 4
+      y: 1346
       width: 600
       height: 36
     spriteID: 73cf4e2f375d54136bc3b048bea86e18
@@ -267,7 +267,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 611, y: 2525}
+    uvTransform: {x: 4, y: 1346}
     spritePosition: {x: 1, y: 0}
   - name: Rectangle 1
     originalName: 
@@ -276,8 +276,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 574
-      y: 2981
+      x: 4
+      y: 1390
       width: 36
       height: 600
     spriteID: 9ccb5d58816334f21b9a251aae543f7b
@@ -289,7 +289,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 574, y: 2981}
+    uvTransform: {x: 4, y: 1390}
     spritePosition: {x: 0, y: 1}
   - name: Rectangle 1
     originalName: 
@@ -298,8 +298,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 618
-      y: 2981
+      x: 48
+      y: 1390
       width: 36
       height: 600
     spriteID: 83b94abf772864aaab36d5077d2cb063
@@ -311,7 +311,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 618, y: 2981}
+    uvTransform: {x: 48, y: 1390}
     spritePosition: {x: 0, y: 600}
   - name: Rectangle 1
     originalName: 
@@ -320,8 +320,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 662
-      y: 2981
+      x: 92
+      y: 1390
       width: 36
       height: 600
     spriteID: ff22f8b56b7c346dc8b45d9df0e1172a
@@ -333,7 +333,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 662, y: 2981}
+    uvTransform: {x: 92, y: 1390}
     spritePosition: {x: 0, y: 1198}
   - name: Rectangle 1
     originalName: 
@@ -342,8 +342,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 706
-      y: 2981
+      x: 136
+      y: 1390
       width: 36
       height: 600
     spriteID: 609dec8855b114fa6bd88fa2170482c8
@@ -355,7 +355,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 706, y: 2981}
+    uvTransform: {x: 136, y: 1390}
     spritePosition: {x: 0, y: 1798}
   - name: Rectangle 1
     originalName: 
@@ -364,8 +364,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 750
-      y: 2981
+      x: 180
+      y: 1390
       width: 36
       height: 600
     spriteID: d94aa2b3ad1524431b8752321ffb8319
@@ -377,7 +377,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 750, y: 2981}
+    uvTransform: {x: 180, y: 1390}
     spritePosition: {x: 2365, y: 1799}
   - name: Rectangle 1
     originalName: 
@@ -386,8 +386,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 794
-      y: 2981
+      x: 224
+      y: 1390
       width: 36
       height: 600
     spriteID: 720759a539516469492a968b135a10d6
@@ -399,7 +399,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 794, y: 2981}
+    uvTransform: {x: 224, y: 1390}
     spritePosition: {x: 2364, y: 1198}
   - name: Rectangle 1
     originalName: 
@@ -408,8 +408,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 838
-      y: 2981
+      x: 268
+      y: 1390
       width: 36
       height: 600
     spriteID: 33da9df8bf9a343eb996200a0286846b
@@ -421,7 +421,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 838, y: 2981}
+    uvTransform: {x: 268, y: 1390}
     spritePosition: {x: 2365, y: 600}
   - name: Rectangle 1
     originalName: 
@@ -430,8 +430,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 882
-      y: 2981
+      x: 312
+      y: 1390
       width: 36
       height: 600
     spriteID: 5994659d026c64b0da69e1e25953c743
@@ -443,7 +443,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 882, y: 2981}
+    uvTransform: {x: 312, y: 1390}
     spritePosition: {x: 2364, y: 0}
   - name: Rectangle 1
     originalName: 
@@ -452,8 +452,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1219
-      y: 2525
+      x: 356
+      y: 1390
       width: 600
       height: 36
     spriteID: 535bf7c66f4174c85b3ed180aed34353
@@ -465,7 +465,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1219, y: 2525}
+    uvTransform: {x: 356, y: 1390}
     spritePosition: {x: 1, y: 2364}
   - name: Rectangle 1
     originalName: 
@@ -474,8 +474,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 611
-      y: 2569
+      x: 356
+      y: 1434
       width: 600
       height: 36
     spriteID: de3ad84a46e3f4fc880bd8750c1dd0c0
@@ -487,7 +487,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 611, y: 2569}
+    uvTransform: {x: 356, y: 1434}
     spritePosition: {x: 601, y: 2364}
   - name: Rectangle 1
     originalName: 
@@ -496,8 +496,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1219
-      y: 2569
+      x: 356
+      y: 1478
       width: 600
       height: 36
     spriteID: ae8a674675a5e4e15a3e4f50478b7361
@@ -509,7 +509,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1219, y: 2569}
+    uvTransform: {x: 356, y: 1478}
     spritePosition: {x: 1202, y: 2364}
   - name: Rectangle 1
     originalName: 
@@ -518,8 +518,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 611
-      y: 2613
+      x: 356
+      y: 1522
       width: 600
       height: 36
     spriteID: ce08617d494f24bb2b40f02ecf89bbef
@@ -531,30 +531,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 611, y: 2613}
+    uvTransform: {x: 356, y: 1522}
     spritePosition: {x: 1801, y: 2364}
-  - name: Layer 0
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 4
-      width: 2400
-      height: 2400
-    spriteID: 7b90eda99b86c474fbd6b85e9383a478
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []
@@ -645,7 +623,7 @@ ScriptedImporter:
     parentIndex: 0
     spriteID: f86d0668eeeca458db856a316a9d1c1a
     layerID: 84
-    mosaicPosition: {x: 4, y: 2981}
+    mosaicPosition: {x: 4, y: 573}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -655,7 +633,7 @@ ScriptedImporter:
     parentIndex: 0
     spriteID: b0301926b5ef2449f901912d62bfabed
     layerID: 83
-    mosaicPosition: {x: 4, y: 2412}
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -665,7 +643,7 @@ ScriptedImporter:
     parentIndex: 0
     spriteID: 7337bc712b484448b832aa5b62c09c30
     layerID: 85
-    mosaicPosition: {x: 1828, y: 2412}
+    mosaicPosition: {x: 613, y: 1145}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -675,7 +653,7 @@ ScriptedImporter:
     parentIndex: 0
     spriteID: f687c2e8169494e2f84b5ea450a7b7e2
     layerID: 81
-    mosaicPosition: {x: 611, y: 2412}
+    mosaicPosition: {x: 4, y: 1145}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -695,7 +673,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 26e352a6ce3564860a3d0ef8fbab72ea
     layerID: 22
-    mosaicPosition: {x: 1220, y: 2412}
+    mosaicPosition: {x: 4, y: 1214}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -705,7 +683,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: ac0ac449d07654fefb073890acdf7a40
     layerID: 17
-    mosaicPosition: {x: 611, y: 2481}
+    mosaicPosition: {x: 4, y: 1258}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -715,7 +693,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 340f97aed13114eb695385a95eac132e
     layerID: 16
-    mosaicPosition: {x: 1219, y: 2481}
+    mosaicPosition: {x: 4, y: 1302}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -725,7 +703,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 73cf4e2f375d54136bc3b048bea86e18
     layerID: 15
-    mosaicPosition: {x: 611, y: 2525}
+    mosaicPosition: {x: 4, y: 1346}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -735,7 +713,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 9ccb5d58816334f21b9a251aae543f7b
     layerID: 33
-    mosaicPosition: {x: 574, y: 2981}
+    mosaicPosition: {x: 4, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -745,7 +723,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 83b94abf772864aaab36d5077d2cb063
     layerID: 32
-    mosaicPosition: {x: 618, y: 2981}
+    mosaicPosition: {x: 48, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -755,7 +733,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: ff22f8b56b7c346dc8b45d9df0e1172a
     layerID: 31
-    mosaicPosition: {x: 662, y: 2981}
+    mosaicPosition: {x: 92, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -765,7 +743,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 609dec8855b114fa6bd88fa2170482c8
     layerID: 30
-    mosaicPosition: {x: 706, y: 2981}
+    mosaicPosition: {x: 136, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -775,7 +753,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: d94aa2b3ad1524431b8752321ffb8319
     layerID: 25
-    mosaicPosition: {x: 750, y: 2981}
+    mosaicPosition: {x: 180, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -785,7 +763,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 720759a539516469492a968b135a10d6
     layerID: 24
-    mosaicPosition: {x: 794, y: 2981}
+    mosaicPosition: {x: 224, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -795,7 +773,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 33da9df8bf9a343eb996200a0286846b
     layerID: 23
-    mosaicPosition: {x: 838, y: 2981}
+    mosaicPosition: {x: 268, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -805,7 +783,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 5994659d026c64b0da69e1e25953c743
     layerID: 18
-    mosaicPosition: {x: 882, y: 2981}
+    mosaicPosition: {x: 312, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -815,7 +793,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: 535bf7c66f4174c85b3ed180aed34353
     layerID: 29
-    mosaicPosition: {x: 1219, y: 2525}
+    mosaicPosition: {x: 356, y: 1390}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -825,7 +803,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: de3ad84a46e3f4fc880bd8750c1dd0c0
     layerID: 28
-    mosaicPosition: {x: 611, y: 2569}
+    mosaicPosition: {x: 356, y: 1434}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -835,7 +813,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: ae8a674675a5e4e15a3e4f50478b7361
     layerID: 27
-    mosaicPosition: {x: 1219, y: 2569}
+    mosaicPosition: {x: 356, y: 1478}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -845,7 +823,7 @@ ScriptedImporter:
     parentIndex: 5
     spriteID: ce08617d494f24bb2b40f02ecf89bbef
     layerID: 26
-    mosaicPosition: {x: 611, y: 2613}
+    mosaicPosition: {x: 356, y: 1522}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -858,16 +836,6 @@ ScriptedImporter:
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
-    isVisible: 1
-  - name: Layer 0
-    spriteName: Layer 0
-    isGroup: 0
-    parentIndex: 22
-    spriteID: 7b90eda99b86c474fbd6b85e9383a478
-    layerID: 10
-    mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
     isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
