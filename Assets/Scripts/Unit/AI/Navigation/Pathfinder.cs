@@ -51,13 +51,20 @@ namespace Unit.AI {
         }
 
         private bool IsPlayerCloseEnough() {
-            return Vector2.Distance(target.transform.position, gameObject.transform.position)
-                   < minDistanceToFreeMove || ((finalDestinationPoint != null && currentDestinationPoint != null) && finalDestinationPoint.location == currentDestinationPoint.location);
+            Vector3 playerPosition = target.transform.position;
+            Vector3 thisPosition = gameObject.transform.position;
+
+            float xDistance = Mathf.Abs(playerPosition.x - thisPosition.x);
+            float yDistance = Mathf.Abs(playerPosition.y - thisPosition.y);
+
+            return xDistance < minDistanceToFreeMove && yDistance <= 1f;
         }
+
+        
         private bool NoDestinationPointsNear() {
             DestinationPoint point = FindClosestDestinationPoint(gameObject.transform.position);
             return Vector2.Distance(point.location, gameObject.transform.position)
-                   < minDistanceToFreeMove;
+                   > 20f;
         }
 
         public void SelectTarget(GameObject target) {

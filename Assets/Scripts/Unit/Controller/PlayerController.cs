@@ -61,14 +61,15 @@ namespace Unit.Controller {
         }
 
         protected override void AirJump() {
-            // if (currentJumps >= MaxAirJumps)
-            //     return;
+            if (currentJumps >= maxAirJumps)
+                return;
 
             // Here You add Air Jumping ANIMATION
 
-            unitRigidbody.gravityScale = gravity;
-            unitRigidbody.velocity = new Vector2(0,0);
-            unitRigidbody.velocity = Vector2.up * maxJumpForce;
+            unitRigidbody.velocity = new Vector2(unitRigidbody.velocity.x, 0); // Reset vertical velocity
+
+            Vector2 jumpForce = new Vector2(unitRigidbody.velocity.x * 2, maxJumpForce);
+            unitRigidbody.AddForce(jumpForce, ForceMode2D.Impulse); // Apply jump force with added horizontal force
             currentJumps++;
         }
     }

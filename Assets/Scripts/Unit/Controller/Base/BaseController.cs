@@ -9,24 +9,31 @@ namespace Unit.Controller {
         #region Variables
         
         // Movement
-        [SerializeField] [Range(0, 1f)] protected float airControl = 0.75f;
+        [SerializeField] [Range(0, 2f)] protected float airControl = 2f;
         [SerializeField] protected float currentSpeed = 0f;
         [SerializeField] protected float moveDirection; // 1: y==1, 2: y==-1
+        
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected float runSpeed;
-        [SerializeField] public List<UnitMovementActions> actionsAwaiting;
         
+        [SerializeField] public List<UnitMovementActions> actionsAwaiting;
+        private float groundedTimer = 0.4f;
+        
+        [SerializeField] public float minimumVelocityThreshold = 0.2f;
+        [SerializeField] public float initialForceImpulse = 0.7f;
+
         // State
         private bool paused = false; // If you want to stop the game
         [SerializeField] protected UnitPhysicalState physicalState;
         [SerializeField] protected UnitMoveState moveState;
         [HideInInspector] public bool isLookingRight;
         [SerializeField] protected int currentJumps;
-        
+
         // Physics
         public float maxJumpForce = 22;
         public int maxAirJumps = 1;
-        public float gravity = 6;
+        [SerializeField] protected float movementDampingFactor = 0.5f;
+
         
         // Physics components
         protected Rigidbody2D unitRigidbody;
@@ -59,7 +66,6 @@ namespace Unit.Controller {
         }
         #endregion
         
-        
         #region Set Movement
         protected abstract void GetMovementInput();
         protected abstract void GetMovementSpeed();
@@ -72,12 +78,20 @@ namespace Unit.Controller {
             RaycastHit2D ray;
             
             Vector2 position = new Vector2(unitCollider.bounds.center.x - unitCollider.bounds.extents.x, unitCollider.bounds.min.y);
-            ray = Physics2D.Raycast(position, Vector2.down, unitCollider.bounds.extents.y + 0.02f);
+            ray = Physics2D.Raycast(position, Vector2.down, unitCollider.bounds.extents.y/5, LayerMask.GetMask("Ground"));
+
+            Debug.DrawRay(position, Vector2.down * (unitCollider.bounds.extents.y/5), Color.red);
 
             if (ray.collider != null) {
-                physicalState = UnitPhysicalState.Grounded;
+                if (groundedTimer <= 0f) {
+                    physicalState = UnitPhysicalState.Grounded;
+                    currentJumps = 0;
+                } else {
+                    groundedTimer -= Time.fixedDeltaTime;
+                }
             } else {
                 physicalState = UnitPhysicalState.InAir;
+                groundedTimer = 0.4f;
             }
         }
         
@@ -88,7 +102,7 @@ namespace Unit.Controller {
 
         public abstract void Attack(GameObject attackTarget);
 
-        void Move() {
+        protected void Move() {
             if (paused)
                 return;
 
@@ -98,13 +112,30 @@ namespace Unit.Controller {
                 UnitMoveState.Idle => 0
             };
 
-            if(physicalState == UnitPhysicalState.InAir)
-                unitRigidbody.velocity = new Vector2(moveDirection * (airControl * currentSpeed) * Time.fixedDeltaTime, unitRigidbody.velocity.y);
-            else
-                unitRigidbody.velocity = new Vector2(moveDirection * currentSpeed * Time.fixedDeltaTime, unitRigidbody.velocity.y);
+            float horizontalForce = moveDirection * currentSpeed * Time.fixedDeltaTime;
+            Vector2 force = new Vector2(horizontalForce, 0f);
+
+            if (physicalState == UnitPhysicalState.InAir) {
+                force *= airControl;
+            }
             
+            if (Mathf.Abs(unitRigidbody.velocity.x) < minimumVelocityThreshold) {
+                // If velocity is below the threshold, apply additional force to start movement instantly
+                unitRigidbody.AddForce(new Vector2(moveDirection * initialForceImpulse, 0f), ForceMode2D.Impulse);
+            }
+    
+            unitRigidbody.AddForce(force, ForceMode2D.Force);
+            ApplyDamping(); // Apply damping force to gradually stop movement
             RotateToMoveDirection();
         }
+
+        
+        protected void ApplyDamping() {
+            // Apply a damping force to counteract movement over time
+            Vector2 dampingForce = -unitRigidbody.velocity * movementDampingFactor;
+            unitRigidbody.AddForce(dampingForce, ForceMode2D.Force);
+        }
+
 
         void RotateToMoveDirection() {
  

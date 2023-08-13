@@ -11,7 +11,7 @@ namespace Unit.AI {
     public class DestinationPoint : NavPoint {
         
         [SerializeField] public List<PointNeighbour> closestPoints;
-        [SerializeField] private float maxRange = 7f;
+        [SerializeField, Range(0f, 15f)] private float maxRange = 7f;
 
         private void Start() {
             FindAccessiblePoints();
@@ -50,13 +50,15 @@ namespace Unit.AI {
             Vector2 origin = location;
             Vector2 target = point.location;
 
-            RaycastHit2D hit = Physics2D.Raycast(
+            RaycastHit2D[] hits = Physics2D.RaycastAll(
                 origin, target - origin,
                 Vector2.Distance(origin, target),
                 LayerMask.GetMask("Navigation"));
 
-            if (hit.collider != null && hit.collider.gameObject.tag == "NavCollider") {
-                return false;
+            foreach (RaycastHit2D hit in hits) {
+                if (hit.collider != null && hit.collider.gameObject.tag == "NavCollider") {
+                    return false;
+                }
             }
 
             return true;
