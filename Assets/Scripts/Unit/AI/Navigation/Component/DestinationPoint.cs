@@ -12,6 +12,7 @@ namespace Unit.AI {
         
         [SerializeField] public List<PointNeighbour> closestPoints;
         [SerializeField, Range(0f, 15f)] private float maxRange = 7f;
+        [SerializeField, Range(0f, 15f)] public float minRange = 4f;
 
         private void Start() {
             FindAccessiblePoints();
@@ -185,7 +186,7 @@ namespace Unit.AI {
             Handles.DrawWireDisc(
                 transform.position, Vector3.forward, maxRange);
             Handles.DrawWireDisc(
-                transform.position, Vector3.forward, maxRange / 10);
+                transform.position, Vector3.forward, minRange);
 
         }
 

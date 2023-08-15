@@ -8,6 +8,7 @@ namespace Unit.AI {
     
     public class Pathfinder : MonoBehaviour {
         private DestinationPoint currentDestinationPoint;
+        [SerializeField] private int nextDestinationPoint;
         private DestinationPoint finalDestinationPoint;
 
         private GameObject target;
@@ -40,7 +41,14 @@ namespace Unit.AI {
             currentDestinationPoint = FindClosestDestinationPoint(gameObject.transform.position);
             finalDestinationPoint = FindClosestDestinationPoint(target.transform.position);
 
-            pathToDestination = FindShortestPath();
+            // If new destination point found we need to recalculate the path.
+            if (pathToDestination == null || finalDestinationPoint.location != pathToDestination[^1].location) {
+                pathToDestination = FindShortestPath();
+                nextDestinationPoint = 1;
+            }
+            
+            nextDestinationPoint = FindNexDestinationPoint();
+            
             GetDirection();
         }
         
@@ -134,20 +142,18 @@ namespace Unit.AI {
         }
 
         private void GetDirection() {
-            DestinationPoint nextDestinationPoint = GetNextDestinationPointInPath();
-            
-            if (nextDestinationPoint == null) {
+            if (pathToDestination[nextDestinationPoint] == null) {
                 currentDirection = new Vector2Int(0, 0);
             }
             
-            if (currentDestinationPoint.location.x > nextDestinationPoint.location.x) {
+            if (transform.position.x > pathToDestination[nextDestinationPoint].location.x) {
                 currentDirection.x = -1;
             }
             else {
                 currentDirection.x = 1;
             }
             
-            if (currentDestinationPoint.location.y > nextDestinationPoint.location.y) {
+            if (transform.position.y > pathToDestination[nextDestinationPoint].location.y) {
                 currentDirection.y = -1;
             }
             else {
@@ -155,11 +161,15 @@ namespace Unit.AI {
             }
         }
 
-        private DestinationPoint GetNextDestinationPointInPath() {
+        private DestinationPoint GetNextDestinationPointToReach() {
             for (int i = 0; i < pathToDestination.Count; i++) {
                 DestinationPoint point = pathToDestination[i];
                 if (point.location == currentDestinationPoint.location) {
-                    if (i+1 < pathToDestination.Count) {
+                    if (i+1 < pathToDestination.Count ) {
+                        float distanceToCurrentPoint = Vector2.Distance(transform.position, pathToDestination[i].location);
+                        if (distanceToCurrentPoint > pathToDestination[i].minRange) {
+                            return pathToDestination[i];
+                        }
                         return pathToDestination[i + 1];
                     }
                 }
@@ -183,6 +193,15 @@ namespace Unit.AI {
             return closestPoint;
         }
 
+        private int FindNexDestinationPoint() {
+            float distanceToCurrentNextPoint = Vector2.Distance(transform.position, pathToDestination[nextDestinationPoint].location);
+            
+            if (distanceToCurrentNextPoint <= pathToDestination[nextDestinationPoint].minRange) {
+                return nextDestinationPoint + 1;
+            }
+
+            return nextDestinationPoint;
+        }
 
         public void FindDestinationToPoint(DestinationPoint finalDestinationPoint) {
             throw new System.NotImplementedException();

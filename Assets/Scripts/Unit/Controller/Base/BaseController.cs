@@ -91,7 +91,7 @@ namespace Unit.Controller {
                 }
             } else {
                 physicalState = UnitPhysicalState.InAir;
-                groundedTimer = 0.4f;
+                groundedTimer = 0.1f;
             }
         }
         
@@ -112,30 +112,25 @@ namespace Unit.Controller {
                 UnitMoveState.Idle => 0
             };
 
-            float horizontalForce = moveDirection * currentSpeed * Time.fixedDeltaTime;
+            if (Mathf.Abs(unitRigidbody.velocity.x) < minimumVelocityThreshold) {
+                currentSpeed = currentSpeed * 5;
+            }
+            float horizontalForce = moveDirection * 1000 * currentSpeed * Time.fixedDeltaTime;
             Vector2 force = new Vector2(horizontalForce, 0f);
 
             if (physicalState == UnitPhysicalState.InAir) {
                 force *= airControl;
             }
             
-            if (Mathf.Abs(unitRigidbody.velocity.x) < minimumVelocityThreshold) {
-                // If velocity is below the threshold, apply additional force to start movement instantly
-                unitRigidbody.AddForce(new Vector2(moveDirection * initialForceImpulse, 0f), ForceMode2D.Impulse);
-            }
+            // if (Mathf.Abs(unitRigidbody.velocity.x) < minimumVelocityThreshold * moveDirection) {
+            //     // If velocity is below the threshold, apply additional force to start movement instantly
+            //     unitRigidbody.AddForce(new Vector2(moveDirection * 10 * initialForceImpulse, 0f), ForceMode2D.Impulse);
+            //     // unitRigidbody.velocity = new Vector2(moveDirection * currentSpeed, unitRigidbody.velocity.y);
+            // }
     
             unitRigidbody.AddForce(force, ForceMode2D.Force);
-            ApplyDamping(); // Apply damping force to gradually stop movement
             RotateToMoveDirection();
         }
-
-        
-        protected void ApplyDamping() {
-            // Apply a damping force to counteract movement over time
-            Vector2 dampingForce = -unitRigidbody.velocity * movementDampingFactor;
-            unitRigidbody.AddForce(dampingForce, ForceMode2D.Force);
-        }
-
 
         void RotateToMoveDirection() {
  
