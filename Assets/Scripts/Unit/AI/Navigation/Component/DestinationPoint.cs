@@ -2,14 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Unit.AI {
 
     public class DestinationPoint : NavPoint {
-
+        
         [SerializeField] public List<PointNeighbour> closestPoints;
-        [SerializeField] private float maxRange = 7f;
+        [SerializeField, Range(0f, 15f)] private float maxRange = 7f;
+        [SerializeField, Range(0f, 15f)] public float minRange = 4f;
 
         private void Start() {
             FindAccessiblePoints();
@@ -48,13 +51,15 @@ namespace Unit.AI {
             Vector2 origin = location;
             Vector2 target = point.location;
 
-            RaycastHit2D hit = Physics2D.Raycast(
+            RaycastHit2D[] hits = Physics2D.RaycastAll(
                 origin, target - origin,
                 Vector2.Distance(origin, target),
                 LayerMask.GetMask("Navigation"));
 
-            if (hit.collider != null && hit.collider.gameObject.tag == "NavCollider") {
-                return false;
+            foreach (RaycastHit2D hit in hits) {
+                if (hit.collider != null && hit.collider.gameObject.tag == "NavCollider") {
+                    return false;
+                }
             }
 
             return true;
@@ -170,6 +175,21 @@ namespace Unit.AI {
         //     return clone;
         // }
         
+         
+        // OnDrawGizmosSelected
+        
+        private void OnDrawGizmos () {
+            if (gizmoColor == default) {
+                gizmoColor = Random.ColorHSV(0.5f, 0.5f, 0.2f, 0.2f, 1f, 1f, 0.5f, 0.5f); // 20% transparent
+            }
+            Handles.color = gizmoColor;
+            Handles.DrawWireDisc(
+                transform.position, Vector3.forward, maxRange);
+            Handles.DrawWireDisc(
+                transform.position, Vector3.forward, minRange);
+
+        }
+
     }
 
     public enum Side {

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace Unit.AI {
@@ -11,6 +12,16 @@ namespace Unit.AI {
                 }
             }
             catch { /*ignored*/ }
+        }
+        
+        private void OnDrawGizmos () {
+            if (gizmoColor == default) {
+                gizmoColor = Random.ColorHSV(0.5f, 0.5f, 0.2f, 0.2f, 1f, 1f, 0.5f, 0.5f); // 20% transparent
+            }
+            Handles.color = gizmoColor;
+            Gizmos.DrawWireCube	(
+                transform.position, new Vector3(0.3f,0.3f));
+
         }
     }
 }
