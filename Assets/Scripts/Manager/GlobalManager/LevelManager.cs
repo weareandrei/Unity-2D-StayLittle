@@ -92,6 +92,7 @@ namespace Manager {
             PositionPlayerInNewScene();
             lastSceneOpen = currentSceneOpen;
             LoadingManager.StopLoading();
+            UIManager.Instance.ShowRequiredLevelUI();
         }
         
         private static void OnDungeonLoaded(AsyncOperation operation) {
@@ -105,7 +106,7 @@ namespace Manager {
             DungeonManager.RenderDungeonsAll();
             
             lastSceneOpen = currentSceneOpen;
-
+            UIManager.Instance.ShowRequiredLevelUI();
         }
 
         public static void SetCurrentSceneActive() {

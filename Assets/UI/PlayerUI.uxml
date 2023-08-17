@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="HP" style="position: absolute; margin-left: 20px; margin-top: 20px; margin-right: 20px; margin-bottom: 20px;">
+        <ui:VisualElement name="Text" style="flex-direction: row; flex-grow: 1; flex-shrink: 1; justify-content: space-between;">
+            <ui:Label text="HP" display-tooltip-when-elided="true" />
+            <ui:Label text="100%" display-tooltip-when-elided="true" name="Percent" style="flex-direction: column; right: 0; white-space: nowrap;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ProgressBarContainer" style="flex-direction: row; margin-top: 7px;">
+            <ui:VisualElement name="EntireContainer" style="height: 23px; width: 157px; background-color: rgba(101, 101, 101, 0.39);" />
+            <ui:VisualElement name="Progress" style="position: absolute; width: 100%; height: 100%; justify-content: center; align-items: center; background-color: rgba(164, 25, 25, 0.78);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
