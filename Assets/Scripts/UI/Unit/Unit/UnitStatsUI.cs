@@ -1,10 +1,8 @@
 using System.Collections;
-using UI.Base;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace UI.Enemy {
-    public class EnemyUI : UIElement {
+namespace UI.Unit {
+    public class UnitStatsUI : BaseStatsUI {
 
         [SerializeField] private RectTransform SlowChange_Bar;
         [SerializeField] private RectTransform InstantChange_Bar;
@@ -15,18 +13,16 @@ namespace UI.Enemy {
         [SerializeField] private float maxBarWidth;
 
         private Coroutine _adjustBarWidthCoroutine ;
-        private Unit.Base.Unit thisEnemyUnit;
         private float unitMaxHP;
         private float unitCurrentHP;
 
         private void Start() {
-            thisEnemyUnit = GetComponentInParent<Unit.Base.Unit>();
-            unitMaxHP = thisEnemyUnit.GetMaxHP();
+            unitMaxHP = thisUnit.GetMaxHP();
             maxBarWidth = InstantChange_Bar.rect.width;
         }
         
         private void FixedUpdate() {
-            float unitNewHP = thisEnemyUnit.GetHP();
+            float unitNewHP = thisUnit.GetHP();
             float differenceHP = Mathf.Abs(unitNewHP - unitCurrentHP);
             if (differenceHP > 0) {
                 unitCurrentHP = unitNewHP;
