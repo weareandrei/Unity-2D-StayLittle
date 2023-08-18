@@ -42,6 +42,18 @@ namespace Unit.Base {
             gameObject.SetActive(false);
         }
 
+        public float GetHP() {
+            return stats.currentHP;
+        }
+        
+        public float GetXP() {
+            return stats.currentXP;
+        }
+        
+        public float GetMaxHP() {
+            return stats.maxHP;
+        }
+
     }
     
     public enum UnitTag {

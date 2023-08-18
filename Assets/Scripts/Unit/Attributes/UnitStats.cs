@@ -6,6 +6,7 @@ namespace Actor.Base {
     public class UnitStats {
         public float maxHP = 100f;
         public float currentHP;
+        public float currentXP;
         public float isImmortal;
     }
 }
