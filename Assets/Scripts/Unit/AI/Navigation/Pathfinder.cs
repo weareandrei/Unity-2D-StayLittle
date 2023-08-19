@@ -286,7 +286,8 @@ namespace Unit.AI {
         private List<DestinationPoint> GetBestPath(List<List<DestinationPoint>> paths, float shortestDistance) {
             List<DestinationPoint> bestPath = null;
             foreach (List<DestinationPoint> path in paths) {
-                if (CalculatePathLength(path) > shortestDistance) {
+                if (CalculatePathLength(path) > shortestDistance && 
+                    GetPathHead(path).location == finalDestinationPoint.location) {
                     continue;
                 }
 
