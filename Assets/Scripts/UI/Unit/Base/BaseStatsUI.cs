@@ -9,8 +9,8 @@ namespace UI.Unit {
         protected float displayedXP;
         protected int displayedLevel;
 
-        private void Start() {
-            thisUnit = GetComponent<UnitBase.Unit>();
+        private void Awake() {
+            thisUnit = GetComponentInParent<UnitBase.Unit>();
         }
     }
 }
