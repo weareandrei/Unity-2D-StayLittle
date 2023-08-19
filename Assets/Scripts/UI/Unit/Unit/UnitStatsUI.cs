@@ -12,7 +12,7 @@ namespace UI.Unit {
         [SerializeField] private float hpBarWidthAim;
         [SerializeField] private float maxBarWidth;
 
-        private Coroutine _adjustBarWidthCoroutine ;
+        private Coroutine _adjustBarWidthCoroutine;
         private float unitMaxHP;
         private float unitCurrentHP;
 

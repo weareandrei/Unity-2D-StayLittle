@@ -6,6 +6,7 @@ namespace Unit.AI {
     public class DamageGivingCollider : MonoBehaviour {
         private List<GameObject> targetsAvailable;
 
+        [SerializeField] public GameObject slashVFXPrefab;
 
         private void Start() {
             targetsAvailable = new List<GameObject>();

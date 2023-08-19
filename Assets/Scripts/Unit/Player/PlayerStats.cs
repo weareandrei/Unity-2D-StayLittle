@@ -6,8 +6,12 @@ namespace Unit.Player {
     public class PlayerStats : UnitStats {
         private List<Ability> abilitiesLearned;
         
-        public void AddXP() {
+        public void AddXP(int amount) {
         
+        }
+
+        private void LevelUp() {
+            currentLevel++;
         }
     
         public void AddHealth() {
