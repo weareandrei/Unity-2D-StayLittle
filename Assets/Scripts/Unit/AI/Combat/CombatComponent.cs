@@ -37,7 +37,7 @@ namespace Unit.AI {
         private void MakeDamageInArea() {
             List<GameObject> targets = damageGivingCollider.GetTargetsAvailable();
             foreach (GameObject targetObject in targets) {
-                bool recievedDamage = targetObject.GetComponent<Base.Unit>().TakeDamage(20);
+                targetObject.GetComponent<Base.Unit>().RecieveDamage(20);
                 // if (!recievedDamage) { // damage recieved by this? }
             }
         }

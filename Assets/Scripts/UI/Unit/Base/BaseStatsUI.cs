@@ -6,7 +6,6 @@ namespace UI.Unit {
         protected UnitBase.Unit thisUnit;
 
         protected float displayedHP;
-        protected float displayedXP;
         protected int displayedLevel;
 
         private void Awake() {

@@ -17,12 +17,17 @@ namespace UI.Unit {
         private float unitCurrentHP;
 
         private void Start() {
-            unitMaxHP = thisUnit.GetMaxHP();
+            unitMaxHP = thisUnit.stats.MaxHP;
             maxBarWidth = InstantChange_Bar.rect.width;
         }
         
         private void FixedUpdate() {
-            float unitNewHP = thisUnit.GetHP();
+            UpdateHP();
+            UpdateLevel();
+        }
+
+        private void UpdateHP() {
+            float unitNewHP = thisUnit.stats.CurrentHP;
             float differenceHP = Mathf.Abs(unitNewHP - unitCurrentHP);
             if (differenceHP > 0) {
                 unitCurrentHP = unitNewHP;
@@ -31,6 +36,10 @@ namespace UI.Unit {
             }
         }
 
+        private void UpdateLevel() {
+            
+        }
+        
         private void ChangeHealth(float amount) {
             // Value = Mathf.Clamp(Value + amount, 0, 100f);
 

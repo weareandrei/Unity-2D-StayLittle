@@ -3,57 +3,13 @@ using Actor.Base;
 using UnityEngine;
 
 namespace Unit.Base {
-    public class Unit : MonoBehaviour {
-        // public controller
-
-        [SerializeField] private UnitStats stats;
-
+    public abstract class Unit : MonoBehaviour {
+        public UnitStats stats;
         [SerializeField] public List<UnitTag> unitTags;
-
-        private void Start() {
-            stats.currentHP = stats.maxHP;
-        }
-
-        private void Update() {
-            CheckSomething();
-        }
-
-        // private void FixedUpdate() {
-        //     throw new NotImplementedException();
-        // }
         
-        private void CheckSomething() {
-            if (stats.currentHP == 0) Die();
-            return;
-        }
-
-        public bool TakeDamage(float damage) {
-            float hpLeft = stats.currentHP - damage;
-            if (hpLeft < 0) {
-                hpLeft = 0;
-            }
-
-            stats.currentHP = hpLeft;
-            return true;
-        }
-
-        private void Die() {
-            gameObject.SetActive(false);
-        }
-
-        public float GetHP() {
-            return stats.currentHP;
-        }
-        
-        public float GetXP() {
-            return stats.currentXP;
-        }
-        
-        public float GetMaxHP() {
-            return stats.maxHP;
-        }
-
+        public abstract void RecieveDamage(float amount);
     }
+    
     
     public enum UnitTag {
         Player,
