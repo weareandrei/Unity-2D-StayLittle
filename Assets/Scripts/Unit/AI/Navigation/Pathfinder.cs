@@ -307,6 +307,10 @@ namespace Unit.AI {
         }
 
         public List<UnitMovementActions> GetAwaitingActions() {
+            if (actionsAwaiting == null) {
+                return new List<UnitMovementActions>();
+            }
+            
             List<UnitMovementActions> actions = new List<UnitMovementActions>(actionsAwaiting);
             
             actionsAwaiting.Clear();

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Actor.Base;
 using Actor.Base.Component;
+using Unit.Base;
 using UnityEngine;
 
 namespace Unit.Player {

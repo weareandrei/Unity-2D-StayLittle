@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Actor.Base {
+namespace Unit.Base {
 
     [Serializable]
     public abstract class UnitStats {

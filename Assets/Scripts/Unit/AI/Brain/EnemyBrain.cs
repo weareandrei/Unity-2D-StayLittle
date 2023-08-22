@@ -21,7 +21,7 @@ namespace Unit.AI {
         }
 
         public override void Attack() {
-            if (GoodAttackDistance(attackTarget.transform.position) && !isPerformingAttack) {
+            if (attackTarget && GoodAttackDistance(attackTarget.transform.position) && !isPerformingAttack) {
                 controller.Attack(attackTarget);
             }
         }

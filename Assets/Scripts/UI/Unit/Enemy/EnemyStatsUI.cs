@@ -1,33 +1,21 @@
 using System.Collections;
+using Unit.Enemy;
 using UnityEngine;
 
 namespace UI.Unit {
-    public class UnitStatsUI : BaseStatsUI {
-
-        [SerializeField] private RectTransform SlowChange_Bar;
-        [SerializeField] private RectTransform InstantChange_Bar;
-
-        [SerializeField] private float HealthChangeAnimationSpeed = 10f;
-
-        [SerializeField] private float hpBarWidthAim;
-        [SerializeField] private float maxBarWidth;
-
-        private Coroutine _adjustBarWidthCoroutine;
-        private float unitMaxHP;
-        private float unitCurrentHP;
+    public class EnemyStatsUI : UnitStatsUI {
+        
+        private EnemyUnit enemyUnit;
 
         private void Start() {
-            unitMaxHP = thisUnit.stats.MaxHP;
+            enemyUnit = thisUnit as EnemyUnit;
+            
+            unitMaxHP = enemyUnit.stats.MaxHP;
             maxBarWidth = InstantChange_Bar.rect.width;
         }
-        
-        private void FixedUpdate() {
-            UpdateHP();
-            UpdateLevel();
-        }
 
-        private void UpdateHP() {
-            float unitNewHP = thisUnit.stats.CurrentHP;
+        protected override void UpdateHP() {
+            float unitNewHP = enemyUnit.stats.CurrentHP;
             float differenceHP = Mathf.Abs(unitNewHP - unitCurrentHP);
             if (differenceHP > 0) {
                 unitCurrentHP = unitNewHP;
@@ -36,7 +24,7 @@ namespace UI.Unit {
             }
         }
 
-        private void UpdateLevel() {
+        protected override void UpdateLevel() {
             
         }
         

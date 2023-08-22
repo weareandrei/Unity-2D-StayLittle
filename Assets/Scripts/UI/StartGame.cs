@@ -10,7 +10,7 @@ public class StartGame : MonoBehaviour
     public void StartGamePressed() {
         GlobalVariables.environment = "DEV";
         DungeonManager.Initialize("5556444221");
-        LevelManager.LoadLevelBasedOnScene("Home2");
+        LevelManager.LoadLevelBasedOnScene("Home4");
         // StartCoroutine(ExitMainMenu());
     }
 

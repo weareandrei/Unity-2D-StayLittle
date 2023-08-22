@@ -1,4 +1,3 @@
-using Dungeon.Gameplay;
 using Unit.Player;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,16 +6,32 @@ namespace UI.Unit {
     public class PlayerStatsUI : BaseStatsUI {
         
         protected float displayedXP;
+        private PlayerUnit playerUnit;
+        
+        private void Start() {
+            TryToFindPlayer();
+        }
 
         private void FixedUpdate() {
+            if (playerUnit == null) {
+                TryToFindPlayer();
+                return;
+            }
+            
             UpdateHP();
             UpdateXP();
             UpdateLevel();
         }
 
+        private void TryToFindPlayer() {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj == null) { return; }
+            playerUnit = playerObj.GetComponent<PlayerUnit>();
+        }
+
         private void UpdateHP() {
-            float playerCurrentHP = thisUnit.stats.CurrentHP;
-            float playerMaxHP = thisUnit.stats.MaxHP;
+            float playerCurrentHP = playerUnit.stats.CurrentHP;
+            float playerMaxHP = playerUnit.stats.MaxHP;
             float hpPercentage = (playerCurrentHP / playerMaxHP) * 100;
 
             // Update the text of the percentage label
@@ -32,8 +47,6 @@ namespace UI.Unit {
         }
 
         private void UpdateXP() {
-            PlayerUnit playerUnit = thisUnit as PlayerUnit;
-
             float playerCurrentXP = playerUnit.stats.CurrentXP;
             float playerMaxXP = playerUnit.stats.MaxXP;
             float xpPercentage = (playerCurrentXP / playerMaxXP) * 100;
@@ -51,7 +64,7 @@ namespace UI.Unit {
         }
 
         private void UpdateLevel() {
-            float playerCurrentLevel = thisUnit.stats.CurrentLevel;
+            float playerCurrentLevel = playerUnit.stats.CurrentLevel;
 
             // Update the text of the percentage label
             Label amountLabel = visualElement.Q<Label>("LevelNumber");
