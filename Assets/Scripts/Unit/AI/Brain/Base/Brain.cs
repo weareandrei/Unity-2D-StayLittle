@@ -81,7 +81,18 @@ namespace Unit.AI {
         }
         
         public List<UnitMovementActions> GetActionInputs() {
-            return pathfinder.GetAwaitingActions();
+            // Do some extra check after getting commands from Pathfinder. 
+            //    When we drive using GPS, we check what it says because it can be wrong sometimes right?
+            List<UnitMovementActions> pathFinderActionCommands = pathfinder.GetAwaitingActions();
+            
+            for (int i = 0; i < pathFinderActionCommands.Count; i++) {
+                if (pathFinderActionCommands[i] == UnitMovementActions.Jump && 
+                    controller.physicalState == UnitPhysicalState.InAir) {
+                    pathFinderActionCommands.RemoveAt(i);
+                }
+            }
+
+            return pathFinderActionCommands;
         }
         
         public Vector2Int Get() {

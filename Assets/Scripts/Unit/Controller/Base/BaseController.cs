@@ -24,7 +24,7 @@ namespace Unit.Controller {
 
         // State
         private bool paused = false; // If you want to stop the game
-        [SerializeField] protected UnitPhysicalState physicalState;
+        [SerializeField] public UnitPhysicalState physicalState;
         [SerializeField] protected UnitMoveState moveState;
         [HideInInspector] public bool isLookingRight;
         [SerializeField] protected int currentJumps;
@@ -46,7 +46,6 @@ namespace Unit.Controller {
         #region Unity Functions
         void Start() {
             GetComponenets();
-
             actionsAwaiting = new List<UnitMovementActions>();
         }  
         

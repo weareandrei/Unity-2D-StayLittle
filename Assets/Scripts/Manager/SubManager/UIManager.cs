@@ -1,11 +1,9 @@
-using System;
 using Dungeon.Gameplay;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Util;
 using UI.Dungeon;
 using UI.Map;
-using UI.Player;
+using UI.Unit;
 
 namespace Manager.SubManager {
     public class UIManager : PersistentSingleton<UIManager> {
@@ -30,14 +28,14 @@ namespace Manager.SubManager {
         public void HideNonPersistentUI() {
             scoreCounterDisplay.GetComponent<ScoreCounterDisplay>().Hide();
             fastTravel.GetComponent<FastTravelSelector>().Hide();
-            playerUI.GetComponent<PlayerUI>().Hide();
+            playerUI.GetComponent<PlayerStatsUI>().Hide();
             // loadingScreen.GetComponent<ScoreCounterDisplay>().Hide();
 
             UIVisible = false;
         }
 
         public void ShowRequiredLevelUI() {
-            playerUI.GetComponent<PlayerUI>().Display();
+            playerUI.GetComponent<PlayerStatsUI>().Display();
         }
         
         // ScoreDisplay should be in the side part of the screen, it should be small, not a central large piece of UI!.

@@ -108,15 +108,19 @@ namespace Unit.AI {
         }
 
         private void ValidateNeighboursOnThisSide(ref List<PointNeighbour> neighbours) {
+            if (neighbours.Count == 0) return;
+            
             PointNeighbour closestNeighbour = FindClosestNeighbour(neighbours);
             float smallestDistance = closestNeighbour.distance;
             float distanceThreshold = smallestDistance * 0.15f;
 
-            foreach (PointNeighbour neighbour in neighbours) {
+            for (int i = 0; i < neighbours.Count; i++) {
+                PointNeighbour neighbour = neighbours[i];
+
                 float diffInDistance = Mathf.Abs(neighbour.distance - smallestDistance);
                 float diffInY = Mathf.Abs(neighbour.point.location.y - closestNeighbour.point.location.y);
                 
-                if (diffInDistance <= distanceThreshold && diffInY >= 1.5f) {
+                if (diffInDistance == 0 || (diffInDistance <= distanceThreshold && diffInY >= 1.5f)) {
                     continue;
                 }
                 

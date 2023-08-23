@@ -5,7 +5,7 @@ namespace UI.Base {
     public class UIElement : MonoBehaviour {
         protected VisualElement visualElement;
         
-        private void Start() {
+        private void Awake() {
             visualElement = GetComponent<UIDocument>().rootVisualElement;
         }
 

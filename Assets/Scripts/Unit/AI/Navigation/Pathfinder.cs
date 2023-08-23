@@ -47,6 +47,14 @@ namespace Unit.AI {
                 nextDestinationPoint = 1;
             }
             
+            // If we got inside (too close) into the point, that is not part of current path, then we restart the path
+            float distanceToCurrentPoint = Vector2.Distance(transform.position, currentDestinationPoint.location);
+            if (distanceToCurrentPoint <= currentDestinationPoint.minRange && 
+                !PathContainsDestinationPoint(pathToDestination, currentDestinationPoint)) {
+                pathToDestination = FindShortestPath();
+                nextDestinationPoint = 1;
+            }
+            
             nextDestinationPoint = FindNexDestinationPoint();
             
             GetDirection();
@@ -203,16 +211,12 @@ namespace Unit.AI {
             return nextDestinationPoint;
         }
 
-        public void FindDestinationToPoint(DestinationPoint finalDestinationPoint) {
-            throw new System.NotImplementedException();
-        }
-        
         private void UseActionPoint() {
             throw new System.NotImplementedException();
         }
 
         private void FreeMove() {
-            if (gameObject.transform.position.y < target.transform.position.y) {
+            if (Mathf.Abs(gameObject.transform.position.y - target.transform.position.y) >= 1f) {
                 currentDirection.y = 1;
             }
             else {
@@ -282,7 +286,8 @@ namespace Unit.AI {
         private List<DestinationPoint> GetBestPath(List<List<DestinationPoint>> paths, float shortestDistance) {
             List<DestinationPoint> bestPath = null;
             foreach (List<DestinationPoint> path in paths) {
-                if (CalculatePathLength(path) > shortestDistance) {
+                if (CalculatePathLength(path) > shortestDistance && 
+                    GetPathHead(path).location == finalDestinationPoint.location) {
                     continue;
                 }
 
@@ -302,6 +307,10 @@ namespace Unit.AI {
         }
 
         public List<UnitMovementActions> GetAwaitingActions() {
+            if (actionsAwaiting == null) {
+                return new List<UnitMovementActions>();
+            }
+            
             List<UnitMovementActions> actions = new List<UnitMovementActions>(actionsAwaiting);
             
             actionsAwaiting.Clear();

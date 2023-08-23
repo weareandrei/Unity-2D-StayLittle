@@ -28,7 +28,9 @@ namespace Unit.AI {
         }
         
         public void DetectObjectsAround() {
-            foreach (GameObject obj in UnregisteredObjects) {
+            for (int i = 0; i < UnregisteredObjects.Count; i++) {
+                GameObject obj = UnregisteredObjects[i];
+                
                 if (RegisteredObjects.Contains(obj)) {
                     UnregisteredObjects.Remove(obj);
                     continue;
@@ -39,7 +41,8 @@ namespace Unit.AI {
             }
             UnregisteredObjects.Clear();
 
-            foreach (GameObject obj in ObjectsToRemove) {
+            for (int i = 0; i < UnregisteredObjects.Count; i++) {
+                GameObject obj = UnregisteredObjects[i];
                 if (!RegisteredObjects.Contains(obj)) {
                     ObjectsToRemove.Remove(obj);
                     continue;
