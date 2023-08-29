@@ -1,19 +1,18 @@
+using System;
 using System.Collections.Generic;
-using Actor.Base;
 using UnityEngine;
+using Unit.Stats;
+using Unit.Util;
 
 namespace Unit.Base {
-    public abstract class Unit : MonoBehaviour {
-        public UnitStats stats;
-        [SerializeField] public List<UnitTag> unitTags;
-        
-        public abstract void RecieveDamage(float amount);
-    }
     
-    
-    public enum UnitTag {
-        Player,
-        Enemy,
-        Friend
+    [Serializable]
+    public class Unit : MonoBehaviour {
+        [SerializeField] public UnitRole role;
+        [SerializeField] public List<UnitTag> tags;
+
+        [Header(" ----- Unit Stats ----- ")]
+        [Space]
+        [SerializeField] public UnitStats stats;
     }
 }
