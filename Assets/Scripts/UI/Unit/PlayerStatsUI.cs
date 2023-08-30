@@ -1,12 +1,12 @@
-using Legacy.Unit_old.Player;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnitBase = Unit.Base;
 
 namespace UI.Unit {
     public class PlayerStatsUI : BaseStatsUI {
         
         protected float displayedXP;
-        private PlayerUnit playerUnit;
+        private UnitBase.Unit playerUnit;
         
         private void Start() {
             TryToFindPlayer();
@@ -26,7 +26,7 @@ namespace UI.Unit {
         private void TryToFindPlayer() {
             GameObject playerObj = GameObject.FindWithTag("Player");
             if (playerObj == null) { return; }
-            playerUnit = playerObj.GetComponent<PlayerUnit>();
+            playerUnit = playerObj.GetComponent<UnitBase.Unit>();
         }
 
         private void UpdateHP() {
@@ -47,8 +47,8 @@ namespace UI.Unit {
         }
 
         private void UpdateXP() {
-            float playerCurrentXP = playerUnit.stats.CurrentXP;
-            float playerMaxXP = playerUnit.stats.MaxXP;
+            float playerCurrentXP = playerUnit.stats.CurrentHP;
+            float playerMaxXP = playerUnit.stats.MaxHP;
             float xpPercentage = (playerCurrentXP / playerMaxXP) * 100;
 
             // Update the text of the percentage label

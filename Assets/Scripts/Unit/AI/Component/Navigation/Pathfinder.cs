@@ -71,8 +71,19 @@ namespace Unit.AI.Navigation {
                         );
                     break;
                 case "Move Left":
+                    Brain.ReceiveSignal(
+                        new BrainSignal(
+                            BrainSignalType.Navigation,
+                            UnitAction.MoveLeft
+                        )   
+                    );
                     break;
-                case "Move Right":
+                case "Move Right":Brain.ReceiveSignal(
+                        new BrainSignal(
+                            BrainSignalType.Navigation,
+                            UnitAction.MoveRight
+                        )   
+                    );
                     break;
             }
         }

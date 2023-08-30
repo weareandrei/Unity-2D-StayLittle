@@ -7,6 +7,8 @@ namespace Unit.AI {
     
     public abstract class ControllerBase : MonoBehaviour {
         
+        public BrainBase Brain { get; set; }
+        
         private ActionBuffer actionBuffer = new ActionBuffer();
         
         [SerializeField] public UnitMoveStats unitMoveStats;
@@ -22,6 +24,9 @@ namespace Unit.AI {
         protected bool isGrounded;
         protected bool isLookingRight;
         protected UnitPhysicalState physicalState;
+
+        public bool MoveLock;
+        public bool CombatLock;
         
         private void Update() {
             MonitorPhysicalState();

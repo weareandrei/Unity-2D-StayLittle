@@ -46,7 +46,9 @@ namespace Unit.AI {
         }
         
         protected override void AttackTarget(GameObject target) {
-            throw new System.NotImplementedException();
+            if (!brainComponents.combatComponent.isPerformingAttack) {
+                brainComponents.combatComponent.PerformAttack(target);
+            }
         }
 
     }

@@ -5,10 +5,10 @@ using UnitBase = Unit.Base;
 namespace UI.Unit {
     public class EnemyStatsUI : UnitStatsUI {
         
-        private EnemyUnit enemyUnit;
+        private UnitBase.Unit enemyUnit;
 
         private void Start() {
-            enemyUnit = thisUnit as EnemyUnit;
+            enemyUnit = thisUnit as UnitBase.Unit;
             
             unitMaxHP = enemyUnit.stats.MaxHP;
             maxBarWidth = InstantChange_Bar.rect.width;

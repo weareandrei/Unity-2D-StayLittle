@@ -41,28 +41,61 @@ namespace Unit.AI {
 
             InitializeComponents();
 
-            if (brainComponents.pathfinder != null) 
+            // Loop through non-null BrainComponents and assign their Brain property
+            if (brainComponents.pathfinder != null) {
                 brainComponents.pathfinder.Brain = this;
+            }
+
+            // if (brainComponents.controller != null) {
+            //     brainComponents.controller.Brain = this;
+            // }
+
+            if (brainComponents.combatComponent != null) {
+                brainComponents.combatComponent.Brain = this;
+            }
+
+            // ... Similar assignments for other components
+
+            // Update code here
         }
+
 
         private void InitializeComponents() {
             Transform componentsParent = transform.Find("BrainComponents");
-            
+    
             // Adding Pathfinder component to an Empty GameObject and setting its parent
             GameObject emptyPathfinderObject = new GameObject("Pathfinder");
             emptyPathfinderObject.transform.SetParent(componentsParent);
             brainComponents.pathfinder = emptyPathfinderObject.GetComponent<Pathfinder>();
-            // brainComponents.pathfinder.unitRangeDistance = thisUnit.stats.attackRange;
-            
+            if (brainComponents.pathfinder == null) {
+                Debug.LogError("Pathfinder component not found on emptyPathfinderObject.");
+            }
+    
+            // Adding Controller component to an Empty GameObject and setting its parent
             GameObject emptyControllerObject = new GameObject("Controller");
             emptyControllerObject.transform.SetParent(componentsParent);
             brainComponents.controller = emptyControllerObject.GetComponent<ControllerBase>();
-            // Pass movement stats
-            brainComponents.controller.unitMoveStats = thisUnit.stats.UnitMoveStats;
-            brainComponents.controller.rb = GetComponent<Rigidbody2D>();
-            brainComponents.controller.col = GetComponent<BoxCollider2D>();
-            
-            // ... More component to add here
+            if (brainComponents.controller == null) {
+                Debug.LogError("Controller component not found on emptyControllerObject.");
+            } else {
+                // Pass movement stats
+                brainComponents.controller.unitMoveStats = thisUnit.stats.UnitMoveStats;
+                brainComponents.controller.rb = GetComponent<Rigidbody2D>();
+                brainComponents.controller.col = GetComponent<BoxCollider2D>();
+                if (brainComponents.controller.rb == null || brainComponents.controller.col == null) {
+                    Debug.LogError("Rigidbody2D or BoxCollider2D not found on the current GameObject.");
+                }
+            }
+    
+            // Adding CombatComponent component to an Empty GameObject and setting its parent
+            GameObject emptycombatComponentObject = new GameObject("CombatComponent");
+            emptycombatComponentObject.transform.SetParent(componentsParent);
+            brainComponents.combatComponent = emptycombatComponentObject.GetComponent<CombatComponent>();
+            if (brainComponents.combatComponent == null) {
+                Debug.LogError("CombatComponent component not found on emptycombatComponentObject.");
+            }
+    
+            // ... More component checks to add here
         }
 
         private void Update() {
@@ -70,17 +103,17 @@ namespace Unit.AI {
         }
 
         private void ReadSensorSignals() {
-            BrainSignal readSignal;
+            BrainSignal receivedSignal;
             
-            try { readSignal = signalBuffer.GetSignal(); } 
+            try { receivedSignal = signalBuffer.GetSignal(); } 
             catch (Exception e) { return; }
 
-            switch (readSignal.type) {
+            switch (receivedSignal.type) {
                 case BrainSignalType.Vision:
-                    objectsAround.Add(readSignal.objects[0]);
+                    objectsAround = receivedSignal.objects;
                     break;
                 case BrainSignalType.Navigation:
-                    brainComponents.controller.ReceiveActionRequest(readSignal.action);
+                    brainComponents.controller.ReceiveActionRequest(receivedSignal.action);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -96,6 +129,7 @@ namespace Unit.AI {
     public struct BrainComponents {
         public Pathfinder pathfinder;
         public ControllerBase controller;
+        public CombatComponent combatComponent;
     }
     
 }

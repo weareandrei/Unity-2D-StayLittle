@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Legacy.Unit_old.AI.Combat {
+namespace Unit.AI {
     public class CombatComponent : MonoBehaviour {
-        private Brain.Base.Brain brain;
-        [SerializeField] private DamageGivingCollider damageGivingCollider;
+        
+        public BrainBase Brain { get; set; }
+
+        private DamageGivingCollider damageGivingCollider;
+        
+        // Current Combat state
+        public bool isPerformingAttack = false;
         
         private void Start() {
-            brain = gameObject.GetComponent<Brain.Base.Brain>();
+            Transform damageGivingColliderTransform = transform.Find("DamageGivingCollider"); // Replace "ChildName" with the name of your child GameObject
+
+            if (damageGivingColliderTransform != null) {
+                damageGivingCollider = damageGivingColliderTransform.GetComponent<DamageGivingCollider>();
+
+                return;
+            } 
+            
+            Debug.LogError("DamageGivingCollider component not found.");
         }
 
+        
         public void PerformAttack(GameObject attackTarget = null) {
-            brain.isPerformingAttack = true;
+            isPerformingAttack = true;
             StartCoroutine(Attack(attackTarget));
         }
         
@@ -24,7 +38,7 @@ namespace Legacy.Unit_old.AI.Combat {
             InstantiateSlashParticles();
 
             yield return new WaitForSeconds(0.5f);
-            brain.isPerformingAttack = false;
+            isPerformingAttack = false;
             yield return null;
         }
 

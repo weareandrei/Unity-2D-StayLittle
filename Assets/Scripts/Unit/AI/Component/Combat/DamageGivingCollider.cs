@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Legacy.Unit_old.AI.Combat {
+namespace Unit.AI {
     public class DamageGivingCollider : MonoBehaviour {
         private List<GameObject> targetsAvailable;
 
