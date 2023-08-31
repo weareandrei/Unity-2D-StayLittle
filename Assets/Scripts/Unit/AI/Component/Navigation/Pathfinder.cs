@@ -13,7 +13,6 @@ namespace Unit.AI.Navigation {
         private DestinationPoint finalDestinationPoint;
 
         public Vector2Int currentDirection;
-        public List<UnitAction> actionsAwaiting;
         
         [SerializeField] public float unitRangeDistance = 2f;
         [SerializeField] private List<DestinationPoint> allDestinationPoints;
@@ -24,7 +23,6 @@ namespace Unit.AI.Navigation {
         private void Start() {
             currentDirection = new Vector2Int(0, 0);
             allDestinationPoints = GetAllDestinationPoints();
-            actionsAwaiting = new List<UnitAction>();
         }
 
         private void FixedUpdate() {
@@ -78,7 +76,8 @@ namespace Unit.AI.Navigation {
                         )   
                     );
                     break;
-                case "Move Right":Brain.ReceiveSignal(
+                case "Move Right":
+                    Brain.ReceiveSignal(
                         new BrainSignal(
                             BrainSignalType.Navigation,
                             UnitAction.MoveRight
@@ -94,7 +93,7 @@ namespace Unit.AI.Navigation {
         
         public void ActionPointDetected() {
             if (currentDirection.y == 1) {
-                actionsAwaiting.Add(UnitAction.Jump);
+                SendSignalToBrain("Jump");
             }
         }
 
@@ -162,9 +161,11 @@ namespace Unit.AI.Navigation {
             
             if (transform.position.x > pathToDestination[nextDestinationPoint].location.x) {
                 currentDirection.x = -1;
+                SendSignalToBrain("Move Left");
             }
             else {
                 currentDirection.x = 1;
+                SendSignalToBrain("Move Right");
             }
             
             if (transform.position.y > pathToDestination[nextDestinationPoint].location.y) {
@@ -243,17 +244,6 @@ namespace Unit.AI.Navigation {
             }
 
             return bestPath;
-        }
-
-        public List<UnitAction> GetAwaitingActions() {
-            if (actionsAwaiting == null) {
-                return new List<UnitAction>();
-            }
-            
-            List<UnitAction> actions = new List<UnitAction>(actionsAwaiting);
-            
-            actionsAwaiting.Clear();
-            return actions;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Unit.AI {
         
         private ActionBuffer actionBuffer = new ActionBuffer();
         
-        [SerializeField] public UnitMoveStats unitMoveStats;
+        [HideInInspector] public UnitMoveStats unitMoveStats;
 
         private float groundedTimer = 0.27f;
 

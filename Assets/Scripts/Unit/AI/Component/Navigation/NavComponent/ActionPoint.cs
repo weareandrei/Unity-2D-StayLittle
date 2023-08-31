@@ -6,7 +6,7 @@ namespace Unit.AI {
     public class ActionPoint : NavPoint {
         private void OnTriggerEnter2D(Collider2D other) {
             try {
-                Pathfinder pathfinder = other.gameObject.GetComponent<Pathfinder>();
+                Pathfinder pathfinder = other.GetComponentInChildren<Pathfinder>();
                 if (pathfinder != null) {
                     pathfinder.ActionPointDetected();
                 }
