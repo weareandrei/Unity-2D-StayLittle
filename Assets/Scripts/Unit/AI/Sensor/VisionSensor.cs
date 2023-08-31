@@ -5,17 +5,10 @@ using UnityEngine;
 
 namespace Unit.AI.Sensor {
     
-    public class VisionSensor : MonoBehaviour, ISensor {
-        
-        private BrainBase brain;
-
-        public BrainBase Brain {
-            get { return brain; }
-            set { brain = value; }
-        }
+    public class VisionSensor : SensorBase {
 
         // public SensorType Type { get; } = SensorType.Vision;
-        [SerializeField] private Collider2D visionCollider;
+        // [SerializeField] private Collider2D visionCollider;
         
         // Surrounding states
         private List<GameObject> UnregisteredObjects = new List<GameObject>();
@@ -26,7 +19,7 @@ namespace Unit.AI.Sensor {
         private List<Action<GameObject>> OnObjectEnter = new List<Action<GameObject>>();
         private List<Action<GameObject>> OnObjectExit = new List<Action<GameObject>>();
         
-        public void ScanSurrounding() {
+        public override void ScanSurrounding() {
             for (int i = 0; i < UnregisteredObjects.Count; i++) {
                 GameObject obj = UnregisteredObjects[i];
                 
@@ -55,7 +48,7 @@ namespace Unit.AI.Sensor {
             ObjectsToRemove.Clear();
         }
         
-        public void SendSignalToBrain(string param = null) {
+        public override void SendSignalToBrain(string param = null) {
             Brain.ReceiveSignal(
                 new BrainSignal {
                     type = BrainSignalType.Vision,

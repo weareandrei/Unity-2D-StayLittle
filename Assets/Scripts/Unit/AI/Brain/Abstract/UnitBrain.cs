@@ -51,10 +51,16 @@ namespace Unit.AI {
             // Patrolling
             // ...
             
-            // Select target if not selected any yet
-            if (!selectedTarget && surroundings.enemyUnits.Count > 0) {
-                int randomIndex = Random.Range(0, surroundings.enemyUnits.Count);
-                selectedTarget = surroundings.enemyUnits[randomIndex];
+            SelectTarget();
+
+            if (!selectedTarget)
+                return;
+
+            if (GoodAttackDistance(selectedTarget.transform.position)) {
+                AttackTarget(selectedTarget);
+            }
+            else {
+                FollowTarget(selectedTarget);
             }
         }
 
@@ -63,11 +69,10 @@ namespace Unit.AI {
             // Do nothing
             // ...
 
-            // Select target if not selected any yet
-            if (!selectedTarget && surroundings.enemyUnits.Count > 0) {
-                int randomIndex = Random.Range(0, surroundings.enemyUnits.Count);
-                selectedTarget = surroundings.enemyUnits[randomIndex];
-            }
+            SelectTarget();
+
+            if (!selectedTarget)
+                return;
 
             if (GoodAttackDistance(selectedTarget.transform.position)) {
                 AttackTarget(selectedTarget);
@@ -77,8 +82,27 @@ namespace Unit.AI {
             }
         }
         
+        private void SelectTarget() {
+            if (selectedTarget) {
+                // If we have the target specified and target is still valid
+                if (surroundings.enemyUnits.Contains(selectedTarget)) 
+                    return;
+                
+                // If target is no more valid, we null it
+                selectedTarget = null;
+                return;
+            }
+
+            if (!selectedTarget) {
+                if (surroundings.enemyUnits.Count > 0) {
+                    int randomIndex = Random.Range(0, surroundings.enemyUnits.Count);
+                    selectedTarget = surroundings.enemyUnits[randomIndex];
+                }
+            }
+        }
+        
         private bool GoodAttackDistance(Vector2 targetPosition) {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         protected abstract void AttackTarget(GameObject target);

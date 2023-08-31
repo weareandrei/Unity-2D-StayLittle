@@ -11,7 +11,7 @@ namespace Unit.AI {
         
         protected UnitBase.Unit thisUnit;
         
-        private List<ISensor> availableSensors; // List of Sensors in here
+        private List<ISensor> availableSensors = new (); // List of Sensors in here
         protected BrainComponents brainComponents; // List of available Components
         
         private SignalBuffer signalBuffer = new ();
@@ -63,38 +63,34 @@ namespace Unit.AI {
         private void InitializeComponents() {
             Transform componentsParent = transform.Find("BrainComponents");
     
-            // Adding Pathfinder component to an Empty GameObject and setting its parent
-            GameObject emptyPathfinderObject = new GameObject("Pathfinder");
-            emptyPathfinderObject.transform.SetParent(componentsParent);
-            brainComponents.pathfinder = emptyPathfinderObject.GetComponent<Pathfinder>();
+            // Initialize PATHFINDER
+            GameObject pathfinderObject = componentsParent.Find("Pathfinder").gameObject;
+            brainComponents.pathfinder = pathfinderObject.GetComponent<Pathfinder>();
             if (brainComponents.pathfinder == null) {
-                Debug.LogError("Pathfinder component not found on emptyPathfinderObject.");
+                Debug.LogError("Pathfinder component not found on " + gameObject.name);
             }
-    
-            // Adding Controller component to an Empty GameObject and setting its parent
-            GameObject emptyControllerObject = new GameObject("Controller");
-            emptyControllerObject.transform.SetParent(componentsParent);
-            brainComponents.controller = emptyControllerObject.GetComponent<ControllerBase>();
+            
+            // Initialize CONTROLLER
+            GameObject controllerObject = componentsParent.Find("Controller").gameObject;
+            brainComponents.controller = controllerObject.GetComponent<ControllerBase>();
             if (brainComponents.controller == null) {
-                Debug.LogError("Controller component not found on emptyControllerObject.");
+                Debug.LogError("Controller component not found on " + gameObject.name);
             } else {
-                // Pass movement stats
                 brainComponents.controller.unitMoveStats = thisUnit.stats.UnitMoveStats;
                 brainComponents.controller.rb = GetComponent<Rigidbody2D>();
                 brainComponents.controller.col = GetComponent<BoxCollider2D>();
                 if (brainComponents.controller.rb == null || brainComponents.controller.col == null) {
-                    Debug.LogError("Rigidbody2D or BoxCollider2D not found on the current GameObject.");
+                    Debug.LogError("Rigidbody2D or BoxCollider2D not found on " + gameObject.name);
                 }
             }
-    
-            // Adding CombatComponent component to an Empty GameObject and setting its parent
-            GameObject emptycombatComponentObject = new GameObject("CombatComponent");
-            emptycombatComponentObject.transform.SetParent(componentsParent);
-            brainComponents.combatComponent = emptycombatComponentObject.GetComponent<CombatComponent>();
+            
+            // Initialize COMBAT COMPONENT
+            GameObject combatObject = componentsParent.Find("Combat").gameObject;
+            brainComponents.combatComponent = combatObject.GetComponent<CombatComponent>();
             if (brainComponents.combatComponent == null) {
-                Debug.LogError("CombatComponent component not found on emptycombatComponentObject.");
+                Debug.LogError("CombatComponent component not found on " + gameObject.name);
             }
-    
+
             // ... More component checks to add here
         }
 
@@ -105,7 +101,7 @@ namespace Unit.AI {
         private void ReadSensorSignals() {
             BrainSignal receivedSignal;
             
-            try { receivedSignal = signalBuffer.GetSignal(); } 
+            try { receivedSignal = signalBuffer.GetSignal(); }
             catch (Exception e) { return; }
 
             switch (receivedSignal.type) {

@@ -15,8 +15,8 @@ namespace Unit.AI {
 
         private float groundedTimer = 0.27f;
 
-        public Rigidbody2D rb;
-        public BoxCollider2D col;
+        [HideInInspector] public Rigidbody2D rb;
+        [HideInInspector] public BoxCollider2D col;
         
         // Current Body state
         protected int movementDirection;
@@ -25,8 +25,8 @@ namespace Unit.AI {
         protected bool isLookingRight;
         protected UnitPhysicalState physicalState;
 
-        public bool MoveLock;
-        public bool CombatLock;
+        [HideInInspector] public bool MoveLock;
+        [HideInInspector] public bool CombatLock;
         
         private void Update() {
             MonitorPhysicalState();

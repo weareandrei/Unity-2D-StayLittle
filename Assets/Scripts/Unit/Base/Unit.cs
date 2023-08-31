@@ -16,6 +16,7 @@ namespace Unit.Base {
         [SerializeField] public UnitStats stats;
 
         private void Start() {
+            
             stats.CurrentHP = stats.MaxHP;
             stats.CurrentLevel = 1;
             stats.CurrentXP = 0;

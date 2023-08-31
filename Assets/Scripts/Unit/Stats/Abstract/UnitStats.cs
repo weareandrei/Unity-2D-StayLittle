@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unit.Stats {
     
     [Serializable]
-    public abstract class UnitStats : StatsBase {
+    public class UnitStats : StatsBase {
         
         [SerializeField] protected float _maxHP = 100f;
         [SerializeField] protected float _currentHP;

@@ -42,11 +42,11 @@ namespace Unit.AI.Navigation {
             finalDestinationPoint = FindClosestDestinationPoint(target.transform.position);
 
             // If new destination point found we need to recalculate the path.
-            if (pathToDestination == null || finalDestinationPoint.location != pathToDestination[^1].location) {
+            if (pathToDestination.Count == 0 || finalDestinationPoint.location != pathToDestination[^1].location) {
                 pathToDestination = FindShortestPath();
                 nextDestinationPoint = 1;
             }
-            
+
             // If we got inside (too close) into the point, that is not part of current path, then we restart the path
             float distanceToCurrentPoint = Vector2.Distance(transform.position, currentDestinationPoint.location);
             if (distanceToCurrentPoint <= currentDestinationPoint.minRange && 
