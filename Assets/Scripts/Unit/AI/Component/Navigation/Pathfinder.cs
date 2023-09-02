@@ -211,9 +211,11 @@ namespace Unit.AI.Navigation {
             
             if (gameObject.transform.position.x < target.transform.position.x) {
                 currentDirection.x = 1;
+                SendSignalToBrain("Move Right");
             }
             else {
                 currentDirection.x = -1;
+                SendSignalToBrain("Move Left");
             }
         }
 
