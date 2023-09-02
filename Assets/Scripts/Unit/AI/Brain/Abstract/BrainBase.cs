@@ -65,32 +65,33 @@ namespace Unit.AI {
         
         private void InitializeComponents() {
             Transform componentsParent = transform.Find("BrainComponents");
-    
-            // Initialize PATHFINDER
-            GameObject pathfinderObject = componentsParent.Find("Pathfinder").gameObject;
-            brainComponents.pathfinder = pathfinderObject.GetComponent<Pathfinder>();
-            if (brainComponents.pathfinder == null) {
+
+            try { // Initialize PATHFINDER
+                GameObject pathfinderObject = componentsParent.Find("Pathfinder").gameObject;
+                brainComponents.pathfinder = pathfinderObject.GetComponent<Pathfinder>();
+            } catch (Exception e) {
                 Debug.LogError("Pathfinder component not found on " + gameObject.name);
             }
-            
-            // Initialize CONTROLLER
-            GameObject controllerObject = componentsParent.Find("Controller").gameObject;
-            brainComponents.controller = controllerObject.GetComponent<ControllerBase>();
-            if (brainComponents.controller == null) {
-                Debug.LogError("Controller component not found on " + gameObject.name);
-            } else {
+
+            try { // Initialize CONTROLLER
+                GameObject controllerObject = componentsParent.Find("Controller").gameObject;
+                brainComponents.controller = controllerObject.GetComponent<ControllerBase>();
+                
                 brainComponents.controller.unitMoveStats = thisUnit.stats.UnitMoveStats;
                 brainComponents.controller.rb = GetComponent<Rigidbody2D>();
                 brainComponents.controller.col = GetComponent<BoxCollider2D>();
+                
                 if (brainComponents.controller.rb == null || brainComponents.controller.col == null) {
                     Debug.LogError("Rigidbody2D or BoxCollider2D not found on " + gameObject.name);
                 }
+            } catch (Exception e) {
+                Debug.LogError("Controller component not found on " + gameObject.name);
             }
             
-            // Initialize COMBAT COMPONENT
-            GameObject combatObject = componentsParent.Find("Combat").gameObject;
-            brainComponents.combatComponent = combatObject.GetComponent<CombatComponent>();
-            if (brainComponents.combatComponent == null) {
+            try { // Initialize COMBAT COMPONENT
+                GameObject combatObject = componentsParent.Find("Combat").gameObject;
+                brainComponents.combatComponent = combatObject.GetComponent<CombatComponent>();
+            } catch (Exception e) {
                 Debug.LogError("CombatComponent component not found on " + gameObject.name);
             }
 

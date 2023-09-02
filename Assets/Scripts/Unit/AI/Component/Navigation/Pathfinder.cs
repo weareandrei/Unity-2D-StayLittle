@@ -65,7 +65,7 @@ namespace Unit.AI.Navigation {
                         new BrainSignal(
                             BrainSignalType.Navigation,
                             UnitAction.Jump
-                            )   
+                            )
                         );
                     break;
                 case "Move Left":
