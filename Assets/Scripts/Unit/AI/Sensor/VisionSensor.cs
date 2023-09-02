@@ -50,10 +50,10 @@ namespace Unit.AI.Sensor {
         
         public override void SendSignalToBrain(string param = null) {
             Brain.ReceiveSignal(
-                new BrainSignal {
-                    type = BrainSignalType.Vision,
-                    objects = RegisteredObjects
-                }
+                new BrainSignal (
+                    BrainSignalType.Vision,
+                    new List<GameObject>(RegisteredObjects)
+                )
             );
         }
         

@@ -14,7 +14,7 @@ namespace Unit.AI {
         private List<ISensor> availableSensors = new (); // List of Sensors in here
         protected BrainComponents brainComponents; // List of available Components
         
-        private SignalBuffer signalBuffer = new ();
+        [SerializeField] private SignalBuffer signalBuffer = new ();
         protected List<GameObject> objectsAround = new ();
 
         protected void Awake() {
@@ -34,6 +34,10 @@ namespace Unit.AI {
             ActivateSensorsAndComponents();
         }
 
+        protected void FixedUpdate() {
+            ReadSensorSignals();
+        }
+        
         private void ActivateSensorsAndComponents() {
             foreach (ISensor sensor in availableSensors) {
                 sensor.Brain = this;
@@ -58,8 +62,7 @@ namespace Unit.AI {
 
             // Update code here
         }
-
-
+        
         private void InitializeComponents() {
             Transform componentsParent = transform.Find("BrainComponents");
     
@@ -93,11 +96,7 @@ namespace Unit.AI {
 
             // ... More component checks to add here
         }
-
-        private void Update() {
-            ReadSensorSignals();
-        }
-
+        
         private void ReadSensorSignals() {
             BrainSignal receivedSignal;
             
@@ -106,7 +105,7 @@ namespace Unit.AI {
 
             switch (receivedSignal.type) {
                 case BrainSignalType.Vision:
-                    objectsAround = receivedSignal.objects;
+                    objectsAround = new List<GameObject>(receivedSignal.objects);
                     break;
                 case BrainSignalType.Navigation:
                     brainComponents.controller.ReceiveActionRequest(receivedSignal.action);
@@ -117,7 +116,9 @@ namespace Unit.AI {
         }
 
         public void ReceiveSignal(BrainSignal incomingSignal) {
-            signalBuffer.AddSignal(incomingSignal);
+            if (!signalBuffer.IsSignalInQueue(incomingSignal)) {
+                signalBuffer.AddSignal(incomingSignal);
+            }
         }
         
     }

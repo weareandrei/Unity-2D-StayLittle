@@ -18,6 +18,7 @@ namespace Unit.AI {
         }
 
         private void FixedUpdate() {
+            base.FixedUpdate();
             MonitorSurroundings();
             ActAccordingToRole();
         }

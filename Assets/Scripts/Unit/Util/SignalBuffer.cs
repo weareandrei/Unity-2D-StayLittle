@@ -1,10 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Codice.CM.Common.Selectors;
 using Unit.AI;
+using UnityEngine;
 
 namespace Unit.Util {
+    
+    [Serializable]
     public class SignalBuffer {
         private Queue<BrainSignal> buffer;
+
+        [SerializeField] private List<BrainSignal> bufferCopy;
 
         public SignalBuffer() {
             buffer = new Queue<BrainSignal>();
@@ -12,6 +18,7 @@ namespace Unit.Util {
 
         public void AddSignal(BrainSignal signal) {
             buffer.Enqueue(signal);
+            bufferCopy = new List<BrainSignal>(buffer);
         }
 
         public BrainSignal GetSignal() {
@@ -21,5 +28,16 @@ namespace Unit.Util {
             
             throw new InvalidOperationException("No signals in the buffer");
         }
+
+        public bool IsSignalInQueue(BrainSignal incomingSignal) {
+            foreach (BrainSignal signal in buffer) {
+                if (signal.Equals(incomingSignal)) {
+                    return true;
+                }
+            }
+    
+            return false;
+        }
+
     }
 }

@@ -26,8 +26,8 @@ namespace Unit.Util {
     }
 
     public enum UnitAction {
-        Jump,
         None,
+        Jump,
         MoveLeft,
         MoveRight,
         StopMovement
