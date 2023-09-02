@@ -103,7 +103,7 @@ namespace Unit.AI {
         }
         
         private bool GoodAttackDistance(Vector2 targetPosition) {
-            return false;
+            return Vector2.Distance(targetPosition, transform.position) < 2f;
         }
 
         protected abstract void AttackTarget(GameObject target);
