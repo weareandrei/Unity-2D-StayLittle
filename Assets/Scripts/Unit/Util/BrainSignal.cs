@@ -17,12 +17,15 @@ namespace Unit.AI {
         public Vector2 direction;
         [SerializeField]
         public UnitAction action;
+        [SerializeField]
+        public string param;
 
         public BrainSignal(BrainSignalType type, List<GameObject> objects) {
             this.type = type;
             this.objects = objects;
             this.direction = new Vector2(0,0);
             this.action = UnitAction.None;
+            this.param = "";
         }
 
         public BrainSignal(BrainSignalType type, Vector2 direction) {
@@ -30,15 +33,25 @@ namespace Unit.AI {
             this.objects = null;
             this.direction = direction;
             this.action = UnitAction.None;
+            this.param = "";
         }
 
+        public BrainSignal(BrainSignalType type, UnitAction action, string param) {
+            this.type = type;
+            this.objects = null;
+            this.direction = new Vector2(0,0);
+            this.action = action;
+            this.param = param;
+        }
+        
         public BrainSignal(BrainSignalType type, UnitAction action) {
             this.type = type;
             this.objects = null;
             this.direction = new Vector2(0,0);
             this.action = action;
+            this.param = "";
         }
-        
+
         public bool Equals(BrainSignal other) {
             if (type != other.type) {
                 return false;
@@ -47,6 +60,7 @@ namespace Unit.AI {
             return type switch {
                 BrainSignalType.Vision => GameObjectListsEqual(objects, other.objects),
                 BrainSignalType.Navigation => direction == other.direction && action == other.action,
+                BrainSignalType.Combat => action == other.action
             };
         }
 

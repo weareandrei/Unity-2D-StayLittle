@@ -111,6 +111,9 @@ namespace Unit.AI {
                 case BrainSignalType.Navigation:
                     brainComponents.controller.ReceiveActionRequest(receivedSignal.action);
                     break;
+                case BrainSignalType.Combat:
+                    brainComponents.combatComponent.PerformAttack(receivedSignal.param);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

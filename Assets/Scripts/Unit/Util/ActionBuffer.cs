@@ -30,6 +30,7 @@ namespace Unit.Util {
         Jump,
         MoveLeft,
         MoveRight,
-        StopMovement
+        StopMovement,
+        Attack
     }
 }

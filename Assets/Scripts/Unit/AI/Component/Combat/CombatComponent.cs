@@ -19,25 +19,47 @@ namespace Unit.AI {
                 damageGivingCollider = damageGivingColliderTransform.GetComponent<DamageGivingCollider>();
 
                 return;
-            } 
+            }
             
             Debug.LogError("DamageGivingCollider component not found.");
         }
 
         
-        public void PerformAttack(GameObject attackTarget = null) {
+        public void PerformAttack(string param) {
+            // switch (param) {
+            //     case "LightAttack":
+            //         break;
+            //     case "HeavyAttack":
+            //         break;
+            // }
+            
             isPerformingAttack = true;
-            StartCoroutine(Attack(attackTarget));
+            StartCoroutine(Attack(param));
         }
         
-        private IEnumerator Attack(GameObject attackTarget = null) {
-            yield return new WaitForSeconds(1);
-            damageGivingCollider.gameObject.SetActive(true);
+        private IEnumerator Attack(string param) {
+            
+            switch (param) {
+                case "LightAttack":
+                    yield return new WaitForSeconds(0.3f);
+                    damageGivingCollider.gameObject.SetActive(true);
 
-            MakeDamageInArea();
-            InstantiateSlashParticles();
+                    MakeDamageInArea(20);
+                    InstantiateSlashParticles();
+                    
+                    yield return new WaitForSeconds(0.3f);
+                    break;
+                case "HeavyAttack":
+                    yield return new WaitForSeconds(0.6f);
+                    damageGivingCollider.gameObject.SetActive(true);
 
-            yield return new WaitForSeconds(0.5f);
+                    MakeDamageInArea(50);
+                    InstantiateSlashParticles();
+                    
+                    yield return new WaitForSeconds(0.4f);
+                    break;
+            }
+            
             isPerformingAttack = false;
             yield return null;
         }
@@ -47,10 +69,10 @@ namespace Unit.AI {
             Instantiate(damageGivingCollider.slashVFXPrefab, colliderPos, Quaternion.identity);
         }
 
-        private void MakeDamageInArea() {
+        private void MakeDamageInArea(float damage) {
             List<GameObject> targets = damageGivingCollider.GetTargetsAvailable();
             foreach (GameObject targetObject in targets) {
-                targetObject.GetComponent<Base.Unit>().RecieveDamage(20);
+                targetObject.GetComponent<Base.Unit>().RecieveDamage(damage);
                 // if (!recievedDamage) { // damage recieved by this? }
             }
         }

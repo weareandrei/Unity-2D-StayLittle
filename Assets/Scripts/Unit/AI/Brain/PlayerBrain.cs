@@ -42,6 +42,16 @@ namespace Unit.AI {
                     new BrainSignal(
                         BrainSignalType.Navigation,
                         UnitAction.Jump
+                    )
+                );
+            }
+            
+            if (Input.GetKeyDown(KeyCode.E)) {
+                ReceiveSignal(
+                    new BrainSignal(
+                        BrainSignalType.Combat,
+                        UnitAction.Attack,
+                        "LightAttack"
                     )   
                 );
             }

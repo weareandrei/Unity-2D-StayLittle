@@ -47,7 +47,7 @@ namespace Unit.AI {
         
         protected override void AttackTarget(GameObject target) {
             if (!brainComponents.combatComponent.isPerformingAttack) {
-                brainComponents.combatComponent.PerformAttack(target);
+                brainComponents.combatComponent.PerformAttack("Light Attack");
             }
         }
 
