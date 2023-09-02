@@ -83,14 +83,14 @@ namespace Unit.AI {
                 if (isLookingRight == false) { } // OPTIONAL ANIMATION TURN RIGHT          (ANIMATION)
 
                 isLookingRight = true;
-                transform.rotation = new Quaternion(0, 0, 0, 0);
+                rb.transform.rotation = new Quaternion(0, 0, 0, 0);
             } 
             
             if (movementDirection < 0) {
                 if (isLookingRight == true) { } // OPTIONAL ANIMATION TURN LEFT            (ANIMATION)
 
                 isLookingRight = false;
-                transform.rotation = new Quaternion(0, 180, 0, 0);
+                rb.transform.rotation = new Quaternion(0, 180, 0, 0);
             }
         }
         

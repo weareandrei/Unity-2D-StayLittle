@@ -1,5 +1,5 @@
 namespace Unit.AI.Controller {
-    public class PlayerController {
+    public class PlayerController : UnitController {
         
     }
 }
