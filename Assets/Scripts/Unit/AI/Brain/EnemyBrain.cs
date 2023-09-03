@@ -1,47 +1,56 @@
-using System.Collections.Generic;
-using System.Numerics;
+using Unit.Util;
 using UnityEngine;
-using Vector2 = UnityEngine.Vector2;
+using UnitBase = Unit.Base;
 
 namespace Unit.AI {
-    public class EnemyBrain : Brain {
+    
+    public class EnemyBrain : UnitBrain {
 
-        public override void SelectAttackTarget(GameObject target) {
-            this.attackTarget = target;
-        }
+        // protected override void ReactToSurroundings() {
+        //     switch (thisUnit.role) {
+        //         case UnitRole.Agressive_Patroling:
+        //             // Do scenario 1
+        //             break;
+        //         case UnitRole.Agressive_StayStill:
+        //             // Do scenario 2
+        //             break;
+        //     }
+        // }
 
-        public override void SelectFollowTarget(GameObject target) {
-            this.followTarget = target;
-        }
 
-        public override void Follow() {
-            if (followTarget && !GoodAttackDistance(followTarget.transform.position)) {
-                pathfinder.SelectTarget(followTarget);
+        protected override void ClassifyObject(GameObject obj) {
+            UnitBase.Unit unitComponent = obj.GetComponent<UnitBase.Unit>();
+
+            if (!unitComponent) {
+                return;
             }
-        }
 
-        public override void Attack() {
-            if (attackTarget && GoodAttackDistance(attackTarget.transform.position) && !isPerformingAttack) {
-                controller.Attack(attackTarget);
-            }
-        }
-
-        private bool GoodAttackDistance(Vector2 targetPosition) {
-            float distance = Vector2.Distance(
-                transform.position,
-                targetPosition);
-
-            return distance < minimumFollowDistance;
-        }
-        public override void ReactToObjectsAround() {
-            List<GameObject> objectsAround = vision.GetObjectsAround();
-
-            foreach (GameObject thisObject in objectsAround) {
-                if (thisObject.tag == "Player") {
-                    SelectFollowTarget(thisObject);
-                    SelectAttackTarget(thisObject);
+            foreach (UnitTag tag in unitComponent.tags) {
+                switch (tag) {
+                    case UnitTag.Player:
+                        surroundings.enemyUnits.Add(obj);
+                        break;
+                    case UnitTag.Child:
+                        surroundings.enemyUnits.Add(obj);
+                        break;
+                    case UnitTag.Enemy:
+                        surroundings.friendlyUnits.Add(obj);
+                        break;
                 }
             }
+
         }
+
+        protected override void FollowTarget(GameObject target) {
+            brainComponents.pathfinder.SelectTarget(target);
+        }
+        
+        protected override void AttackTarget(GameObject target) {
+            if (!brainComponents.combatComponent.isPerformingAttack) {
+                brainComponents.combatComponent.PerformAttack("LightAttack");
+            }
+        }
+
     }
+    
 }
