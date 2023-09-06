@@ -1,3 +1,4 @@
+using Unit.CarriedItems;
 using Unit.Stats;
 using UnityEngine;
 
@@ -5,7 +6,8 @@ namespace Unit.Base {
     public class PlayerUnit : BaseUnit {
         
         [SerializeField] public PlayerStats stats;
-        
+        [SerializeField] public UnitInventory inventory;    
+    
         private new void Awake() {
             base.stats = stats; 
             base.Awake();

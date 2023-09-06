@@ -7,11 +7,32 @@ namespace Unit.Stats {
     [Serializable]
     public class PlayerStats : BaseStats, ICombatStats, ILevelProgressionStats {
         
-        public float AttackRange { get; set; }
-        public float BaseAttackDamage { get; set; }
-        public int MaxXP { get; set; }
-        public int CurrentXP { get; set; }
+        [SerializeField] private float attackRange;
+        [SerializeField] private float baseAttackDamage;
         
+        [SerializeField] private int maxXP;
+        [SerializeField] private int currentXP;
+        
+        public float AttackRange {
+            get { return attackRange; }
+            set { attackRange = value; }
+        }
+
+        public float BaseAttackDamage {
+            get { return baseAttackDamage; }
+            set { baseAttackDamage = value; }
+        }
+        
+        public int MaxXP {
+            get { return maxXP; }
+            set { maxXP = value; }
+        }
+
+        public int CurrentXP {
+            get { return currentXP; }
+            set { currentXP = value; }
+        }
+
     }
     
 }
