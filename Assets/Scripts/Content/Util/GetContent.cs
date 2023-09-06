@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Content.Base;
 using Global;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Content.Util {
             
             GameObject[] contentPrefabs = Resources.LoadAll<GameObject>(path);
             foreach (GameObject contentPrefab in contentPrefabs) {
-                Content contentComponent = contentPrefab.GetComponent<Content>();
+                BaseContent contentComponent = contentPrefab.GetComponent<BaseContent>();
 
                 if (contentComponent != null && contentComponent.id == id) {
                     return contentPrefab;
@@ -29,7 +30,7 @@ namespace Content.Util {
             GameObject[] contentPrefabs = Resources.LoadAll<GameObject>(path);
             List<GameObject> contentPrefabsAvailable = new List<GameObject>();
             foreach (GameObject contentPrefab in contentPrefabs) {
-                Content contentComponent = contentPrefab.GetComponent<Content>();
+                BaseContent contentComponent = contentPrefab.GetComponent<BaseContent>();
 
                 if (contentComponent != null && contentComponent.type == type) {
                     contentPrefabsAvailable.Add(contentPrefab);

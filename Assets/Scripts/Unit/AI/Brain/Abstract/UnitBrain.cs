@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unit.Base;
 using Unit.Util;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,13 +9,16 @@ namespace Unit.AI {
     
     public abstract class UnitBrain : BrainBase {
         
+        protected new NPCUnit thisUnit;
+        
         [Header(">>>>>> Targets")]
         [SerializeField] protected GameObject selectedTarget;
         [SerializeField] protected VisibleSurroundings surroundings;
         
-        private void Awake() {
-            base.Awake();
-            // ... add more code to Awake()
+        private void Start() {
+            thisUnit = GetComponent<NPCUnit>();
+            base.thisUnit = thisUnit;
+            base.Start();
         }
 
         private void FixedUpdate() {

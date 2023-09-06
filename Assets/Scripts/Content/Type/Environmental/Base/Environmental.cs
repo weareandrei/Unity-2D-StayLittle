@@ -1,5 +1,7 @@
+using Content.Base;
+
 namespace Content {
-    public class Environmental : Content {
+    public class Environmental : BaseContent {
         
     }
 }

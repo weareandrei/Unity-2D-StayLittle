@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unit.Base;
 using UnityEngine;
 
 namespace Unit.AI {
@@ -12,7 +13,7 @@ namespace Unit.AI {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (!targetsAvailable.Contains(other.gameObject) && other.gameObject.GetComponent<Base.Unit>()) {
+            if (!targetsAvailable.Contains(other.gameObject) && other.gameObject.GetComponent<BaseUnit>()) {
                 targetsAvailable.Add(other.gameObject);
             }
         }

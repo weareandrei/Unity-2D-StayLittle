@@ -4,18 +4,18 @@ using UnityEngine;
 namespace Unit.Stats {
     
     [Serializable]
-    public class UnitStats : StatsBase {
+    public abstract class BaseStats {
         
         [SerializeField] protected float _maxHP = 100f;
         [SerializeField] protected float _currentHP;
 
-        [SerializeField] protected int _maxXP;
-        [SerializeField] protected int _currentXP;
+        // [SerializeField] protected int _maxXP;
+        // [SerializeField] protected int _currentXP;
         [SerializeField] protected int _currentLevel;
 
         [SerializeField] protected float _isImmortal;
         
-        [SerializeField] protected float _attackRange;
+        // [SerializeField] protected float _attackRange;
 
         [SerializeField] private UnitMoveStats _unitMoveStats;
 
@@ -31,18 +31,6 @@ namespace Unit.Stats {
             }
         }
 
-        public int MaxXP {
-            get { return _maxXP; }
-            set { _maxXP = value; }
-        }
-        
-        public int CurrentXP {
-            get { return _currentXP; }
-            set {
-            _currentXP = Mathf.Clamp(value, 0, _maxXP);
-            }
-        }
-        
         public int CurrentLevel {
             get { return _currentLevel; }
             set { _currentLevel = value; }
@@ -53,10 +41,10 @@ namespace Unit.Stats {
             set { _isImmortal = value; }
         }
         
-        public float AttackRange {
-            get { return _attackRange; }
-            set { _attackRange = value; }
-        }
+        // public float AttackRange {
+        //     get { return _attackRange; }
+        //     set { _attackRange = value; }
+        // }
         
         public UnitMoveStats UnitMoveStats {
             get { return _unitMoveStats; }
