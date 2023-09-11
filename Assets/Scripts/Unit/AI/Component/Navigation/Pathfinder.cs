@@ -19,6 +19,8 @@ namespace Unit.AI.Navigation {
 
         [SerializeField] private int nextDestinationPoint;
         [SerializeField] private List<DestinationPoint> pathToDestination;
+
+        private List<Vector2> latestMovePath;
         
         private void Start() {
             currentDirection = new Vector2Int(0, 0);
@@ -109,16 +111,16 @@ namespace Unit.AI.Navigation {
             List<List<DestinationPoint>> possiblePaths = new List<List<DestinationPoint>>();
             float shortestPathLength = float.MaxValue;
 
-            // Initialize the path's list with the first path
-            // , obviously, any path here will contain fromPoint 
+            // Initialize the path's list with the first currentDestinationPoint
+            // , obviously, any path here will contain currentDestinationPoint
             possiblePaths.Add(
                 new List<DestinationPoint> {
                     fromPoint
                 });
 
-            bool actionPerfomed = true;
-            while (actionPerfomed) {
-                actionPerfomed = false;
+            bool pathsModified = true;
+            while (pathsModified) {
+                pathsModified = false;
                 
                 for (int i = 0; i < possiblePaths.Count; i++) {
                     List<DestinationPoint> thisPath = possiblePaths[i];
@@ -146,7 +148,7 @@ namespace Unit.AI.Navigation {
                         if (Util.PathAlreadyCreated(possiblePaths, newPath)) continue;
                         
                         possiblePaths.Add(newPath);
-                        actionPerfomed = true;
+                        pathsModified = true;
                     }
                 }
             }
