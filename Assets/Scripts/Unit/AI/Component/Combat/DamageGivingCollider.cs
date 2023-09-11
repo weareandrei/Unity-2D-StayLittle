@@ -20,7 +20,7 @@ namespace Unit.AI {
 
         private void OnTriggerExit2D(Collider2D other) {
             if (targetsAvailable.Contains(other.gameObject)) {
-                targetsAvailable.Add(other.gameObject);
+                targetsAvailable.Remove(other.gameObject);
             }
         }
 

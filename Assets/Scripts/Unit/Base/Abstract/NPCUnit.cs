@@ -26,7 +26,7 @@ namespace Unit.Base {
             }
             
             // Continue with other logic if necessary
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
     }
