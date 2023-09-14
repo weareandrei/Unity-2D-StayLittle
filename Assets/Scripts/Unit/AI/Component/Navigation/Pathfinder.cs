@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unit.Util;
@@ -14,7 +15,7 @@ namespace Unit.AI.Navigation {
 
         public Vector2Int currentDirection;
         
-        [SerializeField] public float unitRangeDistance = 2f;
+        [SerializeField] public float unitRangeDistance = 5f;
         [SerializeField] private List<DestinationPoint> allDestinationPoints;
 
         [SerializeField] private int nextDestinationPoint;
@@ -84,6 +85,14 @@ namespace Unit.AI.Navigation {
                             BrainSignalType.Navigation,
                             UnitAction.MoveRight
                         )   
+                    );
+                    break;
+                case "Stop":
+                    Brain.ReceiveSignal(
+                        new BrainSignal(
+                            BrainSignalType.Navigation,
+                            UnitAction.StopMovement
+                        )
                     );
                     break;
             }
@@ -210,14 +219,18 @@ namespace Unit.AI.Navigation {
             else {
                 currentDirection.y = -1;
             }
-            
-            if (gameObject.transform.position.x < target.transform.position.x) {
+
+            float distanceToTarget = target.transform.position.x - gameObject.transform.position.x;
+            if (distanceToTarget > 2f) {
                 currentDirection.x = 1;
                 SendSignalToBrain("Move Right");
             }
-            else {
+            else if (distanceToTarget < -2f) {
                 currentDirection.x = -1;
                 SendSignalToBrain("Move Left");
+            } else {
+                currentDirection.x = 0;
+                SendSignalToBrain("Stop");
             }
         }
 
