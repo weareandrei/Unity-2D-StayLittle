@@ -5,29 +5,32 @@ using UnityEngine;
 namespace Unit.Stats {
     
     [Serializable]
-    public class PlayerStats : UnitStats {
+    public class PlayerStats : BaseStats, ICombatStats, ILevelProgressionStats {
         
-        protected int _currentXP;
-        protected int _maxXP;
+        [SerializeField] private float attackRange;
+        [SerializeField] private float baseAttackDamage;
+        
+        [SerializeField] private int maxXP;
+        [SerializeField] private int currentXP;
+        
+        public float AttackRange {
+            get { return attackRange; }
+            set { attackRange = value; }
+        }
 
-        protected float _currentMoney;
-        // protected List<Ability> _abilitiesLearned;
+        public float BaseAttackDamage {
+            get { return baseAttackDamage; }
+            set { baseAttackDamage = value; }
+        }
+        
+        public int MaxXP {
+            get { return maxXP; }
+            set { maxXP = value; }
+        }
 
         public int CurrentXP {
-            get { return _currentXP; }
-            set {
-            _currentXP = Mathf.Clamp(value, 0, _maxXP);
-            }
-        }
-
-        public int MaxXP {
-            get { return _maxXP; }
-            set { _maxXP = value; }
-        }
-        
-        public float CurrentMoney {
-            get { return _currentMoney; }
-            set { _currentMoney = value; }
+            get { return currentXP; }
+            set { currentXP = value; }
         }
 
     }

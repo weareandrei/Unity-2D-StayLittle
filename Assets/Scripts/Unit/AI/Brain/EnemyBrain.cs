@@ -1,6 +1,6 @@
+using Unit.Base;
 using Unit.Util;
 using UnityEngine;
-using UnitBase = Unit.Base;
 
 namespace Unit.AI {
     
@@ -17,9 +17,9 @@ namespace Unit.AI {
         //     }
         // }
 
-
         protected override void ClassifyObject(GameObject obj) {
-            UnitBase.Unit unitComponent = obj.GetComponent<UnitBase.Unit>();
+           
+            BaseUnit unitComponent = obj.GetComponent<BaseUnit>();
 
             if (!unitComponent) {
                 return;

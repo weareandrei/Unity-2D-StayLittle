@@ -1,10 +1,12 @@
 using System.Collections;
+using Unit.Base;
 using UnityEngine;
-using UnitBase = Unit.Base;
 
 namespace UI.Unit {
-    public abstract class UnitStatsUI : BaseStatsUI {
+    public abstract class NPCStatsUI : BaseStatsUI {
 
+        protected NPCUnit thisUnit;
+        
         [SerializeField] protected RectTransform SlowChange_Bar;
         [SerializeField] protected RectTransform InstantChange_Bar;
 
@@ -16,11 +18,9 @@ namespace UI.Unit {
         protected Coroutine _adjustBarWidthCoroutine;
         protected float unitMaxHP;
         protected float unitCurrentHP;
-
-        protected UnitBase.Unit thisUnit;
         
         private void Awake() {
-            thisUnit = GetComponentInParent<UnitBase.Unit>();
+            thisUnit = GetComponentInParent<NPCUnit>();
         }
         
         private void Start() {

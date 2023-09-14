@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Unit.AI.Navigation;
+using Unit.Base;
 using Unit.Util;
 using UnityEngine;
-using UnitBase = Unit.Base;
 
 namespace Unit.AI {
     
     public abstract class BrainBase : MonoBehaviour {
         
-        protected UnitBase.Unit thisUnit;
+        protected BaseUnit thisUnit;
         
         private List<ISensor> availableSensors = new (); // List of Sensors in here
         protected BrainComponents brainComponents; // List of available Components
@@ -17,8 +17,8 @@ namespace Unit.AI {
         [SerializeField] private SignalBuffer signalBuffer = new ();
         protected List<GameObject> objectsAround = new ();
 
-        protected void Awake() {
-            thisUnit = GetComponent<UnitBase.Unit>();
+        protected void Start() {
+            thisUnit = GetComponent<BaseUnit>();
             
             Transform sensorsParent = transform.Find("Sensors");
 
@@ -109,10 +109,14 @@ namespace Unit.AI {
                     objectsAround = new List<GameObject>(receivedSignal.objects);
                     break;
                 case BrainSignalType.Navigation:
-                    brainComponents.controller.ReceiveActionRequest(receivedSignal.action);
+                    if (brainComponents.controller) {
+                        brainComponents.controller.ReceiveActionRequest(receivedSignal.action);
+                    }
                     break;
                 case BrainSignalType.Combat:
-                    brainComponents.combatComponent.PerformAttack(receivedSignal.param);
+                    if (brainComponents.combatComponent) {
+                        brainComponents.combatComponent.PerformAttack(receivedSignal.param);    
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

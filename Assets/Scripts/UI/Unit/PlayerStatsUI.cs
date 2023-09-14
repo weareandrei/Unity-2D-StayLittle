@@ -1,12 +1,12 @@
+using Unit.Base;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnitBase = Unit.Base;
 
 namespace UI.Unit {
     public class PlayerStatsUI : BaseStatsUI {
         
         protected float displayedXP;
-        private UnitBase.Unit playerUnit;
+        private PlayerUnit playerUnit;
         
         private void Start() {
             TryToFindPlayer();
@@ -26,7 +26,7 @@ namespace UI.Unit {
         private void TryToFindPlayer() {
             GameObject playerObj = GameObject.FindWithTag("Player");
             if (playerObj == null) { return; }
-            playerUnit = playerObj.GetComponent<UnitBase.Unit>();
+            playerUnit = playerObj.GetComponent<PlayerUnit>();
         }
 
         private void UpdateHP() {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unit.Base;
 using UnityEngine;
 
 namespace Unit.AI {
@@ -72,7 +73,7 @@ namespace Unit.AI {
         private void MakeDamageInArea(float damage) {
             List<GameObject> targets = damageGivingCollider.GetTargetsAvailable();
             foreach (GameObject targetObject in targets) {
-                targetObject.GetComponent<Base.Unit>().RecieveDamage(damage);
+                targetObject.GetComponent<BaseUnit>().RecieveDamage(damage, Brain.gameObject);
                 // if (!recievedDamage) { // damage recieved by this? }
             }
         }

@@ -1,21 +1,17 @@
 using System.Collections;
+using Unit.Base;
 using UnityEngine;
-using UnitBase = Unit.Base;
 
 namespace UI.Unit {
-    public class EnemyStatsUI : UnitStatsUI {
+    public class EnemyStatsUI : NPCStatsUI {
         
-        private UnitBase.Unit enemyUnit;
-
         private void Start() {
-            enemyUnit = thisUnit as UnitBase.Unit;
-            
-            unitMaxHP = enemyUnit.stats.MaxHP;
+            unitMaxHP = thisUnit.stats.MaxHP;
             maxBarWidth = InstantChange_Bar.rect.width;
         }
 
         protected override void UpdateHP() {
-            float unitNewHP = enemyUnit.stats.CurrentHP;
+            float unitNewHP = thisUnit.stats.CurrentHP;
             float differenceHP = Mathf.Abs(unitNewHP - unitCurrentHP);
             if (differenceHP > 0) {
                 unitCurrentHP = unitNewHP;
